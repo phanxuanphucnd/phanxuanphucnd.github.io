@@ -131,7 +131,7 @@ from:
 
 -   **Plug-out fine-tuning:** is to unplug the cross-attention module
     from the pre-trained model which makes the model very similar to
-    [mBERT](https://anwarvic.gtihub.io/multilingual-nmt/mBERT).
+    [mBERT](https://phanxuanphucnd.gtihub.io/multilingual-nmt/mBERT).
 
 -   **Plug-in fine-tuning:** is to plug the cross-attention module into
     the fine-tuned model. This can be used if the other language y is
