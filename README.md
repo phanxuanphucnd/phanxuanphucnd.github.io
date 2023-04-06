@@ -1,14 +1,8 @@
-# [anwarvic.github.io](https://anwarvic.github.io)
+# [https://phanxuanphucnd.github.io/](https://phanxuanphucnd.github.io/)
 
-This is the source code for my blog hosted on the following
-url: https://anwarvic.github.io. This source code was adapted from the
-[Jekyll-Uno](https://github.com/joshgerdes/jekyll-uno) theme created by
-Josh Gerdes.
+This is the source code for my blog hosted on the following  url: https://phanxuanphucnd.github.io/. This source code 
+was adapted from the [Jekyll-Uno](https://github.com/joshgerdes/jekyll-uno) theme created by Josh Gerdes.
 
-<div align="center">
-  <img src="images/assets/peek_web.gif" width=750>
-  <img src="images/assets/peek_mobile.gif" height=500>
-</div>
 
 ## Dependencies
 
