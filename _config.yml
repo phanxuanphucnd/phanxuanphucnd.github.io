@@ -1,0 +1,95 @@
+# Site settings
+title: "Anwarvic's Blog"
+description: "I'm an AI research resident at Meta (Facebook previously). And I summarize research papers in these topics:"
+url: 'https://anwarvic.github.io'
+cover: images/forest.jpg
+baseurl: ''
+google_analytics: 'G-D53BTZQ94B'
+disqus_shortname: 'anwarvic'
+
+author:
+  name: 'Mohamed Anwar'
+  pronouns: "(he/him/his)"
+  email: mohamedanwarvic@gmail.com
+  github:  anwarvic
+  linkedin:  anwarvic
+  stackoverflow:  5612363/anwarvic
+  hackerrank: anwarvic
+  leetcode: anwarvic
+
+collections_dir: my_collections
+collections:
+  language-modeling:
+    output: true
+    permalink: /:collection/:path
+    title: "Language Modeling"
+    show: true
+  machine-translation:
+    output: true
+    permalink: /:collection/:path
+    title: "Machine Translation"
+    show: true
+  multilingual-nmt:
+    output: true
+    permalink: /:collection/:path
+    title: "Multilingual NMT"
+    show: true
+  cross-lingual-lm:
+    output: true
+    permalink: /:collection/:path
+    title: "Cross-lingual LM"
+    show: true
+  speech-recognition:
+    output: true
+    permalink: /:collection/:path
+    title: "Speech Recognition"
+    show: true
+  speech-synthesis:
+    output: true
+    permalink: /:collection/:path
+    title: "Speech Synthesis"
+    show: true
+  speech-translation:
+    output: true
+    permalink: /:collection/:path
+    title: "Speech Translation"
+    show: true
+  word-embedding:
+    output: true
+    permalink: /:collection/:path
+    title: "Word Embedding"
+    show: false
+  misc:
+    output: true
+    permalink: /:collection/:path
+    title: "Misc."
+    show: false
+
+defaults:
+  -
+    scope:
+      path: "my_collections/*" # all files inside my_collections
+    values:
+      layout: "post" #post.html
+
+# Build settings
+destination: _site
+# paginate: 10
+# permalink: /:collection
+markdown: kramdown
+highlighter: rouge
+
+sass:
+    sass_dir: _sass
+    style: compressed
+
+kramdown:
+  mathjax: true  #use mathjax to process math equations
+  input: GFM # use Github Flavored Markdown
+  hard_wrap: false # do not replace newlines by <br>
+
+# plugins:
+#   - jekyll-paginate
+#   - jekyll-spaceship
+
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock']
