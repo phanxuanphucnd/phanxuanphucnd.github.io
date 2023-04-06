@@ -8,11 +8,11 @@ HiFi-GAN stands for "High Fidelity General Adversarial Network" which is
 a neural vocoder that is able to generate high fidelity speech synthesis
 from mel-spectrograms efficiently more than any other auto-regressive
 vocoder such (e.g.
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet),
-[ClariNet](https://anwarvic.github.io/speech-synthesis/ClariNet)) or
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet),
+[ClariNet](https://phanxuanphucnd.github.io/speech-synthesis/ClariNet)) or
 GAN-based vocoder (e.g.
-[GAN-TTS](https://anwarvic.github.io/speech-synthesis/GAN-TTS),
-[MelGAN](https://anwarvic.github.io/speech-synthesis/MelGAN)). HiFi-GAN
+[GAN-TTS](https://phanxuanphucnd.github.io/speech-synthesis/GAN-TTS),
+[MelGAN](https://phanxuanphucnd.github.io/speech-synthesis/MelGAN)). HiFi-GAN
 was proposed by Kakao Enterprise in 2020 and published in this paper
 under the same name: "[HiFi-GAN: Generative Adversarial Networks for
 Efficient and High Fidelity Speech
@@ -83,7 +83,7 @@ input audio. The way MPD works is shown in the following figure:
 Because each sub-discriminator in MPD only accepts disjoint samples,
 they added MSD to consecutively evaluate the audio sequence. The
 architecture of MSD is drawn from
-[MelGAN](https://anwarvic.github.io/speech-synthesis/MelGAN), which is a
+[MelGAN](https://phanxuanphucnd.github.io/speech-synthesis/MelGAN), which is a
 mixture of three sub-discriminators operating on different input scales:
 raw audio, ×2 average-pooled audio, and ×4 average-pooled audio, as
 shown in the following figure:
@@ -210,7 +210,7 @@ table. Removing MPD causes a significant decrease in audio quality,
 whereas the absence of MSD shows a relatively small but noticeable
 degradation. Adding mel-spectrogram loss helps improve the quality.
 Also, adding MPD to
-[MelGAN](https://anwarvic.github.io/speech-synthesis/MelGAN) shows
+[MelGAN](https://phanxuanphucnd.github.io/speech-synthesis/MelGAN) shows
 statistically significant improvement.
 
 <div align="center">
@@ -239,9 +239,9 @@ speakers.
 In the paper, they conducted one last experiment to examine the
 effectiveness of the proposed models when applied to an end-to-end TTS
 pipeline. They used this model with [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2). The results
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2). The results
 without fine-tuning show that all the proposed models outperform
-[WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) in the
+[WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) in the
 end-to-end setting, while the audio quality of all models are below
 ground-trut. When fine-tuning, V1 achieves better scores. Which means
 that <u><strong>HiFi-GAN adapts well on the end-to-end setting with fine-tuning</strong></u>.

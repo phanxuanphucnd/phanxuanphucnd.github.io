@@ -23,7 +23,7 @@ into characters with the help of the attention mechanism.
 
 > **Note:**\
 As you can see, this architecture doesn't use
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) as a loss
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) as a loss
 function. And that's because CTC assumes that the output characters are
 independent on each other which is untrue as we know. LAS doesn't make
 that assumption. On the other hand, seq2seq models like LAS are slower

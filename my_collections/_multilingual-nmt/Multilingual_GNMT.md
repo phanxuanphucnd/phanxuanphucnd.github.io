@@ -8,7 +8,7 @@ labs: ["Google Research"]
 GNMT stands for "Google Neural Machine Translation" which is a
 <u><strong>bilingual</strong></u> machine translation architecture that was
 discussed before in this post:
-[GNMT](https://anwarvic.github.io/machine-translation/GNMT). Here, we
+[GNMT](https://phanxuanphucnd.github.io/machine-translation/GNMT). Here, we
 are going to discuss how they extended the bilingual nature of the GNMT
 model to be multilingual. The Multilingual GNMT architecture, as seen in
 the following figure, was proposed in 2016 by the Google Research team
@@ -40,7 +40,7 @@ Architecture
 ------------
 
 The multilingual GNMT model architecture is identical to the
-[GNMT](https://anwarvic.github.io/machine-translation/GNMT) model as
+[GNMT](https://phanxuanphucnd.github.io/machine-translation/GNMT) model as
 shown below with only one addition which is to add an artificial token
 at the beginning of the input sentence to indicate the required target
 language. In this example, the token $\left\langle 2es \right\rangle$
@@ -99,7 +99,7 @@ Results
 -------
 
 The training protocols used here are mostly identical to the
-[GNMT](https://anwarvic.github.io/machine-translation/GNMT). The only
+[GNMT](https://phanxuanphucnd.github.io/machine-translation/GNMT). The only
 thing changed was that they used larger batch sizes with a slightly
 higher initial learning rate to speed up the convergence of these
 models.

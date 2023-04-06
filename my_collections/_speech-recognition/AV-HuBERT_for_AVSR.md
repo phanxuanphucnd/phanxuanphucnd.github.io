@@ -25,11 +25,11 @@ a good idea to have an overview of how AV-HuBERT works first.
 AV-HuBERT stands for "**A**udio-**V**isual **H**idden **U**nit **BERT**"
 which is a multi-modal self-supervised speech representation learning
 model which encodes audio and image sequences into audio-visual
-features. [HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT)
+features. [HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT)
 can be considered a
-[BERT](https://anwarvic.github.io/language-modeling/BERT) for the
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) for the
 "Audio" modal, and AV-HuBERT can be considered a
-[BERT](https://anwarvic.github.io/language-modeling/BERT) for
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) for
 "Audio-Visual" multi-modal systems. AV-HuBERT was proposed by Meta in
 2022 and published in this paper: "[Learning Audio-Visual Speech
 Representation by Masked Multimodal Cluster
@@ -59,7 +59,7 @@ together, AV-HuBERT is pre-trained using the following steps:
         binary masking $M$. Specifically, $\forall t \in M$, $a_{t}$
         is replaced with a masked embedding following the same masking
         method as
-        [HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT).
+        [HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT).
 
     -   In parallel, the input image stream $I$ will be masked into
         $\widetilde{I}$ by a novel masking strategy where some
@@ -104,7 +104,7 @@ $$F^{(av)} = \left\{ \begin{matrix}
     contextualized features
     $E = \left\lbrack e_{1},\ ...e_{T} \right\rbrack$ via the
     transformer encoder
-    ([BERT](https://anwarvic.github.io/language-modeling/BERT));
+    ([BERT](https://phanxuanphucnd.github.io/language-modeling/BERT));
     followed by a linear projection layer which maps features into
     logits:
 
@@ -173,7 +173,7 @@ architecture for all experiments, which has $24$ transformer blocks,
 where each block has $16$ attention heads and $1024$/$4096$
 embedding/feedforward dimensions. For fine-tuning on the audio-visual
 speech recognition task, they added a 9-layer randomly initialized
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 decoder with similar embedding/feedforward dimensions. Regarding the
 data, they used two different datasets:
 
@@ -182,7 +182,7 @@ data, they used two different datasets:
     multiple languages. They used only the English portion. As no
     ground-truth language label is given in the VoxCeleb2, they used an
     off-the-shelf character-based ASR
-    [HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT) model
+    [HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT) model
     rained on Librispeech to filter non-English talks. The total amount
     of unlabeled data after filtering was $1,326$ hours.
 

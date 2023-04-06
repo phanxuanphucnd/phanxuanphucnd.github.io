@@ -13,7 +13,7 @@ Networks](https://arxiv.org/pdf/1612.08083v3.pdf)", proposed by FAIR
 (Facebook AI Research) in 2017, the researchers developed a new
 architecture that uses gating mechanism over stacked convolution layers
 that outperforms the
-[Seq2Seq](https://anwarvic.github.io/machine-translation/Seq2Seq) model.
+[Seq2Seq](https://phanxuanphucnd.github.io/machine-translation/Seq2Seq) model.
 
 <div align="center">
     <img src="media/GCNN/image1.png" width=450>
@@ -133,7 +133,7 @@ Gating Mechanism (GLU)
 ----------------------
 
 Gating mechanisms control the path through which information flows in
-the network. [LSTMs](https://anwarvic.github.io/language-modeling/RNN)
+the network. [LSTMs](https://phanxuanphucnd.github.io/language-modeling/RNN)
 enable long-term memory via a separate cell controlled by different
 gates (forget, update, output gates). This allows information to flow
 through potentially many timesteps and without these gates, information

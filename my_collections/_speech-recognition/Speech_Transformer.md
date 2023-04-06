@@ -7,10 +7,10 @@ labs: ["Institute of Automation", "University of Chinese Academy of Sciences"]
 
 Speech Transformer is an end-to-end
 Automatic Speech Recognition (ASR) system that adapts the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture to the speech recognition task which can be trained faster
 and with more efficiency than sequence to sequence models such as
-[RNN-Transducer](https://anwarvic.github.io/speech-recognition/RNN-T).
+[RNN-Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T).
 Speech Transformer was proposed by the Chinese Academy of Sciences in
 2018 and published in this paper under the same name:
 "[Speech-Transformer: A No-Recurrence Sequence-To-Sequence
@@ -23,7 +23,7 @@ Model](https://ieeexplore.ieee.org/document/8462506)".
 The Speech-Transformer aims at transforming the speech feature sequence
 (2d spectrogram) to character sequence. As shown in the previous figure,
 Speech-Transformer is the same as the standard
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 with a few differences as shown below:
 
 1.  Instead of encoder word embedding, the Speech-Transformer uses two
@@ -113,7 +113,7 @@ features. All the convolutional networks had 64 output channels and each
 of them was followed by a batch normalization layer for faster
 convergence. The model was trained using the same hyper-parameters as
 the standard
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model except that $d_{\text{model}} = 256$ and $h = 4$. To prevent
 over-fitting, they used the neighborhood smoothing scheme, and the
 probability of correct label was set to $0.8$.

@@ -8,7 +8,7 @@ labs: ["Huazhong University of Science and Technology", "Huawei Noah's Ark Lab"]
 TinyBERT is a distilled version of BERT using a novel knowledge
 distillation method called "Transformer distillation" that was specially
 designed for Transformer models such as
-[BERT](https://anwarvic.github.io/language-modeling/BERT). TinyBERT was
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). TinyBERT was
 proposed in 2019 by Huawei Noah's Ark Lab and published in this paper
 under the same name "[TinyBERT: Distilling Bert For Natural Language
 Understanding](https://arxiv.org/pdf/1909.10351.pdf)". The official code

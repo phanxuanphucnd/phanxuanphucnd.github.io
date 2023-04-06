@@ -8,7 +8,7 @@ labs: ["Huawei Noah's Ark Lab", "Monash University"]
 CeMAT stands for " **C**onditional masked language pr**e**training model
 for **Ma**chine **T**ranslation" which is a bidirectional encoder and a
 <u><strong>bidirectional</strong></u> decoder multilingual
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model with a cross-attention module for bridging them. CeMAT was
 proposed by Huawei Noah's Ark Lab in 2022 and published in their paper:
 [Universal Conditional Masked Language Pre-training for Neural Machine
@@ -47,9 +47,9 @@ Pre-training
 
 As said earlier, CeMAT is jointly trained by MLM and CMLM on the source
 side and the target side, respectively. MLM was first proposed in
-[BERT](https://anwarvic.github.io/language-modeling/BERT) while CMLM was
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) while CMLM was
 proposed by
-[Mask-Predict](https://anwarvic.github.io/machine-translation/CMLM_Transformer)
+[Mask-Predict](https://phanxuanphucnd.github.io/machine-translation/CMLM_Transformer)
 paper. MLM predicts masked tokens given the remaining sentence, CMLM
 predicts masked tokens given the source sentence + the remaining of
 target sentence.
@@ -75,7 +75,7 @@ masking strategy on both monolingual and bilingual corpora:
 
 To replace the source word or phrase with a new word in another
 language, they use a multilingual translation dictionary provided by
-[MUSE](https://anwarvic.github.io/machine-translation/MUSE) with this
+[MUSE](https://phanxuanphucnd.github.io/machine-translation/MUSE) with this
 method which consists of three steps:
 
 -   <u><strong>Aligning:</strong></u>\
@@ -120,7 +120,7 @@ going to see next.
 ### Dynamic Dual Masking
 
 Limited by the
-[MUSE](https://anwarvic.github.io/machine-translation/MUSE) dictionary,
+[MUSE](https://phanxuanphucnd.github.io/machine-translation/MUSE) dictionary,
 the ratio of aligned word pairs is usually small, around 6% of the
 bilingual corpora. To further increase the training efficiency, they
 performed dynamic dual-masking on both bilingual and monolingual data
@@ -201,7 +201,7 @@ Experiments
 
 For pre-training, they used the English-centric multilingual parallel
 corpora of
-[PC32](https://anwarvic.github.io/multilingual-nmt/mRASP), and
+[PC32](https://phanxuanphucnd.github.io/multilingual-nmt/mRASP), and
 then collected 21-language monolingual corpora from [common
 crawl](https://commoncrawl.org). Then, BPE tokenization was used on the
 entire data sets after tokenization using
@@ -215,7 +215,7 @@ of the data used are shown in the following table:
 </div>
 
 For pre-training, they used a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture with 6-layer encoder and 6-layer bidirectional decoder with
 a model dimension of $1024$ and $16$ attention heads that use sinusoidal
 positional embedding with pre-norm residual connection. They pre-trained
@@ -237,8 +237,8 @@ low-resource ($\left\lbrack < 1M \right\rbrack$), medium-resource
 </div>
 
 The following table shows that CeMAT outperforms
-[mBART](https://anwarvic.github.io/multilingual-nmt/mBART) and
-[mRASP](https://anwarvic.github.io/multilingual-nmt/mRASP) for all
+[mBART](https://phanxuanphucnd.github.io/multilingual-nmt/mBART) and
+[mRASP](https://phanxuanphucnd.github.io/multilingual-nmt/mRASP) for all
 language pairs but two directions. As the scale of the dataset
 increases, the benefits of pre-training models are getting smaller and
 smaller
@@ -259,7 +259,7 @@ performance on En→Ro.
 
 > **Note:**\
 The "Direct" baseline mentioned in earlier results is a
-[mask-predict](https://anwarvic.github.io/machine-translation/CMLM_Transformer)
+[mask-predict](https://phanxuanphucnd.github.io/machine-translation/CMLM_Transformer)
 model.
 
 And for NAT fine-tuning, they evaluated CeMAT on three popular datasets:

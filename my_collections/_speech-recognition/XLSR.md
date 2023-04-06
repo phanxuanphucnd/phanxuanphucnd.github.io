@@ -7,7 +7,7 @@ labs: ["FAIR"]
 
 XLSR stands for "Cross-Lingual Speech Representation" which is a
 large-scale multilingual speech recognition model based on [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) that was
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) that was
 pre-trained on raw waveform files from 53 languages to perform speech
 recognition task in unsupervised manner. XLSR was proposed by Facebook
 AI Research in 2020 and published in their paper: "[Unsupervised
@@ -19,13 +19,13 @@ repository:
 
 As we can see from the following figure, XLSR has the same architecture
 as [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2), the only
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2), the only
 difference is that XLSR was trained on multiple languages unlike
-[wav2vec 2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2)
+[wav2vec 2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2)
 which was trained only on English. The quantization in XLSR produces
 <u><strong>multilingual</strong></u> quantized speech units whose embeddings
 are then used as targets for a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 trained by contrastive learning. The model learns to share discrete
 tokens across languages, creating bridges among these languages.
 
@@ -36,7 +36,7 @@ tokens across languages, creating bridges among these languages.
 
 > **Note to Reader:**\
 Reading the [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) post is
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) post is
 much needed before going on reading this post.
 
 Datasets
@@ -65,7 +65,7 @@ the XLSR model; both have the same architecture but with different
 Transformer settings as seen in the following table. During fine-tuning,
 a classifier representing the output vocabulary of the respective
 downstream task is built on top of the model and trained on the labeled
-data with a [CTC](https://anwarvic.github.io/speech-recognition/CTC)
+data with a [CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC)
 loss.
 
 <div align="center" class="inline-table">
@@ -140,7 +140,7 @@ see from the following table, XLSR-10 (base) obtains $13.6$ PER (Phoneme
 Error Rate) on average which is a relative PER reduction of $49\%$
 compared to XLSR-Monolingual. XLSR-10 (large) obtains 12.2 PER on
 average which is PER reduction of $72\%$ relative to
-[mCPC](https://anwarvic.github.io/speech-recognition/mCPC):
+[mCPC](https://phanxuanphucnd.github.io/speech-recognition/mCPC):
 
 <div align="center">
     <img src="media/XLSR/image2.png" width=750>
@@ -204,7 +204,7 @@ On the [MLS](https://www.openslr.org/94/) dataset, they fine-tuned
 XLSR-53 on 1h, 10h, 100h and full data to evaluate the few-shot
 capability of the model. As shown from the WER reported in the following
 table, XLSR-53 signicantly outperforms the LibriVox [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) model on
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) model on
 all languages except English and by significant margin:
 
 <div align="center">

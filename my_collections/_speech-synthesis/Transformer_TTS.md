@@ -8,8 +8,8 @@ labs: ["University of Electronic Science and Technology of China",
 
 Transformer TTS is a non-autoregressive TTS system that combines the
 advantages of [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) and
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) and
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 in one model, in which the multi-head attention mechanism is introduced
 to replace the RNN structures in the encoder and decoder, as well as the
 vanilla attention network. Transformer TTS was proposed by Microsoft in
@@ -26,16 +26,16 @@ repository:
 </div>
 
 Recent end-to-end neural text-to-speech (TTS) models such as
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) and
-[Tacotron 2](https://anwarvic.github.io/speech-synthesis/Tacotron_2)
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) and
+[Tacotron 2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2)
 depend intensively on recurrent neural networks
-([RNNs](https://anwarvic.github.io/language-modeling/RNN)) which are
+([RNNs](https://phanxuanphucnd.github.io/language-modeling/RNN)) which are
 very slow to train and can't capture long dependencies. That's why
 Transformer TTS model was proposed. In this model, they adapted the
 multi-head attention mechanism from [Transformer
-](https://anwarvic.github.io/machine-translation/Transformer) to replace
+](https://phanxuanphucnd.github.io/machine-translation/Transformer) to replace
 the RNN structures and the original attention mechanism in [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2).
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2).
 
 Architecture
 ------------
@@ -67,7 +67,7 @@ punctuations are included in this module as special markers.
 
 ### Scaled Positional Encoding
 
-In the [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+In the [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 paper, they implemented positional encoding to take the order of the
 input sequence into consideration. This was done by injecting
 information about the relative or absolute position of frames by
@@ -103,7 +103,7 @@ positional embedding, and $\alpha$ is the trainable weight.
 
 The encoder part of the Transformer TTS model is the
 same as the encoder in the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model consisting of 6 layers. The only difference here is the
 "pre-network". The goal of the pre-network here is to extract contextual
 features from the input phoneme embeddings, which can be used in further
@@ -114,7 +114,7 @@ steps to train the encoder architecture.
 </div>
 
 The pre-network they used here is the same pre-network in the [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2), which is a
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2), which is a
 3-layer CNN applied to the input phoneme embeddings. Each convolution
 layer has 512 channels, followed by a batch normalization and ReLU
 activation, and a dropout layer as well. In addition, they added a
@@ -131,7 +131,7 @@ a linear projection for center consistency.
 ### Decoder
 
 The decoder part of the Transformer TTS model is the same as the decoder in
-the [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+the [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model, cosisting of 6 layers. The only difference here is the
 "pre-network". The goal of the pre-network here is to project the
 mel-spectrograms into the same subspace as phoneme embeddings, so that
@@ -152,7 +152,7 @@ dimension as the positional embeddings whose dimension is $512$.
 ### Post-network
 
 Same as [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2), they used
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2), they used
 two different linear projections to predict the mel-spectrogram and the
 stop token respectively, and used a 5-layer CNN to produce a residual to
 refine the reconstruction of mel spectrogram.
@@ -171,7 +171,7 @@ solved.
 
 ### Vocoder
 
-They used [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)
+They used [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)
 to convert mel-spectrogram into audio waveforms. Instead of using 30
 layers of dilated convolution, they used 2 layers of Quasi-RNN layers +
 20 dilated convolution layers; and the sizes of all residual channels
@@ -198,7 +198,7 @@ training set with various lengths as the evaluation set. They used Mean
 Option Score (MOS) where each audio is listened to by at least 20
 testers, who are all native English speakers. To better compare the
 audio naturalness between Transformer TTS and [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2), they used
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2), they used
 Comparison MOS (CMOS) where testers listen to two audios (generated by
 the two models with the same text) each time and evaluates how the
 latter feels comparing to the former using a score in

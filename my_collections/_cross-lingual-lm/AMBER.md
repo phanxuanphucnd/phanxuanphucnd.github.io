@@ -26,7 +26,7 @@ three alignment objectives are:
 
 -   <u><strong>MLM or TLM:</strong></u>\
     This objective, proposed in
-    [BERT](https://anwarvic.github.io/language-modeling/BERT), takes a
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT), takes a
     pair of sentences $\left( x,y \right)$, and optimizes the prediction
     of randomly masked tokens in the concatenation of the sentence pair
     $\left\lbrack x;y \right\rbrack$. When $x$ and $y$ are in the same
@@ -57,7 +57,7 @@ $$\mathcal{L}_{\text{SA}}\left( x,y \right) = - \log\ \frac{e^{c_{x}^{\intercal}
 -   <u><strong>Bidirectional Word Alignment:</strong></u>\
     This objective encourages bidirectional alignment of word embeddings
     by leveraging the attention mechanism in the
-    [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+    [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
     model by minimizing the distance between the trace of the
     source-to-target attention $A_{x \rightarrow y}$ and
     target-to-source attention $A_{y \rightarrow x}$ matrices. Since the
@@ -79,7 +79,7 @@ $$\mathcal{L}\left( x,y \right) = \mathcal{L}_{\text{MLM}}\left( x,y \right) + \
 > **Notes:**
 >
 > - AMBER with just MLM objective is the same as
-    [mBERT](https://anwarvic.github.io/cross-lingual-lm/mBERT).
+    [mBERT](https://phanxuanphucnd.github.io/cross-lingual-lm/mBERT).
 > - Sentence Alignment objective is the same as
     [Additive Margin Softmax (AMS)](https://arxiv.org/pdf/1902.08564.pdf)
     where the margin is zero $(m=0)$.
@@ -93,7 +93,7 @@ using the default hyper-parameters as mBERT found
 larger batch of 8,192 sentence pairs. Then, they pre-training it using
 the other two objectives for another 1M steps with a batch of 2,048
 sentence pairs from Wikipedia corpus and parallel corpus used to train
-[XLM](https://anwarvic.github.io/cross-lingual-lm/XLM). As show in the
+[XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM). As show in the
 following table, shows the size of AMBER compared to other cross-lingual
 models:
 
@@ -150,4 +150,4 @@ languages for the past four benchmarks:
 In all of the previous dataset, AMBER (MLM) is achieving better results than
 mBERT despite having the same architecture because AMBER uses bigger batch
 sizes which is proven to be efficient as explain in
-[RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa) paper.
+[RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa) paper.

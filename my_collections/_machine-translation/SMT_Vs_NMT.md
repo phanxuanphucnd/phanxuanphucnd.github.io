@@ -208,7 +208,7 @@ highly-inflected categories.</strong></u>
 A well-known flaw of early encoder-decoder NMT models was the inability
 to properly translate long sentences. However, this was fixed by using
 the [attention
-mechanism](https://anwarvic.github.io/machine-translation/Attention). To
+mechanism](https://phanxuanphucnd.github.io/machine-translation/Attention). To
 measure the effect of long sentences on NMT (with attention mechanism)
 and SMT systems, they used the large English-Spanish dataset (from
 before) and broke it up into buckets based on sentence length (1-9

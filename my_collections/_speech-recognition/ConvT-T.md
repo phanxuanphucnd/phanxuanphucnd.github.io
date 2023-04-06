@@ -6,16 +6,16 @@ labs: ["Huawei Noah's Ark Lab"]
 ---
 
 ConvT-Transducer stands for "Conv-Transformer Transducer" which is a
-[Transducer](https://anwarvic.github.io/speech-recognition/RNN-T)-based
+[Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)-based
 streamable automatic speech recognition (ASR) system created by Huawei
 Noah's Ark Lab in 2020 and published in their paper: [Conv-Transformer
 Transducer: Low Latency, Low Frame Rate,
 Streamable](https://arxiv.org/pdf/2008.05750.pdf). The original
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture, with encoder-decoder architecture, is only suitable for
 offline ASR as it relies on a bidirectional attention mechanism. To make
 the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 suitable for streaming ASR, they applied the following modifications:
 
 -   They used a unidirectional Transformer which doesn't require any
@@ -33,24 +33,24 @@ suitable for streaming ASR, they applied the following modifications:
 
 > **Note to the Reader:**\
 A brush-up on the
-[Transducer](https://anwarvic.github.io/speech-recognition/RNN-T)
+[Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)
 architecture is much needed before going on with this article.
 
 Architecture
 ------------
 
 In most of previous works in
-[Transducer](https://anwarvic.github.io/speech-recognition/RNN-T)
+[Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)
 framework, transcription network (encoder) and prediction network
 (decoder) are composed of
-[RNN](https://anwarvic.github.io/language-modeling/RNN). However, other
+[RNN](https://phanxuanphucnd.github.io/language-modeling/RNN). However, other
 types of networks can be used as well. For example, the
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer')
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer')
 paper used Conformer as an encoder and a unidirectional LSTM as a
 decdoer. Same happens in the
-[ContextNet](https://anwarvic.github.io/speech-recognition/ContextNet)
+[ContextNet](https://phanxuanphucnd.github.io/speech-recognition/ContextNet)
 and
-[T-T](https://anwarvic.github.io/speech-recognition/Transformer_Transducer)
+[T-T](https://phanxuanphucnd.github.io/speech-recognition/Transformer_Transducer)
 papers where they used ContextNet and Transformer as encoders
 respectively while both used LSTM as a decoder.
 
@@ -124,7 +124,7 @@ three blocks:
 ### Joint Network
 
 The last network in any
-[Transducer](https://anwarvic.github.io/speech-recognition/RNN-T) model
+[Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) model
 is the joint network. In this paper, they used a fully-connected
 feed-forward neural network with single hidden layer. There are 512
 units in the hidden layer, with Rectifified Linear Unit (ReLU) as
@@ -164,7 +164,7 @@ As we can see ConvT-T is achieving the lowest WER on both test-clean
 and test-other while operating with fewer parameters, smaller
 look-ahead window, and lower frame rate; compared to other models
 such as TDNN-LSTM model provided by Kaldi, [Transformer
-Transducer](https://anwarvic.github.io/speech-recognition/Transformer_Transducer)
+Transducer](https://phanxuanphucnd.github.io/speech-recognition/Transformer_Transducer)
 (T-T), a hybrid model with Transformer AM.
 
 > **Note:**\

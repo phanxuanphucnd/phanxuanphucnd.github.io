@@ -51,7 +51,7 @@ models?.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="nmT5: NMT + Multilingual T5">
   <meta property="og:description" content="nmT5 stands for “NMT + Multilingual Text-to-Text Transfer Transformer”
 which is an attempt to improve the performance of the
@@ -262,7 +262,7 @@ models?.
     <h1 id=nmT5: NMT + Multilingual T5> nmT5: NMT + Multilingual T5</h1>
     <p>nmT5 stands for “NMT + Multilingual Text-to-Text Transfer Transformer”
 which is an attempt to improve the performance of the
-<a href="https://anwarvic.github.io/cross-lingual-lm/mT5">mT5</a> model by
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/mT5">mT5</a> model by
 incorporating parallel data into pre-training. This model was proposed
 by the same authors from Google Research as the mT5 paper. In 2021, it
 was published in this paper: <a href="https://aclanthology.org/2021.acl-short.87.pdf">nmT5 - Is parallel data still relevant for
@@ -281,7 +281,7 @@ pre-training:</p>
 <ul>
   <li><strong><u>TLM (Translation Language Modeling):</u></strong><br />
 This objective was first proposed by the
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a> model and
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM">XLM</a> model and
 was used for encoder only pre-training. In this paper, they extended
 it to the encoder-decoder setting.</li>
 </ul>
@@ -348,7 +348,7 @@ for 100K steps with a mix of monolingual and parallel objectives. The
 parallel data is mixed into monolingual data at a $10\%$ ratio, which
 amounts to roughly 4 passes over the OPUS-100 corpus. Examples from each
 language pair were sampled using the same language sampling distribution
-as <a href="https://anwarvic.github.io/cross-lingual-lm/mT5">mT5</a> with
+as <a href="https://phanxuanphucnd.github.io/cross-lingual-lm/mT5">mT5</a> with
 $\alpha = 0.3$.</p>
 
 <p>Pre-training was done with a batch size of 1M tokens and fine-tuned with

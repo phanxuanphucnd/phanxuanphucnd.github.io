@@ -7,7 +7,7 @@ labs: ["University of Toronto"]
 
 RNN-T stands for "Recurrent Neural Network Transducer" which is a promising
 architecture for general-purpose sequence such as audio transcription built
-using [RNN](https://anwarvic.github.io/language-modeling/RNN)s. RNN-T was
+using [RNN](https://phanxuanphucnd.github.io/language-modeling/RNN)s. RNN-T was
 proposed by Alex Graves at the University of Toronto back in 2012 and
 published under the name: [Sequence Transduction with Recurrent Neural
 Networks](https://arxiv.org/pdf/1211.3711.pdf). This paper introduces an

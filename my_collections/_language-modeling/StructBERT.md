@@ -6,7 +6,7 @@ labs: ["Alibaba Group Inc."]
 ---
 
 StructBERT stands for "Structural BERT" which is an extension of
-[BERT](https://anwarvic.github.io/language-modeling/BERT) created by
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) created by
 incorporating language structures into pre-training. StructBERT was
 proposed in 2019 by Alibaba Group and published in their "[StructBERT:
 Incorporating Language Structures Into Pre-Training For Deep Language
@@ -29,7 +29,7 @@ MLM Recap
 
 Before getting into more details about StructBERT, let's first recap how
 MLM objective worked in
-[BERT](https://anwarvic.github.io/language-modeling/BERT). Given an
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). Given an
 input sequence, 15% of the tokens in that sequence are replaced with a
 \[MASK\] token; and the type of mask will be different according to the
 following distribution
@@ -200,7 +200,7 @@ downstream tasks:
     The following table shows the results of SQuAD dataset where
     we can see that StructBERT model is superior to all other models
     except
-    [XLNet](https://anwarvic.github.io/language-modeling/XLNet)+DA. It
+    [XLNet](https://phanxuanphucnd.github.io/language-modeling/XLNet)+DA. It
     demonstrates the effectiveness of StructBERT in modeling the
     question-paragraph relationship.
 

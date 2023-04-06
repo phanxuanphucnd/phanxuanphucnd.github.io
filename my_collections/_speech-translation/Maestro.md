@@ -15,13 +15,13 @@ open-sourced the code for this paper :(
 
 ## Architecture
 
-Similar to [SLAM](https://anwarvic.github.io/speech-translation/SLAM)
-and [mSLAM](https://anwarvic.github.io/speech-translation/mSLAM),
+Similar to [SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM)
+and [mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM),
 Maestro framework can be pre-trained on text-only data (unspoken text),
 speech-only data (untranscribed speech), and any available speech-text
 pairs. The following figure shows the architecture of Maestro where the
 purple and red boxes denote differences from
-[mSLAM](https://anwarvic.github.io/speech-translation/mSLAM):
+[mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM):
 
 <div align="center">
     <img src="media/Maestro/image1.png" width=750>
@@ -33,7 +33,7 @@ different encoders and an RNN-T decoder:
 -   <u><strong>Speech Encoder $\mathbf{\theta}_{\mathbf{s}}$:</strong></u>\
     The Speech Encoder is responsible for encoding the speech input
     signal and it consists of a stack of $6$ layers of
-    [Conformer](https://anwarvic.github.io/speech-recognition/Conformer)-XL
+    [Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)-XL
     blocks.
 
 -   <u><strong>Text Encoder:</strong></u>\
@@ -48,14 +48,14 @@ different encoders and an RNN-T decoder:
     -   **Text Embedding Extractor $\mathbf{\theta}_{\mathbf{t}}$**:\
         It includes $3$ convolutional layers of $512$ filters with kernel size
         $(5,1)$, followed by a $6$-layer
-        [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+        [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
         with positional embedding.
 
     -   **Resampler:** The up-sampling is done by copying the original
         text embedding to the target length of specified duration with
         positional embeddings to capture frame positions within text
         units as described in [Parallel
-        Tacotron](https://anwarvic.github.io/speech-synthesis/Parallel_Tacotron).
+        Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Parallel_Tacotron).
 
     -   **Refiner** $\mathbf{\theta}_{\mathbf{R}}$: It includes $2$
         layers of $8$-headed self-attention blocks with $17 \times 1$
@@ -70,19 +70,19 @@ different encoders and an RNN-T decoder:
     The Shared Encoder is responsible for combining representations from
     both modalities (text & speech) into a unified representation. It
     consists of a stack of $18$ layers of
-    [Conformer](https://anwarvic.github.io/speech-recognition/Conformer)-XL
+    [Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)-XL
     blocks.
 
 -   <u><strong>RNN-T Decoder:</strong></u>\
     The decoder used in Maestro follows the
-    [Transducer](https://anwarvic.github.io/speech-recognition/RNN-T)
+    [Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)
     architecture. It consists of a $2$-layer, $1280$-dim
-    [LSTM](https://anwarvic.github.io/language-modeling/RNN) with a
+    [LSTM](https://phanxuanphucnd.github.io/language-modeling/RNN) with a
     joint feed-forward network of $640$ dims.
 
 > **Note:**\
 In the paper, they used
-[RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T)
+[RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)
 decoder. However, Maestro's framework supports any other decoder
 architecture.
 
@@ -97,13 +97,13 @@ is done on multiple levels:
 1.  <u><strong>Learning initial embedding:</strong></u>\
     The speech encoder $\theta_s$ is pre-trained on speech-only data
     using the Masked Speech Modeling (MSM) task adapted from
-    [w2v-BERT](https://anwarvic.github.io/speech-recognition/w2v-BERT).
+    [w2v-BERT](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT).
     And the text embedding extractor $\theta_t$ is pre-trained on
     text-only data.
 
 2.  <u><strong>Modality Matching (MM):</strong></u>\
     Using speech-text data pairs,
-    [RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T) model
+    [RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) model
     is trained to align between the text encoder ${\widehat{e}}_t$ and
     the speech encoder output $e_s$ . So, given a speech-text pair
     $(t,s)$, Maestro during pretraining optimizes the $\mathcal{L}\_{MM}$
@@ -119,16 +119,16 @@ $$\mathcal{L}_{MM} = MSE\left( e_{s},\ {\widehat{e}}_{t} \right) + \mathcal{L}_{
 
 3.  <u><strong>Aligned Masked Language Modeling (A-MLM):</strong></u>\
     Now, since we have a trained
-    [RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T) model
+    [RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) model
     that is able to align between speech representation and text
     representation, then this model loss can be used on both (text-only
     data and aligned speech representation $e_s$) and (speech-only and
     aligned text representation ${\widehat{e}}_t$). And to make the
     task more difficult, they masked both the text representation
     ${\widehat{e}}_t$ using
-    [MLM](https://anwarvic.github.io/language-modeling/BERT) and speech
+    [MLM](https://phanxuanphucnd.github.io/language-modeling/BERT) and speech
     representation $e_s$ using
-    [SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+    [SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
     on the frequency and time domain:
 
 $${\widehat{e}}_{t} = \theta_{Refiner}\left( Resample\left( e_{t},\ \theta_{Duration}\left( e_{t} \right) \right) \right)$$
@@ -169,10 +169,10 @@ SpeechStew. Also, they used both phoneme and grapheme decoders. For
 evaluation, they used multi-domain ASR from SpeechStew.
 
 The following table shows the results of Maestro compared to
-[Wav2vec2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2),
-[w2v-BERT](https://anwarvic.github.io/speech-recognition/w2v-BERT),
+[Wav2vec2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2),
+[w2v-BERT](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT),
 TTS4Pretrain2 and
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM). As you can
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM). As you can
 see, Maestro clearly outperforms all other models trained on speech-only
 data. Adding a language model yeillds additional wins.
 
@@ -197,10 +197,10 @@ performance. The text-only data were divided into three setups:
 
 For evaluation, they used VoxPopuli benchmark for that. The
 following table shows Maestro's performance in comparison to
-[mSLAM](https://anwarvic.github.io/speech-translation/mSLAM),
-[XLS-R](https://anwarvic.github.io/speech-recognition/XLS-R) and
+[mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM),
+[XLS-R](https://phanxuanphucnd.github.io/speech-recognition/XLS-R) and
 multilingual
-[w2v-BERT](https://anwarvic.github.io/speech-recognition/w2v-BERT).
+[w2v-BERT](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT).
 As shown in the table, Maestro performs better than other models
 especially after adding text-only data.
 
@@ -233,7 +233,7 @@ multilingual ASR Maestro encoder and fine-tuned it on the speech
 translation task. The following table demonstrates that Maestro also
 achieves state-of-the-art results on the speech translation CoVoST 2
 benchmark with fewer parameters (0.6B) than
-[mSLAM](https://anwarvic.github.io/speech-translation/mSLAM) (2B).
+[mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM) (2B).
 Including MT & ST data into pretraining yields the best performance:
 
 <div align="center">

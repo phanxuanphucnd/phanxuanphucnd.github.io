@@ -7,7 +7,7 @@ labs: ["FAIR", "University of Tubingen"]
 
 vq-wav2vec stands for "vector-quantized wav2vec" which is a quantized
 version of the
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec) model
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec) model
 that learns <u><strong>discrete</strong></u> representations of audio segments.
 vq-wav2vec was created by Facebook AI Research in 2019 and published in
 this paper: [vq-wav2vec: Self-Supervised Learning of Discrete Speech
@@ -16,7 +16,7 @@ code for this paper can be found in Facebook's
 [fairseq](https://github.com/pytorch/fairseq) framework.
 
 Same as
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec),
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec),
 vq-wav2vec is a fully convolutional neural network that that takes raw
 audio (wav) as input $\mathcal{X}$ and computes a general representation
 (vector) that can be input to speech recognition (acoustic) systems. The
@@ -33,9 +33,9 @@ network. Next, the quantization module $q$ turns these dense
 representations into discrete indices which are mapped to a
 reconstruction $\widehat{\mathcal{Z}}$ of the original representation
 $\mathcal{Z}$. They feed $\widehat{\mathcal{Z}}$ into the
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec) loss
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec) loss
 function and optimize the same context prediction task as
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec).
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec).
 
 Quantization Module
 -------------------
@@ -125,9 +125,9 @@ BERT & Acoustic Model
 
 Once vq-wav2vec is trained, we can discretize audio data and make it
 applicable to algorithms that require discrete inputs such as
-[BERT](https://anwarvic.github.io/language-modeling/BERT) which can be
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) which can be
 pre-trained to predict masked input tokens. After pre-training
-[BERT](https://anwarvic.github.io/language-modeling/BERT), its
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT), its
 representations can be fed into an acoustic model to improve speech
 recognition. The whole pipeline is illustrated below:
 
@@ -137,7 +137,7 @@ recognition. The whole pipeline is illustrated below:
 
 Since each of the discretized tokens represents around $10ms$ of audio,
 it is likely too easy for
-[BERT](https://anwarvic.github.io/language-modeling/BERT) to predict a
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) to predict a
 single masked input token. That's why in the paper, they suggested
 masking spans of consecutive discretized speech tokens. They randomly
 sampled $p = 5\%$ of all tokens to be a starting index, without

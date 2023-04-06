@@ -6,7 +6,7 @@ labs: ["FAIR", "Université Grenoble Alpes"]
 ---
 
 Dual-decoder Transformer is a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture that consists of two decoders; one responsible for
 Automatic Speech Recognition (ASR) while the other is responsible for
 Speech Translation (ST). This model was proposed by FAIR and Grenoble
@@ -68,7 +68,7 @@ all these details.
 In parallel dual-decoder, each decoder uses the hidden states of the
 other to compute its outputs, as illustrated in the following figure.
 The encoder used is almost the same as the encoder of the original
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 except that the embedding layer; it is a small convolutional neural
 network (CNN) of two layers with ReLU activations and a stride of 2,
 which reduces the input length by 4.
@@ -85,7 +85,7 @@ from the other decoder at the same level/depth.
 In cross dual-decoder, each decoder uses the hidden states of the other
 to compute its outputs, as illustrated in the following figure. The
 encoder used is almost the same as the encoder of the original
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 except that the embedding layer; it is a small convolutional neural
 network (CNN) of two layers with ReLU activations and a stride of 2,
 which reduces the input length by 4.

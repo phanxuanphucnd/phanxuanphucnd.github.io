@@ -8,7 +8,7 @@ labs: ["FAIR"]
 Wav2Vec 2.0 is a self-supervised end-to-end ASR model pre-trained on raw
 audio data via masking spans of latent speech representations, similar
 to MLM used with
-[BERT](https://anwarvic.github.io/language-modeling/BERT). Wav2vec was
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). Wav2vec was
 created by Facebook AI Research in 2021 and published in this paper:
 [wav2vec 2.0: A Framework for Self-Supervised Learning of Speech
 Representations](https://arxiv.org/pdf/2006.11477.pdf). The official
@@ -22,7 +22,7 @@ around them even before they learn to write. Wav2vec 2.0 (illustrated in
 the following graph) tries to mimic this idea by pre-training on
 unlabeled audio data first using contrastive loss, then fine-tuning on
 speech recognition task using labeled data with a
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) loss.
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) loss.
 
 <div align="center">
     <img src="media/wav2vec_2/image1.png" width=750>
@@ -32,12 +32,12 @@ Architecture
 ------------
 
 Inspired by the
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec)
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec)
 architecture and the end-to-end setup of the
-[vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+[vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
 paper, the authors further explored a novel model architecture that
 consists of the following modules; which outperforms
-[vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+[vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
 performance while using 10 times less labeled data:
 
 -   **Feature Encoder**: Takes raw audio
@@ -55,13 +55,13 @@ performance while using 10 times less labeled data:
 
 > **Note:**\
 As said before, wav2vec 2.0 is inspired by
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec) and
-[vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec).
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec) and
+[vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec).
 However, it has the following few differences:
 >
 > - wav2vec 2.0 builds context representations over continuous speech
     representations while
-    [vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+    [vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
     uses discrete speech representations.
 >
 > - wav2vec 2.0 uses transformers as the context network unlike . in
@@ -92,7 +92,7 @@ $25ms$ of audio.
 
 The output of the feature encoder is fed to a context network which
 follows the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformers)-encoder
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformers)-encoder
 architecture. The original architecture of transformer encoder has a
 positional embedding layer. In this architecture, they used a
 convolution layer whose kernel size is $128$ and $16$ channels acting as
@@ -121,7 +121,7 @@ For self-supervised training, they discretized the output of the feature
 encoder $\mathcal{Z}$ to a finite set of speech representations
 $\mathcal{Q}$ using Gumbel-Softmax dot quantization introduced
 previously in the
-[vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+[vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
 paper.
 
 <div align="center">
@@ -172,11 +172,11 @@ Then, wav2vec 2.0 is fine-tuned for speech recognition by adding a
 randomly initialized linear projection on top of the context network
 into $C = 29$ classes representing the English 26 characters plus
 period, apostrophe and a word boundary token. Models are optimized by
-minimizing a [CTC](https://anwarvic.github.io/speech-recognition/CTC)
+minimizing a [CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC)
 loss.
 
 Labeled audio data was augmented using a modified version of
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
 that only masks time-steps and channels. This data augmentation delays
 overfitting and significantly improves the final error rates.
 

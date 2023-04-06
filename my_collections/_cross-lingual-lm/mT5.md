@@ -7,7 +7,7 @@ labs: ["Google Research"]
 
 mT5 stands for "Multilingual Text-to-Text Transfer Transformer" which is
 a multilingual variant of
-[T5](https://anwarvic.github.io/language-modeling/T5) trained on 101
+[T5](https://phanxuanphucnd.github.io/language-modeling/T5) trained on 101
 languages. mT5 was proposed by Google Research in 2020 and published in
 their paper: [mT5: A Massively Multilingual Pre-trained Text-to-Text
 Transformer](https://arxiv.org/pdf/2010.11934.pdf). The official code
@@ -29,9 +29,9 @@ checkpoint which improves upon T5 architecture by using:
 
     To put mT5 into perspective, the following table provides a brief
     comparison with existing cross-lingual language models such as:
-    mBERT, [XLM](https://anwarvic.github.io/language-modeling/XLM),
-    [XLM-R](https://anwarvic.github.io/language-modeling/XLM-R), and
-    [MARGE](https://anwarvic.github.io/language-modeling/MARGE):
+    mBERT, [XLM](https://phanxuanphucnd.github.io/language-modeling/XLM),
+    [XLM-R](https://phanxuanphucnd.github.io/language-modeling/XLM-R), and
+    [MARGE](https://phanxuanphucnd.github.io/language-modeling/MARGE):
 
 <div align="center">
     <img src="media/mT5/image1.png" width=750>
@@ -39,10 +39,10 @@ checkpoint which improves upon T5 architecture by using:
 
 > **Note to reader:**\
 Before getting deeper into this post, I suggest reading the [T5
-post](https://anwarvic.github.io/language-modeling/T5) first. You
+post](https://phanxuanphucnd.github.io/language-modeling/T5) first. You
 don't have to read all of it, just read the
-[C4](https://anwarvic.github.io/language-modeling/T5/#C4) part and the
-[baseline](https://anwarvic.github.io/language-modeling/T5/#Baseline) part.
+[C4](https://phanxuanphucnd.github.io/language-modeling/T5/#C4) part and the
+[baseline](https://phanxuanphucnd.github.io/language-modeling/T5/#Baseline) part.
 
 mC4
 ---
@@ -160,7 +160,7 @@ compromise between performance on high- and low-resource languages.
 
 The fact that mT5 model covers over 100 languages necessitates a larger
 vocabulary. Following
-[XLM-R](https://anwarvic.github.io/language-modeling/XLM-R), they
+[XLM-R](https://phanxuanphucnd.github.io/language-modeling/XLM-R), they
 increased the vocabulary size to 250,000 wordpieces. As in T5, they used
 SentencePiece model trained with the language sampling rates used during
 pre-training. To accommodate languages with large character sets like

@@ -13,19 +13,19 @@ by Meta AI in 2022 and published in this paper: "[A Single
 Self-Supervised Model for Many Speech Modalities Enables Zero-Shot
 Modality Transfer](https://arxiv.org/pdf/2207.07036.pdf)" by the same
 author who introduced
-[HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT) and
-[AV-HuBERT](https://anwarvic.github.io/speech-recognition/AV-HuBERT_for_AVSR).
+[HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT) and
+[AV-HuBERT](https://phanxuanphucnd.github.io/speech-recognition/AV-HuBERT_for_AVSR).
 
 > **Note to Reader:**\
 u-HuBERT is a genralization of AV-HuBERT. So, reviewing the
-[AV-HuBERT](https://anwarvic.github.io/speech-recognition/AV-HuBERT_for_AVSR)
+[AV-HuBERT](https://phanxuanphucnd.github.io/speech-recognition/AV-HuBERT_for_AVSR)
 post is very important before reading this post.
 
 
 ## u-HuBERT Vs AV-HuBERT
 
 Architecture-wise, u-HuBERT has the same architecture as
-[AV-HuBERT](https://anwarvic.github.io/speech-recognition/AV-HuBERT_for_AVSR)
+[AV-HuBERT](https://phanxuanphucnd.github.io/speech-recognition/AV-HuBERT_for_AVSR)
 which consists of a set of modality-specific feature extractors (i.e
 Audio Encoder and Image Encoder), a shared transformer-encoder as the
 backbone of the architecture as shown in the following figure:
@@ -35,7 +35,7 @@ backbone of the architecture as shown in the following figure:
 </div>
 
 Unlike
-[AV-HuBERT](https://anwarvic.github.io/speech-recognition/AV-HuBERT_for_AVSR)
+[AV-HuBERT](https://phanxuanphucnd.github.io/speech-recognition/AV-HuBERT_for_AVSR)
 which was pre-trained only using multi-modal (i.e audio-visual) data,
 <u><strong>u-HuBERT is pre-trained using both uni-modal and multi-modal speech
 data forming modality-agnostic features</strong></u>. To encourage the

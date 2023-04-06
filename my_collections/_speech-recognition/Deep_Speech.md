@@ -20,7 +20,7 @@ Deep Speech is an end-to-end system which means that it doesn't need a
 phoneme dictionary like traditional systems. It was trained to produce
 transcription by predicting a sequence of character probabilities from
 spectrogram figures while
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) being used as
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) being used as
 an objective function:
 
 <div align="center">
@@ -79,7 +79,7 @@ faster as it requires less computation.
 
 Once we have computed a prediction for
 $\mathbb{P}\left( c_{t} \middle| x \right)$, we compute the
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) loss
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) loss
 $\mathcal{L}\left( \widehat{y},\ y \right)$ to measure the error in
 prediction. Remember that the goal of Deep Speech is to convert an input
 sequence $x$ into a sequence of character probabilities for the

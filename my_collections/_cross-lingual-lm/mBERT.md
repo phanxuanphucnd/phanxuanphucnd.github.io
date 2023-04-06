@@ -30,7 +30,7 @@ on. The official code of this paper can be found on this GitHub repository:
 
 > **Note:**\
 I suggest reading the
-[BERT](https://anwarvic.github.io/language-modeling/BERT) part before
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) part before
 going on to the next part.
 
 Results

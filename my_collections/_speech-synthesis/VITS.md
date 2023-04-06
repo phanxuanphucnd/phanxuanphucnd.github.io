@@ -9,9 +9,9 @@ VITS stands for "**V**ariational **I**nference with adversarial learning
 for **T**ext-to-**S**peech", which is a single-stage non-autoregressive
 Text-to-Speech model that is able to generate more natural sounding
 audio than the current two-stage models such as [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2), [Transformer
-TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS), or
-even [Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS).
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2), [Transformer
+TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS), or
+even [Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS).
 VITS was proposed by Kakao Enterprise in 2021 and published in this
 paper: "[Conditional Variational Autoencoder with Adversarial Learning
 for End-to-End Text-to-Speech](https://arxiv.org/pdf/2106.06103.pdf)".
@@ -24,9 +24,9 @@ synthetic audio samples resulting from VITS can be found in this
 VITS is just a combination of a lot of ideas from other models. In order
 to make the best use out of this post, I think you should go through the
 following posts in order: the "Generative Models Recap" part in the
-[WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) post,
-the [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) post,
-and the [HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN)
+[WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) post,
+the [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) post,
+and the [HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN)
 post.
 
 ## Architecture
@@ -46,7 +46,7 @@ details:
 ### Posterior Encoder
 
 For the posterior encoder, they used 16
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) residual
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) residual
 blocks which consists of layers of dilated convolutions with a gated
 activation unit and skip connection. The posterior encoder takes
 linear-scale log magnitude spectrograms $x_{lin}$ as input and produces
@@ -76,7 +76,7 @@ a normal distribution space.
 </div>
 
 The text encoder is a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)-
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)-
 encoder that uses relative positional representation instead of absolute
 positional encoding (as used in the original paper) which processes the
 input phonemes $c_{text}$ and results in hidden representations
@@ -87,7 +87,7 @@ the prior distribution.
 On the other end, a normalizing flow $f_{\theta}$ is used to improve the
 flexibility of the prior distribution, which is a stack of four affine
 coupling layers, each coupling layer consisting of four
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) residual
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) residual
 blocks as shown in the following figure.
 
 <div align="center">
@@ -97,7 +97,7 @@ blocks as shown in the following figure.
 The normalizing flow takes the latent variables $z$ resulting from the
 <u><strong>Posterior Encoder</strong></u> and outputs latent representation
 $f_{\theta}(z)$. The MSA algorithm (same as the one used with
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS)) uses
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS)) uses
 the representations from the flow module $f_{\theta}(z)$ and the
 projection layer $\left( \mu_{\theta},\ \sigma_{\theta} \right)$ to find
 the optimal alignment $d$.
@@ -112,7 +112,7 @@ on the process whether it's training or inference.
 ### Decoder
 
 The decoder is essentially the
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN) V1
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN) V1
 generator. It is composed of a stack of transposed convolutions, each of
 which contains multi-receptive field fusion module (MRF) as shown in the
 following figure.
@@ -130,7 +130,7 @@ training.
 
 Regarding the discriminator, they followed the discriminator architecture
 of the Multi-Period Discriminator (MPD) proposed in
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN) as
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN) as
 shown in the following figure.
 
 <div align="center">
@@ -138,7 +138,7 @@ shown in the following figure.
 </div>
 
 For the discriminator,
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN) uses
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN) uses
 the multi-period discriminator containing five sub-discriminators with
 periods $\lbrack 2,\ 3,\ 5,\ 7,\ 11\rbrack$ and the multi-scale
 discriminator containing three sub-discriminators. To improve training
@@ -179,11 +179,11 @@ parameters compared to commonly used affine coupling layers.
 As you might have guessed, VITS architecture is very similar to Glow-TTS
 considering they both came from the same authors. VITS uses the same
 transformer encoder and
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) residual
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) residual
 blocks as those of
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS);
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS);
 decoder and the multi-period discriminator as those of
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN), except
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN), except
 that they used different input dimension for the decoder and appended a
 discriminator
 
@@ -273,7 +273,7 @@ open-source [phonemizer](https://github.com/bootphon/phonemizer) package
 to convert text sequences to IPA phoneme sequences, and the converted
 sequences are interspersed with a blank token following the
 implementation of
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS).
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS).
 
 VITS was trained using the AdamW optimizer with
 $\beta_{1} = 0.8,\ \beta_{2} = 0.99$, and weight decay $\lambda = 0.01$.
@@ -291,8 +291,8 @@ naturalness on a 5 point scale from 1 to 5. Raters were allowed to
 evaluate each audio sample once, and audio was normalized to avoid the
 amplitude effect. The following table shows the MOS of VITS compared to
 the ground truth, [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2), and
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS) where
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2), and
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS) where
 HiFi-GAN was used as a vocoder.
 
 <div align="center">
@@ -303,17 +303,17 @@ As you can see from the previous table, VITS outperforms other TTS
 systems and achieves a similar MOS to that of ground truth. The VITS
 (DDP), which employs the same deterministic duration predictor
 architecture used in
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS), scores
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS), scores
 the second-highest among TTS systems in the MOS evaluation.
 
 Also, they compared the synthesis speed of VITS with
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS)+[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN).
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS)+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN).
 The elapsed time was measured over the entire process to generate raw
 waveforms from phoneme sequences with $100$ sentences randomly selected
 from the test set. The results are shown in the following table which
 shows that VITS can generate up to $1480.15 \times 1000$ audio samples
 per second which is $\sim 3 \times$ faster than
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS)+[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN).
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS)+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN).
 and it takes around
 
 <div align="center">
@@ -346,18 +346,18 @@ training set ($43,470$ samples), validation set ($100$ samples), and
 test set ($500$ samples).
 
 They compared it with [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) and
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS). For
-[Tacotron 2](https://anwarvic.github.io/speech-synthesis/Tacotron_2),
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) and
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS). For
+[Tacotron 2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2),
 they broad-casted speaker embedding and concatenated it with the encoder
 output, and for
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS), they
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS), they
 applied the global conditioning, which was originally proposed in
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet). For
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet). For
 VITS, they did the following changes:
 
 -   They used global conditioning (proposed in
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)) in
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)) in
     the residual blocks of the <u><strong>Posterior Encoder</strong></u>.
 
 -   They used global conditioning in the residual blocks of the
@@ -374,8 +374,8 @@ VITS, they did the following changes:
 The evaluation method is the same as that described in the
 single-speaker setup. As shown in the following table, VITS achieves a
 higher MOS than [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) and
-[Glow-TTS](https://anwarvic.github.io/speech-synthesis/Glow-TTS) which
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) and
+[Glow-TTS](https://phanxuanphucnd.github.io/speech-synthesis/Glow-TTS) which
 demonstrates that VITS learns and expresses various speech
 characteristics in an end-to-end manner.
 

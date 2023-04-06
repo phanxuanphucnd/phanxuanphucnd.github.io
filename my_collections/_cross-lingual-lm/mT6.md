@@ -7,7 +7,7 @@ labs: ["Beijing Institute of Technology", "Microsoft Research"]
 
 mT6 stands for "Multilingual Text-to-Text Transfer Transformer with
 Translation pairs" which is an attempt to improve the performance of the
-[mT5](https://anwarvic.github.io/cross-lingual-lm/mT5) model by
+[mT5](https://phanxuanphucnd.github.io/cross-lingual-lm/mT5) model by
 incorporating translation objectives into the pre-training part. This
 model was proposed by Microsoft Research in 2021 and published in this
 paper: [mT6: Multilingual Pretrained Text-to-Text Transformer with
@@ -48,7 +48,7 @@ for improving mT5 with translation data. These pre-training tasks are:
 
 -   <strong><u>Translation Pair Span Corruption (TPSC):</u></strong>\
     Inspired by the
-    [MASS](https://anwarvic.github.io/language-modeling/MASS) objective,
+    [MASS](https://phanxuanphucnd.github.io/language-modeling/MASS) objective,
     this task aims to predict the masked spans from a translation pair
     instead of a monolingual sentence.
 

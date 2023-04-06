@@ -15,7 +15,7 @@ for this paper is found in the following GitHub repository:
 [xnlg](https://github.com/CZWin32768/xnlg).
 
 As shown in the following figure, XNLG is an encoder-decoder
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model pre-trained on on monolingual NLG training data and can be
 fine-tuned later on other languages which can boost performance for the
 low-resource settings.
@@ -55,7 +55,7 @@ deeper into pre-training tasks mentioned above:
 
 -   <u><strong>Masked Language Modeling (MLM):</strong></u>\
     The masked language modeling (MLM) task was first proposed by the
-    [BERT](https://anwarvic.github.io/language-modeling/BERT) paper.
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) paper.
     Given an input sequenc $x$, MLM randomly masks $15\%$ of the tokens
     in a monolingual sentence. Each masked token is substituted with a
     special token $\left\lbrack M \right\rbrack$, a random token, or the

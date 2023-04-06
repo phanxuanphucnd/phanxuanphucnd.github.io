@@ -57,7 +57,7 @@ Decoder + Attention Mechanism
 -----------------------------
 
 The goal of the decoder and the [attention
-mechanism](https://anwarvic.github.io/machine-translation/Attention) is
+mechanism](https://phanxuanphucnd.github.io/machine-translation/Attention) is
 to align the audio frames with the textual features outputted from the
 encoder and result in audio spectrogram. As shown in the following
 figure, the decoder works like the following:
@@ -88,7 +88,7 @@ figure, the decoder works like the following:
 
 > **Note:**\
 They used 256
-[GRU](https://anwarvic.github.io/language-modeling/RNN) cells in all
+[GRU](https://phanxuanphucnd.github.io/language-modeling/RNN) cells in all
 RNN layers, they tried LSTM and obtained similar results. Also,
 residual connections were used between layers, which sped up
 convergence.
@@ -106,7 +106,7 @@ task is the need to see the full decoded sequence instead of doing it
 auto-regressively. The backbone of this network is the CBHG (Convolution
 Bank + Highway GRU) network which consists of a bank of 1-D
 convolutional filters, followed by highway networks and a bidirectional
-[GRU](https://anwarvic.github.io/language-modeling/RNN) layer. It works
+[GRU](https://phanxuanphucnd.github.io/language-modeling/RNN) layer. It works
 like so:
 
 <div align="center">

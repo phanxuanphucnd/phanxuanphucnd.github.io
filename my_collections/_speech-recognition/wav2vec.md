@@ -120,7 +120,7 @@ Acoustic Model
 --------------
 
 In the paper, they used the
-[Wav2Letter](https://anwarvic.github.io/speech-recognition/Wav2Letter)
+[Wav2Letter](https://phanxuanphucnd.github.io/speech-recognition/Wav2Letter)
 architecture implemented in the
 [wav2letter++](https://github.com/flashlight/wav2letter) toolkit as the
 acoustic models. For the TIMIT dataset, they created a character-based
@@ -179,7 +179,7 @@ models:
 
 The past table shows that pre-training on unlabeled audio data can
 improve over the best character-based approach ([Deep Speech
-2](https://anwarvic.github.io/speech-recognition/Deep_Speech_2)) by 0.67
+2](https://phanxuanphucnd.github.io/speech-recognition/Deep_Speech_2)) by 0.67
 WER on nov92. On the other hand, wav2vec performs as well as the best
 phoneme-based model (Lattice-free MMI). And wav2vec large outperforms it
 by 0.37 WER.

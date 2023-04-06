@@ -5,7 +5,7 @@ cover: /image1.png
 labs: ["FAIR"]
 ---
 
-[BERT](https://anwarvic.github.io/language-modeling/BERT) was created as
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) was created as
 a language model that deals with textual data, However, have you ever
 wondered if we used BERT on an acoustic data, what will be its
 performance? Apparently, some researchers at Facebook AI Research in
@@ -13,10 +13,10 @@ performance? Apparently, some researchers at Facebook AI Research in
 "[Effectiveness of Self-Supervised Pre-Training for Speech
 Recognition](https://arxiv.org/pdf/1911.03912.pdf)" where they tried to
 fine-tune a pre-trained
-[BERT](https://anwarvic.github.io/language-modeling/BERT) model for
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) model for
 speech recognition task using
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) loss function.
-To enable [BERT](https://anwarvic.github.io/language-modeling/BERT) to
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) loss function.
+To enable [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) to
 deal with input audio data, they tried using two different approaches as
 shown in the following figure:
 
@@ -31,10 +31,10 @@ shown in the following figure:
 
 > **Note to Reader:**\
 You need to brush-up your information about these topics:
-[BERT](https://anwarvic.github.io/language-modeling/BERT),
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec),
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT),
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec),
 and
-[vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec).
+[vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec).
 
 Discrete BERT
 -------------
@@ -50,17 +50,17 @@ main components:
     -   Log-mel Filterbanks (FBANK).
 
     -   Discrete
-        [vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+        [vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
         features.
 
 -   **Quantizer:** They used the gumbel-softmax [variant proposed in the
-    vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+    vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
     model. They quantized the Librispeech dataset into 13.5k unique
     codes, to be comparable to
-    [vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec).
+    [vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec).
 
 -   **Transformer Encoder:** These quanitized audio features are passed
-    to a [BERT](https://anwarvic.github.io/language-modeling/BERT) model
+    to a [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) model
     that was pre-trained with only the masked language modeling task on
     each set of inputs. Masking was done by choosing tokens for masking
     with probability of $5\%$, expanding each chosen token to a span of
@@ -91,15 +91,15 @@ Similar to Discrete BERT, Continuous BERT consists of just two main components:
     -   Log-mel Filterbanks (FBANK).
 
     -   Continuous
-        [wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec)
+        [wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec)
         features.
 
 -   **Transformer Encoder:** A
-    [BERT](https://anwarvic.github.io/language-modeling/BERT)'s masked
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT)'s masked
     language modeling task cannot be performed with continuous inputs,
     as there are no targets to predict in place of the masked tokens. To
     overcome that, they pre-trained
-    [BERT](https://anwarvic.github.io/language-modeling/BERT) to
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) to
     classify the masked positive example among a set of negatives. The
     model is optimized with the InfoNCE loss where given one positive
     sample $z_{i}$ and $N$ negative samples $\widetilde{z}$:
@@ -132,7 +132,7 @@ classes representing the vocabulary. The vocabulary is 29 tokens for
 character targets plus a word boundary token.
 
 For data augmentation, they applied
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
 during training which delayed overfitting and significantly improved the
 final accuracy numbers, especially on the smallest subsets. For
 regularization, they used a dropout at every layer of the transformer of
@@ -158,9 +158,9 @@ minutes. From this table, we can see the following:
 
 -   The best input features are obtained through self-supervised
     learning through
-    [vq-wav2vec](https://anwarvic.github.io/speech-recognition/vq-wav2vec)
+    [vq-wav2vec](https://phanxuanphucnd.github.io/speech-recognition/vq-wav2vec)
     for Discrete BERT, or
-    [wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec) for
+    [wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec) for
     Continuous BERT.
 
 -   When reducing the amount of labeled training data from 100h to 10h

@@ -57,7 +57,7 @@ Institute: allenai/longformer.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="Longformer: Long Transformer">
   <meta property="og:description" content="Transformer-based models are unable to process long sequences due to
 their self-attention operation, which has a time complexity of
@@ -396,7 +396,7 @@ subsequent phase while halving the learning rate till they ended with a
 length of 23,040 on the last phase.</p>
 
 <p>Longformer implementation is based on the
-<a href="https://anwarvic.github.io/language-modeling/Transformer-XL">Transformer-XL</a>
+<a href="https://phanxuanphucnd.github.io/language-modeling/Transformer-XL">Transformer-XL</a>
 found <a href="https://github.com/kimiyoung/transformer-xl">here</a> with the
 memory mechanism disabled. They used relative position embeddings with
 sinusoidal weights. They used two different model sizes; each with a
@@ -421,7 +421,7 @@ state-of-the-art results on both datasets:</p>
 <p>Longformer was pre-trained using masked language modeling (MLM), where
 the goal is to recover randomly masked tokens in a sequence. Since MLM
 pre-training is expensive, they continued pre-training from the
-<a href="https://anwarvic.github.io/language-modeling/RoBERTa">RoBERTa</a> released
+<a href="https://phanxuanphucnd.github.io/language-modeling/RoBERTa">RoBERTa</a> released
 checkpoint, and only making the minimal changes necessary to support
 Longformer’s attention mechanism. And since RoBERTa’s input is limited
 to $512$, they decided to copy them till it matches the input to
@@ -451,13 +451,13 @@ Hyperpartisan):</p>
 <p>LED stands for “Longformer Encoder Decoder” which is a variant of the
 Longformer model that follows an encoder-decoder architecture similar to
 the original
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 model; instead of an encoder-only Transformer architecture as the
 Longformer model. LED is intended for long sequence-to-sequence tasks
 such as text summarization.</p>
 
 <p>Since pre-training LED is expensive, they initialized LED parameters
-from the <a href="https://anwarvic.github.io/language-modeling/BART">BART</a>
+from the <a href="https://phanxuanphucnd.github.io/language-modeling/BART">BART</a>
 following BART’s exact architecture in terms of number of layers and
 hidden sizes. The only difference is that they extend position embedding
 to 16K tokens (BART has only 1K tokens). Also, they initialized the new
@@ -470,7 +470,7 @@ stacks. LED was evaluated on the summarization task using the arXiv
 summarization dataset which focuses on long document summarization in
 the scientific domain. The following table shows that LED-large achieves
 state-of-the-art results, slightly outperforming
-<a href="https://anwarvic.github.io/language-modeling/BigBird">BigBird</a>.</p>
+<a href="https://phanxuanphucnd.github.io/language-modeling/BigBird">BigBird</a>.</p>
 
 <div align="center">
 <img src="media/Longformer/image9.png" width="750" />

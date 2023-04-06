@@ -10,7 +10,7 @@ Translation with Extensible Multilingual Pretraining and
 Finetuning](https://arxiv.org/pdf/2008.00401.pdf) (the official code:
 [mbart](https://github.com/pytorch/fairseq/tree/master/examples/mbart))
 which doubles the number of languages in
-[mBART](https://anwarvic.github.io/multilingual-nmt/mBART) to suppor
+[mBART](https://phanxuanphucnd.github.io/multilingual-nmt/mBART) to suppor
 multilingual machine translation models of 50 languages without loss of
 performance. Also, This paper tried to fix some of the issues found in
 mBART such as:

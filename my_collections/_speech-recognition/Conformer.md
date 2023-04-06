@@ -7,7 +7,7 @@ labs: ["Google Research"]
 
 Conformer stands for "Convolution-augmented Transformer" which is an encoder
 architecture that combines convolution neural networks (CNN) and
-[Transformers](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformers](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 to perform speech recognition task. Conformer was created by Google in
 2020 and published in this paper under the same name "[Conformer:
 Convolution-augmented Transformer for Speech
@@ -19,7 +19,7 @@ for this paper can be found in the following GitHub repository:
     <img src="media/Conformer/image1.png" width=350>
 </div>
 
-[Transformers](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformers](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 are good at modeling long-range global context, but they are less
 capable to extract fine-grained local feature patterns. Convolution
 neural networks (CNNs), on the other hand, are good at capturing local
@@ -29,7 +29,7 @@ the best of both worlds.
 
 As you can see, the Conformer model first processes the augmented
 spectrogram
-([SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment))
+([SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment))
 input with a convolution sub-sampling layer of 4x sub-sampling ratio,
 then with a linear layer combined with droupout. Finally, the input is
 processed by $N$ number of conformer blocks.
@@ -68,7 +68,7 @@ preceding section:
 
 -   <u><strong>Feed-forward Module:</strong></u>\
     As shown in the following figure, the standard
-    [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+    [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
     FFN is composed of two linear transformations with ReLU nonlinear
     activation in between. In the Conformer, they used a pre-norm on the
     input before the first linear layer and they used Swish activation
@@ -82,7 +82,7 @@ preceding section:
     As shown in the following figure, the multi-headed
     self-attention (MHSA) integrates integrating an important technique
     from
-    [Transformer-XL](https://anwarvic.github.io/language-modeling/Transformer-XL)
+    [Transformer-XL](https://phanxuanphucnd.github.io/language-modeling/Transformer-XL)
     which is "the relative sinusoidal positional encoding" which allows
     the self-attention module to generalize better on different input
     length resulting in a more robust encoder to the variance of the
@@ -112,7 +112,7 @@ of 970 hours of labeled speech and an additional 800M word token
 text-only corpus for building language model. They extracted 80-channel
 filterbanks features computed from a $25ms$ window with a stride of
 $10ms$. For augmentation, they used
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
 with mask parameter ($F = 27$), and ten time masks with maximum
 time-mask ratio ($p_{S} = 0.05$), where the maximum-size of the time
 mask is set to $p_{S}$ times the length of the utterance.
@@ -142,11 +142,11 @@ perplexity $63.9$ on the dev-set transcripts.
 The following table compares the (WER) result of the Conformer on
 LibriSpeech test-clean/test-other with a few state-of-the-art models
 such as:
-[ContextNet](https://anwarvic.github.io/speech-recognition/ContextNet),
+[ContextNet](https://phanxuanphucnd.github.io/speech-recognition/ContextNet),
 [Transformer
-Transducer](https://anwarvic.github.io/speech-recognition/Transformer_Transducer),
+Transducer](https://phanxuanphucnd.github.io/speech-recognition/Transformer_Transducer),
 and
-[QuartzNet](https://anwarvic.github.io/speech-recognition/QuartzNet).
+[QuartzNet](https://phanxuanphucnd.github.io/speech-recognition/QuartzNet).
 Without a language model, the Conformer achieves competitive results
 outperforming similar sized convolution models. With the language model
 added, the Conformer achieves the lowest WER.

@@ -6,7 +6,7 @@ labs: ["Yandex Research", "University of Edinburgh", "University of Amsterdam"]
 ---
 
 Context-Aware Transformer is a modified version of the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model which is designed to allow the flow of information from the
 context to the decoder to provide better and more coherent results.
 Context-Aware Transformer was proposed by Yandex, University of
@@ -25,7 +25,7 @@ where he said: "<u><strong>I am the</strong></u> farmer, bondsman to the soil. <
 am the</strong></u> worker sold to the machine. <u><strong>I am the</strong></u> Negro,
 servant to you all...".
 
-Standard [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+Standard [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 encoders process sentences in isolation and ignore context information
 that could prevent mistakes and improve translation coherence. On the
 other hand, Context-Aware Transformer encoders process sentences along

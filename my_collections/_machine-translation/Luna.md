@@ -8,7 +8,7 @@ labs: ["FAIR", "Carnegie Mellon University", "University of Southern California"
 Luna stands for "Linear Unified Nested Attention" which is a novel
 attention mechanism that yields linear time and space complexity as
 opposed to standard attention mechanism proposed in the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture that yields quadratic time and space complexity. Luna was
 proposed by FAIR in 2021 and published in the paper under the same name:
 "[Luna: Linear Unified Nested
@@ -173,8 +173,8 @@ Also, Luna was pre-training on Masked Language Modeling (MLM) objective
 and then fine-tuned on Natural Language Understanding downstream tasks
 and was found out to have very similar results in comparison with
 state-of-the-art models such as
-[BERT](https://anwarvic.github.io/language-modeling/BERT) and
-[RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa):
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) and
+[RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa):
 
 <div align="center">
     <img src="media/Luna/image7.png" width=750>
@@ -182,11 +182,11 @@ state-of-the-art models such as
 
 Luna-128 (16GB) was pre-trained on 16GB of monolingual data collected
 from BookCorpus and English Wikipedia which is the same data used with
-[BERT](https://anwarvic.github.io/language-modeling/BERT). Luna-128
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). Luna-128
 (160GB) was pre-trained on 160GB of monolingual data collected from the
 same sources in addition to CC-News, OpenWebText, and Stories which is
 the same data used with
-[RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa). The
+[RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa). The
 following are the hyper-parameters used for pre-training Luna-128 (16GB
 and 160GB):
 

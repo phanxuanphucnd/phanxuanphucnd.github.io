@@ -14,17 +14,17 @@ for this paper can be found in Microsoft's official UniLM GitHub repository:
 
 State-of-the-art cross-lingual pre-trained models are typically built
 using monolingual data with masked language modeling (MLM) objective
-such as [BERT](https://anwarvic.github.io/language-modeling/BERT) and
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R); along side
+such as [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) and
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R); along side
 bilingual data with Translation Language Modeling (TLM) objective such
-as [XLM](https://anwarvic.github.io/cross-lingual-lm/XLM). InfoXLM
+as [XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM). InfoXLM
 combines these two objectives with a novel objective called XLCO or
 "Cross Lingual Contrast".
 
 $$\mathcal{L} = \mathcal{L}_{\text{MLM}} + \mathcal{L}_{\text{TLM}} + \mathcal{L}_{\text{XLCO}}$$
 
 > **Note to Reader**\
-I think you should give the [XLM post](https://anwarvic.github.io/cross-lingual-lm/XLM)
+I think you should give the [XLM post](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM)
 a read before going on.
 
 We know how to obtain MLM and TLM from XLM model:

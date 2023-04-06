@@ -7,9 +7,9 @@ labs: ["Google Brain", "Google Research", "University of Toronto"]
 
 Transformer architecture is a novel architecture for encoder-decoder
 paradigm created in an attempt to combine all good things from
-[Seq2Seq](https://anwarvic.github.io/machine-translation/Seq2Seq)
+[Seq2Seq](https://phanxuanphucnd.github.io/machine-translation/Seq2Seq)
 architecture and
-[ConvS2S](https://anwarvic.github.io/machine-translation/ConvS2S) with
+[ConvS2S](https://phanxuanphucnd.github.io/machine-translation/ConvS2S) with
 attention mechanisms. Transformer was proposed by a team from Google
 Research and Google Brain in 2017 and published in a paper under the
 name: "[Attention is all you

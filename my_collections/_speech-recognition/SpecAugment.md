@@ -122,7 +122,7 @@ embedding dimension 1024 for the Language Modeling, which is trained on
 the LibriSpeech LM corpus.
 
 All experiments done in this paper used
-[LAS](https://anwarvic.github.io/speech-recognition/LAS) architecture
+[LAS](https://phanxuanphucnd.github.io/speech-recognition/LAS) architecture
 with three different sizes: LAS-4-1024, LAS-6-1024 and LAS-6-1280. All
 were trained on LibriSpeech 960h with peak learning rate of $0.001$ and
 batch size of $512$ with a combination of augmentation policies (None,

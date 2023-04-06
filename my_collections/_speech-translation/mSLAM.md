@@ -10,7 +10,7 @@ which is a multilingual speech and language model that learns
 cross-lingual cross-modal representations of speech and text by
 pre-training jointly on large amounts of unlabeled speech and text in
 multiple languages. mSLAM is the multilingual version of
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM) which has
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM) which has
 been pre-trained on speech data from $51$ languages and text data from
 $101$ languages. mSLAM was proposed by Google in 2022 and published in
 their paper: "[mSLAM: Massively multilingual joint pre-training for
@@ -26,24 +26,24 @@ improve quality in the other.
 ## SLAM Recap
 
 Since mSLAM is the multilingual version of
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM), then it
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM), then it
 makes total sense to have a quick review of
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM). As shown in
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM). As shown in
 the following figure,
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM) consists of
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM) consists of
 three parts: **Text Encoder** responsible for encoding text data,
 **Speech Encoder** responsible for encoding speech data, and
 **Multimodal Encoder** responsible for combining representations from
 both modalities (text & speech) into a unified representation. The main
 building block for these encoders is the
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 network.
 
 <div align="center">
     <img src="media/mSLAM/image1.png" width=750>
 </div>
 
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM) was
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM) was
 pre-trained using multistage pre-training where it's first pre-trained
 on Span Masking and Masked Speech Modeling for a few epochs ($500k\ $as
 mentioned in the paper), then pre-trained on TLM and SLM tasks for
@@ -53,9 +53,9 @@ are aggregated and used to update the model parameters.
 ## mSLAM vs SLAM
 
 Even though mSLAM is the multilingual version of
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM). researchers
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM). researchers
 made some changes to
-[SLAM](https://anwarvic.github.io/speech-translation/SLAM) to further
+[SLAM](https://phanxuanphucnd.github.io/speech-translation/SLAM) to further
 improve the performance. These changes can be summarized as the
 following:
 
@@ -70,11 +70,11 @@ following:
 
 -   They increased the length of masked spans from $5$ to $20$ tokens
     for the
-    [SpanBERT](https://anwarvic.github.io/langauge-modeling/SpanBERT)
+    [SpanBERT](https://phanxuanphucnd.github.io/langauge-modeling/SpanBERT)
     objective.
 
 -   They applied a
-    [CTC](https://anwarvic.github.io/speech-recognition/CTC) loss on the
+    [CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) loss on the
     speech portion of the paired input, using the character-level
     transcript as the target. This CTC loss ensures stronger alignment
     between the speech and text representations learned by the model.
@@ -96,18 +96,18 @@ So in summary as you can see in the following figure, mSLAM is
 pre-trained on three different types of input data:
 
 1.  **Text-only:** mSLAM uses Masked Spanning task, adapted from
-    [SpanBERT](https://anwarvic.github.io/langauge-modeling/SpanBERT),
+    [SpanBERT](https://phanxuanphucnd.github.io/langauge-modeling/SpanBERT),
     with longer span ($20$ tokens) than SLAM ($5$ tokens).
 
 2.  **Audio-only:** mSLAM uses Masked Speech Modeling (MSM) task,
     adapted from
-    [w2v-BERT](https://anwarvic.github.io/speech-recognition/w2v-BERT).
+    [w2v-BERT](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT).
 
 3.  **Speech-text pair:** mSLAM uses Translation Language Modeling
     (TLM), adapted from
-    [XLM](https://anwarvic.github.io/cross-lingual-lm/XLM), with the
+    [XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM), with the
     addition of the
-    [CTC](https://anwarvic.github.io/speech-recognition/CTC) which
+    [CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) which
     improved the speech-text alignment and disregarded the STM task.
 
 <div align="center">
@@ -144,7 +144,7 @@ The three types of data was divided into the following stats:
         [BABEL](https://www.iarpa.gov/research-programs/babel).
 
 -   **Unlabeled text:** drawn from
-    [mC4](https://anwarvic.github.io/cross-lingual-lm/mT5) dataset which
+    [mC4](https://phanxuanphucnd.github.io/cross-lingual-lm/mT5) dataset which
     consists of natural text in 101 languages drawn from the public
     Common Crawl web scraper. During pre-training, they up-sampled lower
     resource languages using temperature-based sampling, with $T = 3.0$.
@@ -177,7 +177,7 @@ configurations for each of these tasks.
 
 For multilingual speech-to-text translation task, they attached a
 $6$-layer, $512$-dimension
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 decoder to the pre-trained mSLAM model with a dropout probability $0.3$
 on the input embedding and all residual connections in the Transformer
 decoder to mitigate overfitting. In this task, they tried two different
@@ -204,8 +204,8 @@ fine-tuning setups:
 </div>
 
 A comparison between mSLAM and other multilingual models such
-[XLS-R](https://anwarvic.github.io/speech-recognition/XLS-R) and
-[w2v-bert](https://anwarvic.github.io/speech-recognition/w2v-BERT)
+[XLS-R](https://phanxuanphucnd.github.io/speech-recognition/XLS-R) and
+[w2v-bert](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT)
 (trained on the speech-only data of mSLAM) is shown in the following
 table. As we can see, the 2B version of mSLAM with speech+text
 finetuning has the highest scores across all resources.
@@ -219,7 +219,7 @@ was pre-trained on just span masking + TLM.
 
 For multilingual speech recognition task, they attached the pre-trained
 mSLAM with a 2-layer
-[LSTM](https://anwarvic.github.io/language-modeling/RNN) as a
+[LSTM](https://phanxuanphucnd.github.io/language-modeling/RNN) as a
 conformer-transducer model. For this task, they used a merged grapheme
 vocabulary based on the task-specific training set for all ASR
 fine-tuning experiments without the use of any language model. They

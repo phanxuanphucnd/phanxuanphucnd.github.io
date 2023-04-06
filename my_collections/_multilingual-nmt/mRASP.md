@@ -37,7 +37,7 @@ different languages $L_{i}$ and $L_{j}$, RAS (Random Aligned
 Substitution) randomly replaces a word $x_{t}^{i}$ at index $t$ in the
 source language $i$ to a another word $d_{i,k}\left( x_{t}^{i} \right)$
 in a different random language $L_{k}$ using
-[MUSE](https://anwarvic.github.io/machine-translation/MUSE) dictionary
+[MUSE](https://phanxuanphucnd.github.io/machine-translation/MUSE) dictionary
 which is basically a look-up table trained in an unsupervised fashion
 that is able to translate $x_{t}^{i}$ word in language $L_{i}$ to
 $d_{i,k}\left( x_{t}^{i} \right)$ word in language $L_{k}$ where

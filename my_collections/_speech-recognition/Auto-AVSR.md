@@ -34,7 +34,7 @@ task. This module consists of a modified ResNet-18, where the first
 layer is a spatio-temporal convolutional layer with a 3D kernel size of
 $5 \times 7 \times 7$ and a stride of $1 \times 2 \times 2$. The
 back-end is a 12-layer
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer) for
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer) for
 temporal modeling. It is comprised of an embedding module, followed by a
 set of conformer blocks. In the embedding module, a linear layer
 projects the features from ResNet18 to a $d_{k}$-dimensional space.
@@ -47,7 +47,7 @@ projects the features from ResNet18 to a $d_{k}$-dimensional space.
 
 Similarly, the ASR encoder consists of a 1D ResNet-18 followed by a
 12-layer
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer).
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer).
 The ResNet-18 is based on 1D convolutional layers, where the filter size
 at the first convolutional layer is set to $80$ ($5ms$). To down-sample
 the time-scale, the stride is set to $2$ at every block. The only
@@ -84,7 +84,7 @@ $d_{k}$.
 ### Transformer Decoder
 
 Finally, to decode the audio-visual features to text, they used a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 decoder module, which is composed of an embedding module, followed by a
 set of multi-head self-attention blocks. In the embedding module, a
 sequence of the prefixes from index $1$ to $L - 1$ is projected to
@@ -308,19 +308,19 @@ In this experiment, they used four different pre-trained ASR models
 whose performance on LibriSpeech "clean-test" set are reported in
 the following table. These models are:
 
--   [HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT): a
+-   [HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT): a
     self-supervised model (checkpoint:
     [facebook/hubert-large-ls960-ft](https://huggingface.co/facebook/hubert-large-ls960-ft)).
 
--   [Wav2vec2.0:](https://anwarvic.github.io/speech-recognition/wav2vec_2)
+-   [Wav2vec2.0:](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2)
     a self-supervised model (checkpoint:
     [facebook/wav2vec2-large-960hlv60-self](https://huggingface.co/facebook/wav2vec2-large-960h-lv60-self)).
 
--   [Conformer](https://anwarvic.github.io/speech-recognition/Conformer):
+-   [Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer):
     a conformer-transducer model (checkpoint:
     [nvidia/stt-en-conformer-transducer-xlarge](https://huggingface.co/nvidia/stt_en_conformer_transducer_xlarge)).
 
--   [Whisper](https://anwarvic.github.io/speech-recognition/Whisper): a
+-   [Whisper](https://phanxuanphucnd.github.io/speech-recognition/Whisper): a
     transformer-based model trained with a total of $680k$ (checkpoint:
     [openai/whisper-medium.en](https://huggingface.co/openai/whisper-medium.en)).
 
@@ -340,7 +340,7 @@ the audio-only and video-only models.
 
 > **Note:**\
 Since the best performance were obtain using transcriptions from the
-[Conformer-Transducer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer-Transducer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 model, these transcriptions are going to be used in all of the
 following experiments.
 

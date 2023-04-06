@@ -8,8 +8,8 @@ labs: ["Meta AI"]
 data2vec is a framework proposed by Meta in 2022 that uses
 self-supervised learning on "speech, text, and image" modalities to
 create a single framework that works for all three. So, instead of using
-[word2vec](https://anwarvic.github.io/word-embedding/word2vec),
-[wav2vec](https://anwarvic.github.io/speech-recognition/wav2vec), or
+[word2vec](https://phanxuanphucnd.github.io/word-embedding/word2vec),
+[wav2vec](https://phanxuanphucnd.github.io/speech-recognition/wav2vec), or
 image2vec, we can use data2vec instead. This work could be a step closer
 to models that understand the world better through multiple modalities.
 data2vec was published in this paper: [data2vec: A General Framework for
@@ -44,7 +44,7 @@ The following are the different encoders used per modality:
 
 -   <u><strong>Speech Processing:</strong></u>\
     They used the "feature encoder" module of the Wav2Vec
-    [2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) model
+    [2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) model
     which consists of $7$ temporal convolutions with $512$ channels,
     strides $\lbrack 5,2,2,2,2,2,2\rbrack$ and kernel widths
     $\lbrack 10,3,3,3,3,2,2\rbrack$. This results in an encoder output
@@ -59,9 +59,9 @@ The following are the different encoders used per modality:
 
 -   <u><strong>NLP:</strong></u>\
     They used the word embeddings layer of
-    [RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa),
+    [RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa),
     which is Meta's re-implementation of
-    [BERT](https://anwarvic.github.io/language-modeling/BERT) after
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) after
     tokenized the input textual data using a byte-pair encoding (BPE) of
     $50K$ tokens.
 
@@ -88,7 +88,7 @@ same time) as shown in the following figure:
 
 > **Notes:**\
 In this paper, they used the standard
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)-encoder
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)-encoder
 architecture as the data2vec model. However alternative architectures may be
 equally applicable.
 
@@ -180,19 +180,19 @@ depending on the input modality:
 
 -   <u><strong>Speech Processing:</strong></u>\
     The masking strategy is also identical to Wav2Vec
-    [2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) as
+    [2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) as
     they sample $p = 0.065$ of all time-steps to be starting indices and
     mask the subsequent $10$ time-steps. This results in approximately
     $49\%$ of all time-steps to be masked for a typical training
     sequence.
 
 -   <u><strong>NLP:</strong></u>\
-    They used [BERT](https://anwarvic.github.io/language-modeling/BERT)
+    They used [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT)
     masking strategy to mask $15\%$ of uniformly selected tokens; such
     as that $80\%$ are replaced by a learned mask token, $10\%$ are left
     unchanged and $10\%$ are replaced by randomly selected vocabulary
     token. They also explored using [wav2vec
-    2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2)
+    2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2)
     strategy of masking spans of four tokens.
 
 After masking the data encodings, the model is trained to predict
@@ -206,7 +206,7 @@ criterion.
 ## Experiments & Results
 
 The main architecture for data2vec is the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture. In the paper, they created two different sizes of
 data2vec: data2vec Base and data2vec Large, containing parameters as
 shown in the following table; and they trained data2vec on a
@@ -368,9 +368,9 @@ following table shows the results on librispeech test-other when
 fine-tuning pre-trained models on the libri-light low-resource labeled
 data. As you can see, improvements can be seen when adding more and more
 labeled data across both data2vec sizes surpassing other models such as
-[wav2vec 2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2),
-[HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT), and
-[WavLM](https://anwarvic.github.io/speech-recognition/WavLM).
+[wav2vec 2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2),
+[HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT), and
+[WavLM](https://phanxuanphucnd.github.io/speech-recognition/WavLM).
 
 <div align="center">
     <img src="media/data2vec/image7.png" width=750>
@@ -393,7 +393,7 @@ fine-tuning data:
 ### NLP
 
 They pre-trained data2vec on the same pretraining setup of
-[BERT](https://anwarvic.github.io/language-modeling/BERT) on the Books
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) on the Books
 Corpus and English Wikipedia data using Adam optimizer with a tri-stage
 learning scheduler according to the following hyper-parameters:
 
@@ -436,9 +436,9 @@ reported below:
 </div>
 
 The previous table shows that data2vec outperforms
-[RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa) baseline
+[RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa) baseline
 and its performance is improved once using the [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) masking
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) masking
 that spans four tokens.
 
 ## Ablation

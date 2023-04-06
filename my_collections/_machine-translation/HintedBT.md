@@ -8,13 +8,13 @@ labs: ["Google Research"]
 
 HintedBT is a family of techniques that provides <u><strong>hints through tags
 on the source side and target side</strong></u> to the
-[Back-translation](https://anwarvic.github.io/machine-translation/Back-Translation)
+[Back-translation](https://phanxuanphucnd.github.io/machine-translation/Back-Translation)
 mechanism to improve the effectiveness of the provided monolingual data.
 These techniques were proposed by Google Research in 2021 and published
 in their paper: [HintedBT: Augmenting Back-Translation with Quality
 and](https://arxiv.org/pdf/2109.04443.pdf).
 
-[Back-translation](https://anwarvic.github.io/machine-translation/Back-Translation)
+[Back-translation](https://phanxuanphucnd.github.io/machine-translation/Back-Translation)
 is one such widely used data augmentation technique in which synthetic
 parallel data is created by translating monolingual data in the target
 language to the source language using a baseline system. However, in
@@ -47,7 +47,7 @@ information about each instance by using multiple tags on the source
 sentence to hint of the quality of the BT pair. For each sentence pair,
 the quality was determined by the following steps:
 
--   Use [LaBSE](https://anwarvic.github.io/cross-lingual-LM/LaBSE) to
+-   Use [LaBSE](https://phanxuanphucnd.github.io/cross-lingual-LM/LaBSE) to
     compute sentence embeddings of the two sentences. LaBSE is a
     BERT-based language agnostic cross-lingual model.
 
@@ -58,7 +58,7 @@ the quality was determined by the following steps:
 
 > **Note:**\
 This method can be seen as an extension to the [Tagged
-BT](https://anwarvic.github.io/machine-translation/Tagged_BT)
+BT](https://phanxuanphucnd.github.io/machine-translation/Tagged_BT)
 approach.
 
 Now, we know how they calculated the quality of a sentence pair. Next, we need

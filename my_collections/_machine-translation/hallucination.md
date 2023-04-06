@@ -67,7 +67,7 @@ Perturbation can be categorized into four types:
     <img src="media/hallucination/image5.png" width=1050>
 </div>
 
-Using the [GNMT](https://anwarvic.github.io/machine-translation/GNMT)
+Using the [GNMT](https://phanxuanphucnd.github.io/machine-translation/GNMT)
 model with a single layered bidirectional LSTM in the encoder and two
 layered unidirectional LSTM in the decoder plus the attention mechanism,
 BPE encoded vocabulary, and the following algorithm, they were able to
@@ -181,7 +181,7 @@ sentence</strong></u>.
 
 > **Very Important Note:**\
 They studied the [Transformer
-](https://anwarvic.github.io/machine-translation/Transformer) model (TR)
+](https://phanxuanphucnd.github.io/machine-translation/Transformer) model (TR)
 implemented in the [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor)
 library with tiny-configuration (2 hidden layers, 128 hidden size, 512 filter
 size, and 4 heads) and had a greedy BLEU score of 17.5, which is a little lower

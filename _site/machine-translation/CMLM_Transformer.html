@@ -57,7 +57,7 @@ facebookresearch/Mask-Predict.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="CMLM Transformer">
   <meta property="og:description" content="CMLM stands for “Conditional Masked Language Modeling” Transformer which
 is an encoder-decoder Transformer
@@ -273,7 +273,7 @@ facebookresearch/Mask-Predict.
   <section class="post">
     <h1 id=CMLM Transformer> CMLM Transformer</h1>
     <p>CMLM stands for “Conditional Masked Language Modeling” Transformer which
-is an encoder-decoder <a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+is an encoder-decoder <a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 architecture trained with a masked
 language modeling (MLM) training objective and uses “masked-predict”
 algorithm for decoding. This model was proposed by FAIR in 2019 and
@@ -288,7 +288,7 @@ repository:
 autoregressively from left to right, the CMLM Transformer uses a
 non-autoregressive decoding algorithm called “masked-predict” that
 iteratively decodes in linear time. CMLM Transformer is the same as the
-<a href="https://anwarvic.github.io/machine-translation/Transformer">standard Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">standard Transformer</a>
 with one change in the decoder; the masking of the self-attention in the
 decoder was removed to make the decoder attend to both left and right
 contexts when generating the output translation.</p>
@@ -315,7 +315,7 @@ uniform distribution between one and the sequence’s length.</p>
   </li>
   <li>
     <p>Then, that number of tokens get masked $Y_{\text{mask}}$. Following
-<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>, masking
+<a href="https://phanxuanphucnd.github.io/language-modeling/BERT">BERT</a>, masking
 is done by replacing the token with a special
 $\left\lbrack \text{MASK} \right\rbrack$ token.</p>
   </li>
@@ -482,7 +482,7 @@ transformers in both small and base configuration:</p>
 </div>
 
 <p>They followed the weight initialization scheme from
-<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>, which samples
+<a href="https://phanxuanphucnd.github.io/language-modeling/BERT">BERT</a>, which samples
 weights from $\mathcal{N}\left( 0,\ 0.02 \right)$, initializes biases to
 zero, and sets layer normalization parameters to
 $\beta = 0,\ \gamma = 1$. For regularization, they used $0.3$ dropout,

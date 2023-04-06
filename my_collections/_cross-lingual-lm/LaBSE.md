@@ -15,12 +15,12 @@ code for this paper can be found in the following TensorFlow Hub link:
 
 Mask language modeling (MLM) pre-training task, which was originally
 proposed in the
-[BERT](https://anwarvic.github.io/language-modeling/BERT) model, has
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) model, has
 proven to be a powerful task for numerous NLP tasks. However, it doesn't
 produce good sentence-level embeddings unless the model has been
 fine-tuned on sentence-level benchmark. In this paper, the researchers
 discuss combining
-[mBERT](https://anwarvic.github.io/cross-lingual-lm/mBERT) with MLM and
+[mBERT](https://phanxuanphucnd.github.io/cross-lingual-lm/mBERT) with MLM and
 translation language model (TLM) objectives.
 
 LaBSE is a dual-encoder architecture initialized with BERT and
@@ -43,7 +43,7 @@ models for the subsequent stages.
 
 > **Note:**\
 TLM objective was first proposed in the
-[XLM](https://anwarvic.github.io/cross-lingual-lm/XLM) model. The only
+[XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM) model. The only
 difference here is that TLM doesn't use language codes to encourage
 multilinguality.
 

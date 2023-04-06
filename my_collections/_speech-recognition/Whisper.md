@@ -77,7 +77,7 @@ the rest is 438,000 hours of English speech.
 ## Model
 
 As shown in the previous graph, Whisper is an encoder-decoder
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 where the encoder and decoder have the same width and number of
 transformer blocks. To make it more efficient, they made the following
 changes to the original architecture:
@@ -155,7 +155,7 @@ over the first $2048$ updates. A batch size of $256$ tokens was used,
 and the models are trained for $220$ updates (around 2-3 epochs over the
 dataset). Regarding the text tokenizer, they used the same byte-level
 BPE text tokenizer used in
-[GPT2](https://anwarvic.github.io/language-modeling/GPT-2) for the
+[GPT2](https://phanxuanphucnd.github.io/language-modeling/GPT-2) for the
 English-only models and refit the vocabulary (with keeping the same
 size) for the multilingual models.The following table summarizes the
 full training hyper-parameters:
@@ -170,7 +170,7 @@ concern here. That's why they didn't use any data augmentation or
 regularization. However, Whisper "large-v2" was trained with
 regularization methods such as Stochastic Depth, and BPE Dropout and
 augmentation methods such as
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment).
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment).
 
 ## Experiments & Results
 
@@ -200,7 +200,7 @@ version of
 and the [AMI
 corpus](https://groups.inf.ed.ac.uk/ami/corpus/overview.shtml). A
 detailed comparison between Whisper and [Wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) is shown
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) is shown
 in the following table:
 
 <div align="center">
@@ -323,9 +323,9 @@ the dataset.
 ### Non-English Speech Recognition
 
 In order to compare Whisper models with prior work such as
-[XLS-R](https://anwarvic.github.io/speech-recognition/XLS-R),
-[mSLAM](https://anwarvic.github.io/speech-translation/mSLAM), and
-[Maestro](https://anwarvic.github.io/speech-translation/Maestro), they
+[XLS-R](https://phanxuanphucnd.github.io/speech-recognition/XLS-R),
+[mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM), and
+[Maestro](https://phanxuanphucnd.github.io/speech-translation/Maestro), they
 reported the performance on [Mutlilingual LibriSpeech
 (MLS)](https://www.openslr.org/94) and
 [VoxPopuli](https://github.com/facebookresearch/voxpopuli) in the
@@ -347,9 +347,9 @@ language family and many of which are high-resource languages.
 To study the translation capabilities of Whisper, they measured its
 performance on the x→en subset of [CoVOST
 2](https://huggingface.co/datasets/covost2) and they compared it with
-[XLS-R](https://anwarvic.github.io/speech-recognition/XLS-R),
-[mSLAM](https://anwarvic.github.io/speech-translation/mSLAM), and
-[Maestro](https://anwarvic.github.io/speech-translation/Maestro) and
+[XLS-R](https://phanxuanphucnd.github.io/speech-recognition/XLS-R),
+[mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM), and
+[Maestro](https://phanxuanphucnd.github.io/speech-translation/Maestro) and
 reported the results in the following table which shows that Whisper
 achieves a new state of the art of $29.1$ BLEU zero-shot without using
 any of the training data
@@ -380,7 +380,7 @@ To evaluate language identification (LID) task, they used the
 dataset as well. They compared Whisper with prior supervised work and
 results are reported in the following table where you can see that
 Whisper under-performs the supervised state-of-the-art model
-([mSLAM](https://anwarvic.github.io/speech-translation/mSLAM))
+([mSLAM](https://phanxuanphucnd.github.io/speech-translation/mSLAM))
 by$\ 13.6\%$. However, Whisper is heavily disadvantaged since the
 Whisper dataset contains no data for 20 of the 102 languages in Fleurs.
 On the $82$ overlapping languages, Whisper achieves $80.3\%$ accuracy.

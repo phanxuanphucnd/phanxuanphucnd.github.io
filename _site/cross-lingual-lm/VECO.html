@@ -55,7 +55,7 @@ alibaba/VECO.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="VECO: Cross-lingual Pre-training">
   <meta property="og:description" content="VECO stands for “Variable and Flexible Cross-lingual
 Pre-training” which is a pre-training approach for cross-lingual
@@ -283,7 +283,7 @@ repository:
 
 <p>The special thing about VECO pre-training is that it plugs a
 cross-attention module into the
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 architecture to explicitly build the cross-relation between languages
 when pre-training using the Cross-Attention Masked Language Modeling MLM
 (CA-MLM) objective. The following figure shows the difference between
@@ -297,7 +297,7 @@ plugging the cross-attention module (right):</p>
 <blockquote>
   <p><strong>Note:</strong><br />
 MLM here is different than MLM objective proposed in the
-<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> paper. As we
+<a href="https://phanxuanphucnd.github.io/language-modeling/BERT">BERT</a> paper. As we
 can see, here MLM is applied on both encoder and decoder.</p>
 </blockquote>
 
@@ -321,12 +321,12 @@ $\left( x,\ y \right)$ pair.</p>
 <h3 id="cross-attention-module">Cross-Attention Module</h3>
 
 <p>As said before, the VECO pre-training extends the
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 architecture and plugs a cross-attention module in each layer. Now, each
 layer has three modules: self-attention module, a plug-and-play
 cross-attention module, and a feed-forward linear module. Both
 self-attention and cross-attention modules are based on the multi-head
-<a href="https://anwarvic.github.io/machine-translation/Attention">attention
+<a href="https://phanxuanphucnd.github.io/machine-translation/Attention">attention
 mechanism</a>.</p>
 
 <p>An attention function can be described as mapping a query $Q$ and a set
@@ -432,7 +432,7 @@ million:</p>
 </div>
 
 <p>They up/down-sample the monolingual text like
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a> from each
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM">XLM</a> from each
 language with a smoothing parameter $\alpha = 0.5$ where $D_{l}$ is the
 number of sentences in language $l$.</p>
 
@@ -442,12 +442,12 @@ number of sentences in language $l$.</p>
 languages from the <a href="http://opus.nlpl.eu/">OPUS</a> website.</p>
 
 <p>In this paper, they used pre-trained two VECO models following the
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a> model. The
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R">XLM-R</a> model. The
 large one is a 24-layer model with 1024 embedding/hidden size and 4096
 feed-forward size, while the small one is 6 layers with 768
 embedding/hidden size and 3072 feed-forward size. Also, they used the
 same 250K vocabulary that was used by
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a> . The full
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R">XLM-R</a> . The full
 list of the model can be seen in the following table:</p>
 
 <div align="center">
@@ -479,8 +479,8 @@ times deep as VECO.</p>
 </div>
 
 <p>And to investigate where the improvement in VECO comes from, they
-trained <a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a>,
-<a href="https://anwarvic.github.io/multilingual_nmt/XLM">mBART</a> and VECO model
+trained <a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM">XLM</a>,
+<a href="https://phanxuanphucnd.github.io/multilingual_nmt/XLM">mBART</a> and VECO model
 from scratch using the same datasets and parameter settings where all of
 them were pre-trained on MLM and TLM tasks and fine-tuned on XNLI
 downstream task and machine translation De-En pair from the IWSLT14

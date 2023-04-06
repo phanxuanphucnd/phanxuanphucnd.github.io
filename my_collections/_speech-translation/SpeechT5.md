@@ -10,7 +10,7 @@ SpeechT5, stands for "Speech Text-to-Text Transfer Transformer", is a
 unified framework for speech and text that leverages the large-scale
 unlabeled speech and text data hoping to improve the modeling capability
 for both speech and text. The name is inspired by
-[T5](https://anwarvic.github.io/language-modeling/T5) framework by
+[T5](https://phanxuanphucnd.github.io/language-modeling/T5) framework by
 Google which did the same on the textual modality. SpeechT5 was proposed
 by Microsoft in 2021 and published in this paper: [SpeechT5:
 Unified-Modal Encoder-Decoder Pre-Training for Spoken Language
@@ -35,12 +35,12 @@ decoder</strong></u>.
 ## Model
 
 SpeechT5 consists of an encoder-decoder
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 backbone module connected to 4 modal-specific pre-nets and 2 post-nets.
 The backbone module consists of 12
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 encoder layers, and 6
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 decoder layers, where $d_{m} = 768$, $d_{ff} = 3072$ and $h = 12$. The
 pre-nets convert the input speech $X^{s}$ or text $X^{t}$ to a unified
 space of hidden representations and then feed them into the shared
@@ -60,7 +60,7 @@ $X^{s} = \left\lbrack x_{1}^{s},\ ...x_{M}^{s} \right\rbrack$ is used an
 input wihle log Mel-filterbank features
 $X^{f} = \left\lbrack x_{1}^{f},\ ...x_{M}^{f} \right\rbrack$ is used as
 output; which will be used later by a
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN) Vocoder
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN) Vocoder
 to generate the final waveform.
 
 ### Pre-Nets
@@ -73,7 +73,7 @@ the type of the architecture after it:
 
 -   <u><strong>Speech-encoder Pre-net:</strong></u>\
     SpeechT5 uses the convolutional feature extractor module of Wav2Vec
-    [2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) model
+    [2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) model
     which consists of $7$ temporal convolutions with $512$ channels,
     strides $\lbrack 5,2,2,2,2,2,2\rbrack$ and kernel widths
     $\lbrack 10,3,3,3,3,2,2\rbrack$.
@@ -129,15 +129,15 @@ $$\mathcal{L} = \mathcal{L}_{MLM}^{s} + \mathcal{L}_{1}^{s} + \mathcal{L}_{BCE}^
 ### Masked Language Modeling (MLM) Loss
 
 Following
-[HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT), SpeechT5
+[HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT), SpeechT5
 leverages unlabeled speech data with bidirectional Masked Language
 Modeling predictions similar to
-[BERT](https://anwarvic.github.io/language-modeling/BERT). Specifically,
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). Specifically,
 they apply span masking to the output $H$ from speech-encoder pre-net,
 where $8\%$ of timesteps are randomly selected as start indices, and
 spans of $10$ time-steps are masked.
 
-The [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+The [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 encoder takes masked $H$ as the input and produces hidden
 representations $U = \left\lbrack u_{1},\ ...u_{N} \right\rbrack$. Based
 on these hidden representations, the cross-entropy loss is computed over
@@ -153,7 +153,7 @@ acoustic model.
 ### L1 Loss
 
 Following [Transformer
-TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS),
+TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS),
 SpeechT5 leverages unlabeled speech data by proposing to reconstruct the
 original speech. More concretely, given the randomly masked input
 $\widehat{H}$ (same as last objective), they enforce the predicted
@@ -184,7 +184,7 @@ output (from the text-decoder post-net) $Y^{t}$ to the original text
 $X^{t}$, using the corrupted text ${\widehat{X}}^{t}$ as the input
 generated with a mask-based noising function. Following the text
 infilling approach in
-[BART](https://anwarvic.github.io/language-modeling/BART), they randomly
+[BART](https://phanxuanphucnd.github.io/language-modeling/BART), they randomly
 sample $30\%$ of text spans to mask, where the span length of text spans
 draws from a Poisson distribution ($\lambda = 3.5$), and each span is
 replaced with a single mask token. The loss formula is defined below:
@@ -250,10 +250,10 @@ HuBERT-BASE model.
 They fine-tuned SpeechT5 on $100h$ & $960h$ sets of LibriSpeech data and
 trained the language model (LM) with the LibriSpeech LM text data, which
 is used for [shallow
-fusion](https://anwarvic.github.io/machine-translation/Fusion) during
+fusion](https://phanxuanphucnd.github.io/machine-translation/Fusion) during
 the ASR inference. Besides the cross-entropy loss for the decoder, they
 added an extra linear layer to calculate the
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) loss on the top
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) loss on the top
 of the encoder. Fine-tuning hyper-parameters can be summarized in the
 following table:
 
@@ -263,9 +263,9 @@ following table:
 
 The following table shows the results on the 100h set of LibriSpeech in
 comparison to other self-supervised approaches such as [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2),
-[HuBERT](https://anwarvic.github.io/speech-recognition/HuBERT), and
-[DiscreteBERT](https://anwarvic.github.io/speech-recognition/Acoustic_BERT).
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2),
+[HuBERT](https://phanxuanphucnd.github.io/speech-recognition/HuBERT), and
+[DiscreteBERT](https://phanxuanphucnd.github.io/speech-recognition/Acoustic_BERT).
 Without LM fusion, SpeechT5+CTC beats all other baselines. However,
 without LM SpeechT5 achieves the best performance even without the CTC
 loss.
@@ -284,7 +284,7 @@ Same observations are found on the $960h$ set:
 
 They fine-tuned SpeechT5 model on the $460h$ clean set of
 [LibriTTS](http://www.openslr.org/60) with the help of
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN) Vocoder
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN) Vocoder
 to convert the log Mel-filterbank to the raw waveform. The model is
 updated for $120k$ steps with a learning rate of $0.0004$, while each
 GPU processes up to $45,000$ tokens for a batch. The learning rate is
@@ -338,9 +338,9 @@ $20000$ tokens with a learning rate based on the inverse square root
 with the maximum learning rate of $10^{- 4}$ within $60k$ steps and
 apply $6k$ warm-up steps. For waveform synthesis, they used the
 [Parallel
-WaveGAN](https://anwarvic.github.io/speech-synthesis/Parallel_WaveGAN)
+WaveGAN](https://phanxuanphucnd.github.io/speech-synthesis/Parallel_WaveGAN)
 which is a non-autoregressive variant of the
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) vocoder.
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) vocoder.
 they used the average of MCD (MelCepstral Distortion) and WER as the
 metrics for this task.
 
@@ -366,7 +366,7 @@ $20,000$ training utterances, $5,000$ validation utterances, and $3,000$
 test utterances, where the input waveform is a mixture of only the
 [first WSJ0 speaker](https://catalog.ldc.upenn.edu/LDC93S6A) and noise.
 For vocoder, they used
-[HiFi-GAN](https://anwarvic.github.io/speech-synthesis/HiFi-GAN).
+[HiFi-GAN](https://phanxuanphucnd.github.io/speech-synthesis/HiFi-GAN).
 
 For evaluation, they used the negative impact on the ASR performance by
 WER which was evaluated using this [ASR

@@ -6,7 +6,7 @@ labs: ["University of Darmstadt", "New York University"]
 ---
 
 AdapterFusion is a new variant of the [Adapter layers
-](https://anwarvic.github.io/language-modeling/adapter) where it extends
+](https://phanxuanphucnd.github.io/language-modeling/adapter) where it extends
 the functionality of adapters to be multi-tasking instead of being per a
 single task. AdapterFusion is proposed by researchers in UKP Lab,
 Technical University of Darmstadt and New York University and

@@ -8,7 +8,7 @@ labs: ["ByteDance AI Lab"]
 mRASP2 stands for "**m**ultilingual **R**andom **A**ligned
 **S**ubstitution **P**re-training". It's mRASP<u><strong>2</strong></u> because it's
 an extension to the
-[mRASP](https://anwarvic.github.io/multilingual-nmt/mRASP) model
+[mRASP](https://phanxuanphucnd.github.io/multilingual-nmt/mRASP) model
 proposed by the same lab (ByteDance AI Lab) a year earlier. mRASP2
 framework was proposed in 2021 and published in this paper: [Contrastive
 Learning for Many-to-many Multilingual Neural Machine
@@ -34,9 +34,9 @@ two techniques:
 </div>
 
 The base architecture of mRASP2 is the state-of-the-art
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer).
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer).
 A little different from
-[mRASP](https://anwarvic.github.io/multilingual-nmt/mRASP), they chose a larger
+[mRASP](https://phanxuanphucnd.github.io/multilingual-nmt/mRASP), they chose a larger
 setting with a 12-layer encoder and a 12-layer decoder to increase the model
 capacity. The model dimension is $1024$ on $16$ heads. To ease the training of
 the deep model, they applied Layer Normalization for word embedding and
@@ -105,12 +105,12 @@ Aligned Augmentation (AA) is a data augmentation technique that can be
 applied on both parallel and monolingual data in order to improve
 multilingual translation quality. Aligned Augmentation is considered an
 extension of RAS (Random Aligned Substitution) which was proposed in
-[mRASP](https://anwarvic.github.io/multilingual-nmt/mRASP) paper.
+[mRASP](https://phanxuanphucnd.github.io/multilingual-nmt/mRASP) paper.
 
 For a bilingual sentence pair $\left( x^{i},\ x^{j} \right)$ in two
 languages $L_{i}$ and $L_{j}$, Aligned Augmentation creates a perturbed
 sentence $C\left( x^{i} \right)$ by replacing aligned words from a
-[MUSE](https://anwarvic.github.io/machine-translation/MUSE) synonym
+[MUSE](https://phanxuanphucnd.github.io/machine-translation/MUSE) synonym
 dictionary with a probability of $90\%$ and keep them unchanged
 otherwise; forming a pseudo-parallel training example
 $\left( C\left( x^{i} \right),\ x^{j} \right)$:
@@ -138,7 +138,7 @@ Experiments
 -----------
 
 In their experiments, they used the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model with 12 encoder layers and 12 decoder layers. The embedding size
 and FFN dimension were set to $1024$ on $16$ heads. For multilingual
 vocabulary, They followed the shared BPE vocabulary of $64,808$ tokens
@@ -153,7 +153,7 @@ $\beta_{2} = 0.98$. To stabilize training, they set the threshold of
 gradient norm to be $5.0$ and clip all gradients with a larger norm.
 
 For bilingual data, they used the Parallel Corpus (PC32) proposed in the
-[mRASP](https://anwarvic.github.io/multilingual-nmt/mRASP) paper. PC32
+[mRASP](https://phanxuanphucnd.github.io/multilingual-nmt/mRASP) paper. PC32
 contains 97.6 million parallel sentences of 32 English-centric language
 pairs. The following figure shows the languages found in the corpus
 along with the number of sentences available for each language:

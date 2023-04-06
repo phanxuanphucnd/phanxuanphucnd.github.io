@@ -20,9 +20,9 @@ Architecture
 
 RNMT+ is a new architecture -as shown below- that was built using
 different components borrowed from different previous architectures like
-[RNN](https://anwarvic.github.io/machine-translation/RNN),
-[ConvS2S](https://anwarvic.github.io/machine-translation/ConvS2S), and
-[Transformers](https://anwarvic.github.io/machine-translation/Transformer).
+[RNN](https://phanxuanphucnd.github.io/machine-translation/RNN),
+[ConvS2S](https://phanxuanphucnd.github.io/machine-translation/ConvS2S), and
+[Transformers](https://phanxuanphucnd.github.io/machine-translation/Transformer).
 These modifications made the model significantly outperform all
 individual architectures.
 

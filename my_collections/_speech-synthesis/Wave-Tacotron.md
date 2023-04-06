@@ -15,11 +15,11 @@ official audio samples from Wave-Tacotron can be found in this
 Sadly, I couldn't find any public implementation for this paper.
 
 Wave-Tacotron got its name from extending the
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) model
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) model
 by integrating a normalizing flow-based vocoder into the auto-regressive
 decoder. As you can see from the following figure, Wave-Tacotron uses
 almost the same Encoder & Decoder as
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) with
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) with
 minor modifications to the decoder that we will talk about later; and it
 uses a Normalizing Flow module instead of the Vocoder for the waveform
 generation part.
@@ -29,8 +29,8 @@ generation part.
 </div>
 
 Recent work, such as [FastSpeech
-2](https://anwarvic.github.io/speech-synthesis/FastSpeech_2) and
-[EATS](https://anwarvic.github.io/speech-synthesis/EATS), has integrated
+2](https://phanxuanphucnd.github.io/speech-synthesis/FastSpeech_2) and
+[EATS](https://phanxuanphucnd.github.io/speech-synthesis/EATS), has integrated
 normalizing flows with sequence-to-sequence TTS models, to directly
 generate waveforms, but they rely on spectral losses and mel
 spectrograms for alignment. In contrast, Wave-Tacotron avoids
@@ -71,7 +71,7 @@ components of Wave-Tacotron in more details:
 ### Text Encoder
 
 Similar to the
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) model,
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) model,
 the text encoder in Wave-Tacotron tries to extract robust sequential
 representations from phoneme or character sequence. The encoder consists
 of three main modules:
@@ -87,7 +87,7 @@ of three main modules:
     pre-net outputs into the final encoder representation. The CBHG
     network consists of a bank of 1-D convolutional filters, followed by
     highway networks and a
-    bidirectional [GRU](https://anwarvic.github.io/language-modeling/RNN) layer.
+    bidirectional [GRU](https://phanxuanphucnd.github.io/language-modeling/RNN) layer.
 
 The following figure shows the architecture for the encoder and the CBHG
 network:
@@ -99,7 +99,7 @@ network:
 ### Decoder
 
 The decoder is very similar to the one used in
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) with
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) with
 the following minor modifications:
 
 -   They used location-sensitive attention, which was more stable than
@@ -150,7 +150,7 @@ $N = 12$, for a total of 60 steps.
 > **Note:**\
 To understand more about the actNorm, 1x1 convnet, and affine layer used
 in the normalizing flow network, please review the
-[WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) post
+[WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) post
 where we talked about these components in details.
 
 ## Loss Function
@@ -224,15 +224,15 @@ they used several objective metrics such as:
 The following table compares between Wave-Tacotron and three other
 models on LJ speech (first table) and the internal dataset (second
 table). The first is a
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) +
-[WaveRNN](https://anwarvic.github.io/speech-synthesis/WaveRNN) model,
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) +
+[WaveRNN](https://phanxuanphucnd.github.io/speech-synthesis/WaveRNN) model,
 the second is a
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) +
-[Flowcoder](https://anwarvic.github.io/speech-synthesis/Flowcoder)
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) +
+[Flowcoder](https://phanxuanphucnd.github.io/speech-synthesis/Flowcoder)
 model, and the last one is a
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) +
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) +
 Post-net (Tacotron-PN), consisting of a 20-layer non-causal
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) stack
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) stack
 split into two dilation cycles.
 
 <div align="center">

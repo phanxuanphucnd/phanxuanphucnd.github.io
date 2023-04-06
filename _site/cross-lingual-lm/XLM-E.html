@@ -51,7 +51,7 @@ repository: microsoft/unilm.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="XLM-E: XLM via ELECTRA">
   <meta property="og:description" content="XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
 a cross-lingual language model that was pre-trained on two
@@ -262,7 +262,7 @@ repository: microsoft/unilm.
     <h1 id=XLM-E: XLM via ELECTRA> XLM-E: XLM via ELECTRA</h1>
     <p>XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
 a cross-lingual language model that was pre-trained on two
-<a href="https://anwarvic.github.io/language-modeling/ELECTRA">ELECTRA</a>-style
+<a href="https://phanxuanphucnd.github.io/language-modeling/ELECTRA">ELECTRA</a>-style
 tasks as we are going to see later. XLM-E was proposed by Microsoft in
 2021 and published in their paper: <a href="https://arxiv.org/pdf/2106.16138.pdf">Cross-lingual Language Model
 Pre-training via ELECTRA</a>. The
@@ -276,9 +276,9 @@ Translation Masked Modeling (TLM), ...etc.) usually requires massive
 computation resources. As shown in the following figure, XLM-E (red
 line) achieves 130x speedup compared with XLM-R augmented with TLM and
 around 100x speedup compared with
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a>,
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-Align">XLM-Align</a>, and
-<a href="https://anwarvic.github.io/cross-lingual-lm/InfoXLM">InfoXLM</a>:</p>
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R">XLM-R</a>,
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-Align">XLM-Align</a>, and
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/InfoXLM">InfoXLM</a>:</p>
 
 <div align="center">
     <img src="media/XLM-E/image1.png" width="450" />
@@ -286,7 +286,7 @@ around 100x speedup compared with
 
 <h2 id="pre-training">Pre-training</h2>
 
-<p>Similar to <a href="https://anwarvic.github.io/language-modeling/ELECTRA">ELECTRA</a>,
+<p>Similar to <a href="https://phanxuanphucnd.github.io/language-modeling/ELECTRA">ELECTRA</a>,
 XLM-E has two Transformer components, i.e., generator and discriminator. The
 generator predicts the masked tokens given the masked sentence or translation
 pair, and the discriminator distinguishes whether the tokens are replaced by
@@ -301,7 +301,7 @@ overall training objective is to minimize:</p>
 
 <p>This pre-training task is a multilingual form of the Replaced Token
 Detection (RTD) task introduced in the
-<a href="https://anwarvic.github.io/language-modeling/ELECTRA">ELECTRA</a> model.
+<a href="https://phanxuanphucnd.github.io/language-modeling/ELECTRA">ELECTRA</a> model.
 Here is a small recap on RTD. The RTD task requires the model to
 distinguish real input tokens from corrupted multilingual sentences. The
 input sentences get corrupted by the generator model, and the
@@ -381,7 +381,7 @@ That’s why their loss functions were marked as
 <h2 id="gated-relative-position-bias">Gated Relative Position Bias</h2>
 
 <p>In this paper, they proposed to use gated relative position bias
-inspired by the <a href="https://anwarvic.github.io/language-modeling/RNN">GRU</a>
+inspired by the <a href="https://phanxuanphucnd.github.io/language-modeling/RNN">GRU</a>
 cells, in the self-attention mechanism. First, let’s recap how the
 self-attention mechanism works. Given, input tokens
 $\left\{ x_{1},\ …x_{n} \right\}$, the self-attention mechanism uses
@@ -414,7 +414,7 @@ function, and $w \in \mathbb{R}$ is a learnable value.</p>
 discriminator, with hidden size of 768, and FFN hidden size of 3,072 while they
 used a 4-layer Transformer as the discriminator using the same hyper-parameters.
 They used the same vocabulary with
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a> that consists of
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R">XLM-R</a> that consists of
 250K subwords tokenized by SentencePiece.</p>
 
 <div align="center">

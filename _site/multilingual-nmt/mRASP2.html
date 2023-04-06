@@ -55,7 +55,7 @@ mRASP2.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="mRASP2">
   <meta property="og:description" content="mRASP2 stands for “multilingual Random Aligned
 Substitution Pre-training”. It’s mRASP2 because it’s
@@ -271,7 +271,7 @@ mRASP2.
     <p>mRASP2 stands for “<strong>m</strong>ultilingual <strong>R</strong>andom <strong>A</strong>ligned
 <strong>S</strong>ubstitution <strong>P</strong>re-training”. It’s mRASP<u><strong>2</strong></u> because it’s
 an extension to the
-<a href="https://anwarvic.github.io/multilingual-nmt/mRASP">mRASP</a> model
+<a href="https://phanxuanphucnd.github.io/multilingual-nmt/mRASP">mRASP</a> model
 proposed by the same lab (ByteDance AI Lab) a year earlier. mRASP2
 framework was proposed in 2021 and published in this paper: <a href="https://arxiv.org/pdf/2105.09501.pdf">Contrastive
 Learning for Many-to-many Multilingual Neural Machine
@@ -302,9 +302,9 @@ translation quality.</p>
 </div>
 
 <p>The base architecture of mRASP2 is the state-of-the-art
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>.
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>.
 A little different from
-<a href="https://anwarvic.github.io/multilingual-nmt/mRASP">mRASP</a>, they chose a larger
+<a href="https://phanxuanphucnd.github.io/multilingual-nmt/mRASP">mRASP</a>, they chose a larger
 setting with a 12-layer encoder and a 12-layer decoder to increase the model
 capacity. The model dimension is $1024$ on $16$ heads. To ease the training of
 the deep model, they applied Layer Normalization for word embedding and
@@ -384,12 +384,12 @@ $L_{j}$ respectively.</p>
 applied on both parallel and monolingual data in order to improve
 multilingual translation quality. Aligned Augmentation is considered an
 extension of RAS (Random Aligned Substitution) which was proposed in
-<a href="https://anwarvic.github.io/multilingual-nmt/mRASP">mRASP</a> paper.</p>
+<a href="https://phanxuanphucnd.github.io/multilingual-nmt/mRASP">mRASP</a> paper.</p>
 
 <p>For a bilingual sentence pair $\left( x^{i},\ x^{j} \right)$ in two
 languages $L_{i}$ and $L_{j}$, Aligned Augmentation creates a perturbed
 sentence $C\left( x^{i} \right)$ by replacing aligned words from a
-<a href="https://anwarvic.github.io/machine-translation/MUSE">MUSE</a> synonym
+<a href="https://phanxuanphucnd.github.io/machine-translation/MUSE">MUSE</a> synonym
 dictionary with a probability of $90\%$ and keep them unchanged
 otherwise; forming a pseudo-parallel training example
 $\left( C\left( x^{i} \right),\ x^{j} \right)$:</p>
@@ -416,7 +416,7 @@ multilingual translation quality.</p>
 <h2 id="experiments">Experiments</h2>
 
 <p>In their experiments, they used the
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 model with 12 encoder layers and 12 decoder layers. The embedding size
 and FFN dimension were set to $1024$ on $16$ heads. For multilingual
 vocabulary, They followed the shared BPE vocabulary of $64,808$ tokens
@@ -431,7 +431,7 @@ $\beta_{2} = 0.98$. To stabilize training, they set the threshold of
 gradient norm to be $5.0$ and clip all gradients with a larger norm.</p>
 
 <p>For bilingual data, they used the Parallel Corpus (PC32) proposed in the
-<a href="https://anwarvic.github.io/multilingual-nmt/mRASP">mRASP</a> paper. PC32
+<a href="https://phanxuanphucnd.github.io/multilingual-nmt/mRASP">mRASP</a> paper. PC32
 contains 97.6 million parallel sentences of 32 English-centric language
 pairs. The following figure shows the languages found in the corpus
 along with the number of sentences available for each language:</p>

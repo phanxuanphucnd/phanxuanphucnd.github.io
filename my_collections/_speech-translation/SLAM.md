@@ -17,15 +17,15 @@ one step further, by unifying speech and text pre-training within a
 single model.
 
 SLAM consists of a single
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 trained with the
-[SpanBERT](https://anwarvic.github.io/langauge-modeling/SpanBERT)
+[SpanBERT](https://phanxuanphucnd.github.io/langauge-modeling/SpanBERT)
 objective for text and the
-[w2v-BERT](https://anwarvic.github.io/speech-recognition/w2v-BERT)
+[w2v-BERT](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT)
 objective for speech. To reduce the gap between SLAM's performance and
 other mono-modal models (models that are pre-trained on either speech or
 text), they used translation language modeling (TLM) ---from
-[XLM](https://anwarvic.github.io/cross-lingual-lm/XLM)--- and
+[XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM)--- and
 speech-text matching (STM) ---from "[Align before
 Fuse](https://arxiv.org/pdf/2107.07651.pdf)" paper--- tasks.
 
@@ -48,12 +48,12 @@ As shown in the previous figure, SLAM consists of three parts:
     feature encoder ---which consists of two 2D-convolutional layers
     both with strides $(2,2)$ that act as a sub-sampling block with a 4x
     reduction--- followed by a stack of
-    [Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+    [Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
     layers which is followed by one linear projection layer.
 
 -   <u><strong>Multimodal Encoder:</strong></u>\
     The multimodal encoder is a deep stack of
-    [Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+    [Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
     layers that can take either just speech, or just text, or
     concatenated speech-text pairs as input. Depending on the type of
     input ---just speech, text or a speech-text pair --- the model is
@@ -62,7 +62,7 @@ As shown in the previous figure, SLAM consists of three parts:
 
 > **Note:**\
 Different from the original
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 architecture, they used group normalization instead of batch norm in
 convolution layers as it performed better on multimodal training.
 
@@ -73,20 +73,20 @@ mentioned below:
 
 -   <u><strong>Span Masking:</strong></u>\
     Adapted from
-    [SpanBERT](https://anwarvic.github.io/language-modeling/SpanBERT),
+    [SpanBERT](https://phanxuanphucnd.github.io/language-modeling/SpanBERT),
     SLAM was pre-trained on unlabeled textual data where it predicts
     masked span of input text. In the paper, they masked $15\%$ of text
     tokens with spans of length $5$ tokens.
 
 -   <u><strong>Masked Speech Modeling (MSM):</strong></u>\
     Adapted from
-    [w2v-BERT](https://anwarvic.github.io/speech-recognition/w2v-BERT),
+    [w2v-BERT](https://phanxuanphucnd.github.io/speech-recognition/w2v-BERT),
     SLAM was pre-trained on unlabeled speech data where it predicts
     masked span of input speech. In the paper, they masked approximately
     $50\%$ of the speech frames with spans of length $10ms$.
 
 -   <u><strong>Translation Language Modeling (TLM):</strong></u>\
-    Adapted from [XLM](https://anwarvic.github.io/cross-lingual-lm/XLM),
+    Adapted from [XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM),
     SLAM was pre-trained on speech-text pairs where it predicts masked
     spans from concatenated speech utterances with their transcriptions
     encouraging the use of cross-modal context. In the paper, they used
@@ -153,7 +153,7 @@ models on speech and text downstream tasks:
 
 To use SLAM for speech translation, they combined the pre-trained
 encoder with a $4$-layer
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 decoder which uses a $384$ embedding dimension, $1536$ feed-forward
 hidden dimension, $4$ attention heads and a $8192$ token multilingual
 sub-word vocabulary.

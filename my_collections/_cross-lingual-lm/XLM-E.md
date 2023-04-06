@@ -7,7 +7,7 @@ labs: ["Microsoft"]
 
 XLM-E stands for "Cross-lingual Language Modeling via Electra" which is
 a cross-lingual language model that was pre-trained on two
-[ELECTRA](https://anwarvic.github.io/language-modeling/ELECTRA)-style
+[ELECTRA](https://phanxuanphucnd.github.io/language-modeling/ELECTRA)-style
 tasks as we are going to see later. XLM-E was proposed by Microsoft in
 2021 and published in their paper: [Cross-lingual Language Model
 Pre-training via ELECTRA](https://arxiv.org/pdf/2106.16138.pdf). The
@@ -21,9 +21,9 @@ Translation Masked Modeling (TLM), \...etc.) usually requires massive
 computation resources. As shown in the following figure, XLM-E (red
 line) achieves 130x speedup compared with XLM-R augmented with TLM and
 around 100x speedup compared with
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R),
-[XLM-Align](https://anwarvic.github.io/cross-lingual-lm/XLM-Align), and
-[InfoXLM](https://anwarvic.github.io/cross-lingual-lm/InfoXLM):
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R),
+[XLM-Align](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-Align), and
+[InfoXLM](https://phanxuanphucnd.github.io/cross-lingual-lm/InfoXLM):
 
 <div align="center">
     <img src="media/XLM-E/image1.png" width=450>
@@ -32,7 +32,7 @@ around 100x speedup compared with
 Pre-training
 ------------
 
-Similar to [ELECTRA](https://anwarvic.github.io/language-modeling/ELECTRA),
+Similar to [ELECTRA](https://phanxuanphucnd.github.io/language-modeling/ELECTRA),
 XLM-E has two Transformer components, i.e., generator and discriminator. The
 generator predicts the masked tokens given the masked sentence or translation
 pair, and the discriminator distinguishes whether the tokens are replaced by
@@ -47,7 +47,7 @@ $$\mathcal{L} = \mathcal{L}_{\text{MLM}} + \lambda\mathcal{L}_{\text{MRTD}} + \m
 
 This pre-training task is a multilingual form of the Replaced Token
 Detection (RTD) task introduced in the
-[ELECTRA](https://anwarvic.github.io/language-modeling/ELECTRA) model.
+[ELECTRA](https://phanxuanphucnd.github.io/language-modeling/ELECTRA) model.
 Here is a small recap on RTD. The RTD task requires the model to
 distinguish real input tokens from corrupted multilingual sentences. The
 input sentences get corrupted by the generator model, and the
@@ -118,7 +118,7 @@ Gated Relative Position Bias
 ----------------------------
 
 In this paper, they proposed to use gated relative position bias
-inspired by the [GRU](https://anwarvic.github.io/language-modeling/RNN)
+inspired by the [GRU](https://phanxuanphucnd.github.io/language-modeling/RNN)
 cells, in the self-attention mechanism. First, let's recap how the
 self-attention mechanism works. Given, input tokens
 $\left\\{ x_{1},\ ...x_{n} \right\\}$, the self-attention mechanism uses
@@ -152,7 +152,7 @@ In the following experiments, they used a 12-layer Transformer as the
 discriminator, with hidden size of 768, and FFN hidden size of 3,072 while they
 used a 4-layer Transformer as the discriminator using the same hyper-parameters.
 They used the same vocabulary with
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R) that consists of
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R) that consists of
 250K subwords tokenized by SentencePiece.
 
 <div align="center">

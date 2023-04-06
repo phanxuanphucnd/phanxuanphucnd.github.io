@@ -7,7 +7,7 @@ labs: ["Google Research"]
 
 Tagged BT stands for "Tagged Back-Translation" which is a simpler
 alternative [Noised
-BT](https://anwarvic.github.io/machine-translation/Back-Translation/#Noised%20BT),
+BT](https://phanxuanphucnd.github.io/machine-translation/Back-Translation/#Noised%20BT),
 consisting of tagging back-translated source sentences with an extra token.
 Tagged BT was proposed in 2019 by Google and published in this paper: [Tagged
 Back-translation](https://arxiv.org/pdf/1906.06442.pdf).
@@ -86,7 +86,7 @@ table;
 </div>
 
 They used the standard
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 implemented in the
 [lingvo](https://github.com/tensorflow/lingvo#machine-translation)
 framework; they used the transformer-base setup for En-Ro data and the

@@ -7,7 +7,7 @@ labs: ["Google Research"]
 
 nmT5 stands for "NMT + Multilingual Text-to-Text Transfer Transformer"
 which is an attempt to improve the performance of the
-[mT5](https://anwarvic.github.io/cross-lingual-lm/mT5) model by
+[mT5](https://phanxuanphucnd.github.io/cross-lingual-lm/mT5) model by
 incorporating parallel data into pre-training. This model was proposed
 by the same authors from Google Research as the mT5 paper. In 2021, it
 was published in this paper: [nmT5 - Is parallel data still relevant for
@@ -25,7 +25,7 @@ pre-training:
 
 -   <strong><u>TLM (Translation Language Modeling):</u></strong>\
     This objective was first proposed by the
-    [XLM](https://anwarvic.github.io/cross-lingual-lm/XLM) model and
+    [XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM) model and
     was used for encoder only pre-training. In this paper, they extended
     it to the encoder-decoder setting.
 
@@ -84,7 +84,7 @@ for 100K steps with a mix of monolingual and parallel objectives. The
 parallel data is mixed into monolingual data at a $10\%$ ratio, which
 amounts to roughly 4 passes over the OPUS-100 corpus. Examples from each
 language pair were sampled using the same language sampling distribution
-as [mT5](https://anwarvic.github.io/cross-lingual-lm/mT5) with
+as [mT5](https://phanxuanphucnd.github.io/cross-lingual-lm/mT5) with
 $\alpha = 0.3$.
 
 Pre-training was done with a batch size of 1M tokens and fine-tuned with

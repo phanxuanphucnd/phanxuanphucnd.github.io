@@ -9,9 +9,9 @@ Transformer Transducer is an end-to-end
 speech recognition model with Transformer encoders that is able to
 encode both audio and label sequences independently. It is similar to
 the Recurrent Neural Network Transducer
-([RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T)) model.
+([RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)) model.
 The only difference is this model
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 encoder instead of RNNs for information encoding. Transformer Transducer
 was proposed by Google Research in 2019 and published in this paper
 "[Transformer Transducer: A Streamable Speech Recognition
@@ -78,7 +78,7 @@ Regarding audio features, they extracted 128-channel logmel energy
 values from a $32ms$ window, stacked every 4 frames, and sub-sampled
 every 3 frames, to produce a 512-dimensional acoustic feature vector
 with a stride of $30ms$.
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
 as a feature augmentation technique was applied during model training to
 prevent overfitting and to improve generalization, with only frequency
 masking $\left( F = 50,\ mF = 2 \right)$ and time masking
@@ -91,7 +91,7 @@ exponentially to $2.5e^{- 6}$ till 200K steps. During training, they
 added a Gaussian noise of $\left( µ = 0,\ \sigma = 0.01 \right)$ to
 model weights starting at 10K steps. Transformer Transducer was trained
 to output grapheme units under the same loss function as
-[RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T). The full
+[RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T). The full
 set of hyper-parameters used in the following experiments can be found
 in the following table:
 
@@ -101,9 +101,9 @@ in the following table:
 
 They first compared the performance of Transformer Transducer (T-T)
 models with full attention on audio to an
-[RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T) model using
+[RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) model using
 a bidirectional LSTM audio encoder and with
-[LAS](https://anwarvic.github.io/speech-recognition/LAS) as shown in the
+[LAS](https://phanxuanphucnd.github.io/speech-recognition/LAS) as shown in the
 following table which shows that the T-T model significantly outperforms
 the RNN-T baseline despite the fact that T-T was trained much faster (≈
 1 day) than the RNN-T model (≈ 3.5 days), with a similar number of

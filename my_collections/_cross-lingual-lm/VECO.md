@@ -21,7 +21,7 @@ CA-MLM Pre-training
 
 The special thing about VECO pre-training is that it plugs a
 cross-attention module into the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture to explicitly build the cross-relation between languages
 when pre-training using the Cross-Attention Masked Language Modeling MLM
 (CA-MLM) objective. The following figure shows the difference between
@@ -34,7 +34,7 @@ plugging the cross-attention module (right):
 
 > **Note:**\
 MLM here is different than MLM objective proposed in the
-[BERT](https://anwarvic.github.io/language-modeling/BERT) paper. As we
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) paper. As we
 can see, here MLM is applied on both encoder and decoder.
 
 Given a pair of input $\left( x,\ y \right)$ and its MLM corrupted
@@ -55,13 +55,13 @@ $\left( x,\ y \right)$ pair.
 ### Cross-Attention Module
 
 As said before, the VECO pre-training extends the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture and plugs a cross-attention module in each layer. Now, each
 layer has three modules: self-attention module, a plug-and-play
 cross-attention module, and a feed-forward linear module. Both
 self-attention and cross-attention modules are based on the multi-head
 [attention
-mechanism](https://anwarvic.github.io/machine-translation/Attention).
+mechanism](https://phanxuanphucnd.github.io/machine-translation/Attention).
 
 An attention function can be described as mapping a query $Q$ and a set
 of key-value $K,V$ pairs to an output. For the self-attention module,
@@ -157,7 +157,7 @@ million:
 </div>
 
 They up/down-sample the monolingual text like
-[XLM](https://anwarvic.github.io/cross-lingual-lm/XLM) from each
+[XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM) from each
 language with a smoothing parameter $\alpha = 0.5$ where $D_{l}$ is the
 number of sentences in language $l$.
 
@@ -167,12 +167,12 @@ For bilingual data, they extracted 6.4G parallel sentences across 50
 languages from the [OPUS](http://opus.nlpl.eu/) website.
 
 In this paper, they used pre-trained two VECO models following the
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R) model. The
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R) model. The
 large one is a 24-layer model with 1024 embedding/hidden size and 4096
 feed-forward size, while the small one is 6 layers with 768
 embedding/hidden size and 3072 feed-forward size. Also, they used the
 same 250K vocabulary that was used by
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R) . The full
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R) . The full
 list of the model can be seen in the following table:
 
 <div align="center">
@@ -204,8 +204,8 @@ times deep as VECO.
 </div>
 
 And to investigate where the improvement in VECO comes from, they
-trained [XLM](https://anwarvic.github.io/cross-lingual-lm/XLM),
-[mBART](https://anwarvic.github.io/multilingual_nmt/XLM) and VECO model
+trained [XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM),
+[mBART](https://phanxuanphucnd.github.io/multilingual_nmt/XLM) and VECO model
 from scratch using the same datasets and parameter settings where all of
 them were pre-trained on MLM and TLM tasks and fine-tuned on XNLI
 downstream task and machine translation De-En pair from the IWSLT14

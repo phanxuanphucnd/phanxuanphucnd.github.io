@@ -39,7 +39,7 @@ the back-translation process can be summarized into the following steps:
 
 You could either leave it at that (hopefully better than just the original
 model), or you can extend it to [dual learning
-](https://anwarvic.github.io/machine-translation/Dual_learning) where you have
+](https://phanxuanphucnd.github.io/machine-translation/Dual_learning) where you have
 to find some monolingual source language data and translate it with the forward
 model to further train the backward model (back-translation for the backward
 model). With this strengthened backwards model, you can probably generate better

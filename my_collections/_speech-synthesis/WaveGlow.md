@@ -9,7 +9,7 @@ WaveGlow is a flow-based generative Vocoder capable of generating high
 quality speech waveforms from mel-spectrograms. WaveGlow got that name
 as it combines insights from [Glow](https://openai.com/blog/glow/)
 (flow-based generative model created by OpenAI in 2018) and
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) (another
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) (another
 Vocoder model) in order to provide fast, efficient and high quality
 audio synthesis. WaveGlow was proposed by NVIDIA in 2018 and published
 in this paper under the same name: "[WaveGlow: A Flow-based Generative
@@ -175,11 +175,11 @@ $$x_{a},\ x_{b} = split(x)$$
 -   Then, we pass the first half $x_{a}$ to a transformation $W\ N()$.
     Here, $W\ N()$ does not need to be invertible. That's why in the
     paper, they used
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) as
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) as
     $W\ N()$ with the only change that convolutions have 3 taps and are
     not causal. Then, the upsampled mel-spectrograms $x$ are added
     before the gated-tanh of each layer as in
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet).
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet).
 
 $$\left( \log(s),\ t \right) = W\ N\left( x_{a},\ x \right)$$
 
@@ -221,7 +221,7 @@ from further tests to avoid anchoring effects.
 
 The following table shows the MOS results of WaveGlow in comparison to
 Griffin-Lim algorithm,
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet), and
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet), and
 Ground Truth. From the table, you can see that none of the methods reach
 the score of ground truth. However, WaveGlow has the highest score.
 

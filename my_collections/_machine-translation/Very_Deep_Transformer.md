@@ -8,7 +8,7 @@ labs: ["Microsoft Research", "Johns Hopkins University",
 
 Using a simple yet effective initialization technique that stabilizes
 training, researchers at Microsoft Research were able to build very deep
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 models with up to 60 encoder layers. These models were explored in this
 paper published in 2020: [Very Deep Transformers for Neural Machine
 Translation](https://arxiv.org/pdf/2008.07772.pdf). The official code
@@ -21,7 +21,7 @@ for this paper can be found in the following GitHub repository:
 
 > **Note:**\
 I suggest reading the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 post first before going on especially the part about "Layer
 Normalization".
 
@@ -61,7 +61,7 @@ difficulty of training
 transformers](https://arxiv.org/pdf/:2004.08249.pdf). This technique
 reformulates the layer-normalization equation. First, let's recap the
 layer normalization formula used in the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model:
 
 $$x_{i} = \text{LayerNom}\left( x_{i - 1} + f\left( x_{i - 1} \right) \right)$$

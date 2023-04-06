@@ -223,7 +223,7 @@ Additionally, they shared encoder and decoder word embeddings only in
 WMT experiments.
 
 NAT model was initialized using the teacher model. The teacher model is a
-standard [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+standard [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture with base configurations on the WMT dataset and smaller set
 of hyper-parameters when trained on IWSLT dataset since it's smaller
 than WMT. The two sets of configuration can be seen below:

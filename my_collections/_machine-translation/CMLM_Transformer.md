@@ -6,7 +6,7 @@ labs: ["FAIR"]
 ---
 
 CMLM stands for "Conditional Masked Language Modeling" Transformer which
-is an encoder-decoder [Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+is an encoder-decoder [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture trained with a masked
 language modeling (MLM) training objective and uses "masked-predict"
 algorithm for decoding. This model was proposed by FAIR in 2019 and
@@ -21,7 +21,7 @@ Unlike most machine translation systems which generate translations
 autoregressively from left to right, the CMLM Transformer uses a
 non-autoregressive decoding algorithm called "masked-predict" that
 iteratively decodes in linear time. CMLM Transformer is the same as the
-[standard Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[standard Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 with one change in the decoder; the masking of the self-attention in the
 decoder was removed to make the decoder attend to both left and right
 contexts when generating the output translation.
@@ -44,7 +44,7 @@ and $Y_{\text{obs}}$). During training, CMLM is done as follows:
     uniform distribution between one and the sequence's length.
 
 -   Then, that number of tokens get masked $Y_{\text{mask}}$. Following
-    [BERT](https://anwarvic.github.io/language-modeling/BERT), masking
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT), masking
     is done by replacing the token with a special
     $\left\lbrack \text{MASK} \right\rbrack$ token.
 
@@ -199,7 +199,7 @@ transformers in both small and base configuration:
 
 
 They followed the weight initialization scheme from
-[BERT](https://anwarvic.github.io/language-modeling/BERT), which samples
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT), which samples
 weights from $\mathcal{N}\left( 0,\ 0.02 \right)$, initializes biases to
 zero, and sets layer normalization parameters to
 $\beta = 0,\ \gamma = 1$. For regularization, they used $0.3$ dropout,

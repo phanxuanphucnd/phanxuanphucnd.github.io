@@ -21,7 +21,7 @@ The two denoising tasks are:
 
 -   <u><strong>Masked Language Model (MLM):</strong></u>\
     This task was first introduced in the
-    [BERT](https://anwarvic.github.io/language-modeling/BERT) model
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) model
     where tokens are randomly masked and fed into the model and the
     model attempts to predict the masked tokens based on their context.
     BERT was an encoder-only architecture. To adapt this idea to the
@@ -45,7 +45,7 @@ The two denoising tasks are:
     </div>
 
     -   **Text Infilling:** Same as
-        [mBART](https://anwarvic.github.io/multilingual-nmts/mBART)
+        [mBART](https://phanxuanphucnd.github.io/multilingual-nmts/mBART)
         model, they randomly sampled text spans from the input with
         span lengths drawn from a Poisson distribution
         ($\lambda = 3.5$) and replaced all words in each span with a
@@ -233,7 +233,7 @@ For the pivoting method, the source language was translated into
 English first, and then translated into the target language.
 
 At the end, the researchers of this paper compared the MTL framework
-with [mBART](https://anwarvic.github.io/multilingual-nmts/mBART), the
+with [mBART](https://phanxuanphucnd.github.io/multilingual-nmts/mBART), the
 state-of-the-art multilingual pre-training method for NMT. They
 pre-trained mBART on
 [CC25](https://dl.fbaipublicfiles.com/fairseq/models/mbart/mbart.CC25.tar.gz)

@@ -20,12 +20,12 @@ repository: [research-etc-model
 </div>
 
 Many variants of the original
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model have been proposed for language modeling such as
-[BERT](https://anwarvic.github.io/language-modeling/BERT),
-[RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa),
-[ALBERT](https://anwarvic.github.io/language-modeling/ALBERT), or even
-[T5](https://anwarvic.github.io/language-modeling/T5) limit inputs to
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT),
+[RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa),
+[ALBERT](https://phanxuanphucnd.github.io/language-modeling/ALBERT), or even
+[T5](https://phanxuanphucnd.github.io/language-modeling/T5) limit inputs to
 $n = 512$ tokens due to the $O\left( n^{2} \right)$ cost of attention.
 ETC scales to longer input sentences up to $n = 8192$ tokens or more.
 ETC follows the encoder-side of the original Transformer architecture

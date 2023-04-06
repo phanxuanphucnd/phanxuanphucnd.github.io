@@ -162,8 +162,8 @@ samples.
 ### Cross-lingual Masked Language Model
 
 Previous successful pre-training language models such as
-[BERT](https://anwarvic.github.io/language-modeling/BERT) and
-[GPT](https://anwarvic.github.io/language-modeling/GPT), were conducted
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) and
+[GPT](https://phanxuanphucnd.github.io/language-modeling/GPT), were conducted
 on document-level corpus rather than sentence-level corpus.
 Cross-lingual document is a sequence of sentences, and the sentences are
 written with different languages.

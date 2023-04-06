@@ -12,7 +12,7 @@ initialization to output spectrogram without any phoneme-level
 alignment. After that, a Vocoder model is used to convert the audio
 spectrogram to waveforms. Tacotron 2 was proposed by the same main
 authors that proposed [Tacotron
-](https://anwarvic.github.io/speech-synthesis/Tacotron) earlier
+](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) earlier
 in the same year (2017). Tacotron 2 was published in this paper:
 [Natural TTS Synthesis by Conditioning WaveNet on Mel Spectrogram
 Predictions](https://arxiv.org/pdf/1712.05884.pdf). The official audio
@@ -31,9 +31,9 @@ Tacotron 2 consists of five main components: <u><strong>an Encoder</strong></u>,
 <u><strong>a Post-processing Network</strong></u>,
 and <u><strong>a Vocoder network</strong></u>. One clear difference between
 this architecture and [Tacotron
-1](https://anwarvic.github.io/speech-synthesis/Tacotron) is that they
+1](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) is that they
 used a modified
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) network
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) network
 to convert spectrogram to Audio waveforms instead of the simple
 Griffin-Lim algorithm.
 
@@ -77,9 +77,9 @@ of text. It does that by the following step:
 </div>
 
 Same as
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron), the
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron), the
 goal of the decoder and the [attention
-mechanism](https://anwarvic.github.io/machine-translation/Attention) is
+mechanism](https://phanxuanphucnd.github.io/machine-translation/Attention) is
 to align the audio frames with the textual features outputted from the
 encoder and result in audio spectrogram. As shown in the following
 figure, the decoder works like the following:
@@ -88,7 +88,7 @@ figure, the decoder works like the following:
     \<GO\> frame).
 
 -   Similar to
-    [Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron),
+    [Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron),
     the input frame is passed to a pre-net block. The pre-net block is
     two fully connected layers of $256$ hidden ReLU units. In order to
     introduce output variation at inference time, a dropout with
@@ -110,7 +110,7 @@ figure, the decoder works like the following:
 
     -   The concatenation is projected through a linear transform to
         predict the target spectrogram frame. Unlike
-        [Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron),
+        [Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron),
         Tacotron 2 doesn't use a "reduction factor", i.e., each
         decoder step corresponds to a single spectrogram frame.
 
@@ -145,7 +145,7 @@ by $\tanh$ activations on all but the final layer.
 
 Vocoder is a model that is responsible for generating
 audio waveforms from input features. In Tacotron 2, they used a modified
-version of the [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)
+version of the [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)
 architecture to invert the mel-spectrogram feature representation into
 time-domain waveform samples.
 
@@ -173,7 +173,7 @@ Tacotron 1 vs Tacotron 2
 
 In the following list, I tried to summarize the subtle differences
 between [Tacotron
-1](https://anwarvic.github.io/speech-synthesis/Tacotron) and this model
+1](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) and this model
 (Tacotron 2):
 
 -   This model used LSTM cells instead of GRU cells.
@@ -185,7 +185,7 @@ between [Tacotron
     corresponds to a single spectrogram frame.
 
 -   This model uses a modified
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)
     network to convert spectrogram to Audio waveforms instead of the
     simple Griffin-Lim algorithm.
 
@@ -196,7 +196,7 @@ Experiments & Results
 
 In the paper, they trained the model on an internal US English dataset,
 the same dataset that
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron) was
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron) was
 trained on, which contains 24.6 hours of speech from a single
 professional female speaker. All text in our datasets is spelled out.
 e.g., "16" is written as "sixteen", i.e., our models are all trained on
@@ -234,9 +234,9 @@ independently from each other, so the outputs of two different
 models are not directly compared when raters assign a score to them.
 
 Similar to
-[Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron), they
+[Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron), they
 compared Tacotron 2 with Tacotron and
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) alongside
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) alongside
 other models such as a parametric (based on LSTM) model from this paper:
 [Fast, Compact, and High Quality LSTM-RNN Based Statistical Parametric
 Speech Synthesizers for Mobile
@@ -258,10 +258,10 @@ Ablation Study
 In this part, we are going to discuss the ablation experiments they
 performed in the paper:
 
--   The [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)
+-   The [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)
     component depends on the predicted features for training. In this
     experiment, they trained
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)
     independently on mel spectrograms extracted from ground truth audio.
     The following table shows that when trained on ground truth features
     and made to synthesize from predicted features, the result is worse
@@ -275,7 +275,7 @@ performed in the paper:
 
 -   Instead of predicting mel spectrograms, thet experimented with
     predicting linear spectrograms instead, like
-    [Tacotron](https://anwarvic.github.io/speech-synthesis/Tacotron). As
+    [Tacotron](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron). As
     shown in the following table, WaveNet produces much higher quality
     audio compared to Griffin-Lim. However, there is not much difference
     between the use of linear-scale or mel-scale spectrograms.
@@ -285,7 +285,7 @@ performed in the paper:
 </div>
 
 -   Also, they tried different hyper-parameters for
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) and
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) and
     the following table shows that WaveNet can generate highquality
     audio using as few as $12$ layers with a receptive field of
     $10.5\ ms$, compared to $30$ layers and $256\ ms$ in the baseline

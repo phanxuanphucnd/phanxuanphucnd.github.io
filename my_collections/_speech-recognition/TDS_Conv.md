@@ -18,7 +18,7 @@ The key to this model is the time-depth separable convolution block
 structure which dramatically reduces the number of parameters in the
 model while keeping the receptive field large. TDS convolution is much
 more efficient than
-[RNN](https://anwarvic.github.io/language-modeling/RNN) baseline due to
+[RNN](https://phanxuanphucnd.github.io/language-modeling/RNN) baseline due to
 the parallel nature of its computation.
 
 Given an input utterance $X = \left\lbrack x_{1},...x_{T} \right\rbrack$

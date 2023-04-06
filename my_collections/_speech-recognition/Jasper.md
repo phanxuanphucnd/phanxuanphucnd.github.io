@@ -8,7 +8,7 @@ labs: ["NVIDIA", "New York University"]
 Jasper is an End-to-End convolutional neural ASR system that uses a
 stack of 1D convolutions, batch normalization, ReLU, dropout, and
 residual connections trained with [CTC
-](https://anwarvic.github.io/speech-recognition/CTC) loss to obtain
+](https://phanxuanphucnd.github.io/speech-recognition/CTC) loss to obtain
 state-of-the-art results on LibriSpeech dataset.
 Jasper was proposed by Nvidia in 2019 and published in this
 paper under the same name: "[Jasper: An End-to-End Convolutional Neural
@@ -108,7 +108,7 @@ Jasper uses mel-filter bank features calculated from $20ms$ windows with
 a $10ms$ overlap, and outputs a probability distribution over characters
 per frame. For decoding, they used two languages modeling options:
 statistical N-gram and neural
-[Transformer-XL](https://anwarvic.github.io/language-modeling/Transformer-XL).
+[Transformer-XL](https://phanxuanphucnd.github.io/language-modeling/Transformer-XL).
 They evaluated different sizes of Jasper across a number of datasets in
 various domains, like:
 

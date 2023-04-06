@@ -53,7 +53,7 @@ microsoft/deltalm.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="∆LM: Delta Language Modeling">
   <meta property="og:description" content="DeltaLM (∆LM) is a pre-trained multilingual encoder-decoder model whose
 encoder and decoder are initialized with a pre-trained multilingual
@@ -279,7 +279,7 @@ this paper can be found on Microsoft’s GitHub repository:
 </div>
 
 <p>In the paper, they decided to use
-<a href="https://anwarvic.github.io/cross-lingual-lm/InfoXLM">InfoXLM</a> as the
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/InfoXLM">InfoXLM</a> as the
 pre-trained Multilingual encoder to take advantage of its strong
 performance. InfoXLM uses the large-scale monolingual data and bilingual
 data and is jointly trained with a combination of the masked language
@@ -297,10 +297,10 @@ all weights of the pre-trained encoder.</p>
 <h2 id="interleaved-decoder">Interleaved Decoder</h2>
 
 <p>As shown at the middle of the following figure, the standard
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 decoder consists of three modules: self-attention, cross-attention, and
 feed-forward network (FFN). In
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a> model, they
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM">XLM</a> model, they
 initialized the self-attention and the FFN with the weights of the
 pre-trained encoder, while the cross-attention is initialized with
 either random weights or the same weights as the self-attention.
@@ -337,7 +337,7 @@ As shown in the following figure, span corruption is the task of
 reconstructing the text spans based on the masked input sentence. It
 is proven to be effective for pre-training an encoder-decoder model.
 In this work, they followed
-<a href="https://anwarvic.github.io/cross-lingual-lm/mT5">mT5</a> model to
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/mT5">mT5</a> model to
 apply this pre-training task to pre-train ∆LM on large-scale
 monolingual corpora.</li>
 </ul>
@@ -352,7 +352,7 @@ As shown in the following figure, two parallel sentences are
 concatenated together, then masked. And the model will have to
 figure out the text spans based on the input masked translation
 pair. In this work, they followed
-<a href="https://anwarvic.github.io/cross-lingual-lm/mT6">mT6</a> model to
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/mT6">mT6</a> model to
 leverage large-scale bilingual corpora</li>
 </ul>
 

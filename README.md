@@ -38,7 +38,7 @@ build the blog offline on your machine:
 
 - clone the repository from GitHub:
   ```
-  git clone https://github.com/Anwarvic/anwarvic.github.io.git
+  git clone https://github.com/phanxuanphucnd/phanxuanphucnd.github.io
   ```
 - Install gems found in `Gemfile`:
   ```
@@ -149,7 +149,7 @@ Now, let's discuss a few of these global variables:
 - `description`: The description of the blog.
 - `url`: The url of the deployment.
 - `cover`: The image relative path that will be used as a background.
-- `baseurl`: The baseurl of the blog. For example, if the `baseurl: 'anwarvic'`,
+- `baseurl`: The baseurl of the blog. For example, if the `baseurl: 'phanxuanphucnd'`,
   this means that the blog will be reached at http://localhost:4000/phanxuanphucnd.
 - `google_analytics`: The Google Analytics Tracking ID or Measurement ID.
 - `disqus_shortname`: The shortname for the disqus plugin.

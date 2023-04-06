@@ -58,9 +58,9 @@ per letter in the letter dictionary of $30$ characters: the standard
 English alphabet plus the apostrophe, silence, and two special
 "repetition" graphemes which encode the duplication (once or twice) of
 the previous letter. Compared to
-[Deep Speech 2](https://anwarvic.github.io/speech-recognition/Deep_Speech_2)
+[Deep Speech 2](https://phanxuanphucnd.github.io/speech-recognition/Deep_Speech_2)
 model, wav2letter has a simpler architecture with 23 millions of parameters while
-[Deep Speech 2](https://anwarvic.github.io/speech-recognition/Deep_Speech_2)
+[Deep Speech 2](https://phanxuanphucnd.github.io/speech-recognition/Deep_Speech_2)
 has around 100 millions of parameters.
 
 ASG Criterion
@@ -68,9 +68,9 @@ ASG Criterion
 
 ASG stands for "**A**utomatic **S**e**g**mentation Criterion" which is an
 alternative loss function to the
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) criterion.
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) criterion.
 Before getting into ASG, let's first recap how
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) works, CTC
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) works, CTC
 assumes that the acoustic model outputs probability scores (normalized)
 for each audio frame. And to detect the separation between two identical
 consecutive letters in a transcription, a "blank" character $\phi$ was
@@ -167,9 +167,9 @@ augmentation vanishes:
 </div>
 
 They also compared Wav2Letter with [Deep
-Speech](https://anwarvic.github.io/speech-recognition/Deep_Speech) and
+Speech](https://phanxuanphucnd.github.io/speech-recognition/Deep_Speech) and
 [Deep Speech
-2](https://anwarvic.github.io/speech-recognition/Deep_Speech_2) with
+2](https://phanxuanphucnd.github.io/speech-recognition/Deep_Speech_2) with
 different training sizes. The following figure reports that the WER with
 respect to the available training data size. As shown below, Wav2Letter
 performs very well against the two models despite being trained on less

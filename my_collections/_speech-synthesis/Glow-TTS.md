@@ -9,8 +9,8 @@ Glow-TTS, a flow-based generative non-autoregressive model for
 two-staged Text-to-Speech systems. Given an input text, Glow-TTS is able
 to generate mel-spectrogram that does not require any external aligner,
 unlike other models such as
-[FastSpeech](https://anwarvic.github.io/speech-synthesis/FastSpeech) or
-[ParaNet](https://anwarvic.github.io/speech-synthesis/ParaNet). Glow-TTS
+[FastSpeech](https://phanxuanphucnd.github.io/speech-synthesis/FastSpeech) or
+[ParaNet](https://phanxuanphucnd.github.io/speech-synthesis/ParaNet). Glow-TTS
 model was proposed by Kakao Enterprise and published in this paper under
 the same name: "[Glow-TTS: A Generative Flow for Text-to-Speech via
 Monotonic Alignment Search](https://arxiv.org/pdf/2005.11129.pdf)". The
@@ -26,7 +26,7 @@ flow-based generative model created by OpenAI in 2018), hence the name.
 > **Note to Reader:**\
 Before going on with this post, I really urge you to check the
 "Generative Models Recap" part in the
-[WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) post.
+[WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) post.
 In this part, you will know more about flow-based generative models such
 as Glow.
 
@@ -83,7 +83,7 @@ $x$, which is the job of the decoder.
 
 Glow-TTS encoder, shown in the following figure, follows the encoder
 structure of [Transformer
-TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS) with
+TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS) with
 two main difference:
 
 -   They removed the positional encoding and add relative position
@@ -107,7 +107,7 @@ latent representation $h$ is passed to another module called
 
 The duration predictor architecture and configuration is the same as
 those of
-[FastSpeech](https://anwarvic.github.io/speech-synthesis/FastSpeech),
+[FastSpeech](https://phanxuanphucnd.github.io/speech-synthesis/FastSpeech),
 which is composed of two convolutional layers with ReLU activation,
 layer normalization, and dropout followed by a projection layer.
 
@@ -176,7 +176,7 @@ blocks, each of which consists of an activation normalization layer
 (ActNorm), invertible $1 \times 1$ convolution layer, and affine
 coupling layer. The affine coupling layer architecture used here is
 inspired by
-[WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) except
+[WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) except
 for that they didn't use the local conditioning.
 
 <div align="center">
@@ -202,7 +202,7 @@ into the training set ($12,500$ samples), validation set ($100$
 samples), and test set ($500$ samples).
 
 For all the experiments, phonemes were chosen as input text tokens and
-[WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) was
+[WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) was
 used a vocoder. Glow-TTS was trained for $240K$ iterations using the
 Adam optimizer with the Noam learning rate schedule. The full list of
 hyper-parameters used to train Glow-TTS can be found in the following
@@ -228,10 +228,10 @@ $T$) of the prior distribution at inference; Glow-TTS shows the best
 performance at the temperature of $T = 0.333$.
 
 Additionally, they conducted 7-point CMOS evaluation between [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) and Glow-TTS
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) and Glow-TTS
 with the sampling temperature $\sigma = 0.333$. Through 500 ratings on
 50 items, Glow-TTS wins [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) by a gap of
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) by a gap of
 $0.934$ as shown in the following table:
 
 <div align="center">
@@ -286,7 +286,7 @@ increased the hidden dimension. The speaker embedding is applied in all
 affine coupling layers of the decoder as a global conditioning. The rest
 of the settings are the same as for the single speaker setting. For
 comparison, they also trained [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) as a
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) as a
 baseline, which concatenates the speaker embedding with the encoder
 output at each time step. All multi-speaker models were trained for
 $960K$ iterations.
@@ -295,7 +295,7 @@ They measures the MOS as done in single-speaker experiments. However,
 they used one utterance per speaker, and they chose 50 different
 speakers randomly. The results are presented in the following table
 which shows that Glow-TTS achieves comparable quality to [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2):
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2):
 
 <div align="center">
     <img src="media/Glow-TTS/image13.png" width=450>

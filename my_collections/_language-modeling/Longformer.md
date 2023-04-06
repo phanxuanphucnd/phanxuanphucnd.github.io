@@ -111,7 +111,7 @@ subsequent phase while halving the learning rate till they ended with a
 length of 23,040 on the last phase.
 
 Longformer implementation is based on the
-[Transformer-XL](https://anwarvic.github.io/language-modeling/Transformer-XL)
+[Transformer-XL](https://phanxuanphucnd.github.io/language-modeling/Transformer-XL)
 found [here](https://github.com/kimiyoung/transformer-xl) with the
 memory mechanism disabled. They used relative position embeddings with
 sinusoidal weights. They used two different model sizes; each with a
@@ -137,7 +137,7 @@ Pre-training & Fine-tuning
 Longformer was pre-trained using masked language modeling (MLM), where
 the goal is to recover randomly masked tokens in a sequence. Since MLM
 pre-training is expensive, they continued pre-training from the
-[RoBERTa](https://anwarvic.github.io/language-modeling/RoBERTa) released
+[RoBERTa](https://phanxuanphucnd.github.io/language-modeling/RoBERTa) released
 checkpoint, and only making the minimal changes necessary to support
 Longformer's attention mechanism. And since RoBERTa's input is limited
 to $512$, they decided to copy them till it matches the input to
@@ -168,13 +168,13 @@ LED
 LED stands for "Longformer Encoder Decoder" which is a variant of the
 Longformer model that follows an encoder-decoder architecture similar to
 the original
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model; instead of an encoder-only Transformer architecture as the
 Longformer model. LED is intended for long sequence-to-sequence tasks
 such as text summarization.
 
 Since pre-training LED is expensive, they initialized LED parameters
-from the [BART](https://anwarvic.github.io/language-modeling/BART)
+from the [BART](https://phanxuanphucnd.github.io/language-modeling/BART)
 following BART's exact architecture in terms of number of layers and
 hidden sizes. The only difference is that they extend position embedding
 to 16K tokens (BART has only 1K tokens). Also, they initialized the new
@@ -187,7 +187,7 @@ stacks. LED was evaluated on the summarization task using the arXiv
 summarization dataset which focuses on long document summarization in
 the scientific domain. The following table shows that LED-large achieves
 state-of-the-art results, slightly outperforming
-[BigBird](https://anwarvic.github.io/language-modeling/BigBird).
+[BigBird](https://phanxuanphucnd.github.io/language-modeling/BigBird).
 
 <div align="center">
 <img src="media/Longformer/image9.png" width=750>

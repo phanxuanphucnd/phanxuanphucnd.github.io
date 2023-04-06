@@ -7,7 +7,7 @@ labs: ["FAIR"]
 
 XLS-R stands for "Cross-Lingual Speech Representation" which is a
 large-scale version of
-[XLSR](https://anwarvic.github.io/speech-recognition/XLSR) for not only
+[XLSR](https://phanxuanphucnd.github.io/speech-recognition/XLSR) for not only
 cross-lingual speech recognition task but also for speech translation
 and speech classification tasks. XLS-R was pre-trained on nearly half a
 million hours of publicly available speech audio in 128 languages. XLS-R
@@ -42,7 +42,7 @@ of the data used is shown of the following figure:
 
 > **Note:**\
 XLS-R name was inspired by
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R) in NLP.
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R) in NLP.
 
 In the paper, they experimented with different architectures with
 between 0.3 billion parameters to 2 billion parameters as shown in the
@@ -57,11 +57,11 @@ Speech Translation
 
 To build speech translation models using XLS-R models, they stacked a
 decoder on top of XLS-R which is a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 network with $12$ layers, embedding size $1024$, $16$ attention heads
 and feed forward network dimension $4096$. The decoder network was
 initialized with weights from multilingually fine-tuned
-[mBART](https://anwarvic.github.io/multilingual-nmt/mBART) and uses the
+[mBART](https://phanxuanphucnd.github.io/multilingual-nmt/mBART) and uses the
 same vocabulary with $250K$ subwords. The total size of the decoder
 network is $459M$ parameters. Then, they multilingually fine-tuned XLS-R
 models to translate speech audio in one language into another language
@@ -102,7 +102,7 @@ with text as output using either one of the following two directions:
     </div>
 
     The previous table shows that
-    [XLSR-53](https://anwarvic.github.io/speech-recognition/XLSR) now
+    [XLSR-53](https://phanxuanphucnd.github.io/speech-recognition/XLSR) now
     performs similarly to XLS-R (0.3B) while for X → English XLS-R
     (0.3B) performed much better. This is likely because English data
     dominates the training corpus of XLSR-53 which is not the case for
@@ -127,9 +127,9 @@ for X → English directions.
 </div>
 
 Next, they analyzed the impact of initializing the decoder network
-with [mBART](https://anwarvic.github.io/multilingual-nmt/mBART) and
+with [mBART](https://phanxuanphucnd.github.io/multilingual-nmt/mBART) and
 the following table shows that
-[mBART](https://anwarvic.github.io/multilingual-nmt/mBART)
+[mBART](https://phanxuanphucnd.github.io/multilingual-nmt/mBART)
 initialization has little impact on English → X but it leads to
 large improvements for X → English, especially on mid- and
 low-resource language directions.
@@ -165,10 +165,10 @@ are:
     CommonVoice is an easier task than BABEL because it is read-speech.
     However, in the paper they used a reduced labeled data to be
     comparable with
-    [mCPC](https://anwarvic.github.io/speech-recognition/mCPC) setup
+    [mCPC](https://phanxuanphucnd.github.io/speech-recognition/mCPC) setup
     which introduces a different challenge. The following table shows
     that the additional training data of XLS-R (0.3) compared to
-    [XLSR-53](https://anwarvic.github.io/speech-recognition/XLSR)
+    [XLSR-53](https://phanxuanphucnd.github.io/speech-recognition/XLSR)
     results in better performance of 1.1PER (Phoneme Error Rate) on
     average. As we increase the capacity, we get better performance:
 
@@ -182,7 +182,7 @@ are:
     only considered ten hours of labeled data for each language to be
     comparable with earlier work. The following table shows that XLS-R
     (0.3B) can outperform
-    [XLSR-53](https://anwarvic.github.io/speech-recognition/XLSR) on
+    [XLSR-53](https://phanxuanphucnd.github.io/speech-recognition/XLSR) on
     average by 1 WER at equal capacity and that additional model
     capacity results in an improvement of 2.9 WER on average for XLS-R
     (1B).
@@ -204,12 +204,12 @@ are:
 
 Finally if you are curious of how XLS-R is going to performed when
 compared to [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) on
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) on
 English, then have a look at the following table where the
 researchers fine-tuned XLS-R models on 10min, 1h, 10h of annotated
 data. As shown below, with the same capacity and same fine-tuning
 procedure, the English [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2)
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2)
 significantly outperforms the XLS-R (0.3B) in all data regimes,
 showing the capacity dilution and interference problem of our
 multilingual model. However, when increasing the capacity, the model

@@ -15,8 +15,8 @@ paper can be found in Microsoft's official GitHub repository:
 existing MNMTs adopt a randomly initialized Transformer backbone. In
 this work, the researchers used an a pre-trained cross-lingual
 Transformer encoder such as
-([XLM](https://anwarvic.github.io/cross-lingual-lm/XLM) or
-[XLM-R](https://anwarvic.github.io/cross-lingual-lm/XLM-R)) to
+([XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM) or
+[XLM-R](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM-R)) to
 initialize both the encoder and decoder of the multilingual NMT model,
 and then fine-tuned it with multilingual parallel data.
 

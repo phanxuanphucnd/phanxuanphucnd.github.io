@@ -6,17 +6,17 @@ labs: ["FAIR"]
 ---
 
 Recently,
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture has been shown to perform very well for neural machine
 translation and many other NLP tasks. There has been recent research
 interest in using transformer networks for end-to-end ASR both with CTC
 loss (e.g [SAN-CTC](https://arxiv.org/pdf/1901.10055.pdf)) and with
 encoder-decoder architecture (e.g
-[Speech-Transformer](https://anwarvic.github.io/speech-recognition/Speech_Transformer)).
+[Speech-Transformer](https://phanxuanphucnd.github.io/speech-recognition/Speech_Transformer)).
 In this paper "[Transformers with convolutional context for
 ASR](https://arxiv.org/pdf/1904.11660)" published in 2019, researchers
 from FAIR try to adapt the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture to the speech recognition task by replacing the positional
 embedding in the architecture with convolution network.
 
@@ -40,7 +40,7 @@ Convolutional Context
 
 The encoder architecture to the proposed model is exactly the same as
 the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)'s
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)'s
 encoder. The only difference is the usage of 2D convolutional layers
 with layer norms and ReLU instead of the of the positional encodings.
 Each convolutional block contains $K$ convolutional layers followed by a

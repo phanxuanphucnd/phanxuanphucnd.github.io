@@ -12,7 +12,7 @@ squeeze-and-excitation modules. ContextNet was proposed by Google in
 Improving Convolutional Neural Networks for Automatic Speech Recognition
 with Global Context](https://arxiv.org/pdf/2005.03191.pdf)". In this
 paper, they followed the
-[RNN-Transducer](https://anwarvic.github.io/speech-recognition/RNN-T)
+[RNN-Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)
 framework where they used ContextNet as the encoder and a single layer
 LSTM as the decoder.
 
@@ -72,7 +72,7 @@ in ContextNet consists of the following components:
 
 -   <u><strong>Convolution Function:</strong></u>\
     ContextNet uses [depthwise separable
-    convolution](https://anwarvic.github.io/speech-recognition/TDS_Conv),
+    convolution](https://phanxuanphucnd.github.io/speech-recognition/TDS_Conv),
     because such a design achieves better parameter efficiency without
     impacting accuracy. For simplicity, they used the same kernel size
     on all depthwise convolution layers in the network.
@@ -135,7 +135,7 @@ as decoder with input dimension of 640. Variational noise is introduced
 to the decoder as a regularization.
 
 Also, they used
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
 as an augmentation method with mask parameter ($F = 27$), and ten time
 masks with maximum time-mask ratio ($p_{S} = 0.05$), where the maximum
 size of the time mask is set to $p_{S}$ times the length of the
@@ -162,7 +162,7 @@ The results suggest improvements of ContextNet over previously published
 systems. ContextNet(L) outperforms the previous SOTA by 13% relatively
 on test-clean and 18% relatively on test-other. Our scaled-down model,
 ContextNet(S), also shows an improvement over
-[QuartzNet](https://anwarvic.github.io/speech-recognition/QuartzNet),
+[QuartzNet](https://phanxuanphucnd.github.io/speech-recognition/QuartzNet),
 with or without a language model. Finally, ContextNet(M) only has 31M
 parameters and achieves similar WER compared with much larger systems.
 

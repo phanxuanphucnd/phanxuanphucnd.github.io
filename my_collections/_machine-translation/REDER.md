@@ -6,7 +6,7 @@ labs: ["ByteDance AI Lab", "Nanjing University", "UC Santa Barbara"]
 ---
 
 REDER stands for "**Re**versible **D**uplex Transform**er**" which is a
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model where its both ends can simultaneously input and output a distinct
 language thus enabling reversible machine translation by simply flipping
 the input and output ends. REDER was proposed by ByteDance AI lab in

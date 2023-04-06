@@ -49,7 +49,7 @@ Machine Translation.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="MTL: Multi-task Learning">
   <meta property="og:description" content="MTL stands for “Multi-task Learning” and it is a framework that jointly
 trains multilingual neural machine translation (MNMT) models on bitext
@@ -273,7 +273,7 @@ The two denoising tasks are:</p>
 <ul>
   <li><u><strong>Masked Language Model (MLM):</strong></u><br />
 This task was first introduced in the
-<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> model
+<a href="https://phanxuanphucnd.github.io/language-modeling/BERT">BERT</a> model
 where tokens are randomly masked and fed into the model and the
 model attempts to predict the masked tokens based on their context.
 BERT was an encoder-only architecture. To adapt this idea to the
@@ -302,7 +302,7 @@ noise functions:</p>
     <ul>
       <li>
         <p><strong>Text Infilling:</strong> Same as
-<a href="https://anwarvic.github.io/multilingual-nmts/mBART">mBART</a>
+<a href="https://phanxuanphucnd.github.io/multilingual-nmts/mBART">mBART</a>
 model, they randomly sampled text spans from the input with
 span lengths drawn from a Poisson distribution
 ($\lambda = 3.5$) and replaced all words in each span with a
@@ -500,7 +500,7 @@ English first, and then translated into the target language.</p>
 </blockquote>
 
 <p>At the end, the researchers of this paper compared the MTL framework
-with <a href="https://anwarvic.github.io/multilingual-nmts/mBART">mBART</a>, the
+with <a href="https://phanxuanphucnd.github.io/multilingual-nmts/mBART">mBART</a>, the
 state-of-the-art multilingual pre-training method for NMT. They
 pre-trained mBART on
 <a href="https://dl.fbaipublicfiles.com/fairseq/models/mbart/mbart.CC25.tar.gz">CC25</a>

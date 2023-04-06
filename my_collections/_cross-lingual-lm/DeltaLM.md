@@ -20,7 +20,7 @@ this paper can be found on Microsoft's GitHub repository:
 </div>
 
 In the paper, they decided to use
-[InfoXLM](https://anwarvic.github.io/cross-lingual-lm/InfoXLM) as the
+[InfoXLM](https://phanxuanphucnd.github.io/cross-lingual-lm/InfoXLM) as the
 pre-trained Multilingual encoder to take advantage of its strong
 performance. InfoXLM uses the large-scale monolingual data and bilingual
 data and is jointly trained with a combination of the masked language
@@ -39,10 +39,10 @@ Interleaved Decoder
 -------------------
 
 As shown at the middle of the following figure, the standard
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 decoder consists of three modules: self-attention, cross-attention, and
 feed-forward network (FFN). In
-[XLM](https://anwarvic.github.io/cross-lingual-lm/XLM) model, they
+[XLM](https://phanxuanphucnd.github.io/cross-lingual-lm/XLM) model, they
 initialized the self-attention and the FFN with the weights of the
 pre-trained encoder, while the cross-attention is initialized with
 either random weights or the same weights as the self-attention.
@@ -79,7 +79,7 @@ has 77 languages. DeltaLM was pre-trained on two pre-training tasks:
     reconstructing the text spans based on the masked input sentence. It
     is proven to be effective for pre-training an encoder-decoder model.
     In this work, they followed
-    [mT5](https://anwarvic.github.io/cross-lingual-lm/mT5) model to
+    [mT5](https://phanxuanphucnd.github.io/cross-lingual-lm/mT5) model to
     apply this pre-training task to pre-train ∆LM on large-scale
     monolingual corpora.
 
@@ -92,7 +92,7 @@ has 77 languages. DeltaLM was pre-trained on two pre-training tasks:
     concatenated together, then masked. And the model will have to
     figure out the text spans based on the input masked translation
     pair. In this work, they followed
-    [mT6](https://anwarvic.github.io/cross-lingual-lm/mT6) model to
+    [mT6](https://phanxuanphucnd.github.io/cross-lingual-lm/mT6) model to
     leverage large-scale bilingual corpora
 
 <div align="center">

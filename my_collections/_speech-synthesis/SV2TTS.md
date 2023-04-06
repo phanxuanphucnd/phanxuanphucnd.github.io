@@ -22,11 +22,11 @@ SV2TTS model can work in zero-shot learning setting, where a few seconds
 of untranscribed reference audio from a target speaker can be used to
 synthesize new speech in that speaker's voice, without updating any
 model parameters. This is a big improvement over [Deep Voice
-2](https://anwarvic.github.io/speech-synthesis/Deep_Voice_2) and [Deep
-Voice 3](https://anwarvic.github.io/speech-synthesis/Deep_Voice_3) which
+2](https://phanxuanphucnd.github.io/speech-synthesis/Deep_Voice_2) and [Deep
+Voice 3](https://phanxuanphucnd.github.io/speech-synthesis/Deep_Voice_3) which
 can support only speakers seen in the training data. Also, this is a big
 improvement over
-[VoiceLoop](https://anwarvic.github.io/speech-synthesis/VliceLoop) which
+[VoiceLoop](https://phanxuanphucnd.github.io/speech-synthesis/VliceLoop) which
 can support unseen speakers, but required tens of minutes of enrollment
 speech and transcripts for any new speaker.
 
@@ -49,12 +49,12 @@ components:
     speech from a target speaker.
 
 -   **Synthesizer:** A network based on [Tacotron
-    2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) that
+    2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) that
     generates a mel-spectrogram from text, conditioned on the speaker
     embedding.
 
 -   **Vocoder:** An auto-regressive
-    [WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet)-based
+    [WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet)-based
     vocoder network that converts the mel-spectrogram into time domain
     waveform samples.
 
@@ -155,7 +155,7 @@ speaker identity.
 
 The goal of the synthesizer is to convert input features extracted from
 text into mel-spectrogram. In this paper, they extended the [Tacotron
-2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) model to
+2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) model to
 support multiple speakers. They did that by concatenating the target
 speaker embedding vector (resulting from the Speaker Encoder network)
 with the synthesizer encoder output at each time step as shown below:
@@ -179,15 +179,15 @@ combined loss to be more robust on noisy training data.
 
 The goal of the vocoder is to generate audio waveforms from
 mel-spectrogram generated from the synthesizer. In this paper, they used
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) model to
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) model to
 do so, which is composed of $30$ dilated convolution layers. The network
 is not directly conditioned on the output of the speaker encoder, the
 synthesizer network did that already.
 
 > **Note to Reader:**\
 Get back to the
-[WaveNet](https://anwarvic.github.io/speech-synthesis/WaveNet) post and
-[Tacotron 2](https://anwarvic.github.io/speech-synthesis/Tacotron_2)
+[WaveNet](https://phanxuanphucnd.github.io/speech-synthesis/WaveNet) post and
+[Tacotron 2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2)
 (vocoder part) for more details.
 
 Experiments & Results

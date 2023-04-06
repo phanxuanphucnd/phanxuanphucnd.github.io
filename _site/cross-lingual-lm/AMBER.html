@@ -55,7 +55,7 @@ amber.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="AMBER">
   <meta property="og:description" content="AMBER stands for “Aligned Multilingual Bidirectional
 EncodeR” is a cross-lingual language model that adopts the same
@@ -289,7 +289,7 @@ three alignment objectives are:</p>
 <ul>
   <li><u><strong>MLM or TLM:</strong></u><br />
 This objective, proposed in
-<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>, takes a
+<a href="https://phanxuanphucnd.github.io/language-modeling/BERT">BERT</a>, takes a
 pair of sentences $\left( x,y \right)$, and optimizes the prediction
 of randomly masked tokens in the concatenation of the sentence pair
 $\left\lbrack x;y \right\rbrack$. When $x$ and $y$ are in the same
@@ -324,7 +324,7 @@ any sentence in the mini-batch $\mathcal{B}$:</li>
   <li><u><strong>Bidirectional Word Alignment:</strong></u><br />
 This objective encourages bidirectional alignment of word embeddings
 by leveraging the attention mechanism in the
-<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+<a href="https://phanxuanphucnd.github.io/machine-translation/Transformer">Transformer</a>
 model by minimizing the distance between the trace of the
 source-to-target attention $A_{x \rightarrow y}$ and
 target-to-source attention $A_{y \rightarrow x}$ matrices. Since the
@@ -349,7 +349,7 @@ function:</p>
 
   <ul>
     <li>AMBER with just MLM objective is the same as
-  <a href="https://anwarvic.github.io/cross-lingual-lm/mBERT">mBERT</a>.</li>
+  <a href="https://phanxuanphucnd.github.io/cross-lingual-lm/mBERT">mBERT</a>.</li>
     <li>Sentence Alignment objective is the same as
   <a href="https://arxiv.org/pdf/1902.08564.pdf">Additive Margin Softmax (AMS)</a>
   where the margin is zero $(m=0)$.</li>
@@ -364,7 +364,7 @@ using the default hyper-parameters as mBERT found
 larger batch of 8,192 sentence pairs. Then, they pre-training it using
 the other two objectives for another 1M steps with a batch of 2,048
 sentence pairs from Wikipedia corpus and parallel corpus used to train
-<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a>. As show in the
+<a href="https://phanxuanphucnd.github.io/cross-lingual-lm/XLM">XLM</a>. As show in the
 following table, shows the size of AMBER compared to other cross-lingual
 models:</p>
 
@@ -430,7 +430,7 @@ languages for the past four benchmarks:</p>
 In all of the previous dataset, AMBER (MLM) is achieving better results than
 mBERT despite having the same architecture because AMBER uses bigger batch
 sizes which is proven to be efficient as explain in
-<a href="https://anwarvic.github.io/language-modeling/RoBERTa">RoBERTa</a> paper.</p>
+<a href="https://phanxuanphucnd.github.io/language-modeling/RoBERTa">RoBERTa</a> paper.</p>
 </blockquote>
 
   </section>

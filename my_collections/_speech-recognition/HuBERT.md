@@ -8,7 +8,7 @@ labs: ["FAIR"]
 HuBERT stands for "Hidden-unit BERT" which is an ASR system trained
 using a novel self-supervised learning scheme that made HuBERT either
 matches or improves upon the state-of-the-art [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2)
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2)
 performance. HuBERT was proposed by FAIR in 2021 and published in this
 paper under the same name: "[HuBERT: Self-Supervised Speech
 Representation Learning by Masked Prediction of Hidden
@@ -48,7 +48,7 @@ HuBERT Model
 ------------
 
 HuBERT follows the same architecture as [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) with two
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) with two
 different parts:
 
 -   <u><strong>CNN Encoder:</strong></u>\
@@ -60,9 +60,9 @@ different parts:
 -   <u><strong>BERT:</strong></u>\
     The encoded features from the CNN Encoder get masked and sent to
     this model which can be considered as an acoustic
-    [BERT](https://anwarvic.github.io/language-modeling/BERT). Regarding
+    [BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). Regarding
     masking, they used the same strategy used for
-    [SpanBERT](https://anwarvic.github.io/language-modeling/SpanBERT)
+    [SpanBERT](https://phanxuanphucnd.github.io/language-modeling/SpanBERT)
     where $p\%$ of the timesteps are randomly selected as start indices,
     and spans of $l$ steps are masked. And then BERT learns to predict
     the latent features of the unmasked and the masked input equally.
@@ -74,10 +74,10 @@ different parts:
 In the paper, they considered three different configurations for
 HuBERT: BASE, LARGE, and X-LARGE as shown in the following figure.
 The first two follow the architectures of [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) BASE
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) BASE
 and LARGE closely. The X-LARGE architecture expands the model size
 to about 1 billion parameters, similar to the size of the
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 XXL model. Notice that the waveform encoder is identical for all the
 three configurations
 
@@ -141,7 +141,7 @@ constraints.
 > **Note:**\
 After pre-training and during ASR fine-tuning, the projection layer(s)
 is removed and replaced with a randomly initialized softmax layer. And
-[CTC](https://anwarvic.github.io/speech-recognition/CTC) is used as a
+[CTC](https://phanxuanphucnd.github.io/speech-recognition/CTC) is used as a
 loss function for ASR fine-tuning of the whole model weights except the
 convolutional audio encoder, which remains frozen. The target vocabulary
 includes 26 English characters, a space token, an apostrophe, and a

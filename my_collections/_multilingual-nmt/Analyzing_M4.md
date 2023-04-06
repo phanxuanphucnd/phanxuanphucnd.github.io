@@ -12,7 +12,7 @@ transfer remains elusive. This paper "[Investigating Multilingual NMT
 Representations at Scale](https://arxiv.org/pdf/1909.02197.pdf)"
 published by Google in 2019 attempted to understand MNMT representations
 (specifically [Google's
-M4](https://anwarvic.github.io/multilingual-nmt/M4) model) using
+M4](https://phanxuanphucnd.github.io/multilingual-nmt/M4) model) using
 Singular Value Canonical Correlation Analysis (SVCCA). Google's
 unofficial code for the SVCCA framework can be found on their official
 GitHub repository: [google/svcca](https://github.com/google/svcca).
@@ -71,7 +71,7 @@ $${\widetilde{l}}_{2} = W_{2}{l'}_{2} = \left\{ {\widetilde{z}}_{1}^{l_{2}},\ ..
 Now that we have reviewed what SVCCA is all about; let's get back to
 the paper and see how they used SVCCA. In the paper, they applied
 SVCCA on the sentence-level of the hidden representation of
-[Google's M4](https://anwarvic.github.io/multilingual-nmt/M4) model
+[Google's M4](https://phanxuanphucnd.github.io/multilingual-nmt/M4) model
 averaging over the sequence time-steps.
 
 More concretely, given a batch of size $B$ sentences of max length
@@ -86,7 +86,7 @@ be aligned to each token in an equivalent sentence in language B.
 ## MNMT Learns Language Similarity
 
 Using the top-layer of the encoder of [Google's
-M4](https://anwarvic.github.io/multilingual-nmt/M4) model, they have
+M4](https://phanxuanphucnd.github.io/multilingual-nmt/M4) model, they have
 clustered all languages together based on their SVCCA similarities.
 Then, they used the "Laplacian Eigenmaps" algorithm implemented in
 scikit-learn as
@@ -94,7 +94,7 @@ scikit-learn as
 https://scikit-learn.org/stable/modules/generated/sklearn.manifold.SpectralEmbedding.html)
 method to visualize these similarities across all languages found in the
 dataset that was used to train [Google's
-M4](https://anwarvic.github.io/multilingual-nmt/M4). This dataset is an
+M4](https://phanxuanphucnd.github.io/multilingual-nmt/M4). This dataset is an
 English-centric dataset containing sentences in 103 languages. The
 following figure is the result:
 

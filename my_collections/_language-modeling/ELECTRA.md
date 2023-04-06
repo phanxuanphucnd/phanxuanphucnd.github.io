@@ -91,10 +91,10 @@ Experiments
 -----------
 
 For most of the experiments, ELECTRA was pre-trained on the same data as
-[BERT](https://anwarvic.github.io/language-modeling/BERT), which
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT), which
 consists of 3.3 Billion tokens from Wikipedia and BooksCorpus. However,
 Large models were pre-trained on the data used for
-[XLNet](https://anwarvic.github.io/language-modeling/XLNet), which
+[XLNet](https://phanxuanphucnd.github.io/language-modeling/XLNet), which
 extends the BERT dataset to 33B tokens by including data from ClueWeb,
 CommonCrawl, and Gigaword. For fine-tuning on GLUE, a simple linear
 classifiers is added on top of ELECTRA.
@@ -110,7 +110,7 @@ higher.
 
 > **Note:**\
 In the original
-[BERT](https://anwarvic.github.io/language-modeling/BERT) paper, there
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT) paper, there
 were no BERT~Small~. They created BERT~Small~ using a smaller
 hyper-parameters of BERT~Base~; they reduced the sequence length (from
 512 to 128), with smaller batch size (from 256 to 128), smaller hidden

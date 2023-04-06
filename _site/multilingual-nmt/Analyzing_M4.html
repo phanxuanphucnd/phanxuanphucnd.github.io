@@ -57,7 +57,7 @@ GitHub repository: google/svcca.
   <!-- OpenGraph Meta Tags -->
   <meta property="og:url" content="http://localhost:4000">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:site_name" content="Phuc Phan's Blog"/>
   <meta property="og:title" content="Analyzing M4 using SVCCA">
   <meta property="og:description" content="Multilingual Neural Machine Translation (MNMT) models have yielded large
 empirical success in transfer learning settings. However, these
@@ -278,7 +278,7 @@ black-box representations are poorly understood, and their mode of
 transfer remains elusive. This paper “<a href="https://arxiv.org/pdf/1909.02197.pdf">Investigating Multilingual NMT
 Representations at Scale</a>”
 published by Google in 2019 attempted to understand MNMT representations
-(specifically <a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s
+(specifically <a href="https://phanxuanphucnd.github.io/multilingual-nmt/M4">Google’s
 M4</a> model) using
 Singular Value Canonical Correlation Analysis (SVCCA). Google’s
 unofficial code for the SVCCA framework can be found on their official
@@ -346,7 +346,7 @@ how well they correlate, $\rho_i$.</li>
 <p>Now that we have reviewed what SVCCA is all about; let’s get back to
 the paper and see how they used SVCCA. In the paper, they applied
 SVCCA on the sentence-level of the hidden representation of
-<a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s M4</a> model
+<a href="https://phanxuanphucnd.github.io/multilingual-nmt/M4">Google’s M4</a> model
 averaging over the sequence time-steps.</p>
 
 <p>More concretely, given a batch of size $B$ sentences of max length
@@ -360,14 +360,14 @@ be aligned to each token in an equivalent sentence in language B.</p>
 
 <h2 id="mnmt-learns-language-similarity">MNMT Learns Language Similarity</h2>
 
-<p>Using the top-layer of the encoder of <a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s
+<p>Using the top-layer of the encoder of <a href="https://phanxuanphucnd.github.io/multilingual-nmt/M4">Google’s
 M4</a> model, they have
 clustered all languages together based on their SVCCA similarities.
 Then, they used the “Laplacian Eigenmaps” algorithm implemented in
 scikit-learn as
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.SpectralEmbedding.html">sklearn.SpectralEmbedding</a>
 method to visualize these similarities across all languages found in the
-dataset that was used to train <a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s
+dataset that was used to train <a href="https://phanxuanphucnd.github.io/multilingual-nmt/M4">Google’s
 M4</a>. This dataset is an
 English-centric dataset containing sentences in 103 languages. The
 following figure is the result:</p>

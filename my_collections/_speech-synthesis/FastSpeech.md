@@ -7,7 +7,7 @@ labs: ["Zhejiang University", "Microsoft STC Asia", "Microsoft Research"]
 
 FastSpeech is a novel non-autoregressive Text-to-Speech (TTS) model
 based on the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 architecture. It takes a text (phoneme) sequence as input and generates
 mel-spectrograms non-autoregressively, later a vocoder is used to
 convert the spectrogram to audio waveforms. FastSpeech was proposed by
@@ -59,11 +59,11 @@ Each FFT block, as shown below, consists
 of <u><strong>multi-head self-attention mechanism</strong></u> to extract the
 cross-position information and 2-layer <u><strong>1D convolutional
 network</strong></u> with ReLU activation instead of the dense network
-in [Transformer](https://anwarvic.github.io/machine-translation/Transformer).
+in [Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer).
 The motivation is that the adjacent hidden states are more closely
 related in the character/phoneme and mel-spectrogram sequence in speech
 tasks. Similar to
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer),
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer),
 residual connections, layer normalization, and dropout are added after
 the self-attention network and 1D convolutional network respectively.
 
@@ -158,7 +158,7 @@ following is the detailed steps:
 
 -   First, they train an auto-regressive teacher TTS model. In the
     paper, they used [Transformer
-    TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS)
+    TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS)
     model.
 
 -   For each training sequence pair, they extract the decoder-to-encoder
@@ -214,7 +214,7 @@ hidden into $80$-dimensional mel-spectrogram.
 Regarding the duration predictor, the kernel sizes of the 1D convolution
 were set to $3$, with input/output sizes of $384/384$ for both layers.
 The teacher TTS had the same configuration as [Transformer
-TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS), which
+TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS), which
 consists of a 6-layer encoder, a 6-layer decoder, except that they used
 1D convolution network instead of position-wise FFN. This teach model
 was trained with batch size of $16$ sentences with Adam optimizer with
@@ -234,7 +234,7 @@ In this paper, the teacher model serves two purposes:
 
 The complete list of hyper-parameters used to train FastSpeech and
 the teacher model ([Transformer
-TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS))
+TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS))
 is shown below:
 
 <div align="center">
@@ -249,17 +249,17 @@ terms of:
 -   <u><strong>Audio Quality:</strong></u>\
     They compared FastSpeech to the ground-truth with/without Vocoder,
     [Tacotron
-    2](https://anwarvic.github.io/speech-synthesis/Tacotron_2), Merlin
+    2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2), Merlin
     (popular parametric TTS), and [Transformer
-    TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS).
+    TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS).
     All previous models used
-    [WaveGlow](https://anwarvic.github.io/speech-synthesis/WaveGlow) as
+    [WaveGlow](https://phanxuanphucnd.github.io/speech-synthesis/WaveGlow) as
     vocoder except Merlin used [WORLD](https://github.com/mmorise/World)
     Vocoder. The results are shown in the following table which shows
     that FastSpeech can nearly match the quality of the [Transformer
-    TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS)
+    TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS)
     and [Tacotron
-    2](https://anwarvic.github.io/speech-synthesis/Tacotron_2) models.
+    2](https://phanxuanphucnd.github.io/speech-synthesis/Tacotron_2) models.
 
 <div align="center">
     <img src="media/FastSpeech/image9.png" width=450>
@@ -267,7 +267,7 @@ terms of:
 
 -   <u><strong>Inference Speedup:</strong></u>\
     They compared the inference of FastSpeech compared with [Transformer
-    TTS](https://anwarvic.github.io/speech-synthesis/Transformer_TTS)
+    TTS](https://phanxuanphucnd.github.io/speech-synthesis/Transformer_TTS)
     model, which has similar number of model parameters and results are
     shown in the following table. Without Vocoder, FastSpeech speeds up
     the mel-spectrogram generation by $269.40$x. With Vocoder,

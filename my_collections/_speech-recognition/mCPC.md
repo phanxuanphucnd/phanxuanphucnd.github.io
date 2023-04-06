@@ -42,7 +42,7 @@ $$z_{t} = \text{Dec}\left( \text{Enc}\left( x_{1} \right),\ \text{Enc}\left( x_{
 In the original paper, the encoder was a 5-layer convolutional network
 ($k = \left( 10,8,4,4,4 \right)$, $s = \left( 5,4,2,2,2 \right)$) and
 the decoder was a 1-layer [Gated Recurrent
-Units](https://anwarvic.github.io/language-modeling/RNN) (GRU). The
+Units](https://phanxuanphucnd.github.io/language-modeling/RNN) (GRU). The
 encoder also has a down-sampling factor of $160$, meaning that for a
 $16kHz$ input, each feature encodes $10ms$ of audio.
 

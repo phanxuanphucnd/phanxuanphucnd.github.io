@@ -7,9 +7,9 @@ labs: ["MIT", "Google Brain"]
 
 w2v-BERT combines the core methodologies of self-supervised pre-training
 of speech embodied in the [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) model and
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) model and
 self-supervised pre-training of language emobdied in
-[BERT](https://anwarvic.github.io/language-modeling/BERT). w2v-BERT was
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT). w2v-BERT was
 proposed by Google Brain in 2021 and published in this paper "[w2v-BERT:
 Combining Contrastive Learning and Masked Language Modeling for
 Self-Supervised Speech
@@ -22,11 +22,11 @@ pre-training framework is illustrated down blow:
 
 The idea of w2v-BERT is learn contextualized speech representations by
 using the contrastive task defined earlier in [wav2vec
-2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2) to obtain
+2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2) to obtain
 an inventory of a finite set of discretized speech units, and then use
 them as tokens in a masked prediction task similar to the masked
 language modeling (MLM) proposed in
-[BERT](https://anwarvic.github.io/language-modeling/BERT).
+[BERT](https://phanxuanphucnd.github.io/language-modeling/BERT).
 
 From the past figure, we can see that w2v-BERT consists of three main
 components:
@@ -51,7 +51,7 @@ components:
 
     -   **First path:** It is masked, then fed into the linear
         projection layer followed by the stack of
-        [conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+        [conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
         blocks to produce context vectors.
 
     -   **Second Path:** It is passed to the quantization mechanism
@@ -61,7 +61,7 @@ components:
     -   The quantized vectors are used in conjunction with the context
         vectors that correspond to the masked positions to solve the
         contrastive task defined in [wav2vec
-        2.0](https://anwarvic.github.io/speech-recognition/wav2vec_2);
+        2.0](https://phanxuanphucnd.github.io/speech-recognition/wav2vec_2);
         the assigned token IDs will be later used by the subsequent
         masked prediction module as prediction target.
 
@@ -71,7 +71,7 @@ components:
 
 -   <u><strong>Masked Prediction Module:</strong></u>\
     The masked prediction module is a stack of
-    [conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+    [conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
     blocks (identical to the one used with the contrastive module) which
     directly takes in the context vectors produced by the contrastive
     module and extracts high-level contextualized speech
@@ -112,7 +112,7 @@ $$\mathcal{L}_{c} = \mathcal{L}_{w} + \alpha\mathcal{L}_{d}$$
     knowing that the masked spans may overlap.
 
 During fine-tuning, a labeled data was used to train an
-[RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T) model
+[RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) model
 where the encoder is a pre-trained w2v-BERT model, the decoder is a
 two-layer LSTM with a hidden dimension of $640$, and the joint
 network is a linear layer with Swish activation and batch
@@ -148,11 +148,11 @@ fine-tuned on the supervised data with a batch size of $256$.
 In addition to self-supervised pre-training, in the fine-tuning stage
 they also employed a number of practical techniques that further improve
 models' performance on ASR, like
-[SpecAugment](https://anwarvic.github.io/speech-recognition/SpecAugment)
+[SpecAugment](https://phanxuanphucnd.github.io/speech-recognition/SpecAugment)
 for data augmentation, [Noisy Student
-Training](https://anwarvic.github.io/speech-recognition/Combined_SSL)
+Training](https://phanxuanphucnd.github.io/speech-recognition/Combined_SSL)
 for self-training, and [language model
-fusion](https://anwarvic.github.io/machine-translation/Fusion) for
+fusion](https://phanxuanphucnd.github.io/machine-translation/Fusion) for
 decoding.
 
 In the following table, results on the four LibriSpeech evaluation sets

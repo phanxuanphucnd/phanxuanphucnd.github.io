@@ -7,17 +7,17 @@ labs: ["Bytedance AI Lab"]
 
 Improved RNN-T or Improved Recurrent Neural Network Transducer is an
 improved version of the
-[RNN-Transducer](https://anwarvic.github.io/speech-recognition/RNN-T)
+[RNN-Transducer](https://phanxuanphucnd.github.io/speech-recognition/RNN-T)
 where a normalized jointer network is introduced to improve performance.
 This improved version was proposed by Bytedance AI Lab in 2020 and
 published in this paper: [Improving RNN Transducer with Normalized
 Jointer Network](https://arxiv.org/pdf/2011.01576.pdf). To further
 improve the performance of the
-[RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T) system,
+[RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) system,
 they used a masked
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 model as the encoder network and the
-[Transformer-XL](https://anwarvic.github.io/language-modeling/Transformer-XL)
+[Transformer-XL](https://phanxuanphucnd.github.io/language-modeling/Transformer-XL)
 as the predictor network.
 
 <div align="center">
@@ -26,7 +26,7 @@ as the predictor network.
 
 They introduced this normalized jointer network is because they observed
 a huge gradient variance during
-[RNN-T](https://anwarvic.github.io/speech-recognition/RNN-T) training
+[RNN-T](https://phanxuanphucnd.github.io/speech-recognition/RNN-T) training
 such that the gradient variance is amplified for $U$ (transcription
 length) times on the encoder-side, and was amplified for $T$ (acoustic
 length) times on the predictor side. This makes the predictor and
@@ -44,11 +44,11 @@ and the encoder network converts the mel-fbank features $X$ to the
 high-level representations
 $H^{\text{enc}} = \left\\{ h_{1}^{\text{enc}},\ ...h_{T}^{\text{enc}} \right\\}$.
 The encoder network used in this paper is a masked
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 model.
 
 Recall that the
-[Conformer](https://anwarvic.github.io/speech-recognition/Conformer)
+[Conformer](https://phanxuanphucnd.github.io/speech-recognition/Conformer)
 major component is a stack of conformer blocks, each of which is a
 series of multi-headed self attention, depth-wise convolution and
 feed-forward layers as shown in the following figure:
@@ -59,7 +59,7 @@ feed-forward layers as shown in the following figure:
 
 Where the multi-head self-attention module is the same multi-head
 self-attention attention mechanism introduced in the
-[Transformer](https://anwarvic.github.io/machine-translation/Transformer)
+[Transformer](https://phanxuanphucnd.github.io/machine-translation/Transformer)
 model which can be shown in the following equation:
 
 $$\text{Attention}\left( Q,\ K,\ V \right) = softmax\left( \frac{QK^{\intercal}}{\sqrt{d}} \right)V$$
@@ -90,7 +90,7 @@ $Y = \left\\{ y_{1},\ ...y_{U} \right\\}$, and the predictor network
 converts them to the high-level representations
 $H^{\text{pre}} = \left\\{ h_{1}^{\text{pre}},\ ...h_{T}^{\text{pre}} \right\\}$.
 The decoder network used in this paper is a
-[Transformer-XL](https://anwarvic.github.io/language-modeling/Transformer-XL)
+[Transformer-XL](https://phanxuanphucnd.github.io/language-modeling/Transformer-XL)
 model.
 
 The transformer-XL contains a segment-level recurrence mechanism, which
