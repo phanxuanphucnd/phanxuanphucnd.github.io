@@ -150,7 +150,7 @@ Now, let's discuss a few of these global variables:
 - `url`: The url of the deployment.
 - `cover`: The image relative path that will be used as a background.
 - `baseurl`: The baseurl of the blog. For example, if the `baseurl: 'anwarvic'`,
-  this means that the blog will be reached at http://localhost:4000/anwarvic.
+  this means that the blog will be reached at http://localhost:4000/phanxuanphucnd.
 - `google_analytics`: The Google Analytics Tracking ID or Measurement ID.
 - `disqus_shortname`: The shortname for the disqus plugin.
 - `author`: Personal information about the blog owner including his socials.
@@ -185,12 +185,6 @@ Now, let's discuss a few of these global variables:
 Any update to the `_config.yml` file will not be viewed till you restart the
 server. That's because `_config.yml` is the start point to the project
 and it's not monitored during the run.
-
-The following are some of the past variables shown in the blog:
-
-<div align="center">
-  <img src="images/assets/cover-desc.png" height=500>
-</div>
 
 ## index.html
 
@@ -282,11 +276,7 @@ check the following three files:
 - `js/simple-blog-search.min.js`: This is the
   [Simple Blog Search](https://github.com/SeraphRoy/SimpleBlogSearch) plugin
   that does the searching using the JSON database created at deployment.
-
-<div align="center">
-  <img src="images/assets/peek_search.gif" width=750>
-</div>
-
+- 
 ## Minutes to Read
 
 One of the most important features implemented here is to show the number of
@@ -364,28 +354,6 @@ The HTML for the disqus plugin, can be found in the `disqus.html` file.
   <img src="images/assets/disqus.png" width=750>
 </div>
 
-## Google Analytics
-
-You can enable Google Analytics for your blog. To customize this, you only need
-to add your Tracking ID (or Measurement ID) to the `google_analytics` variable
-in the `_config.yml` file. To know how to get this ID, check out the following
-[page](https://support.google.com/analytics/answer/9304153?utm_campaign=2021-q1-onboarding-ga&utm_source=google-growth&utm_medium=email&utm_content=gold-welcome-0).
-
-The Javascript code responsible for enabling Google Analytics can be seen below
-and it's inserted in the `footer.html` file:
-```HTML
-<!-- Adding Google Analytics -->
-{% if site.google_analytics and jekyll.environment != "development" %}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '{{ site.google_analytics }}');
-</script>
-{% endif %}
-```
 
 ## robots
 
