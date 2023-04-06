@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>InfoXLM</title>
+  <meta name="title" content="InfoXLM">
+  <meta name="description" content="InfoXLM stands for “Information-theoretic procedure for
+Cross-Lingual Modeling” which is a cross-lingual language model proposed
+by Microsoft in 2020 and published in their paper: InfoXLM: An
+Information-Theoretic Framework for Cross-Lingual Language Model
+Pre-Training. The official code
+for this paper can be found in Microsoft’s official UniLM GitHub repository:
+unilm/infoxlm.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="InfoXLM">
+  <meta itemprop="description" content="InfoXLM stands for “Information-theoretic procedure for
+Cross-Lingual Modeling” which is a cross-lingual language model proposed
+by Microsoft in 2020 and published in their paper: InfoXLM: An
+Information-Theoretic Framework for Cross-Lingual Language Model
+Pre-Training. The official code
+for this paper can be found in Microsoft’s official UniLM GitHub repository:
+unilm/infoxlm.
+
+">
+  <meta itemprop="image" content="//images/avatar.jpg">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="InfoXLM">
+  <meta property="og:description" content="InfoXLM stands for “Information-theoretic procedure for
+Cross-Lingual Modeling” which is a cross-lingual language model proposed
+by Microsoft in 2020 and published in their paper: InfoXLM: An
+Information-Theoretic Framework for Cross-Lingual Language Model
+Pre-Training. The official code
+for this paper can be found in Microsoft’s official UniLM GitHub repository:
+unilm/infoxlm.
+
+">
+  <meta property="og:image" content="//images/avatar.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="InfoXLM">
+  <meta name="twitter:description" content="InfoXLM stands for “Information-theoretic procedure for
+Cross-Lingual Modeling” which is a cross-lingual language model proposed
+by Microsoft in 2020 and published in their paper: InfoXLM: An
+Information-Theoretic Framework for Cross-Lingual Language Model
+Pre-Training. The official code
+for this paper can be found in Microsoft’s official UniLM GitHub repository:
+unilm/infoxlm.
+
+">
+  
+  <meta name="twitter:image" content="//images/avatar.jpg">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/InfoXLM">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2020-07-15 00:00" class="post-meta__body date">Published on arXiv on: 15 Jul 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Beijing Institute of Technology">Beijing Institute of Technology</a> & <a href="/labs/#Microsoft">Microsoft</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=InfoXLM> InfoXLM</h1>
+    <p>InfoXLM stands for “<strong>Info</strong>rmation-theoretic procedure for
+Cross-Lingual Modeling” which is a cross-lingual language model proposed
+by Microsoft in 2020 and published in their paper: <a href="https://arxiv.org/pdf/2007.07834.pdf">InfoXLM: An
+Information-Theoretic Framework for Cross-Lingual Language Model
+Pre-Training</a>. The official code
+for this paper can be found in Microsoft’s official UniLM GitHub repository:
+<a href="https://github.com/microsoft/unilm/tree/master/infoxlm">unilm/infoxlm</a>.</p>
+
+<p>State-of-the-art cross-lingual pre-trained models are typically built
+using monolingual data with masked language modeling (MLM) objective
+such as <a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> and
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a>; along side
+bilingual data with Translation Language Modeling (TLM) objective such
+as <a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a>. InfoXLM
+combines these two objectives with a novel objective called XLCO or
+“Cross Lingual Contrast”.</p>
+
+\[\mathcal{L} = \mathcal{L}_{\text{MLM}} + \mathcal{L}_{\text{TLM}} + \mathcal{L}_{\text{XLCO}}\]
+
+<blockquote>
+  <p><strong>Note to Reader</strong><br />
+I think you should give the <a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM post</a>
+a read before going on.</p>
+</blockquote>
+
+<p>We know how to obtain MLM and TLM from XLM model:</p>
+
+\[\mathcal{L}_{\text{MLM}} = - \log\frac{\exp\left( \theta_{T}\left( c_{1} \right)^{T}\text{.}\theta_{E}\left( x_{1} \right) \right)}{\sum_{x' \in \mathcal{V}}^{}{\exp\left( \theta_{T}\left( c_{1} \right)^{T}\text{.}\theta_{E}\left( x' \right) \right)}}\]
+
+\[\mathcal{L}_{\text{TLM}} = - \log\frac{\exp\left( \theta_{T}\left( c_{1} \right)^{T}\text{.}\theta_{E}\left( x_{1} \right) \right)}{\sum_{x' \in \mathcal{V}}^{}{\exp\left( \theta_{T}\left( c_{1} \right)^{T}\text{.}\theta_{E}\left( x' \right) \right)}}\]
+
+\[\ \ \ \ \ \ \ \ \ \ \ \  - \log\frac{\exp\left( \theta_{T}\left( c_{2} \right)^{T}\text{.}\theta_{E}\left( x_{2} \right) \right)}{\sum_{x' \in \mathcal{V}}^{}{\exp\left( \theta_{T}\left( c_{2} \right)^{T}\text{.}\theta_{E}\left( x' \right) \right)}}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$x_{1}, x_{2}$ are the masked tokens.</p>
+  </li>
+  <li>
+    <p>$c_{1}, c_{2}$ are the corresponding contexts (the rest).</p>
+  </li>
+  <li>
+    <p>$\theta_{E}$ is a look-up function that returns the token
+embeddings.</p>
+  </li>
+  <li>
+    <p>$\theta_{T}$ is a Transformer that returns the final hidden vectors
+in position of $x_{1}$.</p>
+  </li>
+  <li>
+    <p>$\mathcal{V}$ is the vocabulary.</p>
+  </li>
+</ul>
+
+<h2 id="xlco">XLCO</h2>
+
+<p>XLCO stands for “Cross-lingual Contrast” which is a new objective for
+pre-training cross-lingual language models inspired by the unified
+information-theoretic framework. The goal of XLCO is to distinguish the
+translation of an input sentence from a set of negative examples. The
+formula of this objective is:</p>
+
+\[\mathcal{L}_{\text{XLCO}} = - \log\frac{\exp\left( \theta_{Q}\left( c_{1} \right)^{T}\text{.}\theta_{K}\left( c_{2} \right) \right)}{\sum_{c' \in \mathcal{N}}^{}{\exp\left( \theta_{Q}\left( c_{1} \right)^{T}\text{.}\theta_{K}\left( c' \right) \right)}}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$\theta_{Q}$ is the query encoder that encodes $c_{1}$ and is
+updated by back-propagation.</p>
+  </li>
+  <li>
+    <p>$\theta_{K}$ is the key encoder that encodes $\mathcal{N}$.</p>
+  </li>
+  <li>
+    <p>$\mathcal{N}$ is the negative examples distribution which is
+organized as a queue, where a newly encoded example is added while
+the oldest one is popped from the queue.</p>
+
+    <p>The query encoder and the key encoder are initialized with the same
+parameters, and fill the queue with a set of encoded examples until
+it reaches the desired size $\left| \mathcal{N} \right|$. Notice
+that the size of the queue remains constant during training. In the
+paper, they used a queue of length equals to $131,072$.</p>
+  </li>
+</ul>
+
+<h3 id="mixup-contrast">Mixup Contrast</h3>
+
+<p>Mixup Contrast is an augmentation method the researcher used when
+applying XLCO task. It goes like this; for each parallel sentence
+$\left\langle c_{1},\ c_{2} \right\rangle$, they concatenated it with a
+randomly sampled translation pair
+$\left\langle d_{1},\ d_{2} \right\rangle$ from another parallel corpus.
+The two pairs are concatenated in a random order like
+$\left\langle c_{1}d_{1},\ c_{2}d_{2} \right\rangle$ or
+$\left\langle c_{1}d_{2},\ d_{1}c_{2} \right\rangle$. This method
+encourages pre-trained models to learn sentence boundaries and to
+distinguish the order of multilingual texts.</p>
+
+<h2 id="results">Results</h2>
+
+<p>In this paper, the researchers followed the model configurations of
+XLM-R when creating InfoXLM. InfoXLM~base~ used the Transformer
+architecture with 12 layers and 768 hidden . InfoXLM~large~ used the
+Transfoerm architecture with 24 layers and 1,024 hidden states.</p>
+
+<p>Then, they initialized the parameters with XLM-R. The model was
+optimized using Adam optimizer with a batch size of $2048$ for a total
+of $150$K steps for InfoXLM~base~, and $200$K steps for InfoXLM~large~.
+The learning rate is scheduled with a linear decay with $10$K warmup
+steps, where the peak learning rate is set as $0.0002$ for
+InfoXLM~base~, and $0.0001$ for InfoXLM~large~. The momentum coefficient
+is set as $0.9999$ for InfoXLM~base~ and $0.999$ for InfoXLM~large~.
+Then, they compared InfoXLM with:</p>
+
+<ul>
+  <li>
+    <p>mBERT which was pre-trained with MLM on Wikipedia in 102 languages</p>
+  </li>
+  <li>
+    <p>XLM which was pre-trained with both MLM and TLM tasks on Wikipedia
+in 100 languages</p>
+  </li>
+  <li>
+    <p>XLM-R which was pre-trained with MLM to the large CC-100 corpus in
+100 languages with much more training steps.</p>
+  </li>
+  <li>
+    <p>UNICODER which was initialized with XLM-R and they trained it using
+both MLM and TLM.</p>
+  </li>
+  <li>
+    <p>InfoXLM (without XLCO).</p>
+  </li>
+</ul>
+
+<p>And the following table shows this comparison on XNLI using 15
+different languages. The model number #M=N indicates that each
+language had a different model) while #M=1 means only one model is
+used for all languages. Also, results with “*” are taken from this
+<a href="https://arxiv.org/pdf/1911.02116.pdf">paper</a> while “(reimpl)” means
+that the researchers have re-implemented it. Results of InfoXLM and
+XLM-R (reimpl) are averaged over five runs with different seeds:</p>
+
+<div align="center">
+    <img src="media/InfoXLM/image1.png" width="750" />
+</div>
+
+<p>The past results show that InfoXLM outperforms all baseline models on
+the two evaluation settings of XNLI. Moreover, removing XLCO object
+hurts the performance which shows that cross-lingual contrast is helpful
+for zero-shot transfer in most languages.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/InfoXLM';
+      this.page.identifier = '/cross-lingual-lm/InfoXLM';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

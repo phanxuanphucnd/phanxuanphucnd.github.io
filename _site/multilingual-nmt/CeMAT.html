@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>CeMAT</title>
+  <meta name="title" content="CeMAT">
+  <meta name="description" content="CeMAT stands for “ Conditional masked language pretraining model
+for Machine Translation” which is a bidirectional encoder and a
+bidirectional decoder multilingual
+Transformer
+model with a cross-attention module for bridging them. CeMAT was
+proposed by Huawei Noah’s Ark Lab in 2022 and published in their paper:
+Universal Conditional Masked Language Pre-training for Neural Machine
+Translation. The official code
+for this paper can be found in Huawei Noah’s Ark Lab official GitHub
+repository:
+huawei-noah/CeMAT.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="CeMAT">
+  <meta itemprop="description" content="CeMAT stands for “ Conditional masked language pretraining model
+for Machine Translation” which is a bidirectional encoder and a
+bidirectional decoder multilingual
+Transformer
+model with a cross-attention module for bridging them. CeMAT was
+proposed by Huawei Noah’s Ark Lab in 2022 and published in their paper:
+Universal Conditional Masked Language Pre-training for Neural Machine
+Translation. The official code
+for this paper can be found in Huawei Noah’s Ark Lab official GitHub
+repository:
+huawei-noah/CeMAT.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/CeMAT/image3.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="CeMAT">
+  <meta property="og:description" content="CeMAT stands for “ Conditional masked language pretraining model
+for Machine Translation” which is a bidirectional encoder and a
+bidirectional decoder multilingual
+Transformer
+model with a cross-attention module for bridging them. CeMAT was
+proposed by Huawei Noah’s Ark Lab in 2022 and published in their paper:
+Universal Conditional Masked Language Pre-training for Neural Machine
+Translation. The official code
+for this paper can be found in Huawei Noah’s Ark Lab official GitHub
+repository:
+huawei-noah/CeMAT.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/CeMAT/image3.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CeMAT">
+  <meta name="twitter:description" content="CeMAT stands for “ Conditional masked language pretraining model
+for Machine Translation” which is a bidirectional encoder and a
+bidirectional decoder multilingual
+Transformer
+model with a cross-attention module for bridging them. CeMAT was
+proposed by Huawei Noah’s Ark Lab in 2022 and published in their paper:
+Universal Conditional Masked Language Pre-training for Neural Machine
+Translation. The official code
+for this paper can be found in Huawei Noah’s Ark Lab official GitHub
+repository:
+huawei-noah/CeMAT.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/CeMAT/image3.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/CeMAT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          6 mins read
+        </span>
+      </p>
+      <time datetime="2022-03-17 00:00" class="post-meta__body date">Published on arXiv on: 17 Mar 2022</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Huawei Noah's Ark Lab">Huawei Noah's Ark Lab</a> & <a href="/labs/#Monash University">Monash University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=CeMAT> CeMAT</h1>
+    <p>CeMAT stands for “ <strong>C</strong>onditional masked language pr<strong>e</strong>training model
+for <strong>Ma</strong>chine <strong>T</strong>ranslation” which is a bidirectional encoder and a
+<u><strong>bidirectional</strong></u> decoder multilingual
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+model with a cross-attention module for bridging them. CeMAT was
+proposed by Huawei Noah’s Ark Lab in 2022 and published in their paper:
+<a href="https://arxiv.org/pdf/2203.09210.pdf">Universal Conditional Masked Language Pre-training for Neural Machine
+Translation</a>. The official code
+for this paper can be found in Huawei Noah’s Ark Lab official GitHub
+repository:
+<a href="https://github.com/huawei-noah/Pretrained-Language-Model/CeMAT">huawei-noah/CeMAT</a>.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image1.png" width="750" />
+</div>
+
+<p>Benefiting from the bidirectional decoder structure, CeMAT can provide
+unified initialization parameters not only for Autoregressive
+translation, but also for non-autoregressive translation (NAT) directly.
+NAT has been attracting more and more attention because of its feature
+of parallel decoding, which helps to greatly reduce the translation
+latency.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image2.png" width="750" />
+</div>
+
+<p>As seen in the following figure, CeMAT follows the
+pre-training-then-fine-tuning paradigm where the model is jointly
+pre-trained using Masked Language Modeling (MLM) on the encoder side and
+Conditional MLM (CMLM) on the decoder side with large-scale monolingual
+and bilingual texts in many languages.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image3.png" width="1050" />
+</div>
+
+<h2 id="pre-training">Pre-training</h2>
+
+<p>As said earlier, CeMAT is jointly trained by MLM and CMLM on the source
+side and the target side, respectively. MLM was first proposed in
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> while CMLM was
+proposed by
+<a href="https://anwarvic.github.io/machine-translation/CMLM_Transformer">Mask-Predict</a>
+paper. MLM predicts masked tokens given the remaining sentence, CMLM
+predicts masked tokens given the source sentence + the remaining of
+target sentence.</p>
+
+<p>Given a training data of $M$ language-pairs
+$D = \left\{ D_{1},\ D_{2},\ …D_{M} \right\}$ where
+$D_{i}\left( m,n \right)$ is a collection of sentence pairs in language
+$L_{m}$ and $L_{n}$, respectively. A sentence pair is denoted
+$\left( X_{m},Y_{n} \right) \in D_{i}\left( m,n \right)$, where $X_{m}$
+is the source text in the language $L_{m}$, and $Y_{n}$ is the
+corresponding target text in the language $L_{n}$. For monolingual
+corpora, they create pseudo bilingual text by copying the sentence
+$\left( X_{m},X_{m} \right)$ and $\left( Y_{n},Y_{n} \right)$.</p>
+
+<p>To enhance model’s pre-training, they introduced a novel two-step
+masking strategy on both monolingual and bilingual corpora:</p>
+
+<ul>
+  <li>
+    <p>Aligned code-switching &amp; Masking.</p>
+  </li>
+  <li>
+    <p>Dynamic dual-masking.</p>
+  </li>
+</ul>
+
+<h3 id="aligned-code-switching--masking">Aligned Code-Switching &amp; Masking</h3>
+
+<p>To replace the source word or phrase with a new word in another
+language, they use a multilingual translation dictionary provided by
+<a href="https://anwarvic.github.io/machine-translation/MUSE">MUSE</a> with this
+method which consists of three steps:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Aligning:</strong></u><br />
+Utilize a multilingual translation dictionary to get a set
+of aligned words
+$A = \left\{ …,\ \left( x_{m}^{i},\ y_{n}^{j} \right),\ … \right\}$.
+The word pair $\left( x_{m}^{i},\ y_{n}^{j} \right)$ denotes that
+the $i^{\text{th}}$ word in the source $X_{m}$ and $j^{\text{th}}$
+word in the target $Y_{n}$ are translations of each other.</p>
+  </li>
+  <li>
+    <p><u><strong>Code-Switching Replace (CSR):</strong></u><br />
+Given an aligned word pair $\left( x_{m}^{i},\ y_{n}^{j} \right)$,
+they select a new replacement word ${\widehat{x}}_k^i$ that is a
+translation of $x_m^i$ in language $L_k$. The new word
+${\widehat{x}}_k^i$ is randomly selected from a multilingual
+dictionary.</p>
+  </li>
+  <li>
+    <p><u><strong>Code-Switching Masking (CSM):</strong></u><br />
+After replacing $x_m^i$ with ${\widehat{x}}_k^i$,
+$y_n^j$ is masked with a universal
+$\left\lbrack \text{mask} \right\rbrack$ token.</p>
+  </li>
+</ul>
+
+<p>Then, CeMAT will be trained to predict it in the output layers of
+the bidirectional decoder. The following figure shows the process of
+aligned code-switching &amp; masking. According to the following
+example, “dance”, “tanzen”, and “danse”. “danse” is selected to
+replace “dance”, and “tanzen” is replaced by
+$\left\lbrack \text{mask} \right\rbrack$.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image4.png" width="750" />
+</div>
+
+<p>During pre-training, at most $15\%$ of the words in the sentence
+will be performed by CSR and CSM. For monolingual data, we set this
+ratio to $30\%$. After this process, the translation sentence pair
+$\left( X_{m},Y_{n} \right)$ becomes
+$\left( \text{CSR}\left( X_{m} \right),\text{CSM}\left( Y_{n} \right) \right)$
+and it will be further dynamically dual-masked at random as we are
+going to see next.</p>
+
+<h3 id="dynamic-dual-masking">Dynamic Dual Masking</h3>
+
+<p>Limited by the
+<a href="https://anwarvic.github.io/machine-translation/MUSE">MUSE</a> dictionary,
+the ratio of aligned word pairs is usually small, around 6% of the
+bilingual corpora. To further increase the training efficiency, they
+performed dynamic dual-masking on both bilingual and monolingual data
+where $10\%$ of masked tokens are replaced with a random token, $10\%$
+remain unchanged, and $80\%$ are replaced with
+$\left\lbrack \text{mask} \right\rbrack$ token:</p>
+
+<ul>
+  <li>
+    <p><strong>Bilingual Data:</strong></p>
+
+    <ul>
+      <li>
+        <p>They randomly select a subset of the target words and mask them
+with a ratio of $u \in \mathcal{U}\left( 0.2,\ 0.5 \right)$
+sampled from a uniform distribution.</p>
+      </li>
+      <li>
+        <p>Then, they randomly select a subset of the source words and mask
+them with a ratio of  $\mu \in \mathcal{U}\left( 0.1,\ 0.2 \right)$
+sampled from a uniform distribution where $\mu \leq u$ to force the
+bidirectional decoder to obtain more information from the encoder.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Monolingual Data:</strong> Since the source and target are identical
+before masking, they sample
+$u = \mu \in \mathcal{U}\left( 0.3,\ 0.4 \right)$ from a uniform
+distribution and mask the same subset of words on both sides. This
+will avoid the decoder directly copying the token from the source.</p>
+  </li>
+</ul>
+
+<p>The following figure shows that the word “gras” from the target
+sentence and “on” from the source sentence were dynamically masked;
+both are highlighted with yellow.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image5.png" width="750" />
+</div>
+
+<p>After applying these two steps, we jointly train the encoder and
+decoder on MLM and CMLM tasks. Given the masked sentence pair
+$\left( \text{DM}\left( \text{CSR}\left( X_{m} \right) \right),DM\left( \text{CSM}\left( Y_{n} \right) \right) \right)$
+which will be denoted as
+$\left( {\widehat{X}}_m,{\widehat{Y}}_n \right)$ for simplicity,
+the final training objective is formulated as follows:</p>
+
+\[\mathcal{L} = - \sum_{\left( {\widehat{X}}_{m},{\widehat{Y}}_{n} \right) \in \widehat{D}}^{}{\left( 1 - \lambda \right)\mathcal{L}_{\text{MLM}} + \lambda\mathcal{L}_{\text{CMLM}}}\]
+
+\[\mathcal{L}_{\text{MLM}} = \sum_{y_{n}^{j} \in y_{n}^{\text{mask}}}^{}{\log\left( P\left( x_{n}^{j} \middle| {\widehat{X}}_{m} \right) \right)}\]
+
+\[\mathcal{L}_{\text{CMLM}} = \sum_{x_{m}^{j} \in x_{m}^{\text{mask}}}^{}{\log\left( P\left( y_{n}^{j} \middle| {\widehat{X}}_{m},{\widehat{Y}}_{n} \right) \right)}\]
+
+<p>Where $x_{m}^{\text{mask}}$ are the set of masked source words and
+$y_{n}^{\text{mask}}$ are the set of masked target words. And and
+$\lambda$ is a hyper-parameter to balance the influence of both tasks.
+In the paper, it was set $\lambda = 0.7$.</p>
+
+<h2 id="fine-tuning">Fine-tuning</h2>
+
+<p>As said earlier, CeMAT has a bidirectional decoder which can be
+fine-tuned on either autoregressive translation or non-autoregressive
+translation.</p>
+
+<ul>
+  <li><strong>Autoregressive Translation:</strong> In this setup, CeMAT consists of a
+bidirectional encoder and a unidirectional decoder. The encoder maps
+a source sentence $X_{m}$ into hidden representations which are then
+fed into the decoder which predicts the $t^{\text{th}}$ token in a
+target language $L_{n}$ conditioned on $X_{m}$ and the previous
+target tokens $y_{n}^{&lt; t}$. The training objective of
+autoregressive translation is to minimize the negative
+log-likelihood:</li>
+</ul>
+
+\[\mathcal{L}\left( \theta \right) = \sum_{\left( X_{m},Y_{n} \right) \in D\left( m,n \right)}^{}{\sum_{t = 1}^{\left| Y_{n} \right|}{- \log\left( P\left( y_{n}^{t} \middle| X_{m},\ y_{n}^{&lt; t};\ \theta \right) \right)}}\]
+
+<ul>
+  <li><strong>Non-autoregressive Translation:</strong> In this setup, CeMAT consists of
+a bidirectional encoder and a bidirectional decoder which can be
+used to predict the target sequences in parallel. The training
+objective of NAT is formulated as follows:</li>
+</ul>
+
+\[\mathcal{L}\left( \theta \right) = \sum_{\left( X_{m},Y_{n} \right) \in D\left( m,n \right)}^{}{\sum_{y_{n}^{i} \in y_{n}^{\text{mask}}}^{}{- \log\left( P\left( y_{n}^{t} \middle| X_{m},\ y_{n}^{\backslash mask};\ \theta \right) \right)}}\]
+
+<h2 id="experiments">Experiments</h2>
+
+<p>For pre-training, they used the English-centric multilingual parallel
+corpora of
+<a href="https://anwarvic.github.io/multilingual-nmt/mRASP">PC32</a>, and
+then collected 21-language monolingual corpora from <a href="https://commoncrawl.org">common
+crawl</a>. Then, BPE tokenization was used on the
+entire data sets after tokenization using
+<a href="http://www.stat.org/moses/">Moses-decoder</a> for most languages and
+<a href="http://www.phontron.com/kytea">KyTea</a> for Japanese and
+<a href="https://github.com/fxsjy/jieba">jieba</a> for Chinese. The full statistics
+of the data used are shown in the following table:</p>
+
+<div align="center">
+    <img src="media/CeMAT/image6.png" width="750" />
+</div>
+
+<p>For pre-training, they used a
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+architecture with 6-layer encoder and 6-layer bidirectional decoder with
+a model dimension of $1024$ and $16$ attention heads that use sinusoidal
+positional embedding with pre-norm residual connection. They pre-trained
+the model using Adam optimizer
+($\epsilon = e^{- 6},\ \beta_{1} = 0.9,\ \beta_{2} = 0.98$) for $300K$
+steps with a batch size of 4096 tokens. Also, they used polynomial decay
+scheduling with a warm-up step of $10,000$.</p>
+
+<p>After pre-training, they fine-tuned the model on autoregressive
+translation of 8 popular language pairs (shown in the following table)
+that can be divided into four categories according to their size:
+low-resource ($\left\lbrack &lt; 1M \right\rbrack$), medium-resource
+($\left\lbrack 1M,\ 10M \right\rbrack$), high-resource
+($\left\lbrack 10M,\ 25M \right\rbrack$), and extremely high-resource
+($\left\lbrack &gt; 25M \right\rbrack$).</p>
+
+<div align="center">
+    <img src="media/CeMAT/image7.png" width="750" />
+</div>
+
+<p>The following table shows that CeMAT outperforms
+<a href="https://anwarvic.github.io/multilingual-nmt/mBART">mBART</a> and
+<a href="https://anwarvic.github.io/multilingual-nmt/mRASP">mRASP</a> for all
+language pairs but two directions. As the scale of the dataset
+increases, the benefits of pre-training models are getting smaller and
+smaller</p>
+
+<div align="center">
+    <img src="media/CeMAT/image8.png" width="750" />
+</div>
+
+<p>They further compare CeMAT with more existing multilingual pre-trained
+models on three popular translation directions, including WMT14 En→De,
+WMT16 En↔Ro. The followig table show that CeMAT obtains competitive
+results on these languages pairs on average, and achieves the best
+performance on En→Ro.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image9.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The “Direct” baseline mentioned in earlier results is a
+<a href="https://anwarvic.github.io/machine-translation/CMLM_Transformer">mask-predict</a>
+model.</p>
+</blockquote>
+
+<p>And for NAT fine-tuning, they evaluated CeMAT on three popular datasets:
+WMT14 En↔De, WMT16 En↔Ro and IWSLT14 En↔De. For a fair comparison with
+baselines, they only used the bilingual PC32 corpora to pre-train CeMAT
+and they used knowledge distillation on WMT14 En↔De tasks. The following
+table shows that CeMAT outperforms other multilingual models. This
+suggests that we can use the traditional pre-training method to
+fine-tune the NAT task.</p>
+
+<div align="center">
+    <img src="media/CeMAT/image10.png" width="750" />
+</div>
+
+<p>As an ablation study, they trained CeMAT without some of the proposed
+techniques and the following table shows that all the highest
+performance is achieved when using all proposed techniques:</p>
+
+<div align="center">
+    <img src="media/CeMAT/image11.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/CeMAT';
+      this.page.identifier = '/multilingual-nmt/CeMAT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

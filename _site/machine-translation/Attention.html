@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Attention Mechanism</title>
+  <meta name="title" content="Attention Mechanism">
+  <meta name="description" content="A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Attention Mechanism">
+  <meta itemprop="description" content="A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Attention/image3.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Attention Mechanism">
+  <meta property="og:description" content="A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Attention/image3.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Attention Mechanism">
+  <meta name="twitter:description" content="A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Attention/image3.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Attention">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2014-09-01 00:00" class="post-meta__body date">Published on arXiv on: 1 Sep 2014</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#University of Montreal">University of Montreal</a> & <a href="/labs/#Jacobs University">Jacobs University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Attention Mechanism> Attention Mechanism</h1>
+    <p>A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “<a href="https://arxiv.org/pdf/1409.1259.pdf">On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches</a>”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.</p>
+
+<div align="center">
+    <img src="media/Attention/image1.png" width="450" />
+</div>
+
+<p>What we can see from the previous graph is that it works quite well for
+short sentences, so we might achieve a relatively high BLEU score; but
+for very long sentences, maybe longer than 30 or 40 words, the
+performance comes down.</p>
+
+<p>In order to address this issue, this paper “<a href="https://arxiv.org/pdf/1409.0473.pdf">Neural Machine Translation
+by Jointly Learning to Align and
+Translate</a>” introduced an extension
+to the encoder–decoder model called “Attention mechanism” in 2014. The
+most important distinguishing feature of this approach from the basic
+encoder–decoder is that it does not attempt to encode a whole input
+sentence into a single fixed-length vector. Instead, it encodes the
+input sentence into a sequence of vectors and chooses a subset of these
+vectors adaptively while decoding the translation. This frees a neural
+translation model from having to squash all the information of a source
+sentence, regardless of its length, into a fixed-length vector. We show
+this allows a model to cope better with long sentences.</p>
+
+<p>Here, we'll see the Attention Model which translates maybe a bit more
+like humans. The way a human translator would translate a sentence is
+not to first read the whole sentence and then memorize it and then
+regurgitate an English sentence from scratch. Instead, a human
+translator reads the first part of the given sentence, maybe generate
+part of the translation. Look at the second part, generate a few more,
+and so on. We kind of work part by part through the sentence, because
+it's just really difficult to memorize the whole long sentence like
+that.</p>
+
+<p>In the following parts, we will talk about the different variants of
+attention mechanisms that have been used in the field so far.</p>
+
+<h2 id="global-soft-attention">Global Soft Attention</h2>
+
+<p>As we said earlier, the attention mechanism was first introduced by
+<strong>Dzmitry Bahdanau</strong>, <strong>KyungHyun Cho</strong> and <strong>Yoshua Bengio</strong> in 2014
+and published in this paper: “<a href="https://arxiv.org/pdf/1409.0473.pdf">Neural Machine Translation by Jointly
+Learning to Align and Translate</a>”
+under the name “Neural Machine Translation By Jointly Learning To Align
+And Translate” which later defined as a global, soft attention. Here, we
+are going to explain the attention mechanism in more details as
+explained in this paper: “<a href="https://arxiv.org/pdf/1508.04025.pdf">Effective Approaches to Attention-based
+Neural Machine Translation</a>” looks
+pretty similar to the one mentioned earlier.</p>
+
+<p>To explain how the attention mechanism works, let’s consider that we
+have the following:</p>
+
+<ul>
+  <li>
+    <p>The source sequence which is of length $n$ given by $x = \left[ x_{1},…x_{n} \right]$.</p>
+  </li>
+  <li>
+    <p>The target sequence which is of length $m$ given by $y = \left[ y_{1},…y_{m} \right]$.</p>
+  </li>
+  <li>
+    <p>Encoder hidden states $s = \left[ s_{1},…s_{n} \right]$.</p>
+  </li>
+  <li>
+    <p>Decoder hidden states $y = \left[ h_{1},…h_{m} \right]$.</p>
+  </li>
+</ul>
+
+<p>Now, the attention mechanism works as shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/Attention/image2.png" width="750" />
+</div>
+
+<p>Whose steps goes like the following:</p>
+
+<ul>
+  <li>First, we calculate the alignment score by using the <u> <strong>attention score function</strong> </u>
+defined as $\text{score}$ between the $j^{th}$
+encoder hidden state $s_{j}$ and the $i^{th}$ decoder hidden state $h_{i}$.</li>
+</ul>
+
+\[a_{i,j} = \text{softmax}\left( \text{score}\left( h_{i},\ s_{j} \right) \right)\]
+
+<p>In the next part, we are going to see the different variants of the
+$\text{score}$ function.</p>
+
+<ul>
+  <li>Next, the context vector $c_{i}$ at position $i$ can be calculated as the
+weighted average of previous encoder hidden states and alignment vector $a_{i,j}$.</li>
+</ul>
+
+\[c_{i} = \sum_{j = 0}^{n}{a_{i,\ j}\text{.}s_{j}}\]
+
+<ul>
+  <li>The source side context vector $c_{i}$ and the hidden state $h_{i}$ are
+concatenated $\left\lbrack c_{i}\ ;\ h_{i} \right\rbrack$ and the non-linear
+$\tanh$ activation function is applied to give the <u><strong>attention hidden vector</strong></u> 
+<span> $\widetilde{h}_i$ </span> where <span>$W_{c}$</span> weights are learned in the training process:</li>
+</ul>
+
+\[{\widetilde{h}}_{i} = \tanh\left( W_{c}.\left\lbrack c_{i}\ ;\ h_{i} \right\rbrack \right)\]
+
+<ul>
+  <li>The attention hidden vector <span>${\widetilde{h}}_{i}$</span> is passed through a
+<span>$\text{softmax}$</span> function to generate the probability distribution given by the
+following formula where <span>$W_{s}$</span> weights are learned in the training process:</li>
+</ul>
+
+\[P\left( y_{i} \middle| y_{&lt; i},\ x \right) = \text{softmax}\left( W_{s}.{\widetilde{h}}_{i} \right)\]
+
+<h3 id="score-functions">Score Functions</h3>
+
+<p>In this part, we are going to enumerate the different score functions
+$\text{score}\left( h_{i},\ s_{j} \right)$ used in different papers
+which gives different flavors of the attention mechanism where:</p>
+
+<ul>
+  <li>
+    <p>$s_{j}$: is the $j^{th}$ hidden state in the encoder architecture.</p>
+  </li>
+  <li>
+    <p>$h_{i}$: is the $i^{th}$ hidden state in the decoder architecture.</p>
+  </li>
+  <li>
+    <p>$n$: is the number of tokens in the encoder.</p>
+  </li>
+</ul>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Function</th>
+            <th>Parameters</th>
+            <th>Reference</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Concat (additive)</td>
+        <td>$$v_{a}^T.tanh\left( W_{a}\left\lbrack s_{j};h_{i} \right\rbrack \right)$$</td>
+        <td>$$W_{a}$$</td>
+        <td><a href="https://arxiv.org/pdf/1508.04025.pdf">Luong et al.</a></td>
+    </tr>
+    <tr>
+        <td>Linear (additive)</td>
+        <td>$$v_{a}^{T}.\tanh\left( W_{a}s_{j} + U_{a}h_{i} \right)$$</td>
+        <td>$$W_{a},\ U_{a}$$</td>
+        <td><a href="https://arxiv.org/pdf/1409.0473.pdf">Bahdanau et al.</a></td>
+    </tr>
+    <tr>
+        <td>Bilinear (multiplicative)</td>
+        <td>$$h_{i}^{T}.W_{a}.s_{j}$$</td>
+        <td>$$W_{a}$$</td>
+        <td><a href="https://arxiv.org/pdf/1508.04025.pdf">Luong et al.</a></td>
+    </tr>
+    <tr>
+        <td>Dot (multiplicative)</td>
+        <td>$$h_{i}^{T}.s_{j}$$</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/pdf/1508.04025.pdf">Luong et al.</a></td>
+    </tr>
+    <tr>
+        <td>Scaled dot (multiplicative)</td>
+        <td>$$\frac{1}{\sqrt{n}}\left( h_{i}^{T}.s_{j} \right)$$</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/pdf/1706.03762.pdf">Vaswani et al.</a></td>
+    </tr>
+    <tr>
+        <td>Location-based</td>
+        <td>$$\text{softmax}\left( W_{a}.h_{i}^{T} \right)$$</td>
+        <td>$$W_{a}$$</td>
+        <td><a href="https://arxiv.org/pdf/1508.04025.pdf">Luong et al.</a></td>
+    </tr>
+</table>
+</div>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+  <li>
+    <p>The multiplicative and additive score functions generally give similar results.</p>
+  </li>
+  <li>
+    <p>The multiplicative score functions are faster in both computation and
+space-efficiency since it is using efficient matrix multiplication techniques.</p>
+  </li>
+  <li>
+    <p>The additive score function performs much better when the input dimension is large.</p>
+  </li>
+</ul>
+
+<h2 id="soft-vs-hard-attention">Soft Vs. Hard Attention</h2>
+
+<p>The only difference between them is that hard attention picks one of the
+encoder hidden states $s = \left[ s_{1},\ …\ s_{n} \right]$ rather
+than a weighted average over all the inputs as in the soft attention
+does. The hard attention is given by:</p>
+
+\[c_{i} = \underset{a_{i,j}}{\arg\max}\left\{ s_{1},s_{2},...s_{n} \right\}\]
+
+<p>While the soft attention is given by:</p>
+
+\[a_{i,j} = \text{softmax}\left( \text{score}\left( h_{i},\ s_{j} \right) \right)\]
+
+\[c_{i} = \sum_{j = 0}^{n}{a_{i,\ j}\text{.}s_{j}}\]
+
+<h2 id="global-vs-local-attention">Global Vs. Local Attention</h2>
+
+<p>The global attention, discussed before, is called “global” because each
+decoder hidden state takes $h_{i}$ into consideration “all” of the
+encoder hidden states $s = \left[ s_{1},…s_{n} \right]$ while
+computing the context vector $c_{i}$. This can be both computationally
+expensive and many times impractical when the source length $n$ is
+large.</p>
+
+<p>Luong et al. in their paper: “<a href="https://arxiv.org/pdf/1508.04025.pdf">Effective Approaches to Attention-based
+Neural Machine Translation</a>”
+introduced the local attention which considers a small window of size
+$D$ of the encoder hidden states
+$s = \left[ s_{p_{i} - D},…s_{p_{i} + D} \right]$ when computing the
+context vector $c_{i}$ instead of all the hidden states.</p>
+
+<div align="center">
+    <img src="media/Attention/image3.png" width="750" />
+</div>
+
+<p>Whose steps goes like the following:</p>
+
+<ul>
+  <li>First, the model <u><strong>predicts</strong></u> an aligned position $p_{i}$ for
+each target word in the decoder at time $i$ using the following formula:</li>
+</ul>
+
+\[p_{i} = n.\text{sigmoid}\left( v_{p}^{T}.\tanh\left( W_{p}.h_{i} \right) \right)\]
+
+<p>Where $W_{p}$ and $v_{p}$ are the model parameters to be learned to
+predict the position and $n$ is the length of the source sequence and.
+And $p_{i}$ is a number within $\lbrack 0,n\rbrack$.</p>
+
+<ul>
+  <li>Next, the alignment score is going to be calculated for each position $s$
+in the predefined window as before. However, to favor alignment points near
+$p_{i}$, we place a Gaussian distribution centered around $p_{i}$ and with
+standard deviation $\sigma = \frac{D}{2}$. Now, our alignment weights are<br />
+defined as:</li>
+</ul>
+
+\[a_{i,j} = \text{softmax}\left( \text{score}\left( h_{i},\ s_{j} \right) \right)\exp\left( - \frac{\left( s - p_{i} \right)^{2}}{2\sigma^{2}} \right)\]
+
+<ul>
+  <li>Then, the context vector $c_{i}$ is then derived as a weighted average over
+the set of source hidden states within the window
+$\left\lbrack p_{i} - D,p_{i} + D \right\rbrack$ where $D$ is the window size.</li>
+</ul>
+
+\[c_{i} = \sum_{j = p_{i} - D}^{p_{i} + D}{a_{i,\ j}\text{.}s_{j}}\]
+
+<h2 id="key-value-attention">Key-Value Attention</h2>
+
+<p>Key-value attention is first created by <a href="https://arxiv.org/pdf/1702.04521.pdf">Daniluk et
+al.</a> in 2017 which is another
+variant of attention mechanism which splits the encoder hidden layers
+into key-value pairs where the keys are used for attention distribution
+and the values for context representation.</p>
+
+<div align="center">
+    <img src="media/Attention/image5.png" width="750" />
+</div>
+
+<p>Now, if the attention mechanism is <strong>self-attention</strong>, then we will
+create another vector called the “query vector”. And if the attention
+mechanism is not self-attention, then the query vector will be created
+at the decoder network.</p>
+
+<p>The Key-value attention mechanism can be calculated by following these
+steps:</p>
+
+<ul>
+  <li>Create three vectors from word-embedding vectors. So for each word,
+we create a <strong>Query vector</strong>, a <strong>Key vector</strong>, and a <strong>Value
+vector</strong>. These vectors are created by multiplying the embedding by
+three matrices that can be learned.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Attention/image5.png" width="750" />
+</div>
+
+<p>We can do that using broadcasting which could make things faster like so:</p>
+
+<div align="center">
+    <img src="media/Attention/image6.png" width="350" />
+</div>
+
+<ul>
+  <li>Then, we apply the attention mechanism which can be summarized in
+this equation:</li>
+</ul>
+
+<div align="center">
+    <img src="media/Attention/image7.png" width="350" />
+</div>
+
+<p>So, the calculations will look like so:</p>
+
+<div align="center">
+    <img src="media/Attention/image8.png" width="350" />
+</div>
+
+<h3 id="multi-head-attention">Multi-head Attention</h3>
+
+<p>A multi-headed attention mechanism only means that we need to perform
+the same attention calculation we outlined above just multiple times
+with different weight matrices. By doing that, we end up with multiple
+different Z matrices. So, we need to concatenate them together to get
+one big matrix as shown below:</p>
+
+<ul>
+  <li>concatenate them together to get one big matrix as shown below:</li>
+</ul>
+
+<div align="center">
+    <img src="media/Attention/image9.png" width="750" />
+</div>
+
+<ul>
+  <li>Finally, we need to multiply this big matrix with a weight matrix
+that was trained jointly with the model to get a matrix that
+captures information from all attention heads.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Attention/image10.png" width="750" />
+</div>
+
+<h2 id="hierarchical-attention">Hierarchical Attention</h2>
+
+<p>This type of architecture was proposed by Yang et al. in his paper:
+<a href="https://www.cs.cmu.edu/~./hovy/papers/16HLT-hierarchical-attention-networks.pdf">Hierarchical Attention Networks for Document
+Classification</a>
+published in 2016. So, it’s an attention mechanism on the sentence
+level.</p>
+
+<p>[YOU CAN READ MORE IN THE REFERENCE BOOK STARTING FROM PAGE 418 .]</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Attention';
+      this.page.identifier = '/machine-translation/Attention';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

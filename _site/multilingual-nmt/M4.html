@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Google's M4 Model</title>
+  <meta name="title" content="Google's M4 Model">
+  <meta name="description" content="M4 stands for “Massively Multilingual, Massive Machine Translation”
+which is a multilingual NMT model that is trained on over 25 billion
+parallel sentences in 103 languages. This model was proposed by Google
+AI in 2019 and published in their paper: Massively Multilingual Neural
+Machine Translation in the Wild: Findings and
+Challenges.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Google's M4 Model">
+  <meta itemprop="description" content="M4 stands for “Massively Multilingual, Massive Machine Translation”
+which is a multilingual NMT model that is trained on over 25 billion
+parallel sentences in 103 languages. This model was proposed by Google
+AI in 2019 and published in their paper: Massively Multilingual Neural
+Machine Translation in the Wild: Findings and
+Challenges.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/M4/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Google's M4 Model">
+  <meta property="og:description" content="M4 stands for “Massively Multilingual, Massive Machine Translation”
+which is a multilingual NMT model that is trained on over 25 billion
+parallel sentences in 103 languages. This model was proposed by Google
+AI in 2019 and published in their paper: Massively Multilingual Neural
+Machine Translation in the Wild: Findings and
+Challenges.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/M4/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Google's M4 Model">
+  <meta name="twitter:description" content="M4 stands for “Massively Multilingual, Massive Machine Translation”
+which is a multilingual NMT model that is trained on over 25 billion
+parallel sentences in 103 languages. This model was proposed by Google
+AI in 2019 and published in their paper: Massively Multilingual Neural
+Machine Translation in the Wild: Findings and
+Challenges.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/M4/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/M4">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2019-07-11 00:00" class="post-meta__body date">Published on arXiv on: 11 Jul 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google AI">Google AI</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Google's M4 Model> Google's M4 Model</h1>
+    <p>M4 stands for “Massively Multilingual, Massive Machine Translation”
+which is a multilingual NMT model that is trained on over 25 billion
+parallel sentences in 103 languages. This model was proposed by Google
+AI in 2019 and published in their paper: <a href="https://arxiv.org/pdf/1907.05019.pdf">Massively Multilingual Neural
+Machine Translation in the Wild: Findings and
+Challenges</a>.</p>
+
+<p>M4 is a Transformer-big model with a single encoder and decoder shared
+across all the language pairs. In order to guide the translation with
+the intended target language, a target language token is prepended to
+every source sequence to be translated. M4 demonstrates effective
+transfer learning ability, significantly improving translation quality
+of low-resource languages, while keeping high-resource language
+translation quality on-par with competitive bilingual baselines. Up to
+this point in history, this model is the largest multilingual NMT system
+in terms of the number of languages considered.</p>
+
+<p>The aim of this paper is to highlight key challenges and open problems
+on the way to building a real-world massively multilingual translation
+system. All experiments done in this paper were done using the standard
+transformer architecture implemented in the Google’s open-source
+<a href="https://github.com/tensorflow/lingvo">Lingvo</a> framework.</p>
+
+<h2 id="data">Data</h2>
+
+<p>The data used to train M4 is an in-house corpus generated by crawling
+and extracting parallel sentences from the web. This corpus contains
+parallel documents for 102 languages, to and from English, containing a
+total of 25 billion sentence pairs. The following is the full list of
+all languages used in this dataset:</p>
+
+<div align="center">
+    <img src="media/M4/image1.png" width="1050" />
+</div>
+
+<p>The following figure illustrates the data distribution across language
+pairs for all 204 language pairs. The x-axis indicates the language pair
+index, and the y-axis depicts the number of training examples available
+per language pair on a logarithmic scale. Dataset sizes range from 35k
+for the lowest resource language pairs to 2 billion for the largest.</p>
+
+<div align="center">
+    <img src="media/M4/image2.png" width="450" />
+</div>
+
+<p>This was the data for training. To minimize the data imbalance on the
+validation/test sets, they created validation and test sets as multi-way
+aligned datasets containing more than 3k and 5k sentence pairs
+respectively for all languages.</p>
+
+<h2 id="bilingual-baselines">Bilingual Baselines</h2>
+
+<p>For high-resource language pairs, they used Transformer-Big setup which
+contains around 375M parameters. For most medium and low resource
+languages, they used Transformer-Base setup. Also, they used shared
+source-target sentence-piece model vocabulary with 32k tokens and
+dropout as a regularizer. All models were trained with Adafactor with
+momentum factorization, a learning rate schedule of (3.0, 40k), and a
+per-parameter norm clipping threshold of 1.0. For Transformer Base
+models, they used a learning rate schedule of (2.0, 8k).</p>
+
+<p>The following figure summarizes BLEU score (y-axis) of individual
+bilingual models on all 204 supervised language pairs. Languages
+(x-axis) are arranged in decreasing order of available training data
+from left to right. Each dot represents the BLEU score of one bilingual
+model and a trailing average is used to show the trend.</p>
+
+<div align="center">
+    <img src="media/M4/image3.png" width="750" />
+</div>
+
+<p>For a more clarified results, the following table shows the average BLEU
+score of bilingual models over different groups of languages. High 25
+refers to the top 25 languages by dataset size (left-most portion of the
+previous figure), while low 25 refers to the bottom 25 (right-most
+portion of the previous figure) and mid-52 is the middle 52 languages
+(the ones in the middle of the previous figure):</p>
+
+<div align="center">
+    <img src="media/M4/image4.png" width="450" />
+</div>
+
+<h2 id="transfer-inference-tradeoff">Transfer-Inference Tradeoff</h2>
+
+<p>In this section, we are going to dicuss the effect of data imbalance
+across languages through the lens of transfer and interference. Transfer
+is the ability to use the knowledge learned from high-resource languages
+to improve the performance over low-resource languages. Inference is the
+effect of learning new languages over the old ones. Two desired
+characteristics of any universal machine translation model which are:</p>
+
+<ul>
+  <li>
+    <p>Maximum positive <strong>transfer</strong> to low-resource languages.</p>
+  </li>
+  <li>
+    <p>Minimum <strong>interference</strong> (negative transfer) for high-resource
+languages.</p>
+  </li>
+</ul>
+
+<p>In the paper, they measured the effect of transfer-inference of M4
+against bilingual baselines by training a single Transformer-Big
+with a shared vocabulary of 64k tokens with 0.1 dropout probability
+and the same values as the bilingual baselines used for other
+hyper-parameters. Also, they used a batch-size of 4M tokens and they
+followed two strategies when sampling:</p>
+
+<ol>
+  <li>All the available training data is combined as it is. For a given
+language pair $l$ with $D_{l}$ parallel sentences, the probability
+of the sample being from language $l$ using this strategy is:</li>
+</ol>
+
+\[p_{l} = \frac{D_{l}}{\sum_{k}^{}D_{k}}\]
+
+<ol>
+  <li>Use temperature sampling to up-sample low-resource languages. For a
+given language pair $l$ with $D_{l}$ parallel sentences, the
+probability of the sample being from language $l$ using this
+strategy is:</li>
+</ol>
+
+\[p_{l} = \left( \frac{D_{l}}{\sum_{k}^{}D_{k}} \right)^{\frac{1}{T}}\]
+
+<p>The following figure shows the effect of sampling strategy on the
+performance of multilingual models. On the axis, languages are arranged
+in decreasing order. On the y-axis, BLEU score is reported relative to
+those of the bilingual baselines. Also, two multilingual models were
+trained: one to translate from any language to English (Any→En) and the
+other to translate English to any language (En→Any):</p>
+
+<div align="center">
+    <img src="media/M4/image5.png" width="750" />
+</div>
+
+<p>From this graph, we can find out the following:</p>
+
+<ul>
+  <li>
+    <p>Following temperature sampling (green) maximizes transfer and beats
+bilingual baselines by large margins, especially in the Any→En
+direction (right-most portion). However, this also has significantly
+hurt the performance on high resource languages (left-most portion).</p>
+  </li>
+  <li>
+    <p>On the other hand, sampling based on the true data distribution
+(strategy (i)) retains more performance on high resource languages,
+at the cost of sacrificing performance on low resource languages.</p>
+  </li>
+  <li>
+    <p>Also, the transfer-interference tradeoff is more pronounced in the
+Any→En direction than that for the En→Any direction.</p>
+  </li>
+</ul>
+
+<p>In the paper, they tried different values for the $T$ in the
+temperature sampling and noticed that $T = 5$ improves performance
+on the high resource languages for both translation directions
+compared to $T\  = \ 100$, while also retaining high transfer
+performance on low resource languages. However, performance on high
+and medium resource languages still lags behind their bilingual
+baselines by significant margins:</p>
+
+<div align="center">
+    <img src="media/M4/image6.png" width="750" />
+</div>
+
+<p>To highlight the exact effect of interference with increasing
+multilinguality, they trained three additional multilingual models
+on a growing subset of 10, 25, and 50 languages. The specific
+languages were chosen to get a mixed representation of data size,
+script, morphological complexity and inter-language relatedness.</p>
+
+<p>The following figure shows the effect of different languages on the
+translation performance of multilingual models with a temperature
+sampling of $T = 5$. Language were sorted in decreasing order of
+available training data from left to right. Each point represents a
+certain language group of 10 languages; for example each blue point
+represents a certain group of 10 languages.</p>
+
+<div align="center">
+    <img src="media/M4/image7.png" width="750" />
+</div>
+
+<p>The figure clearly highlights how performance degrades for all
+language pairs, especially the high and medium resource ones, as the
+number of tasks (languages) grows.</p>
+
+<h2 id="multilinguality">Multilinguality</h2>
+
+<p>As we have seen in the past experiments, multilinguality has a positive
+impact on low-resource languages. To understand how multilinguality
+affects languages when translating to or from English, they inspected
+three different settings:</p>
+
+<ul>
+  <li>
+    <p>En→Any model: Translating from English.</p>
+  </li>
+  <li>
+    <p>Any→English model: Translating to English.</p>
+  </li>
+  <li>
+    <p>All→All model: Translating from any language to any language.</p>
+  </li>
+</ul>
+
+<p>They noticed that the Any→En model achieves huge improvements over
+bilingual baselines for all low-resource languages (rightmost
+portion of the right figure). On the other hand, the En→Any model
+has lesser deterioration in the performance on high resource
+languages (leftmost portion of the left figure), while the
+performance on low resource languages does not improve by much
+(rightmost portion of the left figure).</p>
+
+<div align="center">
+    <img src="media/M4/image8.png" width="750" />
+</div>
+
+<p>This difference in performance between the transfer for Any→En and
+En→Any can be explained as the Any→En model can be considered as a
+<u>multi-domain model</u> where each source language constitutes a
+separate domain. And the En→Any model can be considered as a
+<u>multi-task model</u> with each target language representing a
+separate task. <u><strong>This suggests that multilingual models might be
+more amenable to transfer across input domains than transfer across
+tasks.</strong></u></p>
+
+<p>Another strong indicator of transfer in multilingual models is the
+quality on zero-shot translations. The following table shows the the
+zero-shot performance on selected language pairs. As we can see,
+zero-shot performance for most language pairs increases as we move
+from the 10 language model to the 102 language model:</p>
+
+<div align="center">
+    <img src="media/M4/image9.png" width="750" />
+</div>
+
+<h2 id="vocabulary">Vocabulary</h2>
+
+<p>In the paper, they constructed shared vocabulary among all languages
+using Sentence Piece Model (SPM) to handle out-of-vocabulary tokens and
+remove complexity that may arise from language specific pre-processing.
+The following table compares the quality of two models trained using
+vocabularies of size 32k and 64k:</p>
+
+<div align="center">
+    <img src="media/M4/image10.png" width="450" />
+</div>
+
+<p>From the table, we can see that the model with the smaller 32k token
+vocab does noticeably worse on high resource languages when translating
+in both directions, and on Any→En translation in all resource settings.
+On the other hand, the smaller vocab model performs marginally better
+when translating into low resource languages on En→Any . For other
+medium resource languages, increased vocabulary size appears to be
+better on all directions.</p>
+
+<h2 id="architecture-capacity">Architecture Capacity</h2>
+
+<p>The quality of any neural network is largely dependent on its
+architecture and its capacity. The following figure shows the effect of
+increasing capacity on the performance of multilingual models. The plots
+correspond to three different models with temperature sampling of
+$T = 5$, shared vocabulary of 64k tokens and 4M batch size:</p>
+
+<ul>
+  <li>
+    <p><strong>Blue:</strong> Transformer-Big setup which means 6 layers (400M param),
+feed-forward hidden dimensions set to 4096, 16 attention heads and
+an attention hidden dimension set to 1024.</p>
+  </li>
+  <li>
+    <p><strong>Green:</strong> 12 layer <u>wide</u> model (1.3B param), feed-forward
+hidden dimensions set to 16384, 32 attention heads and an attention
+hidden dimension set to 2048.</p>
+  </li>
+  <li>
+    <p><strong>Red:</strong> 24 layer <u>deep</u> model (1.3B param), feed-forward
+hidden dimensions set to 4096, 16 attention heads and an attention
+hidden dimension set to 1024.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/M4/image11.png" width="750" />
+</div>
+
+<p>From the past figure we can find out the following:</p>
+
+<ul>
+  <li>
+    <p>Bigger models improves performance by significant amounts on the
+high resource languages, when compared to the Transformer-big
+baseline (blue curve).</p>
+  </li>
+  <li>
+    <p>The deep model (red curve) beats both, the baseline (blue) and the
+equivalent capacity wide model, by significant margins on most of
+the language pairs.</p>
+  </li>
+  <li>
+    <p>Unlike the wide model (green curve), the deep model (red curve) does
+not overfit in low resource languages and, in fact, significantly
+enhances transfer to low resource languages on the Any→En
+translation tasks.</p>
+  </li>
+  <li>
+    <p>The wide model (green curve) while significantly improving
+performance on the high resource languages, fails to show similar
+gains in the low resource setting.</p>
+  </li>
+  <li>
+    <p>While the deep model (red curve) shows great performance
+improvements, it comes bundled with high decoding latency, a
+significantly larger computational footprint, and trainability
+concerns including vanishing/exploding gradients, early divergence,
+ill-conditioned initial conditions etc.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/M4';
+      this.page.identifier = '/multilingual-nmt/M4';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

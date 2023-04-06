@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Adapter Fusion</title>
+  <meta name="title" content="Adapter Fusion">
+  <meta name="description" content="AdapterFusion is a new variant of the Adapter layers
+ where it extends
+the functionality of adapters to be multi-tasking instead of being per a
+single task. AdapterFusion is proposed by researchers in UKP Lab,
+Technical University of Darmstadt and New York University and
+published in their paper: AdapterFusion: Non-Destructive Task
+Composition for Transfer Learning
+in May 2020.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Adapter Fusion">
+  <meta itemprop="description" content="AdapterFusion is a new variant of the Adapter layers
+ where it extends
+the functionality of adapters to be multi-tasking instead of being per a
+single task. AdapterFusion is proposed by researchers in UKP Lab,
+Technical University of Darmstadt and New York University and
+published in their paper: AdapterFusion: Non-Destructive Task
+Composition for Transfer Learning
+in May 2020.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/adapter_fusion/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Adapter Fusion">
+  <meta property="og:description" content="AdapterFusion is a new variant of the Adapter layers
+ where it extends
+the functionality of adapters to be multi-tasking instead of being per a
+single task. AdapterFusion is proposed by researchers in UKP Lab,
+Technical University of Darmstadt and New York University and
+published in their paper: AdapterFusion: Non-Destructive Task
+Composition for Transfer Learning
+in May 2020.
+
+">
+  <meta property="og:image" content="/language-modeling/media/adapter_fusion/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Adapter Fusion">
+  <meta name="twitter:description" content="AdapterFusion is a new variant of the Adapter layers
+ where it extends
+the functionality of adapters to be multi-tasking instead of being per a
+single task. AdapterFusion is proposed by researchers in UKP Lab,
+Technical University of Darmstadt and New York University and
+published in their paper: AdapterFusion: Non-Destructive Task
+Composition for Transfer Learning
+in May 2020.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/adapter_fusion/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/adapter_fusion">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2020-05-01 00:00" class="post-meta__body date">Published on arXiv on: 1 May 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#University of Darmstadt">University of Darmstadt</a> & <a href="/labs/#New York University">New York University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Adapter Fusion> Adapter Fusion</h1>
+    <p>AdapterFusion is a new variant of the <a href="https://anwarvic.github.io/language-modeling/adapter">Adapter layers
+</a> where it extends
+the functionality of adapters to be multi-tasking instead of being per a
+single task. AdapterFusion is proposed by researchers in UKP Lab,
+Technical University of Darmstadt and New York University and
+published in their paper: <a href="https://arxiv.org/pdf/2005.00247.pdf">AdapterFusion: Non-Destructive Task
+Composition for Transfer Learning</a>
+in May 2020.</p>
+
+<p>AdapterFusion is a novel two stage learning algorithm that shares knowledge
+across multiple tasks while avoiding catastrophic forgetting. The AdapterFusion
+architecture, illustrated in the following figure, has two components:</p>
+
+<ul>
+  <li>
+    <p><strong>Adapter:</strong> trained on a task</p>
+  </li>
+  <li>
+    <p><strong>AdapterFusion layer:</strong> combines the representations from several
+adapters in order to improve the performance on the target task.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/adapter_fusion/image1.png" width="450" />
+</div>
+
+<h2 id="task-definition">Task Definition</h2>
+
+<p>Given a single-task model that is pre-trained on a task with training
+data $D_{0}$ and a loss function $L_{0}$, the weights $\Theta_{0}$ of
+this model are learned as follows:</p>
+
+\[\Theta_{0} = \underset{\Theta}{\arg\min}{L_{0}\left( D_{0};\Theta \right)}\]
+
+<p>Given a multi-task model that is pre-trained on a set of $N$ tasks
+having labeled data of varying sizes and different loss functions
+$C = \left\{ \left( D_{1},L_{1} \right),\ …\left( D_{N},L_{N} \right) \right\}$,
+the aim of the model is to leverage the set of $N$ tasks and learn a
+shared representation $\Theta_{0 \rightarrow \left\{ 1,\ …N \right\}}$
+that will enable the model to generalize better on each task; this is
+usually obtained by starting with an initial parameters $\Theta_{0}$ and
+fine-tune on tasks $\left\{ 1,\ …N \right\}$:</p>
+
+\[\Theta_{0 \rightarrow \left\{ 1,\ ...N \right\}} = \underset{\Theta}{\arg\min}\left( \sum_{n = 1}^{N}{L_{n}\left( D_{n};\Theta_{0} \right)} \right)\]
+
+<p>In AdapterFusion, the aim is to be able to leverage a set of $N$ tasks
+to improve on a target task $m$ with
+$C_{m} = \left( D_{m},L_{m} \right)$ where
+$m \in \left\{ 1,\ …N \right\}$. This is done in two stags:</p>
+
+<ul>
+  <li><u><strong>Knowledge Extraction:</strong></u><br />
+We train different adapters for each of the <em>N</em> tasks obtaining:</li>
+</ul>
+
+\[\left\{ \Phi_{1},\ ...,\ \Phi_{N} \right\}\]
+
+<ul>
+  <li><u><strong>Knowledge Composition:</strong></u><br />
+We combine the set of $N$ adapters using AdapterFusion Layer while
+fixing both the model parameters $\Theta$ as well as all adapters
+$\Phi$ obtaining parameters $\Psi$ that learn to combine the $N$
+task adapters to solve the target task
+$C_{m} = \left( D_{m},L_{m} \right)$:</li>
+</ul>
+
+\[\Psi_{m} = \underset{\Psi}{\arg\min}{L_{m}\left( D_{m};\Theta,\ \Phi_{1},\ ...\Phi_{N},\ \Psi \right)}\]
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The training dataset of the target task $m$ is used twice: once for
+training the adapters $\Phi_{m}$ and again for training Fusion
+parameters $\Psi_{m}$ which learns to compose the information stored in
+the $N$ task adapters.</p>
+</blockquote>
+
+<h2 id="adapterfusion-layer">AdapterFusion Layer</h2>
+
+<p>As discussed earlier, AdapterFusion learns to compose the $N$ task adapters
+$\left\{ \Phi_{1},\ …,\ \Phi_{N} \right\}$ and the shared pre-trained
+model $\Theta$, by introducing a new set of weights $\Psi$. As
+illustrated in the following figure, they defined the AdapterFusion
+parameters $\Psi$ to consist of Key, Value and Query matrices at each
+layer $l$, denoted by $K_{l}$ , $V_{l}$ and $Q_{l}$ respectively.</p>
+
+<div align="center">
+    <img src="media/adapter_fusion/image2.png" width="450" />
+</div>
+
+<p>At each layer $l$ of the transformer and each time-step $t$, the output
+of the feed-forward sub-layer of layer $l$ is taken as the query vector.
+The output of each adapter $z_{l,t}$ is used as input to both the value
+and key transformations. Similar to the attention mechanism, we learn a
+contextual activation of each adapter $n$ using the following formula
+where $n \in \left\{ 1,\ …N \right\}$ , $\bigotimes$ represents dot
+product, $\left\lbrack .,. \right\rbrack$ indicates the concatenation of
+vectors, and $z^{T}$ is the transpose of $z$:</p>
+
+\[s_{l,t} = \text{softmax}\left( h_{l,t}^{T}Q_{l}\ \bigotimes\ z_{l,t,n}^{T}K_{l} \right)\]
+
+\[{z'}_{l,t,n} = z_{l,t,n}^{T}V_{l}\]
+
+\[{Z'}_{l,t} = \left\lbrack {z'}_{l,t,0},\ ...{z'}_{l,t,N} \right\rbrack\]
+
+\[o_{l,t} = s_{l,t}^{T}{Z'}_{l,t}\]
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/adapter_fusion';
+      this.page.identifier = '/language-modeling/adapter_fusion';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>GloVe</title>
+  <meta name="title" content="GloVe">
+  <meta name="description" content="GloVe (Global Vectors for Word Representation) is a model released in
+2014 by Stanford NLP Group researchers Jeffrey Pennington, Richard
+Socher, and Chris Manning for learning word embedding and
+published in the paper: GloVe: Global Vectors for Word
+Representation. The GloVe
+authors present some results which suggest that their model is
+competitive with Google’s popular word2vec package.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="GloVe">
+  <meta itemprop="description" content="GloVe (Global Vectors for Word Representation) is a model released in
+2014 by Stanford NLP Group researchers Jeffrey Pennington, Richard
+Socher, and Chris Manning for learning word embedding and
+published in the paper: GloVe: Global Vectors for Word
+Representation. The GloVe
+authors present some results which suggest that their model is
+competitive with Google’s popular word2vec package.
+
+">
+  <meta itemprop="image" content="/word-embedding/media/GloVe/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="GloVe">
+  <meta property="og:description" content="GloVe (Global Vectors for Word Representation) is a model released in
+2014 by Stanford NLP Group researchers Jeffrey Pennington, Richard
+Socher, and Chris Manning for learning word embedding and
+published in the paper: GloVe: Global Vectors for Word
+Representation. The GloVe
+authors present some results which suggest that their model is
+competitive with Google’s popular word2vec package.
+
+">
+  <meta property="og:image" content="/word-embedding/media/GloVe/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GloVe">
+  <meta name="twitter:description" content="GloVe (Global Vectors for Word Representation) is a model released in
+2014 by Stanford NLP Group researchers Jeffrey Pennington, Richard
+Socher, and Chris Manning for learning word embedding and
+published in the paper: GloVe: Global Vectors for Word
+Representation. The GloVe
+authors present some results which suggest that their model is
+competitive with Google’s popular word2vec package.
+
+">
+  
+  <meta name="twitter:image" content="/word-embedding/media/GloVe/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/word-embedding/GloVe">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          6 mins read
+        </span>
+      </p>
+      <time datetime="2014-10-25 00:00" class="post-meta__body date">Published on arXiv on: 25 Oct 2014</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Stanford">Stanford</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=GloVe> GloVe</h1>
+    <p>GloVe (Global Vectors for Word Representation) is a model released in
+2014 by Stanford NLP Group researchers <strong>Jeffrey Pennington</strong>, <strong>Richard
+Socher</strong>, and <strong>Chris Manning</strong> for learning word embedding and
+published in the paper: <a href="https://aclanthology.org/D14-1162.pdf">GloVe: Global Vectors for Word
+Representation</a>. The GloVe
+authors present some results which suggest that their model is
+competitive with Google’s popular word2vec package.</p>
+
+<p>The key idea behind GloVe model is to combine two concepts into one
+model; It learns word vectors by using the same idea of <u>Word2Vec
+model</u> beside examining [word <u>co-occurrences</u> within a text
+corpus.</p>
+
+<h2 id="co-occurrence-matrix">Co-occurrence Matrix</h2>
+
+<p>Before we train the actual model, we need to construct a co-occurrence
+matrix $X$, where a cell $X_{\text{ij}}$ represents how often the word
+$i$ appears in the context of the word $j$ using a certain window size.
+We run through our corpus just once to build the <strong>window-based
+co-occurrence</strong> matrix $X$ whose dimension is
+$\left| V \right| \times \left| V \right|$. We will construct our model
+based only on the values collected in $X$. So, assuming that our corpus
+has only three sentences which are “I like deep learning.”, “I like
+NLP.”, and “I enjoy flying.” and assuming also that we have a <u>window of
+just one word</u>; then our co-occurrence matrix would be:</p>
+
+<div align="center">
+    <img src="media/GloVe/image1.png" width="750" />
+</div>
+
+<p>There are a lot of things we should notice looking at this matrix:</p>
+
+<ul>
+  <li>
+    <p>The co-occurrence matrix is symmetric, which means that the
+co-occurrence count of “I” and “like” is the same as the
+co-occurrence count of “like” and “I”.</p>
+  </li>
+  <li>
+    <p>The shape of the matrix is $V \times V$ where $V$ is the size of the
+vocabulary which is $8$ in our case here. So, imagine using a
+million-word vocabulary.</p>
+  </li>
+  <li>
+    <p>There are a lot of zeros in this matrix. So, most of the used
+storage will be just zeros.</p>
+  </li>
+</ul>
+
+<p>To be able to use this matrix in our GloVe model, there are some hacks
+that we need to do to this matrix:</p>
+
+<ul>
+  <li>
+    <p>Words like “the”, “he”, “she”, “and” …etc. are too frequent, so we
+can <u>limit their count</u> to a certain number, say $100$, or just
+<u>ignore them all</u>.</p>
+  </li>
+  <li>
+    <p>Use Pearson correlations instead of counts, then set negative values
+to $0$.</p>
+  </li>
+  <li>
+    <p>Ramped windows that count closer words more.</p>
+  </li>
+</ul>
+
+<h2 id="model">Model</h2>
+
+<p>As I said before, GloVe models combine <strong>Word2Vec</strong> model with the
+<strong>co-occurrence matrix</strong>. So, we can imagine that the GloVe model is a
+modification of the Word2Vec model where we use the word-by-word
+co-occurrence matrix with word-vectors that we want to train just like
+that:</p>
+
+\[w_{i}^{T}.w_{j} + b_{i} + b_{j} = log\left( X_{\text{ij}} \right)\]
+
+<p>Where</p>
+
+<ul>
+  <li>
+    <p>$i$ and $j$ are the word-pairs.</p>
+  </li>
+  <li>
+    <p>$X_{\text{ij}}$ refers to the co-occurrence count of word $i$ with word $j$.</p>
+  </li>
+  <li>
+    <p>$w_{i}$ and $w_{j}$ are the two word-vectors that we are trying to learn.</p>
+  </li>
+  <li>
+    <p>$b_{i}$ and $b_{j}$ are the biases that we are trying to learn as well.</p>
+  </li>
+</ul>
+
+<p>This formula works well, but we can weigh words differently to derive
+more flexibility and robustness like so:</p>
+
+\[\sum_{i,j = 1}^{\left| V \right|}{f\left( X_{\text{ij}} \right)\left( w_{i}^{T}.w_{j} + b_{i} + b_{j} - log\left( X_{\text{ij}} \right) \right)^{2}}\]
+
+<p>Such as that:</p>
+
+<ul>
+  <li>
+    <p><span>$\left| V \right|$</span> is the number of word-pairs in the vocabulary.</p>
+  </li>
+  <li>
+    <p>$f\left( X_{\text{ij}} \right)$ represents a simple function that
+restrict the values of the co-occurrence count. We can use the
+following function:</p>
+  </li>
+</ul>
+
+\[f\left( X_{\text{ij}} \right) = \left\{ \begin{matrix}
+\left( \frac{X_{\text{ij}}}{x_{\max}} \right)^{\alpha}\text{if}\ \ X_{\text{ij}} &lt; x_{\max} \\
+1\ \ \ \ \ \ \ \ \ \text{otherwise} \\
+\end{matrix} \right.\]
+
+<p>Where $x_{\max}$ is called “the cutoff” usually equals to $100$. When we
+encounter extremely common word pairs (where
+$X_{\text{ij}} &gt; x_{\max}$), this function will simply return $1$. For
+all other word pairs, it will return some weight in the range
+$\left( 0,1 \right)$, where the distribution of weights in this range is
+decided by $\alpha$ which is usually equals to $0.75$.</p>
+
+<p>OR we could use a simpler function like the
+$\max\left( X_{\text{ij}},c \right)$ where $c$ is a constant number
+(usually $100$).</p>
+
+<div align="center">
+    <img src="media/GloVe/image2.png" width="350" />
+</div>
+
+<h2 id="evaluation">Evaluation</h2>
+
+<p>Before talking about how to evaluate our model, let’s first take about
+the hyper-parameters that can be tuned to get better and better results.
+The following graph is from the published GloVe paper:</p>
+
+<ul>
+  <li>
+    <p>First, Same hyper-parameters as Word2Vec models which are:</p>
+
+    <ul>
+      <li>
+        <p>Initialization method.</p>
+      </li>
+      <li>
+        <p>Learning rate $\alpha$.</p>
+      </li>
+      <li>
+        <p>Word vector dimension $d$. Best value for $d$ is about $300$ and
+it slightly drops-off afterwards. But, it might be different
+for downstream tasks.</p>
+      </li>
+      <li>
+        <p>Window size $m$. As we can see in the following graph, the best
+value is around $8$.</p>
+      </li>
+      <li>
+        <p>Using <u>symmetric</u> or <u>Asymmetric</u> windows. Symmetric
+is using the window size for both directions (left and right).
+Asymmetric is using the window size for just one direction.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GloVe/image3.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p>Using either <u>co-occurrence count</u> or the <u>Pearson
+correlations</u> instead of counts and set negative values to
+$0$.</p>
+  </li>
+  <li>
+    <p>Training Time (no. of iterations): Usually the more … the better</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GloVe/image4.png" width="450" />
+</div>
+
+<p>Now, how to evaluate our model? Let’s first talk about how to evaluate
+NLP tasks in general. Actually, there are two methods (Intrinsic and
+Extrinsic). Intrinsic methods try to find a mathematical formula or a
+sub-task to evaluate our model. While Extrinsic methods try to get our
+model into a real-life task. Both have some pros and cons:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th style="text-align:center"><strong>Intrinsic</strong></th>
+            <th style="text-align:center"><strong>Extrinsic</strong></th>
+        </tr>
+    </thead>
+    <tr>
+        <td><strong>Pros</strong></td>
+        <td>
+            <ul>
+                <li>Fast to compute.</li>
+                <li>Very useful when trying to get intuition about the model.</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>Very sufficient in case of good results.</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Cons</strong></td>
+        <td>
+            <ul>
+                <li>Not enough to decide if the model is helpful or not.</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>Takes a long time to compute.</li>
+                <li>In the case of bad results, it is unclear if the subsystem is the problem or the intrinsic task wasn't properly performed.</li>
+            </ul>   
+        </td>
+    </tr>
+</table>
+</div>
+
+<p>So, let’s explain this in more details… Assume that we have a
+word-vectors for a $1,000,000$ word vocabulary and we want to evaluate
+if these word-vectors are worth publishing or not?? When thinking about
+intrinsic evaluation, we might think to get just a $10,000$ words and
+test on a word analogy task]. This is fast to compute, and we can
+tune some of the parameters to get better and better results. But,
+$10,000$ isn’t enough, we need to get the whole matrix into
+consideration. So, we decided to use the whole $1,000,000$ words into
+the same task (word analogy). Putting in mind that such a task might
+take hours and hours to train and evaluate. And the results might get
+worse as the hyper-parameters that we have tuned are for the $10,000$
+task not the whole corpus.</p>
+
+<p>So, the solution is to to balance between these two methods. At first,
+we have to start with the intrinsic method and change only one
+parameter. And don’t confirm this change unless it’s evaluated by the
+Extrinsic method.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+We can use a pre-trained GloVe word embedding freely from the Stanford
+GloVe official website. We can know a lot about these pre-trained models
+from the name, for example the pre-trained model “glove.6B.50d”, it’s
+called 6B because it’s formed using 6 billion words in context, and 50d
+because the extracted features (dimension) are 50.</p>
+</blockquote>
+
+<h2 id="re-training-word-vectors">Re-training Word Vectors</h2>
+
+<p>We can always use pre-trained word vectors whether it’s Word2Vec
+embeddings or GloVe embeddings, but what about use these pre-trained
+word vectors as the initial weights of our model?? Is it a good idea??</p>
+
+<p>Actually, that’s a great question and the answer is not that simple. But
+luckily there is a rule-of-thumb that we can use… if the training
+dataset is quite small, then it’s so much better if we don’t train our
+model using these pre-trained vectors. And if the training dataset is
+very large, it may work better to train the model using the pre-trained
+vectors. And that’s because if the dataset is quite small, some of the
+word vectors will get better values but not all of them, so the model
+loses generalization.</p>
+
+<p>Let’s see how… assume that we have a small data corpus where the word
+“TV” and “telly” are mentioned and the word “television” is not; then
+when training the model using these small dataset, the model changes the
+“TV” and “telly” word vectors according to their context. But what about
+the word “television"?? It won’t change, which makes its vector less
+similar to the vectors of “TV” and “telly” putting in mind that these
+three words are the same. So, their pre-trained vectors are pretty
+similar. That’s why when training a model with small dataset some of the
+words are left out, and similar word-vectors becomes less similar.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/word-embedding/GloVe';
+      this.page.identifier = '/word-embedding/GloVe';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

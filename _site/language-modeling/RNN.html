@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>RNN: Recurrent Neural Networks</title>
+  <meta name="title" content="RNN: Recurrent Neural Networks">
+  <meta name="description" content="The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="RNN: Recurrent Neural Networks">
+  <meta itemprop="description" content="The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/RNN/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="RNN: Recurrent Neural Networks">
+  <meta property="og:description" content="The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.
+
+">
+  <meta property="og:image" content="/language-modeling/media/RNN/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RNN: Recurrent Neural Networks">
+  <meta name="twitter:description" content="The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/RNN/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/RNN">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          13 mins read
+        </span>
+      </p>
+      <time datetime="1985-09-19 00:00" class="post-meta__body date">Published on arXiv on: 19 Sep 1985</time>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=RNN: Recurrent Neural Networks> RNN: Recurrent Neural Networks</h1>
+    <p>The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.</p>
+
+<p>Here, we are going to talk about RNN or Recurrent Neural Network.
+Recurrent Neural Networks (RNN) are very effective for Natural Language
+Processing and other sequence tasks because they can read inputs (such
+as words) one at a time, and remember some information/context through
+the hidden layer activations that get passed from one time-step to the
+next. This allows a uni-directional RNN to take information from the
+past to process later inputs. A bi-direction RNN can take context from
+both the past and the future.</p>
+
+<p>But why we are going to use Recurrent Neural Network (RNN) and not the
+vanilla feed-forward type of neural networks?</p>
+
+<ul>
+  <li>
+    <p>First, the vanilla neural network has fixed input and output. But in
+applications like the ones above, it is required to have a flexible
+neural network architecture with different inputs and outputs. For
+example, a sentiment analysis application should have a flexible
+neural network that can deal with different sentence lengths.</p>
+  </li>
+  <li>
+    <p>The standard neural network losses an important criterion which is
+sharing information between different layers. Unlike the RNN that
+can connect to any neuron in any layer. This criterion is called
+“Cyclical Connections”.</p>
+  </li>
+</ul>
+
+<h2 id="history-background">History Background</h2>
+
+<p>Here, we are going to talk about how the RNN has evolved in the past few
+decades. The first wave of artificial neural networks started in the
+mid-1980s. After that wave, it became clear that feed-forward networks
+became are limited since they are unable to capture temporal
+dependencies, which are dependencies that change over time. Biological
+neural networks have recurring connections, so appling recurrence to
+artificial intelligence made natural sense.</p>
+
+<p>The first time to add memory to neural networks were the TDNN or “Time
+Delay Neural Network” in 1989. Then after one year in 1990, Jeffrey
+Locke Elman created Elman’s Network or (Simple RNN). Then, Michael Irwin
+Jordan produces a network that is similar to Elman’s Network and called
+it “Jordan’s Network” … original!!</p>
+
+<p>All these networks suffer from something called “Vanishing Gradients”
+which means that they can’t capture information with span more than 8 or
+10 steps back. In the mid-1990s, Long Short-Term Memory, or LSTM for
+short, were invented to address this very problem. The key idea in LSTM
+was the idea that some signals can be kept fixed by using gates, and
+reintroduced or not. After than GRU or Gated Recurrent Unit was invented
+to optimize LSTM in 2014 by Kyunghyun Cho.</p>
+
+<h2 id="types-of-rnn">Types of RNN</h2>
+
+<p>There are different types of RNN:</p>
+
+<ul>
+  <li><strong>One-to-many RNN:</strong> This neural network is used when we have just
+<u>one</u> input and <u>multiple</u> outputs like Music Generation
+Application which has just one input like the genre of the music,
+and the output is a sequence of music notes.</li>
+</ul>
+
+<div align="center">
+    <img src="media/RNN/image1.png" width="150" />
+</div>
+
+<ul>
+  <li><strong>Many-to-one RNN:</strong> This neural network is used when we have
+<u>many</u> inputs and just <u>one</u> output like the sentiment
+analysis applications which have a sequence of sentences, and the
+output is a rate of one to five stars.</li>
+</ul>
+
+<div align="center">
+    <img src="media/RNN/image2.png" width="150" />
+</div>
+
+<ul>
+  <li>
+    <p><strong>Many-to-many RNN:</strong> This neural network is used when we have
+<u>many</u> inputs and <u>many</u> outputs. And we have two types in
+these neural network:</p>
+
+    <ul>
+      <li>
+        <p>When the input size is <u>the same as</u> the output size like
+in Word Embedding problem.</p>
+      </li>
+      <li>
+        <p>When the input size is <u>different</u> than the output size
+like in Machine Translation Applications which takes a sentence
+of a certain length and returns another sentence in another
+language which probably has different length.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/RNN/image3.png" width="450" />
+</div>
+
+<blockquote>
+  <p><strong>Notes:</strong></p>
+
+  <ul>
+    <li>At one-to-many RNNs, we take the output and insert it back as input.
+  This operation is called “Sampling”.</li>
+  </ul>
+
+  <div align="center">
+    <img src="media/RNN/image4.png" width="750" />
+</div>
+
+  <ul>
+    <li>At machine translation RNN models, we divide the RNN into two parts,
+  the first is the “encoder” part which takes the original sentence.
+  The second part is the “decoder” part which returns the translated
+  sentence. This architecture is called the “Autoencoding
+  architecture”.</li>
+  </ul>
+</blockquote>
+
+<h2 id="rnn-cells">RNN Cells</h2>
+
+<div align="center">
+    <img src="media/RNN/image5.png" width="750" />
+</div>
+
+<p>As you can see, a recurrent neural network can be seen as the repetition
+of a single cell (RNN cell). The following figure describes the
+operations for a single time-step of an RNN cell. The basic RNN cell
+takes as input $x^{\left\langle t \right\rangle}$ (current input) and
+$a^{\left\langle t - 1 \right\rangle}$ (previous hidden state containing
+information from the past), and outputs
+$a^{\left\langle t \right\rangle}$ which is given to the next RNN cell
+and used to predict $y^{\left\langle t \right\rangle}$.</p>
+
+<div align="center">
+    <img src="media/RNN/image6.png" width="750" />
+</div>
+
+<p>The RNN forward propagation consists of several operations:</p>
+
+<ul>
+  <li>
+    <p>Initialize $a$ vector that will store all the hidden states computed
+by the RNN. Also, initialize the "next" hidden state as $a_{0}$
+(initial hidden state).</p>
+  </li>
+  <li>
+    <p>Start looping over each time step, your incremental index is $t$:</p>
+
+    <ul>
+      <li>
+        <p>Calculate the cell operations.</p>
+      </li>
+      <li>
+        <p>Store the "next" hidden state in $a$ ($t^{th}$ position).</p>
+      </li>
+      <li>
+        <p>Store the prediction in $y$.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pros--cons">Pros &amp; Cons</h3>
+
+<p>RNNs have several advantages:</p>
+
+<ul>
+  <li>
+    <p>They can process input sequences of any length.</p>
+  </li>
+  <li>
+    <p>They have some kind of memory as computation for step $t$ can (in
+theory) use information from many steps back.</p>
+  </li>
+  <li>
+    <p>The same weights are used for all different inputs which means that
+the number of learn-able parameters are reduced and that number
+doesn’t scale with the size of the data unlike the traditional
+language models.</p>
+  </li>
+</ul>
+
+<p>But they also have some disadvantages:</p>
+
+<ul>
+  <li>Computation is slow - because it is sequential, it cannot be parallelized.</li>
+</ul>
+
+<p>In practice, it is difficult to access information from many steps back
+due to problems like vanishing and exploding gradients.</p>
+
+<h2 id="lstm-cell">LSTM Cell</h2>
+
+<p>As we have mentioned before that a standard recurrent neural network
+will work well for short sentences, but it suffers from <strong>vanishing
+gradient problem</strong>. So, it works best when each output
+$y^{\left\langle t \right\rangle}$ can be estimated using mainly “local”
+context (meaning information from inputs
+$x^{\left\langle t^{‘} \right\rangle}$ where $t’$ is not too far from
+$t$).</p>
+
+<p>LSTM stands for Long Short-Term Memory network. It was proposed in 1997
+by Sepp Hochreiter and Jürgen Schmidhuber. Here, you will build RNN
+using LSTM cells which is a more complex than standard RNN model. It is
+better at addressing vanishing gradients as it is better remembering a
+piece of information and keep it saved for many time-steps. The
+following figure shows the operations of an LSTM-cell.</p>
+
+<div align="center">
+    <img src="media/RNN/image7.png" width="750" />
+</div>
+
+<p>As you can see, the LSTM has a lot of modifications over RNN cell. In
+RNN cell, we had just two inputs ($x^{\left\langle t \right\rangle}$,
+$a^{\left\langle t - 1 \right\rangle}$) and there were no gates. In
+LSTM, there are three inputs ( input $x^{\left\langle t \right\rangle}$,
+cell state $c^{\left\langle t - 1 \right\rangle}$, and activation
+$a^{\left\langle t - 1 \right\rangle}$). The cell state here represents
+the long short-term memory of this architecture.</p>
+
+<p>All these equations can be summarized into the following ones knowing
+that
+$\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack$
+means that the activating parameter of the previous time-step
+$a^{\left\langle t - 1 \right\rangle}$ is concatenated with the input
+vector $x^{\left\langle t \right\rangle}$:</p>
+
+\[c^{\left\langle t \right\rangle} = \Gamma_{f}^{\left\langle t \right\rangle} \ast c^{\left\langle t - 1 \right\rangle} + \Gamma_{u}^{\left\langle t \right\rangle} \ast tanh\left( W_{c}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{c} \right)\]
+
+\[a^{\left\langle t \right\rangle} = \Gamma_{o}^{\left\langle t \right\rangle} \ast tanh\left( Wc^{\left\langle t \right\rangle} \right)\]
+
+<p>where</p>
+
+<p>$\Gamma_{f}^{\left\langle t \right\rangle} = \sigma\left( W_{f}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{f} \right)$
+(Forget Gate)</p>
+
+<p>$\Gamma_{u}^{\left\langle t \right\rangle} = \sigma\left( W_{u}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{u} \right)$
+(Update Gate)</p>
+
+<p>$\Gamma_{o}^{\left\langle t \right\rangle} = \sigma\left( W_{o}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{o} \right)$
+(Output Gate)</p>
+
+<p>Now, let’s get into these three gates in more details:</p>
+
+<ul>
+  <li>
+    <p><strong>Forget Gate:</strong></p>
+
+    <ul>
+      <li>This gate <u><strong>controls how much of the information of the
+previous cell state
+$c^{\left\langle t - 1 \right\rangle}$ should be forgot or
+kept while calculating the current cell state
+$c^{\left\langle t \right\rangle}$.</strong></u></li>
+    </ul>
+  </li>
+</ul>
+
+\[\Gamma_{f}^{\left\langle t \right\rangle} = \sigma\left( W_{f}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{f} \right)\]
+
+<ul>
+  <li>
+    <p>$W_{f}$ are weights that govern the gate’s behavior and they are
+trainable.</p>
+  </li>
+  <li>
+    <p>The output vector $\Gamma_{f}^{\left\langle t \right\rangle}$ has
+values from $0$ to $1$ since it uses the sigmoid activation
+function. So, if one of the features of
+$\Gamma_{f}^{\left\langle t \right\rangle}$ is $0$ (or close to
+$0$), then it means that the LSTM should <u><strong>forget</strong></u> that
+piece of information in the corresponding component of
+$c^{\left\langle t - 1 \right\rangle}$ while calculating the value
+for $c^{\left\langle t \right\rangle}$. If one of the features is
+$1$, then it will keep the information.</p>
+  </li>
+  <li>
+    <p><strong>Update Gate (Input Gate):</strong></p>
+
+    <ul>
+      <li>Similar to the forget gate, this gate <u><strong>controls how much of
+the information of the current input state
+$\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack$
+should be used while calculating the current cell
+$c^{\left\langle t \right\rangle}$ state matter now.</strong></u></li>
+    </ul>
+  </li>
+</ul>
+
+\[\Gamma_{u}^{\left\langle t \right\rangle} = \sigma\left( W_{u}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{u} \right)\]
+
+<ul>
+  <li>
+    <p>$W_{u}$ are weights that govern the gate’s behavior and they are
+trainable.</p>
+  </li>
+  <li>
+    <p>The output vector $\Gamma_{u}^{\left\langle t \right\rangle}$ has
+values from $0$ to $1$ since it uses the sigmoid activation
+function. So, if one of the features of
+$\Gamma_{u}^{\left\langle t \right\rangle}$ is $1$ (or close to
+$1$), then it means that the LSTM should <u><strong>update</strong></u> that
+piece of information in the corresponding component of the input
+$\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack$
+while calculating the value for $c^{\left\langle t \right\rangle}$.
+If one of the features is $0$, then it won’t use this feature.</p>
+  </li>
+  <li>
+    <p><strong>Output gate:</strong></p>
+
+    <ul>
+      <li>This gate <u><strong>controls how much of the information of the current
+cell state $c^{\left\langle t \right\rangle}$ should be used for the
+output/activation.</strong></u></li>
+    </ul>
+  </li>
+</ul>
+
+\[\Gamma_{o}^{\left\langle t \right\rangle} = \sigma\left( W_{o}\left\lbrack a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{o} \right)\]
+
+<ul>
+  <li>
+    <p>$W_{o}$ are weights that govern the gate’s behavior and they are
+trainable.</p>
+  </li>
+  <li>
+    <p>The output vector $\Gamma_{o}^{\left\langle t \right\rangle}$ has
+values from $0$ to $1$ since it uses the sigmoid activation
+function. So, if one of the features of
+$\Gamma_{o}^{\left\langle t \right\rangle}$ is $1$ (or close to
+$1$), then it means that the LSTM should use that piece of
+information in the corresponding component of the cell state
+$c^{\left\langle t \right\rangle}$ while calculating the value for
+the output $a^{\left\langle t \right\rangle}$. If one of the
+features is $0$, then it won’t use this feature.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+Some researchers have found out that the parameter
+$c^{\left\langle t - 1 \right\rangle}$ needs to be concatenated in the
+forget gate. So, instead of using just
+$x^{\left\langle t \right\rangle}$ and
+$a^{\left\langle t \right\rangle}$ in the forget gate, we need also to
+use $c^{\left\langle t - 1 \right\rangle}$ as shown in the following
+equation which could increase the accuracy. This is known as the
+“peephole connections”:</p>
+
+\[\Gamma_{f}^{\left\langle t \right\rangle} = \sigma\left( W_{f}\left\lbrack c^{\left\langle t - 1 \right\rangle},a^{\left\langle t - 1 \right\rangle},x^{\left\langle t \right\rangle} \right\rbrack + b_{f} \right)\]
+</blockquote>
+
+<p>This <a href="https://skymind.ai/wiki/lstm#long">link</a> states some interesting
+facts about LSTM, give it a read!!!</p>
+
+<h2 id="gru-cell">GRU Cell</h2>
+
+<p>GRU stands for Gated Recurrent Unit. GRU was introduced in 2014 by
+Kyunghyun Cho as another solution to the vanishing gradient problem
+beside LSTM cell. The main objective behind creating GRUs is to create a
+simpler cell than LSTM without sacrificing the performance too much.</p>
+
+<p>GRU's performance on certain tasks of music modeling and speech signal
+modeling was found to be similar to that of LSTM. GRUs have been shown
+to exhibit even better performance on certain smaller datasets. However,
+as shown by Gail Weiss &amp; Yoav Goldberg &amp; Eran Yahav, the LSTM is
+"strictly stronger" than the GRU as it can easily perform unbounded
+counting, while the GRU cannot. That's why the GRU fails to learn
+simple languages that are learnable by the LSTM.</p>
+
+<p>He following The structure of GRU is like the following:</p>
+
+<div align="center">
+    <img src="media/RNN/image8.png" width="750" />
+</div>
+
+<p>In GRU, we don’t have cell states as the one with LSTM. Here, we only
+have activation (hidden state). And GRUs have two gates (Update Gate,
+Reset Gate) unlike LSTM which have three gates. The main equations used
+with GRU are the following ones:</p>
+
+\[a^{\left\langle t \right\rangle} = c^{\left\langle t \right\rangle} = \left( 1 - \Gamma_{u}^{\left\langle t \right\rangle} \right) \ast c^{\left\langle t - 1 \right\rangle} + \Gamma_{u} \ast {\overset{\sim}{c}}^{\left\langle t \right\rangle}\]
+
+\[{\overset{\sim}{c}}^{\left\langle t \right\rangle} = tanh\left( Wx^{\left\langle t - 1 \right\rangle} + U\left( \Gamma_{r} \ast c^{\left\langle t \right\rangle} \right) + b_{c} \right)\]
+
+<p>$\Gamma_{u}^{\left\langle t \right\rangle} = \sigma\left( W_{u}x^{\left\langle t - 1 \right\rangle} + U_{u}a^{\left\langle t - 1 \right\rangle} + b_{u} \right)$
+(Update Gate)</p>
+
+<p>$\Gamma_{r}^{\left\langle t \right\rangle} = \sigma\left( W_{r}x^{\left\langle t - 1 \right\rangle} + U_{r}a^{\left\langle t - 1 \right\rangle} + b_{u} \right)$
+(Reset Gate)</p>
+
+<p>Now, let’s get into these three gates in more details:</p>
+
+<ul>
+  <li>
+    <p><strong>Update Gate:</strong></p>
+
+    <ul>
+      <li>This gate <u><strong>controls the what is kept from previous hidden
+state $c^{\left\langle t - 1 \right\rangle}$ and is
+updated to the new candidate update
+${\overset{\sim}{c}}^{\left\langle t \right\rangle}$ while
+calculating the current hidden state $c^{\left\langle t \right\rangle}.</strong></u></li>
+    </ul>
+  </li>
+</ul>
+
+\[\Gamma_{u}^{\left\langle t \right\rangle} = \sigma\left( W_{u}x^{\left\langle t - 1 \right\rangle} + U_{u}a^{\left\langle t - 1 \right\rangle} + b_{u} \right)\]
+
+<ul>
+  <li>
+    <p>$W_{u}$ and $U_{u}$ are weights that govern the gate’s behavior and
+they are trainable.</p>
+  </li>
+  <li>
+    <p>The output vector $\Gamma_{u}^{\left\langle t \right\rangle}$ has
+values from $0$ to $1$ since it uses the sigmoid activation
+function. So, if one of the features of
+$\Gamma_{u}^{\left\langle t \right\rangle}$ is $1$ (or close to
+$1$), then it means that the GRU should <u><strong>update</strong></u> that
+piece of information in the corresponding component of hidden
+state $c^{\left\langle t \right\rangle}$ using the update
+candidate ${\overset{\sim}{c}}^{\left\langle t \right\rangle}$. If
+one of the features is $0$, then <u>update</u> using the old value
+of the hidden state $c^{\left\langle t - 1 \right\rangle}$.</p>
+  </li>
+  <li>
+    <p><strong>Reset Gate:</strong></p>
+
+    <ul>
+      <li>This gate <u><strong>controls what parts of the previous hidden state
+should be used to compute the new hidden state
+$c^{\left\langle t \right\rangle}$.</strong></u></li>
+    </ul>
+  </li>
+</ul>
+
+\[\Gamma_{r}^{\left\langle t \right\rangle} = \sigma\left( W_{r}x^{\left\langle t - 1 \right\rangle} + U_{r}a^{\left\langle t - 1 \right\rangle} + b_{u} \right)\]
+
+<ul>
+  <li>
+    <p>$W_{r}$ and $U_{r}$ are weights that govern the gate’s behavior and
+they are trainable.</p>
+  </li>
+  <li>
+    <p>The output vector $\Gamma_{r}^{\left\langle t \right\rangle}$ has
+values from $0$ to $1$ since it uses the sigmoid activation
+function. So, if one of the features of
+$\Gamma_{r}^{\left\langle t \right\rangle}$ is $0$ (or close to
+$0$), then it means that the GRU should <u><strong>reset</strong></u> that
+piece of information in the corresponding component of
+$c^{\left\langle t - 1 \right\rangle}$ while calculating the value
+for $c^{\left\langle t \right\rangle}$. If one of the features is
+$1$, then it will keep the information.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+As a rule of thumb, use LSTM cells in your model unless you care much
+about the size of the model or the memory needed. GRUs have fewer
+parameters to compute</p>
+</blockquote>
+
+<h2 id="hyper-parameters">Hyper-parameters</h2>
+
+<p>In sequence models, there are three main choices that we need to make
+when we want to build an RNN:</p>
+
+<ul>
+  <li>
+    <p>Choosing the cell type either <u>standard RNN</u>, <u>GRU</u> or
+<u>LSTM</u>. Now, it’s clear that both GRU and LSTM are both much
+better than standard RNN, but which one is even better? Actually,
+that depends on the task and the type of the dataset. According to
+this paper: “<a href="https://arxiv.org/pdf/1506.02078.pdf">Visualizing and Understanding Recurrent
+Networks</a>” by Andrej
+Karpathy, both LSTM and GRU were tested on two datasets: in the
+first dataset, GRU was better in all used sizes and in the second,
+GRU was better in some sizes and worse in other. So, when creating
+your own model, you should try both.</p>
+  </li>
+  <li>
+    <p>Choosing number of layers that we need to stack. And in the same
+paper, the number of layers stacked together is the best at two
+layers and when increasing it to three layers, it gets mixed
+results. So, when creating your own model, you should try using
+two and three layers. When creating advanced sequence models like
+CTC, we usually use five or even seven layers often with the use
+of LSTM cells.</p>
+  </li>
+  <li>
+    <p>And in case of using word embedding, then another hyper-parameter is
+added which is the embedding size. Experimental results in this
+paper: “<a href="https://arxiv.org/pdf/1507.05523.pdf">How to Generate a Good Word
+Embedding?</a>” have shown that
+the larger the word embedding is, the better; at least we reach
+the size of $200$. So, we should try different sizes starting from
+$50$ till $200$ or $300$ as google did in this paper:
+“<a href="https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf">Distributed Representations of Words and Phrases and their
+Compositionality</a>”
+or even $500$.</p>
+  </li>
+</ul>
+
+<p>In the following table, we are going to see different RNN architectures
+on different tasks:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Cell</th>
+            <th>#Layers</th>
+            <th>Layer Size</th>
+            <th>Embedding Size</th>
+            <th>Source</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Speech Recognition (500K vocabulary)</td>
+        <td>LSTM</td>
+        <td>7</td>
+        <td>1000</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/abs/1610.09975">paper</a></td>
+    </tr>
+    <tr>
+        <td>Speech Recognition (82K vocabulary)</td>
+        <td>LSTM</td>
+        <td>5</td>
+        <td>600</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/abs/1610.09975">paper</a></td>
+    </tr>
+    <tr>
+        <td>Speech Recognition (small vocabulary)</td>
+        <td>LSTM</td>
+        <td>1, 3, 5</td>
+        <td>250</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/abs/1303.5778">paper</a></td>
+    </tr>
+    <tr>
+        <td>Seq2Seq (160K → 80k)</td>
+        <td>LSTM</td>
+        <td>4</td>
+        <td>1000</td>
+        <td>1000</td>
+        <td><a href="https://arxiv.org/abs/1409.3215">paper</a></td>
+    </tr>
+    <tr>
+        <td>Image Captioning</td>
+        <td>LSTM</td>
+        <td>-</td>
+        <td>512</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/abs/1411.4555">paper</a></td>
+    </tr>
+    <tr>
+        <td>Image Generation</td>
+        <td>LSTM</td>
+        <td>-</td>
+        <td>256, 400, 800</td>
+        <td>-</td>
+        <td><a href="https://arxiv.org/abs/1502.04623">paper</a></td>
+    </tr>
+    <tr>
+        <td>Question Answering</td>
+        <td>LSTM</td>
+        <td>2</td>
+        <td>500</td>
+        <td>300</td>
+        <td><a href="http://www.aclweb.org/anthology/P15-2116">paper</a></td>
+    </tr>
+    <tr>
+        <td>Text Summarization (119K → 68K)</td>
+        <td>GRU</td>
+        <td>-</td>
+        <td>200</td>
+        <td>100</td>
+        <td><a href="https://pdfs.semanticscholar.org/3fbc/45152f20403266b02c4c2adab26fb367522d.pdf">paper</a></td>
+    </tr>
+</table>
+
+</div>
+
+<h2 id="gradient-clipping">Gradient Clipping</h2>
+
+<p>Recall that our loop structure usually consists of a forward pass, a
+cost computation, a backward pass, and a parameter update. Before
+updating the parameters, we will need to perform gradient clipping when
+needed to make sure that your gradients are not "exploding” (taking on
+overly large values).</p>
+
+<div align="center">
+    <img src="media/RNN/image9.png" width="750" />
+</div>
+
+<p>So, we will implement a function that takes in the gradients and returns
+a clipped version of gradients if needed. There are different ways to
+clip gradients; we will use a simple element-wise clipping procedure, in
+which every element of the gradient vector is clipped to lie between
+some range $\left\lbrack - N,N \right\rbrack$.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="n">gradient_lst</span><span class="p">,</span> <span class="n">max_value</span><span class="p">):</span>
+<span class="p">...</span> <span class="k">for</span> <span class="n">gradient</span> <span class="ow">in</span> <span class="n">gradient_lst</span><span class="p">:</span>
+<span class="p">...</span>     <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">gradient</span><span class="p">,</span> <span class="o">-</span><span class="n">max_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span> <span class="n">gradient</span><span class="p">)</span>
+<span class="p">...</span>     <span class="k">return</span> <span class="n">gradient_lst</span>
+</code></pre></div></div>
+
+<p>If you want to use it on our variables, we can do like so:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dWax</span><span class="p">,</span> <span class="n">dWaa</span><span class="p">,</span> <span class="n">dWya</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">dby</span> <span class="o">=</span> <span class="n">clip</span><span class="p">(</span><span class="n">dWax</span><span class="p">,</span> <span class="n">dWaa</span><span class="p">,</span> <span class="n">dWya</span><span class="p">,</span> <span class="n">db</span><span class="p">,</span> <span class="n">dby</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Here, we provided the max_value as $10$. If any component of the
+gradient vector is greater than $10$, it would be set to $10$; and if
+any component of the gradient vector is less than $- 10$, it would be
+set to $- 10$. If it is between $- 10$ and $10$, it is left alone.</p>
+
+<h2 id="sampling">Sampling</h2>
+
+<p>the Sampling is the process of use the output of a certain neuron as an
+input to the following neurons. It’s used with generative models where
+you need to generate such as language models. Let’s see how it’s done:</p>
+
+<ul>
+  <li>
+    <p>First, we input the usual $x^{\left\langle 1 \right\rangle}$ and
+$a^{\left\langle 0 \right\rangle}$, apply the activation function
+and get the output.</p>
+  </li>
+  <li>
+    <p>Now our first time stamp $y^{\left\langle 1 \right\rangle}$will have
+some max probability over possible outputs, so we choose a randomly
+sample according to the probabilities of the possible outputs using,
+for example, the numpy command np.random.choice.</p>
+  </li>
+  <li>
+    <p>Next we then go on to the second time step which is expecting
+$y^{\left\langle 1 \right\rangle}$ as input to the next time-step.</p>
+  </li>
+  <li>
+    <p>And so on…</p>
+  </li>
+</ul>
+
+<p>Example, let's say that we are creating a language model. And after we
+sampled the first word, the first word happened to be “the”, which is
+very common choice of first word. Then we pass “the” as
+$x^{\left\langle 2 \right\rangle}$. And now we’re trying to figure out
+what is the chance of the second word given that the first word is
+“the”. Then we again use this type of sampling function to sample
+$y^{\left\langle 2 \right\rangle}$ and so on.</p>
+
+<div align="center">
+    <img src="media/RNN/image10.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/RNN';
+      this.page.identifier = '/language-modeling/RNN';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

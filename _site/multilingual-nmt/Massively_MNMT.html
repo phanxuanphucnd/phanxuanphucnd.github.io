@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Massively MNMT</title>
+  <meta name="title" content="Massively MNMT">
+  <meta name="description" content="Massively MNMT is a multilingual many-to-many NMT model proposed by
+Google Research in 2019 and published in their paper: Massively
+Multilingual Neural Machine
+Translation. Massively MNMT is a
+standard Base-Transformer with 6 layers in both the encoder and the
+decoder. To enable many-to-many translation, the authors added a
+target-language prefix token to each source sentence.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Massively MNMT">
+  <meta itemprop="description" content="Massively MNMT is a multilingual many-to-many NMT model proposed by
+Google Research in 2019 and published in their paper: Massively
+Multilingual Neural Machine
+Translation. Massively MNMT is a
+standard Base-Transformer with 6 layers in both the encoder and the
+decoder. To enable many-to-many translation, the authors added a
+target-language prefix token to each source sentence.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/Massively_MNMT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Massively MNMT">
+  <meta property="og:description" content="Massively MNMT is a multilingual many-to-many NMT model proposed by
+Google Research in 2019 and published in their paper: Massively
+Multilingual Neural Machine
+Translation. Massively MNMT is a
+standard Base-Transformer with 6 layers in both the encoder and the
+decoder. To enable many-to-many translation, the authors added a
+target-language prefix token to each source sentence.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/Massively_MNMT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Massively MNMT">
+  <meta name="twitter:description" content="Massively MNMT is a multilingual many-to-many NMT model proposed by
+Google Research in 2019 and published in their paper: Massively
+Multilingual Neural Machine
+Translation. Massively MNMT is a
+standard Base-Transformer with 6 layers in both the encoder and the
+decoder. To enable many-to-many translation, the authors added a
+target-language prefix token to each source sentence.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/Massively_MNMT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/Massively_MNMT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2019-07-02 00:00" class="post-meta__body date">Published on arXiv on: 2 Jul 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google AI">Google AI</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Massively MNMT> Massively MNMT</h1>
+    <p>Massively MNMT is a multilingual many-to-many NMT model proposed by
+Google Research in 2019 and published in their paper: <a href="https://aclanthology.org/N19-1388.pdf">Massively
+Multilingual Neural Machine
+Translation</a>. Massively MNMT is a
+standard Base-Transformer with 6 layers in both the encoder and the
+decoder. To enable many-to-many translation, the authors added a
+target-language prefix token to each source sentence.</p>
+
+<p>The main question in this paper is how well a single NMT model can scale
+to support a very large number of language pairs. To answer this
+question, the model was trained under two training settings:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Low-resource Setting</strong></u><br />
+Language-pairs have limited training examples.</p>
+  </li>
+  <li>
+    <p><u><strong>High-resource Setting:</strong></u><br />
+Language-pairs have plenty of training examples.</p>
+  </li>
+</ul>
+
+<p>In these settings, they created three different massively MNMTs with
+exactly the same architecture:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Many-to-many model:</strong></u><br />
+Trained using data from and to English (116 directions).</p>
+  </li>
+  <li>
+    <p><u><strong>One-to-many model:</strong></u><br />
+Trained using data from English (58 directions).</p>
+  </li>
+  <li>
+    <p><u><strong>Many-to-one model:</strong></u><br />
+Trained using data to English (58 directions).</p>
+  </li>
+</ul>
+
+<p>For model fine-tuning, they created a development set by uniformly sampling
+from a concatenation of all the individual language pair development sets,
+resulting in 13k development examples.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+In this paper, the baseline models in the following tables are
+bilingual models, each trained for a specific language-pair.</p>
+</blockquote>
+
+<h2 id="low-resource-setting">Low-resource Setting</h2>
+
+<p>In this setting, we are going to evaluate the performance of the
+Massively MNMT over 59 languages with few training examples gathered
+from <a href="https://github.com/neulab/word-embeddings-for-nmt">TED talks</a>
+parallel corpus. This dataset is highly imbalanced, with language pairs
+including between 214k to 3.3k sentence pairs for training as shown in
+the following table:</p>
+
+<div align="center">
+    <img src="media/Massively_MNMT/image1.png" width="1000" />
+</div>
+
+<p>In this setting, the model dimension is set at 512, hidden dimension
+size of 2048 and 8 attention heads. The model’s 93M trainable parameters
+were trained using the inverse square root learning rate schedule with
+learning rate set at 3 and 40k warm-up steps. The vocabulary used in
+this setting is 32k sub-words.</p>
+
+<p>To evaluate the three models, they used the following four languages:
+Azerbeijani (Az), Belarusian (Be), Galician (Gl) and Slovak (Sk) as they
+present an extreme low-resource case with as few as 4.5k training
+examples for Belarusian-English. The following two tables show the test
+BLEU score:</p>
+
+<div align="center">
+    <img src="media/Massively_MNMT/image2.png" width="750" />
+</div>
+
+<p>The previous left table shows that the <strong>many-to-many model</strong>
+outperforms all other models when translating into English. This is
+surprising as it uses the same X→En data as the <strong>many-to-one model</strong>.
+One possible explanation is that the many-to-one model overfits the
+English side of the corpus since the English sentences are overlapping
+across the different language pairs, making it much easier for the model
+to memorize.</p>
+
+<p>On the other hand, the previous right table shows an opposite trend; the
+<strong>many-to-many model</strong> performs worse than the <strong>one-to-many model</strong>.
+This quality degradation may be due to the English-Centric setting:
+since most of the translation directions the model is trained on are
+into English, this leaves less capacity for the other target languages.</p>
+
+<h2 id="high-resource-setting">High-resource Setting</h2>
+
+<p>In this setting, they scaled the number of languages to 103 (shown
+below) and the number of examples per language-pair to 940k on average.
+The 13 languages colored in red had less than 1M examples, while the
+rest had exactly 1M. This data is not publicly available:</p>
+
+<div align="center">
+    <img src="media/Massively_MNMT/image3.png" width="1000" />
+</div>
+
+<p>In this setting, the model dimension is set at 1024, hidden dimension
+size of 8192 and 16 attention heads. The model’s 473.7M trainable
+parameters were trained using the inverse square root learning rate
+schedule with learning rate set at 3 and 40k warm-up steps. The
+vocabulary used in this setting is 64k sub-words.</p>
+
+<p>To evaluate the three models, they used 10 languages different
+typological families: Arabic (Ar), Hebrew (He), Romance – Galician
+(Gl), Italian (It), Romanian (Ro), German (De), Dutch (Nl), Belarusian
+(Be), Slovak (Sk) and Azerbaijani (Az) and Turkish (Tr). The following
+two tables show the test BLEU score:</p>
+
+<div align="center">
+    <img src="media/Massively_MNMT/image4.png" width="750" />
+</div>
+
+<p>The former two tables show that the <strong>many-to-many model</strong> outperforms
+bilingual baseline models. This shows that many-to-many models can work
+well in realistic settings with millions of training examples, 102
+languages and 204 jointly trained directions to-and-from English.</p>
+
+<p>The first table shows that the <strong>many-to-one model</strong> here performs
+better than the <strong>many-to-many model</strong>. This shows that the previous
+result in the low-resource setting was due to overfitting in the
+many-to-one model.</p>
+
+<p>The second table shows the same trend as the low-resource setting where
+the <strong>one-to-many model</strong> outperforms the <strong>many-to-many model</strong>. Again,
+this advantage may be due to the one-to-many model handling a smaller
+number of tasks while not being biased towards English in the target
+side like the many-to-many model.</p>
+
+<h2 id="multilinguality-vs-performance">Multilinguality Vs Performance</h2>
+
+<p>They tried to better understand the trade-off between the number of
+languages involved and the translation accuracy while keeping the model
+fixed. So, they created four additional English-Centric datasets,
+containing 5, 25, 50 and 75 languages. They made sure that the 25
+language subset contains the 5 language subset, the 50 language subset
+contains the 25 language subset and so on. Then, they trained the same
+transformer model used for the high-resource setting (with 473.7M
+parameters) on each of these subsets and measure the performance in two
+manners:</p>
+
+<ul>
+  <li><u><strong>Supervised Manner:</strong></u><br />
+Where they evaluated the model based on translation directions that
+it was trained on. They found out that the more languages you add,
+the less performance you get knowing that the gap isn’t that big as
+shown below:</li>
+</ul>
+
+<div align="center">
+    <img src="media/Massively_MNMT/image5.png" width="450" />
+</div>
+
+<ul>
+  <li><u><strong>Zero-shot Manner:</strong></u><br />
+Where they evaluated the model based on translation directions that
+it has never seen. They found out that by adding more languages, the
+model is forced to create a more generalized representation to
+better utilize its capacity, which improves zero-shot performance.
+And the balance between capacity and generalization is best in the
+mid range (50-to-50 model):</li>
+</ul>
+
+<div align="center">
+    <img src="media/Massively_MNMT/image6.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/Massively_MNMT';
+      this.page.identifier = '/multilingual-nmt/Massively_MNMT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

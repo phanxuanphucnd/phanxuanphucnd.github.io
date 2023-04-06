@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>mBERT: Multilingual BERT</title>
+  <meta name="title" content="mBERT: Multilingual BERT">
+  <meta name="description" content="mBERT is a multilingual BERT pre-trained on 104 languages, released by the
+authors of the original paper on Google Research’s official GitHub repository: google-research/bert
+ on 
+November 2018. mBERT follows the same structure of BERT. The only difference is
+that mBERT is pre-trained on concatenated Wikipedia data for 104 languages and
+it does surprisingly well compared to cross-lingual word embeddings on zero-shot
+cross-lingual transfer in XNLI dataset.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="mBERT: Multilingual BERT">
+  <meta itemprop="description" content="mBERT is a multilingual BERT pre-trained on 104 languages, released by the
+authors of the original paper on Google Research’s official GitHub repository: google-research/bert
+ on 
+November 2018. mBERT follows the same structure of BERT. The only difference is
+that mBERT is pre-trained on concatenated Wikipedia data for 104 languages and
+it does surprisingly well compared to cross-lingual word embeddings on zero-shot
+cross-lingual transfer in XNLI dataset.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/mBERT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="mBERT: Multilingual BERT">
+  <meta property="og:description" content="mBERT is a multilingual BERT pre-trained on 104 languages, released by the
+authors of the original paper on Google Research’s official GitHub repository: google-research/bert
+ on 
+November 2018. mBERT follows the same structure of BERT. The only difference is
+that mBERT is pre-trained on concatenated Wikipedia data for 104 languages and
+it does surprisingly well compared to cross-lingual word embeddings on zero-shot
+cross-lingual transfer in XNLI dataset.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/mBERT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mBERT: Multilingual BERT">
+  <meta name="twitter:description" content="mBERT is a multilingual BERT pre-trained on 104 languages, released by the
+authors of the original paper on Google Research’s official GitHub repository: google-research/bert
+ on 
+November 2018. mBERT follows the same structure of BERT. The only difference is
+that mBERT is pre-trained on concatenated Wikipedia data for 104 languages and
+it does surprisingly well compared to cross-lingual word embeddings on zero-shot
+cross-lingual transfer in XNLI dataset.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/mBERT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/mBERT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          2 mins read
+        </span>
+      </p>
+      <time datetime="2018-11-04 00:00" class="post-meta__body date">Published on arXiv on: 4 Nov 2018</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=mBERT: Multilingual BERT> mBERT: Multilingual BERT</h1>
+    <p>mBERT is a multilingual BERT pre-trained on 104 languages, released by the
+authors of the original paper on Google Research’s official GitHub repository: <a href="https://github.com/google-research/bert/blob/master/multilingual.md">google-research/bert
+</a> on 
+November 2018. mBERT follows the same structure of BERT. The only difference is
+that mBERT is pre-trained on concatenated Wikipedia data for 104 languages and
+it does surprisingly well compared to cross-lingual word embeddings on zero-shot
+cross-lingual transfer in XNLI dataset.</p>
+
+<p>XNLI results are promising, but the question is: does mBERT learn a
+cross-lingual space that supports zero-shot transfer? This paper: <a href="https://arxiv.org/pdf/1904.09077.pdf">Beto,
+Bentz, Becas: The Surprising Cross-Lingual Effectiveness of
+BERT</a> published in 2019 by John
+Hopkins University explores the cross-lingual potential of mBERT on five
+different NLP tasks: NLI, NER, POS tagging, MLDoc classification, and
+dependency parsing. According to the following graph, all five tasks
+cover 39 languages out of the 104 languages that mBERT was pre-trained
+on. The official code of this paper can be found on this GitHub repository:
+<a href="https://github.com/shijie-wu/crosslingual-nlp">crosslingual-nlp</a>.</p>
+
+<div align="center">
+    <img src="media/mBERT/image1.png" width="1050" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+I suggest reading the
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> part before
+going on to the next part.</p>
+</blockquote>
+
+<h2 id="results">Results</h2>
+
+<p>All the following results were obtained by using the mBERT~BASE~ which
+$12$ transformer blocks, each has $12$ attention heads and $d_{h} = 768$
+hidden dimensions forming around $179M$ parameters. mBERT uses dropout
+of $0.1$ as a regularizer.</p>
+
+<p>For each task, no preprocessing is performed except tokenization of
+words into subwords with WordPiece. The vocabulary size for all 104
+languages about $120k$ vocabulary. For fine-tuning, they used Adam for
+fine-tuning with $\beta_{1} = 0.9,\ \beta_{2} = 0.999$ and L2 weight
+decay of $0.01$. They warmed up the learning rate over the first $10\%$
+of batches using linearly decay. Best hyper-parameters was selected by
+searching a combination of batch size, learning rate and the number of
+fine-tuning epochs with the following range:</p>
+
+<ul>
+  <li>
+    <p>Learning rate:
+$\left\{ 2 \times 10^{- 5},\ 3 \times 10^{- 5},\ 5 \times 10^{- 5} \right\}$.</p>
+  </li>
+  <li>
+    <p>Batch size: $\left\{ 16,\ 32 \right\}$.</p>
+  </li>
+  <li>
+    <p>Number of epochs: $\left\{ 3,\ 4 \right\}$.</p>
+  </li>
+</ul>
+
+<p>In the following results, ♠ denotes the mBERT version trained on bitext
+data found in this paper: <a href="https://arxiv.org/pdf/1812.10464.pdf">Massively multilingual sentence embeddings
+for zeroshot cross-lingual transfer and
+beyond</a> while † denoted to XLM
+model proposed by this paper: <a href="https://arxiv.org/pdf/1901.07291.pdf">Cross-lingual Language Model
+Pretraining</a>. All results were
+obtained by the model selected by development performance in English.
+However, ◊ denotes model selection with target language dev set instead.
+The best results are going to be <strong>bold-faced</strong>, while the second best
+results are going to be <u>underlined</u> according to the following NLP
+tasks:</p>
+
+<ul>
+  <li><strong>MLDOC classification:</strong> On average, mBERT is the second best model
+after the XLM model with a very small margin.</li>
+</ul>
+
+<div align="center">
+    <img src="media/mBERT/image2.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>XNLI:</strong> On average, mBERT performs relatively worse than XLM.</li>
+</ul>
+
+<div align="center">
+    <img src="media/mBERT/image3.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>NER:</strong> On average, mBERT outperforms other models on this task.</li>
+</ul>
+
+<div align="center">
+    <img src="media/mBERT/image4.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>POS Tagging:</strong></li>
+</ul>
+
+<div align="center">
+    <img src="media/mBERT/image5.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Dependency Parsing:</strong></li>
+</ul>
+
+<div align="center">
+    <img src="media/mBERT/image6.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/mBERT';
+      this.page.identifier = '/cross-lingual-lm/mBERT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

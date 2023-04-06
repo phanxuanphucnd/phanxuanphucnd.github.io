@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Luna: Linear Attention Mechanism</title>
+  <meta name="title" content="Luna: Linear Attention Mechanism">
+  <meta name="description" content="Luna stands for “Linear Unified Nested Attention” which is a novel
+attention mechanism that yields linear time and space complexity as
+opposed to standard attention mechanism proposed in the
+Transformer
+architecture that yields quadratic time and space complexity. Luna was
+proposed by FAIR in 2021 and published in the paper under the same name:
+“Luna: Linear Unified Nested
+Attention”. The official code
+for this paper can be found in the following GitHub repository:
+fairseq-apollo.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Luna: Linear Attention Mechanism">
+  <meta itemprop="description" content="Luna stands for “Linear Unified Nested Attention” which is a novel
+attention mechanism that yields linear time and space complexity as
+opposed to standard attention mechanism proposed in the
+Transformer
+architecture that yields quadratic time and space complexity. Luna was
+proposed by FAIR in 2021 and published in the paper under the same name:
+“Luna: Linear Unified Nested
+Attention”. The official code
+for this paper can be found in the following GitHub repository:
+fairseq-apollo.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Luna/image4.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Luna: Linear Attention Mechanism">
+  <meta property="og:description" content="Luna stands for “Linear Unified Nested Attention” which is a novel
+attention mechanism that yields linear time and space complexity as
+opposed to standard attention mechanism proposed in the
+Transformer
+architecture that yields quadratic time and space complexity. Luna was
+proposed by FAIR in 2021 and published in the paper under the same name:
+“Luna: Linear Unified Nested
+Attention”. The official code
+for this paper can be found in the following GitHub repository:
+fairseq-apollo.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Luna/image4.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Luna: Linear Attention Mechanism">
+  <meta name="twitter:description" content="Luna stands for “Linear Unified Nested Attention” which is a novel
+attention mechanism that yields linear time and space complexity as
+opposed to standard attention mechanism proposed in the
+Transformer
+architecture that yields quadratic time and space complexity. Luna was
+proposed by FAIR in 2021 and published in the paper under the same name:
+“Luna: Linear Unified Nested
+Attention”. The official code
+for this paper can be found in the following GitHub repository:
+fairseq-apollo.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Luna/image4.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Luna">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2021-06-03 00:00" class="post-meta__body date">Published on arXiv on: 3 Jun 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a> & <a href="/labs/#Carnegie Mellon University">Carnegie Mellon University</a> & <a href="/labs/#University of Southern California">University of Southern California</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Luna: Linear Attention Mechanism> Luna: Linear Attention Mechanism</h1>
+    <p>Luna stands for “Linear Unified Nested Attention” which is a novel
+attention mechanism that yields linear time and space complexity as
+opposed to standard attention mechanism proposed in the
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+architecture that yields quadratic time and space complexity. Luna was
+proposed by FAIR in 2021 and published in the paper under the same name:
+“<a href="https://arxiv.org/pdf/2106.01540.pdf">Luna: Linear Unified Nested
+Attention</a>”. The official code
+for this paper can be found in the following GitHub repository:
+<a href="https://github.com/XuezheMax/fairseq-apollo">fairseq-apollo</a>.</p>
+
+<div align="center">
+    <img src="media/Luna/image1.png" width="750" />
+</div>
+
+<p>As compared to other attention mechanism proposed by different models,
+Luna achieves competitive or even better performance, while acquiring
+prominent gains of efficiency in both speed and memory as shown in the
+following figure:</p>
+
+<div align="center">
+    <img src="media/Luna/image2.png" width="450" />
+</div>
+
+<h2 id="attention-recap">Attention Recap</h2>
+
+<p>Before getting into Luna details, let’s first recap the attention
+mechanism. The traditional attention mechanism is a function of two
+sequences: the query sequence $X \in \mathbb{R}^{n \times d}$ with
+length $n$ and the context sequence $C \in \mathbb{R}^{m \times d}$ with
+length $m$. And it outputs one sequence $Y \in \mathbb{R}^{n \times d}$
+with the same length as the query $X$:</p>
+
+\[Y = \text{Attention}\left( X,\ C \right) = \text{softmax}\left( \frac{XW^{Q}\left( CW^{K} \right)^{T}}{\sqrt{d}} \right)CW^{V}\]
+
+<p>Where $d$ is the embedding dimension, and
+$W^{Q},W^{K},W^{V} \in \mathbb{R}^{d \times d}$ are three learnable
+parameters that project the input sequences into the space of query, key
+and value matrices: $Q = XW^{Q},\ K = CW^{K},\ V = CW^{V}$ respectively.
+Each head in the multi-head attention mechanism has different learnable
+parameters.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+In self-attention mechanism, $X = C$, where both come from either the
+encoder or the decoder. In cross-attention, $X$ comes from the encoder
+and $C$ comes from the decoder.</p>
+</blockquote>
+
+<p>The matrix
+$\text{softmax}\left( \frac{XW^{Q}\left( CW^{K} \right)^{T}}{\sqrt{d}} \right) \in \mathbb{R}^{n \times m}$
+is called the “<strong>attention matrix</strong>” which specifies the alignment
+scores between every pair of tokens in sequences of queries $X$ and
+contexts $C$. Calculating the attention matrix takes
+$O\left( \text{nm} \right)$ time and space, which is quadratic with
+respect to the sequence length and becomes a significant bottleneck when
+processing long sequences.</p>
+
+<div align="center">
+    <img src="media/Luna/image3.png" width="450" />
+</div>
+
+<p>The other two key components of Transformer, besides attention, are
+feed-forward networks (FFN) and layer normalization. Each Transformer
+layer can be expressed as:</p>
+
+\[X_{A} = \text{LayerNorm}\left( \text{Attention}\left( X,\ C \right) + X \right)\]
+
+\[X' = \text{LayerNorm}\left( \text{FFN}\left( X_{A} \right) + X_{A} \right)\]
+
+<p>Where $X’$ is the output of the transformer layer. Here, we used the
+original post-layer normalization architecture which places layer
+normalization after the residual connection.</p>
+
+<h2 id="luna-attention">Luna Attention</h2>
+
+<p>The key idea behind Luna attention is to decouple the attention function
+mentioned above into two nested attention operations, both of which have
+linear efficiency:</p>
+
+<div align="center">
+    <img src="media/Luna/image4.png" width="450" />
+</div>
+
+<ul>
+  <li><strong>Pack Attention:</strong> Which packs the context sequence
+$C \in \mathbb{R}^{m \times d}$ into a fixed-length sequence
+$Y_{P} \in \mathbb{R}^{l \times d}$ with a fixed length $l$ using
+the standard attention function with $P \in \mathbb{R}^{l \times d}$
+as a query sequence (gonna explain where $P$ comes from in a
+second):</li>
+</ul>
+
+\[Y_{P} = \text{Attention}\left( P,\ C \right)\]
+
+<ul>
+  <li><strong>Unpack Attention:</strong> unpacks the sequence
+$Y_{P} \in \mathbb{R}^{l \times d}$ back to the length of the
+original query sequence $Y_{X} \in \mathbb{R}^{n \times d}$ using
+the same standard attention function:</li>
+</ul>
+
+\[Y_{X} = \text{Attention}\left( X,\ Y_{P} \right)\]
+
+<p>The complexity of pack attention and the unpack attention is
+$O\left( \text{lm} \right)$ and $O\left( \ln \right)$ respectively which
+is linear with respect to $m$ and $n$ respectively.</p>
+
+<p>Now, the question is “how to get $P \in \mathbb{R}^{l \times d}$?”. At
+the first Luna layer, $P$ is created as a learnable positional
+parameter. At other following layers, $P$ is calculated via the
+following formula:</p>
+
+\[P^{+} = \text{LayerNorm}\left( Y_{P} + P \right)\]
+
+<p>Now, Luna layer, shown in the previous layer, is composed of the
+following:</p>
+
+\[Y_{X},\ Y_{P} = \text{LunaAttention}\left( X,\ P,\ C \right)\]
+
+\[X_{A},\ P_{A} = \text{LayerNorm}\left( Y_{X} + X \right),\ \text{LayerNorm}\left( Y_{P} + P \right)\]
+
+\[X',\ P' = \text{LayerNorm}\left( \text{FFN}\left( X_{A} \right) + X_{A} \right),\ P_{A}\]
+
+<h2 id="experiments">Experiments</h2>
+
+<p>To evaluate Luna on sequence-to-sequence modeling, they evaluated it on
+WMT’14 English-German (EN→DE) machine translation dataset using BPE
+vocabulary of 37K subwords. The Luna models was closely following the
+architecture of Transformer-base: 6 encoder and decoder layers with 8
+attention heads and model size of 512 and hidden size of 2048.</p>
+
+<p>Unlike the Transformer-base, Luna was trained using Apollo optimizer
+with learning rate of 0.1, $\beta = 0.9$ , and $\epsilon = 1e^{- 4}$.
+For learning rate scheduling, they applied linear warm up the first 1000
+steps. After learning rate warm up, they decayed the learning rate at
+the 300,000 and 450,000 steps by decay rate 0.1. Gradient clips with 1.0
+were applied. And the dropout ratio are set to 0.1. The weight decay
+rate was set to $1e^{- 8}$.</p>
+
+<p>The following table presents Luna results in comparison with Transformer
+models trained using Adam and Apollo optimizers along with Random
+Feature Attention (RFA) model. We can see that, Luna achieves similar
+results to the Transformer model. Also, we note that Luna with softplus
+activation function consistently outperforms ELU.</p>
+
+<div align="center">
+    <img src="media/Luna/image5.png" width="450" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+When saying Luna-16, we mean Luna where $l = 16$. Here, softplus and ELU
+activation functions were used instead of the softmax in the attention
+mechanism.</p>
+</blockquote>
+
+<p>To evaluate the effectiveness of Luna on long sequences, they trained
+Luna on the Long Range Arena (LRA) benchmark which consists of five
+tasks, each designed for the purpose of evaluating Transformer models
+under the long-context (from 1K to 8K tokens). The following table shows
+that Luna outperforms baseline models on three out of five tasks and
+performs comparably with the best performed model on the other two
+tasks:</p>
+
+<div align="center">
+    <img src="media/Luna/image6.png" width="750" />
+</div>
+
+<p>Also, Luna was pre-training on Masked Language Modeling (MLM) objective
+and then fine-tuned on Natural Language Understanding downstream tasks
+and was found out to have very similar results in comparison with
+state-of-the-art models such as
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> and
+<a href="https://anwarvic.github.io/language-modeling/RoBERTa">RoBERTa</a>:</p>
+
+<div align="center">
+    <img src="media/Luna/image7.png" width="750" />
+</div>
+
+<p>Luna-128 (16GB) was pre-trained on 16GB of monolingual data collected
+from BookCorpus and English Wikipedia which is the same data used with
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>. Luna-128
+(160GB) was pre-trained on 160GB of monolingual data collected from the
+same sources in addition to CC-News, OpenWebText, and Stories which is
+the same data used with
+<a href="https://anwarvic.github.io/language-modeling/RoBERTa">RoBERTa</a>. The
+following are the hyper-parameters used for pre-training Luna-128 (16GB
+and 160GB):</p>
+
+<div align="center">
+    <img src="media/Luna/image8.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Luna';
+      this.page.identifier = '/machine-translation/Luna';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

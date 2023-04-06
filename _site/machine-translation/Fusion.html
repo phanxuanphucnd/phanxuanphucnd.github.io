@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Fusion</title>
+  <meta name="title" content="Fusion">
+  <meta name="description" content="The fusion technique is proposed by the University of Montreal in 2015
+and published in this paper: “On Using Monolingual Corpora in Neural
+Machine Translation”. The idea
+about fusion is to integrate a language model (LM) trained only on
+monolingual data (target language) into an NMT system. Since this paper
+was published in 2015, it uses the encoder-decoder architecture. So, the
+integrating part will be done on the decoder’s side.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Fusion">
+  <meta itemprop="description" content="The fusion technique is proposed by the University of Montreal in 2015
+and published in this paper: “On Using Monolingual Corpora in Neural
+Machine Translation”. The idea
+about fusion is to integrate a language model (LM) trained only on
+monolingual data (target language) into an NMT system. Since this paper
+was published in 2015, it uses the encoder-decoder architecture. So, the
+integrating part will be done on the decoder’s side.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Fusion/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Fusion">
+  <meta property="og:description" content="The fusion technique is proposed by the University of Montreal in 2015
+and published in this paper: “On Using Monolingual Corpora in Neural
+Machine Translation”. The idea
+about fusion is to integrate a language model (LM) trained only on
+monolingual data (target language) into an NMT system. Since this paper
+was published in 2015, it uses the encoder-decoder architecture. So, the
+integrating part will be done on the decoder’s side.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Fusion/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fusion">
+  <meta name="twitter:description" content="The fusion technique is proposed by the University of Montreal in 2015
+and published in this paper: “On Using Monolingual Corpora in Neural
+Machine Translation”. The idea
+about fusion is to integrate a language model (LM) trained only on
+monolingual data (target language) into an NMT system. Since this paper
+was published in 2015, it uses the encoder-decoder architecture. So, the
+integrating part will be done on the decoder’s side.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Fusion/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Fusion">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          2 mins read
+        </span>
+      </p>
+      <time datetime="2015-03-11 00:00" class="post-meta__body date">Published on arXiv on: 11 Mar 2015</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#University of Montreal">University of Montreal</a> & <a href="/labs/#The University of Maine">The University of Maine</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Fusion> Fusion</h1>
+    <p>The fusion technique is proposed by the University of Montreal in 2015
+and published in this paper: “<a href="https://arxiv.org/pdf/1503.03535.pdf">On Using Monolingual Corpora in Neural
+Machine Translation</a>”. The idea
+about fusion is to integrate a language model (LM) trained only on
+monolingual data (target language) into an NMT system. Since this paper
+was published in 2015, it uses the encoder-decoder architecture. So, the
+integrating part will be done on the decoder’s side.</p>
+
+<p>In the paper, they proposed two method for integrating a language model
+into an NMT translation system; and they are <u><strong>shallow fusion</strong></u>
+and <u><strong>deep fusion</strong></u> where the language model is a recurrent
+neural network language model (RNN-LM) same as the decoder but trained
+separately using monolingual data.</p>
+
+<h2 id="shallow-fusion">Shallow Fusion</h2>
+
+<p>The name “Shallow fusion” was introduced in this paper where Koehn tried
+to combine a language model with a statistical machine translation
+system. So, at each time step, the translation model proposes a set of
+candidate words, these candidates are then scored according to the
+weighted sum of the scores given by the translation model and the
+language model according to the following formula:</p>
+
+\[\text{log} p\left( y_{t} = k \right) = \log\ p_{\text{NMT}}\left( y_{t} = k \right) + \beta\ \log\ p_{\text{LM}}\left( y_{t} = k \right)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$y_{t}$ is the suggested output word.</p>
+  </li>
+  <li>
+    <p>$p_{\text{NMT}}$ is the probability of the neural machine
+translation generating word $y_{t} = k$.</p>
+  </li>
+  <li>
+    <p>$p_{\text{LM}}$ is the probability of the language model generating
+word $y_{t} = k$.</p>
+  </li>
+  <li>
+    <p>$\beta$ is a hyper-parameter that needs to be tuned to maximize the
+translation performance on a development set.</p>
+  </li>
+</ul>
+
+<h2 id="deep-fusion">Deep Fusion</h2>
+
+<p>In deep fusion, we integrate the RNNLM and the decoder of the NMT by
+concatenating their hidden states next to each other. Unlike the vanilla
+NMT (without any language model component), the hidden layer of the deep
+output takes as input the hidden state of the RNNLM in addition to that
+of the NMT, the previous word and the context as shown in the following
+figure:</p>
+
+<div align="center">
+    <img src="media/Fusion/image1.png" width="750" />
+</div>
+
+<p>The model is then fine-tuned to use the hidden states from both of these
+models when computing the output probability of the next word according
+to the following formula:</p>
+
+\[p\left( y_{t} \middle| y_{&lt; t},\ x \right) \propto \ \exp\left( y_{t}^{T}\left( W_{o}.f_{o}\left( s_{t}^{\text{LM}},\ s_{t}^{\text{NMT}},y_{t - 1},\ c_{t} \right) + b_{o} \right) \right)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$x$ is the input and $y_{&lt; t}$ is all the previous output words.</p>
+  </li>
+  <li>
+    <p>$y_{t}$ is the suggested output word at time step $t$. Which means
+that $y_{t - 1}$ is the output word one step before.</p>
+  </li>
+  <li>
+    <p>$W_{o}$ is the weights of the output layer and $b_{o}$ is the bias.</p>
+  </li>
+  <li>
+    <p>$f_{o}$ is the activation function of the output layer.</p>
+  </li>
+  <li>
+    <p>$s_{t}^{\text{LM}}$ is the hidden state of the language model.</p>
+  </li>
+  <li>
+    <p>$s_{t}^{\text{NMT}}$ is the hidden state of the neural machine
+translation model.</p>
+  </li>
+  <li>
+    <p>$c_{t}$ is the context vector produced by the encoder.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Fusion';
+      this.page.identifier = '/machine-translation/Fusion';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Seq2Seq</title>
+  <meta name="title" content="Seq2Seq">
+  <meta name="description" content="Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: Sequence to
+Sequence Learning with Neural Networks
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Seq2Seq">
+  <meta itemprop="description" content="Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: Sequence to
+Sequence Learning with Neural Networks
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Seq2Seq/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Seq2Seq">
+  <meta property="og:description" content="Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: Sequence to
+Sequence Learning with Neural Networks
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Seq2Seq/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Seq2Seq">
+  <meta name="twitter:description" content="Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: Sequence to
+Sequence Learning with Neural Networks
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Seq2Seq/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Seq2Seq">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2014-09-10 00:00" class="post-meta__body date">Published on arXiv on: 10 Sep 2014</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Seq2Seq> Seq2Seq</h1>
+    <p>Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: <a href="https://arxiv.org/pdf/1409.3215.pdf">Sequence to
+Sequence Learning with Neural Networks</a>
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.</p>
+
+<p>When training, Seq2Seq system first reads the source sentence using a
+neural network called “encoder” to build a <strong>context Vector</strong> (the last
+RNN output in the encoder architecture) which is a sequence of numbers
+that represents the sentence meaning. Then using another neural network
+called “decoder” which takes the translated words along with the context
+vector and tries to train the decoder to predict these words when given
+similar context vector.</p>
+
+<div align="center">
+    <img src="media/Seq2Seq/image1.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+We should know that the input to both the encoder and the decoder are
+word-embedding and not the word itself. So, when translating from one
+language to another, you need to have two sets of word embedding.</p>
+</blockquote>
+
+<p>When testing, we only have the input sentence for the encoder. So, we
+use the encoder architecture to generate the context vector that will be
+used as the initial state for the decoder architecture to generate the
+translated sentence.</p>
+
+<p>And as we can see in the following image, the output of each time step
+in the decoder will be fed back to it the decoder to generate more. And
+each word generated has the highest probability among all other words in
+the vocabulary.</p>
+
+<div align="center">
+    <img src="media/Seq2Seq/image2.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Notes:</strong></p>
+
+  <ul>
+    <li>One of the tricks that we usually use in Machine Translation, and it
+  helps to improve the performance, is to reverse the input sentence
+  when training the model. So, if the (English, Foreign) pair is “a b
+  c” → “α β γ”, then we reverse the source sentence and keep the
+  target as it is. So, now the (English, Foreign) pair is “c b a” → “α
+  β γ”. This increases the performance as the distance between the
+  associated words become lower than before and the average distance
+  between corresponding words in the source and target is unchanged.</li>
+  </ul>
+
+  <div align="center">
+    <img src="media/Seq2Seq/image3.png" width="750" />
+</div>
+
+  <ul>
+    <li>
+      <p>The trend in NMT is not using so much epochs in training. The
+  seq2seq paper mentioned before uses 7.5 epochs for training $12$
+  million sentences containing 348 million English words and 304
+  million French words. And the “<a href="https://arxiv.org/pdf/1508.04025.pdf">Effective Approaches to
+  Attention-based Neural Machine
+  Translation</a>” paper used about
+  12 epochs.</p>
+    </li>
+    <li>
+      <p>There is a trick we can use that doubles the training speed which is
+  when creating mini-batches, we batch the short sentences (&lt; 30
+  words) together and the long sentences together. Padding is also
+  added per batch.</p>
+    </li>
+    <li>
+      <p>Some people would train the encoder and the decoder separately. You
+  can do that with no problem, but it’s preferable to train them
+  altogether as an end-to-end solution.</p>
+    </li>
+    <li>
+      <p>One of the biggest problems we should avoid when creating such a
+  model is to avoid the greedy approach when dealing with the
+  generated sentence. By greedy approach, I mean choosing every word
+  based on current word probability without putting into consideration
+  the following words. That’s why we will stick with another approach
+  which is the “Beam Search”.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="different-layers">Different Layers</h2>
+
+<p>In this part, we are going to discuss a very special case in a Seq2Seq
+architecture, but first let’s recap its architecture. Seq2Seq system
+first reads the source sentence using a neural network called “encoder”
+to build a <strong>context vector(s)</strong>. These vectors are being used as the
+initial value for the hidden states in the decoder. The decoder is
+another neural network that uses the context vector(s) to emit a
+translation, word by word.</p>
+
+<div align="center">
+    <img src="media/Seq2Seq/image4.png" width="750" />
+</div>
+
+<p>In the previous graph, the number of layers in the encoder is the same
+as the decoder. But what happens when the number of layers differ
+between them. How we are going to use the context vector(s) as the
+initial value for the decoder? According to this answer on Quora, there
+are two approaches:</p>
+
+<ul>
+  <li>Use a single layer fully connected (FC) network between the encoder
+and decoder. The FC network has (encoder layers) number of input
+neurons and (decoder layers) number of output/hidden layer neurons.
+This way the sizes of the encoder and decoder would be reconciled
+and you can initialize the decoder hidden states from the output of
+FC network.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Seq2Seq/image5.png" width="750" />
+</div>
+
+<ul>
+  <li>Use the encoder hidden state output as an extension to the decoder
+input and initialize the decoder hidden states randomly. This
+technique is used in papers like: A Persona-Based Neural
+Conversation Model.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Seq2Seq/image6.png" width="750" />
+</div>
+
+<h2 id="beam-search">Beam Search</h2>
+
+<p>The difference between Beam Search and Greedy Algorithm is that the
+first chooses a certain number of candidates for each step (based on the
+<u><strong>beam width</strong></u>) unlike the latter which chooses only
+the most likely candidate for each step. So, we can consider the greedy
+algorithm as a beam search algorithm with a beam width of 1. Let’s see how we
+can do that with our example, “Jane visite l’Afrique en septembre”, step by
+step. First, we will form our encoder network like so:</p>
+
+<div align="center">
+    <img src="media/Seq2Seq/image7.png" width="750" />
+</div>
+
+<p>Using a beam width of $3$, we will choose the most likely three words
+from our vocabulary based on the context vector (Blue). In other words,
+we will get the three words that has the highest
+$P\left( y^{\left\langle 1 \right\rangle} \middle| x \right)$ where $x$
+is the context vector (Blue block). Let’s assume the most likely words
+are “In”, “Jane” and “September”. Now, we will have to create three
+decoder networks, one for each word like so:</p>
+
+<div align="center">
+    <img src="media/Seq2Seq/image8.png" width="750" />
+</div>
+
+<p>And for each choice of these three choices, we will consider what should
+be the second word. We will also get the three most likely words
+according to the probability
+$P\left( y^{\left\langle 2 \right\rangle} \middle| x,y^{\left\langle 1 \right\rangle} \right)$.
+So, we will have $3 \ast 3 = 9$ choices for the second step. Then, we
+will filter it down to 3 by considering the highest three probabilities
+of these nine choices. And we will keep doing that till the end of the
+generated (translated) sentence. If the end of sentence symbols &lt;/s&gt;
+is generated to one of the choices, then we stop generating words in
+this choice.</p>
+
+<p>So in the end, the Beam Search Algorithm will produce the sentence with
+the highest probability of
+$P\left( y^{\left\langle 1 \right\rangle}\ldots y^{\left\langle T_{x} \right\rangle} \middle| x \right)$
+which equal to
+$P\left( y^{\left\langle 1 \right\rangle} \middle| x \right) \ast P\left( y^{\left\langle 2 \right\rangle} \middle| x,y^{\left\langle 1 \right\rangle} \right) \ast P\left( y^{\left\langle 3 \right\rangle} \middle| x,y^{\left\langle 1 \right\rangle},y^{\left\langle 2 \right\rangle} \right) \ast \ldots P\left( y^{\left\langle T_{y} \right\rangle} \middle| x,y^{\left\langle 1 \right\rangle},\ldots y^{\left\langle T_{y} - 1 \right\rangle} \right)$.
+In other words, the Beam Search Algorithm tries to maximize:</p>
+
+\[\arg\max_{y}\prod_{t = 1}^{T_{y}}{P\left( y^{\left\langle T_{y} \right\rangle} \middle| x,\left\{ y^{\left\langle 1 \right\rangle},\ldots y^{\left\langle T_{y} - 1 \right\rangle} \right\} \right)}\]
+
+<p>One way to optimize the previous formula is to use the logarithmic
+summation instead of the product. So, by taking logs, we end up with a
+more numerically stable algorithm that is less prone to numerical
+rounding errors:</p>
+
+\[\arg\max_{y}\sum_{t = 1}^{T_{y}}{\log\left( P\left( y^{\left\langle T_{y} \right\rangle} \middle| x,\left\{ y^{\left\langle 1 \right\rangle},\ldots y^{\left\langle T_{y} - 1 \right\rangle} \right\} \right) \right)}\]
+
+<p>Now, there's one other change to this function that makes the machine
+translation algorithm work even better. If we have a very long sentence,
+the probability of that sentence is going to be small, because we’re
+multiplying as many terms with numbers where all of them are less than 1.</p>
+
+<p>So, if we multiply all the numbers that are less than 1 together, we
+just tend to end up with a smaller probability. That’s why the Beam
+Search prefers short sentences. To avoid that, we modify the former
+equation and divide by the length of the sentence like so:</p>
+
+\[\frac{1}{T_{y}^{\alpha}} \ast \arg\max_{y}\sum_{t = 1}^{T_{y}}{\log\left( P\left( y^{\left\langle T_{y} \right\rangle} \middle| x,\left\{ y^{\left\langle 1 \right\rangle},\ldots y^{\left\langle T_{y} - 1 \right\rangle} \right\} \right) \right)}\]
+
+<p>The parameter $\alpha \in \lbrack 0,1\rbrack$ is a hyper-parameter for
+smoothing the sentence length. So, if $\alpha$ is equal to $1$, then
+we’re completely normalizing by length. If $\alpha$ is equal to $0$,
+then $T_{y}$ will be $1$ which means that we’re not normalizing at all.
+So, $\alpha$ is somewhat in between full normalization and no
+normalization. It’s another hyper-parameter we have within that can be
+tuned to get better results.</p>
+
+<p>Finally, how do we choose the beam width? The larger the beam width is,
+the more possibilities we're considering and the better the sentence we
+will probably find. But also the the more computationally expensive our
+algorithm is as we're also keeping a lot more possibilities around. So,
+how to choose that perfect value?</p>
+
+<p>In production systems, it's not uncommon to see a beam width maybe
+around $10$, and a beam width of $100$ would be considered very large
+for a production system, depending on the application. But for research
+systems where people want to squeeze out every last drop of performance
+in order to publish the paper with the best possible result. It's not
+uncommon to see people use beam widths of $1,000$ or $3,000$.</p>
+
+<p>So, to be on the safe side, we should try other variety of values of the
+beam width as we work through our application. So, for many
+applications, we would expect to see a huge gain as you go from a beam
+width of $1$, which is very greedy search, to $3$, to maybe $10$. But
+the gains as you go from $1,000$ to $3,000$ in beam width might not be
+as big.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Seq2Seq';
+      this.page.identifier = '/machine-translation/Seq2Seq';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

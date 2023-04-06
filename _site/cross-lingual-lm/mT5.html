@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>mT5: Multilingual T5</title>
+  <meta name="title" content="mT5: Multilingual T5">
+  <meta name="description" content="mT5 stands for “Multilingual Text-to-Text Transfer Transformer” which is
+a multilingual variant of
+T5 trained on 101
+languages. mT5 was proposed by Google Research in 2020 and published in
+their paper: mT5: A Massively Multilingual Pre-trained Text-to-Text
+Transformer. The official code
+can be found on Google Research’s official GitHub repository:
+google-research/multilingual-t5.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="mT5: Multilingual T5">
+  <meta itemprop="description" content="mT5 stands for “Multilingual Text-to-Text Transfer Transformer” which is
+a multilingual variant of
+T5 trained on 101
+languages. mT5 was proposed by Google Research in 2020 and published in
+their paper: mT5: A Massively Multilingual Pre-trained Text-to-Text
+Transformer. The official code
+can be found on Google Research’s official GitHub repository:
+google-research/multilingual-t5.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/mT5/image6.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="mT5: Multilingual T5">
+  <meta property="og:description" content="mT5 stands for “Multilingual Text-to-Text Transfer Transformer” which is
+a multilingual variant of
+T5 trained on 101
+languages. mT5 was proposed by Google Research in 2020 and published in
+their paper: mT5: A Massively Multilingual Pre-trained Text-to-Text
+Transformer. The official code
+can be found on Google Research’s official GitHub repository:
+google-research/multilingual-t5.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/mT5/image6.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mT5: Multilingual T5">
+  <meta name="twitter:description" content="mT5 stands for “Multilingual Text-to-Text Transfer Transformer” which is
+a multilingual variant of
+T5 trained on 101
+languages. mT5 was proposed by Google Research in 2020 and published in
+their paper: mT5: A Massively Multilingual Pre-trained Text-to-Text
+Transformer. The official code
+can be found on Google Research’s official GitHub repository:
+google-research/multilingual-t5.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/mT5/image6.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/mT5">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2020-10-22 00:00" class="post-meta__body date">Published on arXiv on: 22 Oct 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=mT5: Multilingual T5> mT5: Multilingual T5</h1>
+    <p>mT5 stands for “Multilingual Text-to-Text Transfer Transformer” which is
+a multilingual variant of
+<a href="https://anwarvic.github.io/language-modeling/T5">T5</a> trained on 101
+languages. mT5 was proposed by Google Research in 2020 and published in
+their paper: <a href="https://arxiv.org/pdf/2010.11934.pdf">mT5: A Massively Multilingual Pre-trained Text-to-Text
+Transformer</a>. The official code
+can be found on Google Research’s official GitHub repository:
+<a href="https://github.com/google-research/multilingual-t5">google-research/multilingual-t5</a>.</p>
+
+<p>The goal behind this paper and mT5 is to produce a massively
+multilingual model that deviates as little as possible from the recipe
+used to create T5. So, they based mT5 on the
+“<a href="https://github.com/google-research/text-to-text-transfer-transformer/blob/master/released_checkpoints.md#t511">T5.1.1</a>”
+checkpoint which improves upon T5 architecture by using:</p>
+
+<ul>
+  <li>
+    <p>GeGLU non-linearities instead of ReLU.</p>
+  </li>
+  <li>
+    <p>Scaling both $d_{\text{model}}$ and $d_{\text{ff}}$ instead of just
+$d_{\text{ff}}$ in the larger models.</p>
+  </li>
+  <li>
+    <p>No dropout with pre-training.</p>
+
+    <p>To put mT5 into perspective, the following table provides a brief
+comparison with existing cross-lingual language models such as:
+mBERT, <a href="https://anwarvic.github.io/language-modeling/XLM">XLM</a>,
+<a href="https://anwarvic.github.io/language-modeling/XLM-R">XLM-R</a>, and
+<a href="https://anwarvic.github.io/language-modeling/MARGE">MARGE</a>:</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/mT5/image1.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note to reader:</strong><br />
+Before getting deeper into this post, I suggest reading the <a href="https://anwarvic.github.io/language-modeling/T5">T5
+post</a> first. You
+don’t have to read all of it, just read the
+<a href="https://anwarvic.github.io/language-modeling/T5/#C4">C4</a> part and the
+<a href="https://anwarvic.github.io/language-modeling/T5/#Baseline">baseline</a> part.</p>
+</blockquote>
+
+<h2 id="mc4">mC4</h2>
+
+<p>To train mT5 on that many languages, they introduced a multilingual
+variant of the <a href="https://www.tensorflow.org/datasets/catalog/c4">C4</a>
+dataset called mC4. mC4 comprises natural text in 101 languages drawn
+from the public Common Crawl web scrape.</p>
+
+<p>The C4 (Colossal Clean Crawled Corpus) dataset was explicitly designed
+to be English only. In contrast, for mC4 they used <a href="https://github.com/google/cld3">cld3
+tool</a> to identify over 100 languages.
+Since some of these languages are relatively scarce on the internet,
+they made use of all of the 71 monthly web scrapes released so far by
+<a href="http://commoncrawl.org/">Common Crawl</a>.</p>
+
+<p>An important heuristic filtering step in C4 was the removal of lines
+that did not end in an English terminal punctuation mark. Since many
+languages do not use English terminal punctuation marks, they instead
+applied a “line length filter” that requires pages to contain at least
+three lines of text with 200 or more characters. Other than that, they
+followed the C4’s filtering steps which are:</p>
+
+<ul>
+  <li>
+    <p>They discarded any page with fewer than 5 sentences and only
+retained lines that contained at least 3 words.</p>
+  </li>
+  <li>
+    <p>They removed any page that contained any word on the “<a href="https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words">List of
+Dirty, Naughty, Obscene or Otherwise Bad
+Words</a>”.</p>
+  </li>
+  <li>
+    <p>They removed any line with the word JavaScript since it usually
+indicates an error on the web.</p>
+  </li>
+  <li>
+    <p>Some pages had placeholder “lorem ipsum” text; they removed any page
+where the phrase “lorem ipsum” appeared.</p>
+  </li>
+  <li>
+    <p>Some pages inadvertently contained code. Since the curly bracket “{“
+appears in many programming languages (such as Javascript, widely
+used on the web) but not in natural text, they removed any pages
+that contained a curly bracket.</p>
+  </li>
+  <li>
+    <p>To de-duplicate the dataset, they discarded all but one of any
+three-sentence span occurring more than once in the data set.</p>
+  </li>
+  <li>
+    <p>They detected each page’s primary language using <a href="https://github.com/google/cld3">cld3
+tool</a> and removed those with a
+confidence below 70%.</p>
+
+    <p>After these filters are applied, they grouped the remaining pages by
+language and included in the corpus all languages with 10,000 or
+more pages. This produces text in 101 language as shown in the
+following figure which shows a histogram of the page counts for each
+language:</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/mT5/image2.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The previous histogram shows 107 languages as detected by cld3; and
+that’s because it handles the script variants of the same spoken
+language. For example, <strong>ru</strong> is Russian in Cyrillic script and
+<strong>ru-Latn</strong> is Russian in Latin script. Same applies for Japanese
+(ja), Hindi (hi), Greek (el), Chinese (zh), and Bulgarian (bg).</p>
+</blockquote>
+
+<h2 id="pre-training-details">Pre-Training Details</h2>
+
+<p>Following the original T5 recipe, they considered five model sizes in
+their experiments: <strong><u>mT5-Small (≈ 300M parameters)</u></strong>,
+<strong><u>mT5-Base (580M)</u></strong>, <strong><u>mT5-Large (1.2B)</u></strong>,
+<strong><u>mT5-XL (3.7B)</u></strong>, and <strong><u>mT5-XXL (13B)</u></strong>.
+The increase in parameter counts compared to the corresponding T5 model
+variants comes from the larger vocabulary used in mT5.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+Because mT5 is an encoder-decoder model, it has roughly twice as many
+parameters as correspondingly-sized encoder-only models such as XLM-R.
+For example, the “XLM-R~Large~” has 550 million parameters whereas
+mT5-Large has around 1 billion.</p>
+</blockquote>
+
+<p>All mT5 variants were pre-trained for 1 million steps on batches of 1024
+input sequences, corresponding to roughly 1 trillion input tokens total.
+This is the same amount of pre-training as T5 and about 1/6 as much as
+XLM-R. They used the same inverse square-root learning rate schedule
+used by T5 during pre-training, with the learning rate set to
+$\frac{1}{\sqrt{\max\left( n,k \right)}}$ where $n$ is the current
+training iteration and $k = 10^{4}$ is the number of warm-up steps.</p>
+
+<p>Following the
+<a href="https://github.com/google-research/text-to-text-transfer-transformer/blob/master/released_checkpoints.md#t511">T5.1.1</a>
+recipe, they didn’t apply dropout during pre-training. They used the
+same self-supervised objective as T5, with $15\%$ of tokens masked and
+an average noise span length of $3$.</p>
+
+<h3 id="sampling">Sampling</h3>
+
+<p>A major factor in pre-training multilingual models is how to sample data
+from each language. In this paper, they used temperature sampling to
+boost lower-resource languages by sampling examples according to the
+probability $p\left( L \right) \propto \left| L \right|^{\alpha}$, where
+$p\left( L \right)$ is the probability of sampling text from a given
+language $L$ during pre-training and $\left| L \right|$ is the number of
+examples in the language. The hyper-parameter $\alpha$ (typically with
+$\alpha &lt; 1$) controls how much to “boost” the probability of training
+on low-resource languages.</p>
+
+<p>Values used by prior work include $\alpha = 0.7$ for mBERT,
+$\alpha = 0.3$ for XLM-R, and $\alpha = 0.2$ for M4. They tried all
+three of these values and found $\alpha = 0.3$ to give a reasonable
+compromise between performance on high- and low-resource languages.</p>
+
+<h3 id="vocabulary">Vocabulary</h3>
+
+<p>The fact that mT5 model covers over 100 languages necessitates a larger
+vocabulary. Following
+<a href="https://anwarvic.github.io/language-modeling/XLM-R">XLM-R</a>, they
+increased the vocabulary size to 250,000 wordpieces. As in T5, they used
+SentencePiece model trained with the language sampling rates used during
+pre-training. To accommodate languages with large character sets like
+Chinese, they used a character coverage of $0.99999$ and enable
+SentencePiece’s “byte-fallback” feature to ensure that any string can be
+uniquely encoded.</p>
+
+<h2 id="fine-tuning">Fine-tuning</h2>
+
+<p>To validate the performance of mT5, they evaluated it on 6 tasks from
+the XTREME multilingual benchmark:</p>
+
+<ul>
+  <li>
+    <p>The XNLI entailment task covering 14 languages.</p>
+  </li>
+  <li>
+    <p>The XQuAD reading comprehension covering 10 languages.</p>
+  </li>
+  <li>
+    <p>The MLQA reading comprehension covering 7 languages.</p>
+  </li>
+  <li>
+    <p>The TyDi QA reading comprehension covering11 languages.</p>
+  </li>
+  <li>
+    <p>The Named Entity Recognition (NER) dataset of WikiAnn covering 40
+languages.</p>
+  </li>
+  <li>
+    <p>The PAWS-X paraphrase identification dataset covering 7 languages.</p>
+  </li>
+</ul>
+
+<p>All tasks are casted into the text-to-text format. For example, if there are
+multiple NER entities, then they are concatenated in the order they appear, and
+if there are no entities then the target text is “None”.</p>
+
+<p>For fine-tuning, they used a constant learning rate of $0.001$ and dropout rate
+of $0.1$ for all tasks. They used a batch size of $2^{17}$ for most tasks but
+increased this up to $2^{20}$ in a few cases based on performance on the
+validation set. For early stopping, they saved checkpoints every $200$ steps
+and choose the checkpoint with the highest validation performance.</p>
+
+<p>Regarding fine-tuning, they considered three variants:</p>
+
+<ul>
+  <li><strong>Zero-shot:</strong> where the model is fine-tuned only on English
+data. The following table shows that mT5-XXL achieves state of the
+art results</li>
+</ul>
+
+<div align="center">
+    <img src="media/mT5/image3.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>translate-train:</strong> adding machine translations from English into
+each target language.</li>
+</ul>
+
+<div align="center">
+    <img src="media/mT5/image4.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>in-language multi-task:</strong> training on gold data in all target
+languages:</li>
+</ul>
+
+<div align="center">
+    <img src="media/mT5/image5.png" width="750" />
+</div>
+
+<p>From the past results we can see that the model capacity is key to improving
+performance on variants of the TyDi QA GoldP task in the absence of “gold”
+multilingual data: For the smallest model, training on gold datasets
+(in-language multitask) achieves dramatically better performance than using
+weakly supervised data (translate-train) or English-only data (zero-shot),
+whereas the gap between these three settings is much smaller for the largest
+model. The following figure points that out clearly as it shows the average
+F1 on the TyDi QA GoldP task across languages:</p>
+
+<div align="center">
+    <img src="media/mT5/image6.png" width="450" />
+</div>
+
+<h2 id="accidental-translation">Accidental Translation</h2>
+
+<p>Accidental translation is a problematic behavior with the mT5 model in
+the zero-shot setting where the model start translating part or all of
+the masked span into English (the language of all fine-tuning data). On
+the one hand, it is remarkable that mT5 performs “spontaneous”
+translation despite never seeing parallel training data. On the other,
+it led to hurting the performance. This problem happens across all model
+sizes and all XQuAD languages, but happens more in mT5-Small and
+mT5-Base.</p>
+
+<p>The researchers believe that the reason behind that is that the model
+has never observed a non-English target during fine-tuning. To fix that,
+they decided to use a technique called “Domain Preserving Training
+(DPT)” which is to mix a unsupervised task with fine-tuning.</p>
+
+<p>The unsupervised task they planned to use was the same as the mC4 task
+definition as in pre-training, with just two adjustments:</p>
+
+<ul>
+  <li>
+    <p>First, they removed all “sentinel” tokens from the target sequence.</p>
+  </li>
+  <li>
+    <p>Second, they reduced the language sampling parameter $\alpha$ from
+$0.3$ to $0.1$. This produces a near uniform distribution of
+languages, encouraging the model to treat all languages as equally
+likely.</p>
+  </li>
+</ul>
+
+<p>Then, they mixed a small amount of the unsupervised task (covering 101
+languages) into XQuAD fine-tuning, at a ratio of just $1:100$. The following
+figure shows the results on XQuAD zero-shot error rates. The addition of this
+small amount of multilingual data has a marked effect on the mT5- Small and
+mT5-Base models reducing the illegal prediction rates by more than $70%$
+(relative), and contributing to an overall reduction in errors:</p>
+
+<div align="center">
+    <img src="media/mT5/image7.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/mT5';
+      this.page.identifier = '/cross-lingual-lm/mT5';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

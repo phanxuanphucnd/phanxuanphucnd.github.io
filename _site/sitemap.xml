@@ -1,0 +1,1688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/mBERT</loc>
+        
+          <lastmod>2018-11-04T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/XLM</loc>
+        
+          <lastmod>2019-01-22T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/XNLG</loc>
+        
+          <lastmod>2019-09-23T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/Unicoder</loc>
+        
+          <lastmod>2019-11-03T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/XLM-R</loc>
+        
+          <lastmod>2019-11-05T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/ALM</loc>
+        
+          <lastmod>2020-04-03T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/LaBSE</loc>
+        
+          <lastmod>2020-07-03T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/InfoXLM</loc>
+        
+          <lastmod>2020-07-15T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/AMBER</loc>
+        
+          <lastmod>2020-10-15T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/mT5</loc>
+        
+          <lastmod>2020-10-22T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/VECO</loc>
+        
+          <lastmod>2020-10-30T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/mT6</loc>
+        
+          <lastmod>2021-04-18T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/DeltaLM</loc>
+        
+          <lastmod>2021-06-25T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/XLM-E</loc>
+        
+          <lastmod>2021-06-30T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/cross-lingual-lm/nmT5</loc>
+        
+          <lastmod>2021-08-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+  
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/RNN</loc>
+        
+          <lastmod>1985-09-19T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/Neural_N-gram</loc>
+        
+          <lastmod>2003-02-09T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/Tree_Recursive_NN</loc>
+        
+          <lastmod>2011-07-28T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/GCNN</loc>
+        
+          <lastmod>2016-12-23T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/GPT</loc>
+        
+          <lastmod>2018-06-11T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/BERT</loc>
+        
+          <lastmod>2018-10-11T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/Transformer-XL</loc>
+        
+          <lastmod>2019-01-09T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/adapter</loc>
+        
+          <lastmod>2019-02-02T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/GPT-2</loc>
+        
+          <lastmod>2019-02-14T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/MASS</loc>
+        
+          <lastmod>2019-05-07T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/XLNet</loc>
+        
+          <lastmod>2019-06-19T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/SpanBERT</loc>
+        
+          <lastmod>2019-07-24T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/RoBERTa</loc>
+        
+          <lastmod>2019-07-26T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/pollution</loc>
+        
+          <lastmod>2019-08-02T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/StructBERT</loc>
+        
+          <lastmod>2019-08-13T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/TinyBERT</loc>
+        
+          <lastmod>2019-09-23T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/ALBERT</loc>
+        
+          <lastmod>2019-09-26T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/T5</loc>
+        
+          <lastmod>2019-10-23T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/BART</loc>
+        
+          <lastmod>2019-10-29T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/DistilBERT</loc>
+        
+          <lastmod>2020-03-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/ELECTRA</loc>
+        
+          <lastmod>2020-03-23T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/Longformer</loc>
+        
+          <lastmod>2020-04-10T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/ETC</loc>
+        
+          <lastmod>2020-04-17T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/adapter_fusion</loc>
+        
+          <lastmod>2020-05-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/language-modeling/GPT-3</loc>
+        
+          <lastmod>2020-05-28T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+  
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Attention</loc>
+        
+          <lastmod>2014-09-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Seq2Seq</loc>
+        
+          <lastmod>2014-09-10T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Fusion</loc>
+        
+          <lastmod>2015-03-11T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Back-Translation</loc>
+        
+          <lastmod>2015-11-20T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/GNMT</loc>
+        
+          <lastmod>2016-09-26T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Dual_Learning</loc>
+        
+          <lastmod>2016-11-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Gated_CNN</loc>
+        
+          <lastmod>2016-12-23T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/ConvS2S</loc>
+        
+          <lastmod>2017-05-08T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/SMT_Vs_NMT</loc>
+        
+          <lastmod>2017-06-12T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Transformer</loc>
+        
+          <lastmod>2017-06-12T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/MUSE</loc>
+        
+          <lastmod>2017-10-11T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/UNdreaMT</loc>
+        
+          <lastmod>2017-10-30T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/UMT_with_monolingual_data</loc>
+        
+          <lastmod>2017-10-31T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/NAT</loc>
+        
+          <lastmod>2017-11-07T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/RNMT_plus</loc>
+        
+          <lastmod>2018-04-26T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Universal_Transformer</loc>
+        
+          <lastmod>2018-07-10T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Context-Aware_Transformer</loc>
+        
+          <lastmod>2018-07-15T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/translationese_effect</loc>
+        
+          <lastmod>2018-08-21T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Evolved_Transformer</loc>
+        
+          <lastmod>2019-01-30T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/SB-NMT</loc>
+        
+          <lastmod>2019-05-13T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Robust_NMT</loc>
+        
+          <lastmod>2019-06-06T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Tagged_BT</loc>
+        
+          <lastmod>2019-06-15T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Transformer_+_NoisyChannel</loc>
+        
+          <lastmod>2019-08-15T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Align_and_Translate</loc>
+        
+          <lastmod>2019-09-04T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/CMLM_Transformer</loc>
+        
+          <lastmod>2019-09-04T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Evaluation</loc>
+        
+          <lastmod>2020-01-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Reformer</loc>
+        
+          <lastmod>2020-01-13T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Linformer</loc>
+        
+          <lastmod>2020-06-08T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Very_Deep_Transformer</loc>
+        
+          <lastmod>2020-08-18T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/hallucination</loc>
+        
+          <lastmod>2021-04-14T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/REDER</loc>
+        
+          <lastmod>2021-05-07T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Luna</loc>
+        
+          <lastmod>2021-06-03T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/DrNMT</loc>
+        
+          <lastmod>2021-08-01T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/HintedBT</loc>
+        
+          <lastmod>2021-09-09T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/Data_Length_Bias</loc>
+        
+          <lastmod>2021-09-13T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/BiT</loc>
+        
+          <lastmod>2021-09-16T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/machine-translation/scaling_transformer</loc>
+        
+          <lastmod>2021-09-16T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+  
+    
+  
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/Multilingual_GNMT</loc>
+        
+          <lastmod>2016-11-14T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/Massively_MNMT</loc>
+        
+          <lastmod>2019-07-02T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/M4</loc>
+        
+          <lastmod>2019-07-11T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/Analyzing_M4</loc>
+        
+          <lastmod>2019-09-05T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/mBART</loc>
+        
+          <lastmod>2020-01-22T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/CRISS</loc>
+        
+          <lastmod>2020-06-16T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/mBART-50</loc>
+        
+          <lastmod>2020-08-02T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/MTL</loc>
+        
+          <lastmod>2020-10-06T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/mRASP</loc>
+        
+          <lastmod>2020-10-07T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/cMNMT</loc>
+        
+          <lastmod>2020-10-20T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/M2M-100</loc>
+        
+          <lastmod>2020-10-21T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/XLM-T</loc>
+        
+          <lastmod>2020-12-31T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/mRASP2</loc>
+        
+          <lastmod>2021-05-20T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/multilinguality_in_transformers</loc>
+        
+          <lastmod>2021-05-31T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/multilingual-nmt/CeMAT</loc>
+        
+          <lastmod>2022-03-17T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+  
+    
+  
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/t-SNE</loc>
+        
+          <lastmod>2008-11-25T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/word2vec</loc>
+        
+          <lastmod>2013-09-07T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/sentence_embedding</loc>
+        
+          <lastmod>2014-05-22T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/GloVe</loc>
+        
+          <lastmod>2014-10-25T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/sense2vec</loc>
+        
+          <lastmod>2015-11-19T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/de-biasing</loc>
+        
+          <lastmod>2016-07-21T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/subword_embedding</loc>
+        
+          <lastmod>2017-06-19T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/contextualized_word_embedding</loc>
+        
+          <lastmod>2018-03-22T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+      
+      <url>
+        <loc>http://localhost:4000/word-embedding/LASER</loc>
+        
+          <lastmod>2019-09-25T00:00:00+07:00</lastmod>
+        
+        
+          <changefreq>monthly</changefreq>
+        
+        
+          <priority>0.5</priority>
+        
+      </url>
+      
+    
+  
+
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/cross-lingual-lm/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/feed.xml</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/language-modeling/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/machine-translation/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/misc/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/multilingual-nmt/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/word-embedding/</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/assets/css/style.css</loc>
+      
+        <lastmod>2023-04-06T12:16:36+07:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+</urlset>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>ConvS2S</title>
+  <meta name="title" content="ConvS2S">
+  <meta name="description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Convolutional Sequence to Sequence
+Learning”, proposed by FAIR
+(Facebook AI Research) in 2017. The official repository for this paper
+can be found on fairseq/convs2s.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="ConvS2S">
+  <meta itemprop="description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Convolutional Sequence to Sequence
+Learning”, proposed by FAIR
+(Facebook AI Research) in 2017. The official repository for this paper
+can be found on fairseq/convs2s.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/ConvS2S/image2.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="ConvS2S">
+  <meta property="og:description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Convolutional Sequence to Sequence
+Learning”, proposed by FAIR
+(Facebook AI Research) in 2017. The official repository for this paper
+can be found on fairseq/convs2s.
+
+">
+  <meta property="og:image" content="/machine-translation/media/ConvS2S/image2.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ConvS2S">
+  <meta name="twitter:description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Convolutional Sequence to Sequence
+Learning”, proposed by FAIR
+(Facebook AI Research) in 2017. The official repository for this paper
+can be found on fairseq/convs2s.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/ConvS2S/image2.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/ConvS2S">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2017-05-08 00:00" class="post-meta__body date">Published on arXiv on: 8 May 2017</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=ConvS2S> ConvS2S</h1>
+    <p>One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “<a href="https://arxiv.org/pdf/1705.03122.pdf">Convolutional Sequence to Sequence
+Learning</a>”, proposed by FAIR
+(Facebook AI Research) in 2017. The official repository for this paper
+can be found on <a href="https://github.com/pytorch/fairseq">fairseq/convs2s</a>.</p>
+
+<p>In this paper, we can see that ConvS2S outperformed the Attention model
+on both WMT’14 English-German and WMT’14 English-French translation
+using an entirely-CNN translation model with faster results.</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image1.png" width="750" />
+</div>
+
+<p>The following figure shows the whole ConvS2S architecture created by
+Facebook AI Research (FAIR):</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image2.png" width="750" />
+</div>
+
+<p>As we can see, this architecture seems a bit complicated and consists of
+many different components that need clarification. So, let’s divide this
+big architecture into three main components: Encoder, Decoder and
+Attention.</p>
+
+<h2 id="encoder">Encoder</h2>
+
+<p>The encoder component consists of five different steps:</p>
+
+<ul>
+  <li><strong>Padding:</strong> The recurrent neural nets process text from
+left-to-right while in CNNs the words that are close together get
+convoluted together. So, if we have a sentence of $L$ words and the
+representative word vector is $d$ features long, then we can
+represent the sentence as a 2D-plane
+$X \in \mathbb{R}^{L \times d}$. And to ensure that the output of
+the convolution layers matches the input length, we apply padding to
+the input at each layer based on the following formula given that
+$k$ is the kernel height (the kernel’s width is always the same as
+the input’s width):</li>
+</ul>
+
+\[p = \frac{k - 1}{2}\]
+
+<p>Padding is denoted by the &lt;p&gt; tag which is usually zero as shown in
+the following image:</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image3.png" height="450" />
+</div>
+
+<ul>
+  <li><strong>Position Embedding:</strong> Then, we use word-embedding $w$ (of size 512
+in the paper) combined with the absolute position $p$ of the words
+to obtain word-position knowing that the size of $p$ is the same as
+$w$:</li>
+</ul>
+
+\[e = \left( e_{1},\ e_{2},\ ...e_{L} \right) = \left( w_{1} + p_{1},\ w_{2} + p_{2},\ ...w_{L} + p_{L} \right)\]
+
+<ul>
+  <li><strong>Convolution:</strong> Now, we have a matrix representing the input
+sentence $X \in \mathbb{R}^{L \times d}$ where $L$ is the length of
+the sentence. Next, we are going to use convolution of $2d$
+different filters, each convolution kernel is a
+$W \in \mathbb{R}^{k \times d}$ where $k$ is the kernel size.
+Performing the convolution will result into a matrix of
+$Z \in \mathbb{R}^{L \times 2d}$.</li>
+</ul>
+
+\[Z = W*X + b\]
+
+<p>In the following example, we are going to use a $3 \times d$ filters
+(trigram filters). When we convolve a filter with a sentence, we
+multiply its values element-wise with the original matrix, then summing
+them up. We keep doing that till we pass through the whole sentence with
+a certain number of filters.</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image4.png" width="450" />
+    <img src="media/ConvS2S/image5.png" width="450" />
+</div>
+
+<ul>
+  <li><strong>GLU:</strong> After applying convolution, we will have an output of
+$Z \in \mathbb{R}^{L \times 2d}$ over which we are going to apply
+GLU (Gated-Linear Unit). We are going to split $Z$ into two matrices
+$A \in \mathbb{R}^{L \times d}$ and $B \in \mathbb{R}^{L \times d}$.
+Applying GLU means applying the following formula:</li>
+</ul>
+
+\[\text{GLU}\left( Z \right) = GLU\left( \left\lbrack \text{A\ B} \right\rbrack \right) = A \otimes \sigma\left( B \right)\]
+
+<p>Where $\otimes$ is the point-wise multiplication and $\sigma$ is the
+sigmoid function. The term $\sigma(B)$ controls which inputs $A$ of the
+current context are relevant.</p>
+
+<ul>
+  <li><strong>Residual:</strong> To enable deep layers, we add residual connections
+from the input of each convolution layer to the output from GLU
+step.</li>
+</ul>
+
+\[Z^{l + 1} = \text{GLU}\left( Z^{l} \right) + Z^{l}\]
+
+<p>After applying the residual connection, we multiply the sum of the input
+and output of a residual block by $\sqrt{0.5}$ to halve the variance of
+the sum.</p>
+
+<p>Here is the encoder with input dimensions for reference:</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image6.png" width="750" />
+</div>
+
+<h2 id="decoder">Decoder</h2>
+
+<p>The decoder is the same as the encoder after removing the <u>**residual
+part**</u>:</p>
+
+<ul>
+  <li><strong>Padding:</strong> Padding in the decoder is a little bit different than
+the encoding. Here, we pad the input using ($k - 1$) on both sides
+instead of $\frac{k - 1}{2}$ where $k$ is the kernel height:</li>
+</ul>
+
+\[p = k - 1\]
+
+<ul>
+  <li><strong>Embedding:</strong> The same as the encoder.</li>
+</ul>
+
+\[g = \left( g_{1},\ g_{2},\ ...g_{N} \right) = \left( w_{1} + p_{1},\ w_{2} + p_{2},\ ...w_{N} + p_{N} \right)\]
+
+<ul>
+  <li><strong>Convolution</strong>: The same as the encoder.</li>
+</ul>
+
+\[H = W*X + b\]
+
+<ul>
+  <li><strong>GLU</strong>: The same as the encoder.</li>
+</ul>
+
+\[\text{GLU}\left( H \right) = GLU\left( \left\lbrack \text{A\ B} \right\rbrack \right) = A \otimes \sigma\left( B \right)\]
+
+<p>Here is the decoder with input dimensions for reference:</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image7.png" width="750" />
+</div>
+
+<p>Now, we have discussed the encoder and the decoder part of the ConvS2S
+architecture. Let’s get to the attention mechanism which is used in this
+architecture.</p>
+
+<h2 id="attention">Attention</h2>
+
+<p>In the following part, we are going to discuss the attention mechanism
+used in this architecture. Before getting into this, let’s recap a few
+terms:</p>
+
+<ul>
+  <li>
+    <p>The output matrix of the encoder is $Z \in \mathbb{R}^{L \times d}$
+where $L$ is the length of the encoder’s input sequence and $d$ is
+the embedding size.</p>
+  </li>
+  <li>
+    <p>The output matrix of the decoder is $H \in \mathbb{R}^{N \times d}$
+where $N$ is the length of the decoder’s input sequence.</p>
+  </li>
+  <li>
+    <p>$e = \left( e_{1},\ …\ e_{L} \right)$ is the element embedding for
+the encoder sequence. While $g = \left( g_{1},\ …\ g_{N} \right)$
+is the element embedding for the decoder sequence.</p>
+  </li>
+</ul>
+
+<p>To compute the attention, we follow the following steps:</p>
+
+<ul>
+  <li>First, we combine the the decoder’s current state $h_{i}^{l}$ with
+the decoder’s embedding embedding $g_{i}$ to get the decoder state
+summary $d_{i}^{l}$:</li>
+</ul>
+
+\[d_{i}^{l} = h_{i}^{l} + g_{i}\]
+
+<ul>
+  <li>For decoder layer $l$, the attention $a_{\text{ij}}^{l}$ of state
+$i$ and source element $j$ is computed as a dot-product between the
+decoder state summary $d_{i}^{l}$ and each output
+$Z^{u} = \left( z_{1}^{u},\ …\ z_{L}^{u} \right)$ of the last
+encoder block $u$:</li>
+</ul>
+
+\[a_{i}^{l} = \text{Softmax}\left( Z^{u}.d_{i}^{l} \right)\]
+
+\[a_{\text{ij}}^{l} = \frac{\exp\left( d_{i}^{l}.z_{j}^{u} \right)}{\sum_{t = 1}^{L}{\exp\left( d_{i}^{l}.z_{t}^{u} \right)}}\]
+
+<ul>
+  <li>The conditional input $c_{i}^{l}$ to the current decoder layer is a
+weighted sum of the encoder outputs $z_{j}^{u}$ as well as the input
+element embeddings $e_{j}$. The term $L\sqrt{\frac{1}{L}}$ is used
+to scale up the result.</li>
+</ul>
+
+\[c_{i}^{l} = L\sqrt{\frac{1}{L}}\sum_{j = 1}^{L}{a_{\text{ij}}^{l}\left( z_{j}^{u} + e_{j} \right)}\]
+
+<p>The attention mechanism can be summarized in the following image:</p>
+
+<div align="center">
+    <img src="media/ConvS2S/image8.png" width="750" />
+</div>
+
+<p>The problem is that Convolutional Neural Networks do not necessarily
+help with the problem of figuring out the problem of dependencies when
+translating sentences. That’s why Transformers were created, they are a
+combination of both CNNs with attention.</p>
+
+<h2 id="initialization">Initialization</h2>
+
+<p>The motivation for their initialization is to maintain the variance of
+activations throughout the forward and backward passes. The following is
+the different initialization for different parts of the architecture:</p>
+
+<ul>
+  <li>
+    <p>All embeddings are initialized from a normal distribution
+$\mathcal{N}\left( 0,\ 0.1 \right)$.</p>
+  </li>
+  <li>
+    <p>For layers whose output is not directly fed to a gated linear unit,
+they initialized the weights from the normal distribution
+$\mathcal{N}\left( 0,\ \sqrt{\frac{1}{n_{l}}} \right)$ where $n_{l}$
+is the number of input connections to each neuron at layer $l$.</p>
+  </li>
+  <li>
+    <p>For layers which are followed by a GLU activation, they initialized
+the weights from the normal distribution
+$\mathcal{N}\left( 0,\ \sqrt{\frac{4}{n_{l}}} \right)$.</p>
+  </li>
+  <li>
+    <p>They applied dropout to the input of some layers so that inputs are
+retained with a probability of $p$.</p>
+  </li>
+  <li>
+    <p>Biases are uniformly set to zero when the network is constructed.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/ConvS2S';
+      this.page.identifier = '/machine-translation/ConvS2S';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

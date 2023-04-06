@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Unsupervised Machine Translation with Monolingual Data</title>
+  <meta name="title" content="Unsupervised Machine Translation with Monolingual Data">
+  <meta name="description" content="The second model proposed in this area was created by Facebook AI in
+2017 and published in this paper: “Unsupervised Machine Translation
+Using Monolingual Corpora only”.
+The proposed system follows a standard encoder-decoder architecture with
+standard attention mechanism assisted by a back-translation procedure
+where
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Unsupervised Machine Translation with Monolingual Data">
+  <meta itemprop="description" content="The second model proposed in this area was created by Facebook AI in
+2017 and published in this paper: “Unsupervised Machine Translation
+Using Monolingual Corpora only”.
+The proposed system follows a standard encoder-decoder architecture with
+standard attention mechanism assisted by a back-translation procedure
+where
+
+">
+  <meta itemprop="image" content="/machine-translation/media/UMT_with_monolingual_data/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Unsupervised Machine Translation with Monolingual Data">
+  <meta property="og:description" content="The second model proposed in this area was created by Facebook AI in
+2017 and published in this paper: “Unsupervised Machine Translation
+Using Monolingual Corpora only”.
+The proposed system follows a standard encoder-decoder architecture with
+standard attention mechanism assisted by a back-translation procedure
+where
+
+">
+  <meta property="og:image" content="/machine-translation/media/UMT_with_monolingual_data/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Unsupervised Machine Translation with Monolingual Data">
+  <meta name="twitter:description" content="The second model proposed in this area was created by Facebook AI in
+2017 and published in this paper: “Unsupervised Machine Translation
+Using Monolingual Corpora only”.
+The proposed system follows a standard encoder-decoder architecture with
+standard attention mechanism assisted by a back-translation procedure
+where
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/UMT_with_monolingual_data/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/UMT_with_monolingual_data">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2017-10-31 00:00" class="post-meta__body date">Published on arXiv on: 31 Oct 2017</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a> & <a href="/labs/#Sorbonne University">Sorbonne University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Unsupervised Machine Translation with Monolingual Data> Unsupervised Machine Translation with Monolingual Data</h1>
+    <p>The second model proposed in this area was created by Facebook AI in
+2017 and published in this paper: “<a href="https://arxiv.org/pdf/1711.00043.pdf">Unsupervised Machine Translation
+Using Monolingual Corpora only</a>”.
+The proposed system follows a standard encoder-decoder architecture with
+standard attention mechanism assisted by a back-translation procedure
+where</p>
+
+<ul>
+  <li>
+    <p>There is one encoder which is a three-layer bidirectional RNN
+responsible for encoding source sentences $\mathcal{D}_{\text{src}}$
+to a latent space $Z$.</p>
+  </li>
+  <li>
+    <p>There is one decoder which is a three-layer unidirectional RNN
+responsible for decoding target sentences $\mathcal{D}_{\text{tgt}}$
+to a latent space $Z$.</p>
+  </li>
+  <li>
+    <p>All RNNs use LSTM cells with 300 hidden units, and the
+dimensionality of the embeddings is set to 300 as well.</p>
+  </li>
+</ul>
+
+<p>The key idea is to build a common latent space between two languages
+and to learn to translate by reconstructing in both domains
+according to two principles:</p>
+
+<ul>
+  <li><strong>Denoising:</strong> The model has to be able to reconstruct a sentence in
+a given language from a noisy version of it, as in standard
+denoising auto-encoders.</li>
+</ul>
+
+<div align="center">
+    <img src="media/UMT_with_monolingual_data/image1.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Cross-domain Translation:</strong> The model also has to be able to
+reconstruct a source sentence given a noisy translation of the same
+sentence in the target language, and vice versa.</li>
+</ul>
+
+<div align="center">
+    <img src="media/UMT_with_monolingual_data/image2.png" width="750" />
+</div>
+
+<h2 id="denoising">Denoising</h2>
+
+<p>The whole idea of the system is to train a model to reconstruct its own
+input. More concretely, the system takes an input sentence in a given
+language, encode it using the shared encoder, and reconstruct the
+original sentence using the decoder of that language. That’s why we have
+two decoders for each language.</p>
+
+<p>But this training procedure is essentially a trivial copying task. And
+it’s highly probable that our model could just blindly copy elements
+from the input sequence without gaining any real knowledge. In order to
+avoid that, they used <u><strong>denoising</strong></u>. Denoising is
+the process of applying a noise function on the input. They used two
+different noise functions:</p>
+
+<ul>
+  <li>
+    <p><strong>Shuffling:</strong> They shuffle the input sentence where a word at
+position $i$ can’t be further than either $i - k$ or $i + k$ where
+they found out that $k = 3$ is a good value.</p>
+  </li>
+  <li>
+    <p><strong>Dropping:</strong> They drop every word in the input sequence by a
+probability of $p = 0.1$</p>
+  </li>
+</ul>
+
+<p>This way, the system needs to learn about the internal structure of
+the languages involved to be able to recover the correct word order.
+At the same time, by discouraging the system to rely too much on the
+word order of the input sequence.</p>
+
+<h2 id="cross-domain-translation">Cross-domain Translation</h2>
+
+<p>The second objective is to constrain the model to be able to map an
+input sentence from a the language $\ell_{1}$ to $\ell_{2}$ and vice
+versa. The principle can be summarized in the following steps:</p>
+
+<ul>
+  <li>
+    <p>We will use an earlier version of the model, denoted $M$, to
+generate a translation $y$ of a given sentence $x$.</p>
+  </li>
+  <li>
+    <p>Then, this translation $y$ will be denoised using our denoising
+functions (discussed in the last part) to get a corrupted version of
+the translation $C\left( y \right)$.</p>
+  </li>
+  <li>
+    <p>This corrupted version $C\left( y \right)$ will be inserted as input
+to the current version of the model and the model will try to
+reconstruct $x$ from $C\left( y \right)$.</p>
+  </li>
+</ul>
+
+<h2 id="adversarial-training">Adversarial Training</h2>
+
+<p>To boost performance, they created another neural network, which we will
+refer to as the discriminator, to classify between the encoding of
+source sentences and the encoding of target sentences.</p>
+
+<p>The discriminator is a multilayer perceptron with three hidden layers of
+size 1024, Leaky-ReLU activation functions and an output logistic unit.
+The discriminator is trained using RMSProp with a learning rate of
+0.0005.</p>
+
+<p>The discriminator operates on the output of the encoder , which is a
+sequence of latent vectors $Z$ and produces a binary prediction about
+the language of the encoder input sentence.</p>
+
+<h2 id="final-objective-function">Final Objective Function</h2>
+
+<p>The final objective function at one iteration of our learning algorithm
+is thus:</p>
+
+\[\mathcal{L}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z \right) = \lambda_{\text{auto}}\left\lbrack \mathcal{L}_{\text{auto}}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z,\ src \right) \\
++ \mathcal{L}_{\text{auto}}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z,\ tgt \right) \right\rbrack \\
++ \lambda_{\text{cd}}\left\lbrack \mathcal{L}_{\text{cd}}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z,\ src,\ tgt \right) \\
++ \mathcal{L}_{\text{cd}}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z,\ src,\ tgt \right) \right\rbrack \\
++ \lambda_{\text{adv}}\left\lbrack \mathcal{L}_{\text{adv}}\left( \theta_{\text{enc}},\ Z \middle| \theta_{D} \right) \right\rbrack\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$\mathcal{L}_{\text{auto}}$ is the auto-encoding loss function;
+where
+$\widehat{x}\sim d\left( e\left( C\left( x \right),\ \ell \right),\ \ell \right)$
+means that $\widehat{x}$ is a reconstruction of the corrupted
+version of $x$. And $\mathrm{\Delta}\left( \widehat{x},\ x \right)$
+is the sum of token-level cross-entropy losses:</li>
+</ul>
+
+\[\mathcal{L}_{\text{auto}}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z,\ \ell \right) = \mathbb{E}_{x\sim D_{\ell},\ \widehat{x}\sim d\left( e\left( C\left( x \right),\ \ell \right),\ \ell \right)}\left\lbrack \mathrm{\Delta}\left( \widehat{x},\ x \right) \right\rbrack\]
+
+<ul>
+  <li>$\mathcal{L}_{\text{cd}}$ is the cross-domain translation loss
+function:</li>
+</ul>
+
+\[\mathcal{L}_{\text{cd}}\left( \theta_{\text{enc}},\ \theta_{\text{dec}},\ Z,\ \ell_{1},\ \ell_{2} \right) = \mathbb{E}_{x\sim D_{\ell_{1}},\ \widehat{x}\sim d\left( e\left( C\left( M\left( x \right) \right),\ \ell_{2} \right),\ \ell_{1} \right)}\left\lbrack \mathrm{\Delta}\left( \widehat{x},\ x \right) \right\rbrack\]
+
+<ul>
+  <li>$\mathcal{L}<em>{\text{adv}}$ is the adversarial loss function where
+$e\left( x</em>{i},\ell_{i} \right)$ is the output of the encoder and
+$p_{D}$ is the discriminator output which is either $0$ or $1$:</li>
+</ul>
+
+\[\mathcal{L}_{\text{adv}}\left( \theta_{\text{enc}},\ \text{Z\ } \middle| \ \theta_{D} \right) = - \mathbb{E}_{\left( x_{i},\ \ell_{i} \right)}\left\lbrack \log\left( p_{D}\left( \ell_{i} \middle| e\left( x_{i},\ell_{i} \right) \right) \right) \right\rbrack\]
+
+<ul>
+  <li>$\lambda_{\text{audo}},\ \lambda_{\text{cd}},\ \lambda_{\text{adv}}$
+are hyper-parameters weighting the importance of the auto-encoding,
+cross-domain translation and adversarial loss respectively.</li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/UMT_with_monolingual_data';
+      this.page.identifier = '/machine-translation/UMT_with_monolingual_data';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

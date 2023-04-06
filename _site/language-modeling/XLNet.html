@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>XLNet</title>
+  <meta name="title" content="XLNet">
+  <meta name="description" content="XLNet stands for “Extra-Long Net” which is a model that integrates both
+GPT and BERT introduced in 2019 by Google Brain and published in this
+paper: “XLNet: Generalized Autoregressive Pretraining for Language
+Understanding” by the same
+authors of Transformer-XL. The official code for this paper can be found in
+the following GitHub repository: xlnet.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="XLNet">
+  <meta itemprop="description" content="XLNet stands for “Extra-Long Net” which is a model that integrates both
+GPT and BERT introduced in 2019 by Google Brain and published in this
+paper: “XLNet: Generalized Autoregressive Pretraining for Language
+Understanding” by the same
+authors of Transformer-XL. The official code for this paper can be found in
+the following GitHub repository: xlnet.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/XLNet/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="XLNet">
+  <meta property="og:description" content="XLNet stands for “Extra-Long Net” which is a model that integrates both
+GPT and BERT introduced in 2019 by Google Brain and published in this
+paper: “XLNet: Generalized Autoregressive Pretraining for Language
+Understanding” by the same
+authors of Transformer-XL. The official code for this paper can be found in
+the following GitHub repository: xlnet.
+
+">
+  <meta property="og:image" content="/language-modeling/media/XLNet/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XLNet">
+  <meta name="twitter:description" content="XLNet stands for “Extra-Long Net” which is a model that integrates both
+GPT and BERT introduced in 2019 by Google Brain and published in this
+paper: “XLNet: Generalized Autoregressive Pretraining for Language
+Understanding” by the same
+authors of Transformer-XL. The official code for this paper can be found in
+the following GitHub repository: xlnet.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/XLNet/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/XLNet">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          6 mins read
+        </span>
+      </p>
+      <time datetime="2019-06-19 00:00" class="post-meta__body date">Published on arXiv on: 19 Jun 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Carnegie Mellon University">Carnegie Mellon University</a> & <a href="/labs/#Google Brain">Google Brain</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=XLNet> XLNet</h1>
+    <p>XLNet stands for “Extra-Long Net” which is a model that integrates both
+GPT and BERT introduced in 2019 by Google Brain and published in this
+paper: “<a href="https://arxiv.org/pdf/1906.08237.pdf">XLNet: Generalized Autoregressive Pretraining for Language
+Understanding</a>” by the same
+authors of Transformer-XL. The official code for this paper can be found in
+the following GitHub repository: <a href="https://github.com/zihangdai/xlnet">xlnet</a>.</p>
+
+<p>In Transformer-XL, they extended the context-dependency length by
+introducing the segment-level recurrence mechanism which uses the hidden
+state of the former segments when predicting the current segment. In
+this paper, they are trying to make the model uses the hidden state of
+the former and following segments when predicting the current segment.</p>
+
+<p>And that explains the meaning of the paper’s name. An auto-regressive
+language model is is a language model that is able to predict the next
+possible word based on the before-context or predict the previous word
+based on the after-context. And it’s generalized because it considers
+both; the before-context and the after-context. The way to do that as
+proposed by the paper is by using “Permutation Language Modeling”.</p>
+
+<h2 id="plm">PLM</h2>
+
+<p>PLM stands for “Permutation Language Modeling” which is the idea of
+capturing bidirectional context by training an auto-regressive model on
+all possible permutation of words in a sentence. Instead of a fixed
+left-right or a right-left modeling, XLNET maximizes expected log
+likelihood over all possible permutations of the sequence which means
+that each position will learn to utilize contextual information from all
+positions thereby capturing bidirectional context.</p>
+
+<p>This mechanism is better than “MLM (Masked Language Modeling)” used with
+BERT. And that’s because MLM corrupts the input with masks which affects
+real life applications since we do not have inputs that are masked.
+Also, MLM ignores the relation between masked tokens. For example, let’s
+consider this sentence: “She met [mask] and [mask] friends. So, if
+the first <em>[mask]</em> is “<em>Adam</em>”, then the second <em>[mask]</em> has to be
+“<em>his</em>”. And this will change when the first <em>[mask]</em> is “<em>Sara</em>” for
+example.</p>
+
+<p>So, consider a sequence
+$x = \left[ “This”,\ “is”,\ “a”,\ “sentence” \right]$ with $T = 4$
+tokens. Now consider the set of all $4!$ permutations
+$Z = \left\{ z_{1},\ z_{2},\ …z_{4!} \right\} =
+{\lbrack 1,\ 2,\ 3,\ 4\rbrack,\ \lbrack 1,\ 2,\ 4,\ 3\rbrack,.\ .\ .,\ \lbrack 4,\ 3,\ 2,\ 1\rbrack}$.</p>
+
+<p>The XLNet model calculates the probability of token $x_{t}$ given
+preceding tokens $x_{&lt; t}$ from any order which makes the objective
+function as follows:</p>
+
+\[\max_{\theta}\left( \mathbb{E}_{z\sim Z_{T}}\left\lbrack \sum_{t = 1}^{T}{\log\left( p_{\theta}\left( x_{z_{t}} \middle| x_{z_{&lt; t}} \right) \right)} \right\rbrack \right)\]
+
+<p>So, if $t = 3$ and the current permutation is
+$z = \lbrack 3,\ 2,\ 4,\ 1\rbrack$, it means XLNet will consider zero
+words $x_{z_{&lt; t}} = \lbrack\rbrack$ when predicting the probability of
+the third word which corresponds to
+$p_{\theta}\left( “a” \middle| \varnothing \right)$. While if the
+current permutation is $z = \lbrack 2,\ 4,\ 3,\ 1\rbrack$, it means
+XLNet will consider the second and the fourth words
+$x_{z_{&lt; t}} = \lbrack 2,\ 4\rbrack$ when predicting the probability of
+the third word which corresponds to
+$p_{\theta}\left( “a” \middle| “is”,\ “sentence” \right)$.</p>
+
+<p>As you have probably figured out, there is something missing from the
+way the model has been presented so far: how does the model know about
+word order? The model can compute
+$p_{\theta}\left( “This” \middle| “a” \right)$ as well as
+$p_{\theta}\left( “This” \middle| “is” \right)$. Ideally it should know
+something about the relative position of “This” and “is” and also of
+“a”. Otherwise it would just think all tokens in the sequence are
+equally likely to be next to one-another. And that’s what the attention
+mask does!</p>
+
+<h2 id="attention-mask">Attention Mask</h2>
+
+<p>The transformer architecture addresses this problem by adding
+masking/zeroing the words that are not in the provided context. As a
+concrete example, consider the following permutation
+$z = \lbrack 3,\ 2,\ 4,\ 1\rbrack$. When calculating the probability of
+the $1^{st}$ element in that order, the model has no context as the other
+tokens have not yet been seen. So the mask would be
+$\lbrack 0,\ 0,\ 0,\ 0\rbrack$ as shown below:</p>
+
+<div align="center">
+    <img src="media/XLNet/image1.png" width="450" />
+</div>
+
+<p>For the 2nd element (token 2), the mask is
+$\lbrack 0,\ 0,\ 1,\ 0\rbrack$ as its only context is token 3. Following
+that logic, the $3^{rd}$ and $4^{th}$ elements (tokens 4 and 1) have masks
+$\lbrack 0,\ 1,\ 1,\ 0\rbrack$ and $\lbrack 0,\ 1,\ 1,\ 1\rbrack$
+respectively as shown in the following figures:</p>
+
+<div align="center">
+    <img src="media/XLNet/image2.png" width="750" />
+</div>
+
+<p>Another way to look at this is that the training objective will contain
+the following terms in case of the $z = \lbrack 3,\ 2,\ 4,\ 1\rbrack$
+permutation; where underscores represent what has been masked:</p>
+
+\[p_{\theta}\left( "a" \middle| \_\_,\ \_\_,\ \_\_,\ \_\_ \right)\]
+
+\[p_{\theta}\left( "is" \middle| \_\_,\ \_\_,\ "a",\ \_\_ \right)\]
+
+\[p_{\theta}\left( "sentence" \middle| \_\_,\ "is",\ "a",\ \_\_ \right)\]
+
+\[p_{\theta}\left( "This" \middle| \_\_,\ "is",\ "a",\ "sentence" \right)\]
+
+<p>But wait a minute! There remains one oversight to address: As you can
+see, the probability of “sentence” in $4^{th}$ position the previous
+permutation should be different than when “sentence” is in the $1^{st}
+position. In other words, we need to use the current word position when
+calculating the probability; like so:</p>
+
+\[p_{\theta}\left( "sentence" \middle| \_\_,\ "is",\ "a",\ 4 \right)\]
+
+<p>And this paper deals with problem by providing a “two-stream” self
+attention mechanism.</p>
+
+<h2 id="two-stream-self-attention">Two-stream Self-Attention</h2>
+
+<p>The solution to this problem is a two-stream self-attention mechanism;
+where the standard self-attention is divided into two parts or streams:</p>
+
+<ul>
+  <li>
+    <p><strong>Content Stream:</strong> The content stream (denoted by $h$) cares about
+the context of the preceding tokens including the current token,
+in other words the “content’.</p>
+  </li>
+  <li>
+    <p><strong>Query Stream:</strong> The query stream (denoted by $g$) cares about the
+context of the preceding tokens including the position of the
+current token.</p>
+  </li>
+</ul>
+
+<p>The following figure shows just two layers of this two-stream self-attention:</p>
+
+<div align="center">
+    <img src="media/XLNet/image3.png" width="450" />
+</div>
+
+<h3 id="content-stream">Content Stream</h3>
+
+<p>The content vector of a token at position $i$ and at self-attention
+layer $m$ is denoted by $h_{i}^{m}$. All content stream vectors are
+initialized with token embeddings. It’s calculated according to the
+following formula:</p>
+
+\[p_{\theta}\left( x \middle| x_{z_{&lt; t}} \right) = \frac{\exp\left( {e(x)}^{T}.h_{\theta}\left( x_{z_{&lt; t}} \right) \right)}{\sum_{x'}^{}{\exp\left( {e(x')}^{T} \right).h_{\theta}\left( x_{z_{&lt; t}} \right)}}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$x$: is the current token at position $t$ in the current permutation$z$.</p>
+  </li>
+  <li>
+    <p>$e(x)$: is the word embedding of the current token.</p>
+  </li>
+  <li>
+    <p>$x_{z_{&lt; t}}$: is the preceding tokens to the current one.</p>
+  </li>
+  <li>
+    <p>$h_{\theta}\left( x_{z_{&lt; t}} \right)$: denotes the hidden
+representation of $x_{z_{&lt; t}}$ produced by the shared Transformer
+network after proper masking.</p>
+  </li>
+</ul>
+
+<p>Considering the $z = \lbrack 3,\ 2,\ 4,\ 1\rbrack$ permutation, at each
+layer, the content vector $h_{i}$ is updated using the other context
+vectors that remained unmasked and <u><strong>itself</strong></u>. Thus, $h_{1}$ is
+updated with the knowledge of $x_{3}$, $x_{2}$ , $x_{4}$ and $x_{1}$ as
+shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/XLNet/image4.png" width="450" />
+</div>
+
+<p>And the following figure shows that all content vectors are contributing
+in calculating the key-value pair in the attention mechanism, while the
+current content vector is used for the query vector of the attention
+mechanism.</p>
+
+<div align="center">
+    <img src="media/XLNet/image5.png" width="450" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The content stream is the same as the standard self-attention found in
+the vanilla transformer architecture.</p>
+</blockquote>
+
+<h3 id="query-stream">Query Stream</h3>
+
+<p>The query vector of a token at position $i$ and at self-attention layer
+$m$ is denoted by $g_{i}^{m}$. All query stream vectors are initialized
+with a generic embedding vector $w$ added to positional embeddings. Note
+that $w$ is the same no matter the token. It’s calculated according to
+the following formula:</p>
+
+\[p_{\theta}\left( x \middle| x_{z_{&lt; t}} \right) = \frac{\exp\left( {e(x)}^{T}.g_{\theta}\left( x_{z_{&lt; t}},\ z_{t} \right) \right)}{\sum_{x'}^{}{\exp\left( {e(x')}^{T} \right).g_{\theta}\left( x_{z_{&lt; t}},\ z_{t} \right)}}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$x$: is the current token at position $t$ in the current permutation $z$.</p>
+  </li>
+  <li>
+    <p>$e(x)$: is the word embedding of the current token.</p>
+  </li>
+  <li>
+    <p>$x_{z_{&lt; t}}$: is the preceding tokens to the current one.</p>
+  </li>
+  <li>
+    <p>$g_{\theta}\left( x_{z_{&lt; t}},\ z_{t} \right)$: denotes the hidden
+representation of $x_{z_{&lt; t}}$ produced by the shared Transformer
+network after proper masking which additionally take the target
+position $z_{t}$ as input.</p>
+  </li>
+</ul>
+
+<p>Considering the same permutation in the content stream
+$z = \lbrack 3,\ 2,\ 4,\ 1\rbrack$, at each layer, the query
+vector $g_{i}$ is updated using the other context vectors that remained
+unmasked and <u><strong>itself</strong></u>. Thus, $h_{1}$ is updated with the
+knowledge of $x_{3}$, $x_{2}$ , $x_{4}$ and $w_{1}$ without considering
+$x_{1}$ as shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/XLNet/image6.png" width="450" />
+</div>
+
+<p>And the following figure shows that all content vectors (except the
+current one) are contributing in calculating the key-value pair in the
+attention mechanism, while the current query vector is used for the
+query vector of the attention mechanism.</p>
+
+<div align="center">
+    <img src="media/XLNet/image7.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/XLNet';
+      this.page.identifier = '/language-modeling/XLNet';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

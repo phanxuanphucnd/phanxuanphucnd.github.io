@@ -27,7 +27,7 @@ layout: default
               {% if post.cover %}
                 {% assign curr_cover = post.cover | prepend: post.slug | prepend: "media/" %}
               {% else %}
-                {% assign curr_cover = '/images/avatar-light.png' %}
+                {% assign curr_cover = '/images/avatar-light.jpg' %}
               {% endif %}
               <img class="img-me" src="{{ curr_cover }}" alt="">
             </div>

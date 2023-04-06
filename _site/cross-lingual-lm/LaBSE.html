@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>LaBSE: Language-agnostic Sentence Embeddings</title>
+  <meta name="title" content="LaBSE: Language-agnostic Sentence Embeddings">
+  <meta name="description" content="LaBSE stands for “Language-agnostic BERT Sentence Embedding” which is a
+multilingual model the produces language-agnostic sentence embeddings
+for 109 languages. LaBSE model was proposed by Google AI in 2020 and
+published in this paper under the same name: Language-agnostic BERT
+Sentence Embedding. The official
+code for this paper can be found in the following TensorFlow Hub link:
+tfhub/LaBSE.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="LaBSE: Language-agnostic Sentence Embeddings">
+  <meta itemprop="description" content="LaBSE stands for “Language-agnostic BERT Sentence Embedding” which is a
+multilingual model the produces language-agnostic sentence embeddings
+for 109 languages. LaBSE model was proposed by Google AI in 2020 and
+published in this paper under the same name: Language-agnostic BERT
+Sentence Embedding. The official
+code for this paper can be found in the following TensorFlow Hub link:
+tfhub/LaBSE.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/LaBSE/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="LaBSE: Language-agnostic Sentence Embeddings">
+  <meta property="og:description" content="LaBSE stands for “Language-agnostic BERT Sentence Embedding” which is a
+multilingual model the produces language-agnostic sentence embeddings
+for 109 languages. LaBSE model was proposed by Google AI in 2020 and
+published in this paper under the same name: Language-agnostic BERT
+Sentence Embedding. The official
+code for this paper can be found in the following TensorFlow Hub link:
+tfhub/LaBSE.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/LaBSE/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="LaBSE: Language-agnostic Sentence Embeddings">
+  <meta name="twitter:description" content="LaBSE stands for “Language-agnostic BERT Sentence Embedding” which is a
+multilingual model the produces language-agnostic sentence embeddings
+for 109 languages. LaBSE model was proposed by Google AI in 2020 and
+published in this paper under the same name: Language-agnostic BERT
+Sentence Embedding. The official
+code for this paper can be found in the following TensorFlow Hub link:
+tfhub/LaBSE.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/LaBSE/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/LaBSE">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2020-07-03 00:00" class="post-meta__body date">Published on arXiv on: 3 Jul 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google AI">Google AI</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=LaBSE: Language-agnostic Sentence Embeddings> LaBSE: Language-agnostic Sentence Embeddings</h1>
+    <p>LaBSE stands for “Language-agnostic BERT Sentence Embedding” which is a
+multilingual model the produces language-agnostic sentence embeddings
+for 109 languages. LaBSE model was proposed by Google AI in 2020 and
+published in this paper under the same name: <a href="https://arxiv.org/pdf/2007.01852.pdf">Language-agnostic BERT
+Sentence Embedding</a>. The official
+code for this paper can be found in the following TensorFlow Hub link:
+<a href="https://tfhub.dev/google/LaBSE">tfhub/LaBSE</a>.</p>
+
+<p>Mask language modeling (MLM) pre-training task, which was originally
+proposed in the
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> model, has
+proven to be a powerful task for numerous NLP tasks. However, it doesn’t
+produce good sentence-level embeddings unless the model has been
+fine-tuned on sentence-level benchmark. In this paper, the researchers
+discuss combining
+<a href="https://anwarvic.github.io/cross-lingual-lm/mBERT">mBERT</a> with MLM and
+translation language model (TLM) objectives.</p>
+
+<p>LaBSE is a dual-encoder architecture initialized with BERT and
+pre-trained on both MLM and TLM objectives. Source and target sentences
+are encoded separately. The similarity between them is scored by the
+cosine similarity. Sentence embeddings are extracted from the last
+hidden state of the encoder [CLS] token, and additive margin softmax
+loss is used for training.</p>
+
+<div align="center">
+    <img src="media/LaBSE/image1.png" width="750" />
+</div>
+
+<p>LaBSE is trained using 3-stage <a href="http://proceedings.mlr.press/v97/gong19a.html">progressive stacking
+algorithm</a> where for an
+$L$ layer transformer encoder, we first learn a $\frac{L}{4}$ layers
+model and then $\frac{L}{2}$ layers and finally all $L$ layers. The
+parameters of the models learned in the earlier stages are copied to the
+models for the subsequent stages.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+TLM objective was first proposed in the
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a> model. The only
+difference here is that TLM doesn’t use language codes to encourage
+multilinguality.</p>
+</blockquote>
+
+<h2 id="additive-margin-softmax">Additive Margin Softmax</h2>
+
+<p>The loss function used for training the LaBSE model is the additive
+margin softmax loss function which is described in the following
+formula:</p>
+
+\[\mathcal{L} = - \frac{1}{N}\sum_{i = 1}^{N}\frac{e^{\phi\left( x_{i},\ y_{i} \right) - m}}{e^{\phi\left( x_{i},\ y_{i} \right) - m} + \sum_{n = 1,\ n \neq i}^{N}e^{\phi\left( x_{i},\ y_{n} \right)}}\]
+
+<p>Where $N$ is the number of sentences in the batch,
+$\phi\left( x,\ y \right)$ is the embedding similarity of $x$ and $y$
+which is set to $\text{cosine}\left( x,\ y \right)$, and $m$ is the
+discount margin. What this loss function tries to achieve is to rank the
+true translation $y_{i}$ of the input $x_{i}$ over all other $N - 1$
+other alternatives in the batch even after discounting $m$ value from
+the similarity.</p>
+
+<p>Notice that this function is asymmetric and depends on whether the
+softmax is over the source or the target. In bi-directional ranking, the
+final loss function sums the source to target $\mathcal{L}$, and target
+to source $\mathcal{L}’$ losses:</p>
+
+\[\overline{\mathcal{L}} = \mathcal{L} + \mathcal{L}'\]
+
+<h2 id="data">Data</h2>
+
+<p>Regarding monolingual data, they used the 2019-35 version of
+<a href="https://commoncrawl.org">CommonCrawl</a> after removing lines &lt; 10
+characters and those &gt; 5000 characters. Also, they used data from
+Wikipedia extracted from the 05-21-2020 dump using
+<a href="https://github.com/attardi/wikiextractor">WikiExtractor</a>. Finally, they
+classified the monolingual sentences using an in-house quality
+classifier which filters out any useless data. At the end, they had
+around 17 billion monolingual sentences.</p>
+
+<p>Regarding bilingual data, they mined the web pages using a bitext mining
+system similar to the one used in this
+<a href="https://dl.acm.org/citation.cfm?id=1873781.1873905">paper</a>. A small
+subset from the extracted sentence pairs were evaluated by human
+annotators where they marked the pairs as either GOOD or BAD
+translations. Then, the extracted sentences were filtered by a
+pre-trained contrastive-data-selection (CDS) scoring model similar to
+the one used in this <a href="http://aclweb.org/anthology/W18-6314">paper</a> where
+threshold is chosen such that 80% of the retrained pairs from the manual
+evaluation are rated as GOOD. The final corpus contains 6 billion
+translation pairs.</p>
+
+<p>The distribution of monolingual &amp; bilingual sentences for each language
+is shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/LaBSE/image2.png" width="1050" />
+</div>
+
+<h2 id="experiments--results">Experiments &amp; Results</h2>
+
+<p>In all of this paper experiments, they employed the <a href="https://github.com/tensorflow/textblob/master/tools/wordpiece_vocab/generate_vocab.py">wordpiece
+model</a>
+where a new cased vocabulary is built of $501,153$ subwords from the all
+data sources. The language smoothing exponent from the vocab generation
+tool is set to $0.3$, as the distribution of data size for each language
+is imbalanced.</p>
+
+<p>The encoder architecture follows the BERT-Base model which uses 12
+layers transformer with 12 heads and 768 hidden size. The encoder
+parameters were shared for all languages. Sentence embeddings were taken
+from the [CLS] token representation of the last layer, The final
+embeddings were l2 normalized. Each encoder was initialized using a
+pre-trained BERT model that was trained using a batch size of $8192$.
+The max sequence length is set to $512$ and $20\%$ of tokens (or $80$
+tokens at most) per sequence were masked the MLM and TLM predictions.</p>
+
+<p>LaBSE was trained using the 3-stage <a href="http://proceedings.mlr.press/v97/gong19a.html">progressive stacking
+algorithm</a> that we talked
+about earlier where the training steps for each stage were 400k, 800k,
+1.8M steps. It used a batch size of 2048 with max sequence length 64 for
+both of the source and target. The final models were trained 50K steps
+(less than 1 epoch) using AdamW optimizer with initial learning rate
+$1e^{- 5}$ and linear weight decay.</p>
+
+<p>The following table shows the [P]recision, [R]ecall and [F]-score
+of BUCC mining task. Following the original previous work, they
+performed both of the forward search and backward search. Where forward
+search treats English as the target and the other language as source,
+backward is vice versa. As seen from the table, the LaBSE outperforms
+the previous models in all languages. It is worth to note that the
+previous state-of-the-art (Yang et al., 2019a) are bilingual models,
+while LaBSE covers 109 languages.</p>
+
+<div align="center">
+    <img src="media/LaBSE/image3.png" width="750" />
+</div>
+
+<p>The following table shows precision@1 (P@1) for the experimented
+models on the United Nation parallel sentence retrieval task. They
+compared LaBSE with the current state-of-the-art bilingual models from
+Yang et al. (2019a) and public multilingual universal sentence encoder
+(m-USE) model with the transformer architecture. Again, LaBSE shows the
+new state-of-the-art performance on 3 of the 4 languages:</p>
+
+<div align="center">
+    <img src="media/LaBSE/image4.png" width="450" />
+</div>
+
+<p>The following table shows the macro-average accuracy of different
+language groups of the Tatoeba datasets. LaBSE outperforms all previous
+models on all combination of languages.</p>
+
+<div align="center">
+    <img src="media/LaBSE/image5.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/LaBSE';
+      this.page.identifier = '/cross-lingual-lm/LaBSE';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

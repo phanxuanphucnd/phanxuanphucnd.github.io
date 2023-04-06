@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>ETC: Extended Transformer Construction</title>
+  <meta name="title" content="ETC: Extended Transformer Construction">
+  <meta name="description" content="ETC stands for “Extended Transformer Construction” which is a new
+Transformer architecture for language modeling over long sentences and
+achieves state-of-the-art performance on various long-sentence tasks as
+shown in the following table. ETC was proposed by Google in 2020 and
+published in this paper: “ETC: Encoding Long and Structured Inputs in
+Transformers”. The official code
+for this paper can be found on Google Research’s official GitHub
+repository: research-etc-model
+.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="ETC: Extended Transformer Construction">
+  <meta itemprop="description" content="ETC stands for “Extended Transformer Construction” which is a new
+Transformer architecture for language modeling over long sentences and
+achieves state-of-the-art performance on various long-sentence tasks as
+shown in the following table. ETC was proposed by Google in 2020 and
+published in this paper: “ETC: Encoding Long and Structured Inputs in
+Transformers”. The official code
+for this paper can be found on Google Research’s official GitHub
+repository: research-etc-model
+.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/ETC/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="ETC: Extended Transformer Construction">
+  <meta property="og:description" content="ETC stands for “Extended Transformer Construction” which is a new
+Transformer architecture for language modeling over long sentences and
+achieves state-of-the-art performance on various long-sentence tasks as
+shown in the following table. ETC was proposed by Google in 2020 and
+published in this paper: “ETC: Encoding Long and Structured Inputs in
+Transformers”. The official code
+for this paper can be found on Google Research’s official GitHub
+repository: research-etc-model
+.
+
+">
+  <meta property="og:image" content="/language-modeling/media/ETC/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ETC: Extended Transformer Construction">
+  <meta name="twitter:description" content="ETC stands for “Extended Transformer Construction” which is a new
+Transformer architecture for language modeling over long sentences and
+achieves state-of-the-art performance on various long-sentence tasks as
+shown in the following table. ETC was proposed by Google in 2020 and
+published in this paper: “ETC: Encoding Long and Structured Inputs in
+Transformers”. The official code
+for this paper can be found on Google Research’s official GitHub
+repository: research-etc-model
+.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/ETC/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/ETC">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2020-04-17 00:00" class="post-meta__body date">Published on arXiv on: 17 Apr 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=ETC: Extended Transformer Construction> ETC: Extended Transformer Construction</h1>
+    <p>ETC stands for “Extended Transformer Construction” which is a new
+Transformer architecture for language modeling over long sentences and
+achieves state-of-the-art performance on various long-sentence tasks as
+shown in the following table. ETC was proposed by Google in 2020 and
+published in this paper: “<a href="https://arxiv.org/pdf/2004.08483.pdf">ETC: Encoding Long and Structured Inputs in
+Transformers</a>”. The official code
+for this paper can be found on Google Research’s official GitHub
+repository: <a href="https://github.com/google-research/google-research/tree/master/etcmodel">research-etc-model
+</a>.</p>
+
+<div align="center">
+    <img src="media/ETC/image1.png" width="450" />
+</div>
+
+<p>Many variants of the original
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+model have been proposed for language modeling such as
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>,
+<a href="https://anwarvic.github.io/language-modeling/RoBERTa">RoBERTa</a>,
+<a href="https://anwarvic.github.io/language-modeling/ALBERT">ALBERT</a>, or even
+<a href="https://anwarvic.github.io/language-modeling/T5">T5</a> limit inputs to
+$n = 512$ tokens due to the $O\left( n^{2} \right)$ cost of attention.
+ETC scales to longer input sentences up to $n = 8192$ tokens or more.
+ETC follows the encoder-side of the original Transformer architecture
+with three key modifications to tackle long inputs:</p>
+
+<ul>
+  <li>
+    <p>Relative Position Encoding</p>
+  </li>
+  <li>
+    <p>Global-local Attention.</p>
+  </li>
+  <li>
+    <p>CPC pre-training task.</p>
+  </li>
+</ul>
+
+<h2 id="relative-position-encoding">Relative Position Encoding</h2>
+
+<p>Inspired by the work of this paper: <a href="https://arxiv.org/pdf/1803.02155.pdf">Self-attention with relative
+position representations</a>, ETC
+replaces absolute position encodings with relative position encodings.
+There will be $2k + 1$ relative positions given a maximum clipping
+distance $k$, no matter the length of the input sentence. Given the
+input sequence $x = \left\{ x_{1},\ …\ x_{n} \right\}$, the relative
+position between two tokens $x_{i}$ and $x_{j}$ will be:</p>
+
+\[\left\{ \begin{matrix}
+l_{j - i}\ \ \ \ \  - k &lt; j - i &lt; k \\
+l_{- k}\ \ \ \ \ \ \ \ \ \ \ \ \ j - i \leq - k \\
+l_{k}\ \ \ \ \ \ \ \ \ \ \ \ \ j - i \geq - k \\
+\end{matrix} \right.\]
+
+<p>Each relative position then becomes a learnable vector $a_{l}^{K}$,
+which modifies the attention mechanism as we are going to see later.
+Now, we can clearly see that these relative position encodings are
+independent of input length, so it is easy to adapt a model to greater
+input lengths.</p>
+
+<h2 id="global-local-attention">Global-local Attention</h2>
+
+<p>Given the input sequence $x = \left\{ x_{1},\ …\ x_{n} \right\}$, ETC
+model will split it into two separate sequences:</p>
+
+<ul>
+  <li><strong>The long input</strong> $x^{l}$: which contains the input that standard
+Transformer would get.</li>
+</ul>
+
+\[x^{l} = \left\{ x_{1}^{l},\ ...x_{n_{l}}^{l} \right\}\]
+
+<ul>
+  <li><strong>The global input</strong> $x^{g}$: which is a much smaller number of
+auxiliary tokens $\left( n_{g} \ll n_{l} \right)$:</li>
+</ul>
+
+\[x^{g} = \left\{ x_{1}^{g},\ ...x_{n_{g}}^{g} \right\}\]
+
+<p>Then, attention will be split into four separate pieces:
+<u><strong>global-to-global (g2g)</strong></u>,
+<u><strong>global-to-long (g2l)</strong></u>,
+<u><strong>long-to-global (l2g)</strong></u>,
+and <u><strong>long-to-long (l2l)</strong></u>.
+Attention in the l2l piece is restricted to a fixed radius as we can see
+in the following figure (part c); because it is the most computationally
+expensive part of the whole attention mechanism.</p>
+
+<div align="center">
+    <img src="media/ETC/image2.png" width="750" />
+</div>
+
+<p>Attention in ETC is
+$O\left( n_{g}\left( n_{g} + n_{l} \right) + n_{l}\left( n_{g} + 2r + 1 \right) \right)$.
+Since $n_{l} \gg n_{g},\ r$, then the attention mechanism becomes
+$O\left( n_{g}^{2} + n_{g}n_{l} \right)$. As we can see, the attention
+mechanism is linear in the size of the long input . The attention
+mechanism is applied via the following steps:</p>
+
+<ul>
+  <li>
+    <p>Per-instance, four Boolean attention matrices
+$M^{g2g} \in \mathbb{R}^{n_{g} \times n_{g}}$,
+$M^{g2l} \in \mathbb{R}^{n_{g} \times n_{l}}$,
+$M^{l2g} \in \mathbb{R}^{n_{l} \times n_{g}}$, and
+$M^{l2l} \in \mathbb{R}^{n_{l} \times n_{l}}$are created with zeroes
+for those pairs of tokens that should not attend to one another and
+ones for the rest.</p>
+  </li>
+  <li>
+    <p>Given the global input $x^{g}$ which is a sequence of token
+representations $x_{i}^{g} \in \mathbb{R}^{d_{x}}$, a large constant
+$C = 10,000$ (in the paper), $a_{\text{ij}}^{K}$ learnable vectors
+representing the relative positions, and $W^{Q},\ W^{K}$ learnable
+weight matrices, the attention embedding between $x_{i}$ and $x_{j}$
+in the global-to-global part can be calculated as:</p>
+  </li>
+</ul>
+
+\[e_{\text{ij}}^{g2g} = \frac{x_{i}^{g}W^{Q}\left( x_{j}^{g}W^{K} + a_{\text{ij}}^{K} \right)^{T}}{\sqrt{d_{z}}} - \left( 1 - M_{\text{ij}}^{g2g} \right)C\]
+
+<ul>
+  <li>A softmax is used to calculate $\alpha_{\text{ij}}^{g2g}$:</li>
+</ul>
+
+\[\alpha_{\text{ij}}^{g2g} = \frac{\exp\left( e_{\text{ij}}^{g2g} \right)}{\sum_{l = 1}^{n}{\exp\left( e_{\text{il}}^{g2g} \right)}}\]
+
+<ul>
+  <li>The attention output of the global-to-global part is
+$z^{g} = \left\{ z_{1}^{g},\ …z_{n_{g}}^{g} \right\}$ where
+$z_{i}^{g} \in \mathbb{R}^{d_{z}}$ which uses $W^{V}$ as a learnable
+weight matrix is calculated as follows:</li>
+</ul>
+
+\[z_{i}^{g} = \sum_{j = 1}^{n_{g}}{\alpha_{\text{ij}}^{g2g}.x_{j}^{g}.W^{V}}\]
+
+<ul>
+  <li>
+    <p>Attention for the other 3 pieces is analogous to this one.</p>
+  </li>
+  <li>
+    <p>At the end, a single softmax is used to jointly calculate
+$\alpha_{\text{ij}}^{g2g}$ and $\alpha_{\text{ij}}^{g2l}$ while
+another one for $\alpha_{\text{ij}}^{l2g}$ and
+$\alpha_{\text{ij}}^{l2l}$. I DON’T KNOW HOW :(</p>
+  </li>
+  <li>
+    <p>Thus, the output of global-local attention is a sequence of length
+$n_{g}$ and one of length $n_{l}$. These sequences go through a
+layer normalization and feed forward layer in the same way as in the
+standard transformer.</p>
+  </li>
+</ul>
+
+<h2 id="cpc">CPC</h2>
+
+<p>ETC model uses two pre-training tasks. The first one is Masked Language
+Modeling (MLM) with whole word masking which means if one word piece
+token is masked, then all other tokens of the same word are masked. The
+second one is Contrastive Predictive Coding (CPC). The goal of CPC is to
+predict subsequent inputs in latent space, i.e., to predict internal
+hidden representations of blocks of tokens. We adapted this idea in ETC
+by using global input sentence summary tokens.</p>
+
+<p>Given an input sequence containing $n$ sentences, we mask all the tokens
+corresponding to a subset of sentences (but leave the sentence summary
+tokens in the global input). Then, the model is trained to minimize the
+difference between the hidden representation of the global sentence
+summary tokens for the masked sentences with respect to that of a global
+summary token that can see the unmasked sentence and nothing else. A
+Noise Contrastive Estimation (NCE) loss is used:</p>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>ETC model was initialized using RoBERTa parameters. This is doable since
+BERT’s attention is a special case of the global-local attention used in
+ETC. Same as RoBERTa, they created two basic configurations:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Layers</th>
+            <th>Hidden Size</th>
+            <th>Attention Heads</th>
+            <th># Parameters</th>
+            <th>$$r$$</th>
+            <th>$$k$$</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><strong>Base</strong></td>
+        <td>12</td>
+        <td>768</td>
+        <td>12</td>
+        <td>166 M</td>
+        <td>84</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td><strong>Large</strong></td>
+        <td>24</td>
+        <td>1024</td>
+        <td>16</td>
+        <td>558 M</td>
+        <td>169</td>
+        <td>24</td>
+    </tr>
+</table>
+</div>
+
+<p>For pre-training; they used original BERT datasets, except that
+documents with fewer than 7 sentences were filtered out with WordPiece
+vocabulary of 30k uncased wordpieces . ETC-base was pre-trained with the
+same total number of tokens as the original BERT, while ETC-large was
+pre-trained with twice as many. As an optimizer, they used LAMB
+optimizer with learning rate set to $\sqrt{8} \times 10^{- 3}$.</p>
+
+<p>The following are the results obtained by ETC in various benchmarks; the
+defaulted configuration is marked with “-“:</p>
+
+<ul>
+  <li><strong>Natural Questions (NQ):</strong></li>
+</ul>
+
+<div align="center">
+    <img src="media/ETC/image3.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>OpenKP:</strong></li>
+</ul>
+
+<div align="center">
+    <img src="media/ETC/image4.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>HotpotQA and WikiHop:</strong></li>
+</ul>
+
+<div align="center">
+    <img src="media/ETC/image5.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/ETC';
+      this.page.identifier = '/language-modeling/ETC';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

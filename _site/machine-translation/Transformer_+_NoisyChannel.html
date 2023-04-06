@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Transformer + Noisy Channel</title>
+  <meta name="title" content="Transformer + Noisy Channel">
+  <meta name="description" content="Transformer model directly estimates the posterior probability of a
+target sequence $y$ given a source sequence $x$. The Noisy Channel model
+operates in the reverse direction. It estimates the likelihood
+probability $p\left( x \middle| y \right)$ with the help of a language
+model probability $p\left( y \right)$. To do so, the Noisy channel model
+applies the Naive Bayes Rule:
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Transformer + Noisy Channel">
+  <meta itemprop="description" content="Transformer model directly estimates the posterior probability of a
+target sequence $y$ given a source sequence $x$. The Noisy Channel model
+operates in the reverse direction. It estimates the likelihood
+probability $p\left( x \middle| y \right)$ with the help of a language
+model probability $p\left( y \right)$. To do so, the Noisy channel model
+applies the Naive Bayes Rule:
+
+">
+  <meta itemprop="image" content="//images/avatar.jpg">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Transformer + Noisy Channel">
+  <meta property="og:description" content="Transformer model directly estimates the posterior probability of a
+target sequence $y$ given a source sequence $x$. The Noisy Channel model
+operates in the reverse direction. It estimates the likelihood
+probability $p\left( x \middle| y \right)$ with the help of a language
+model probability $p\left( y \right)$. To do so, the Noisy channel model
+applies the Naive Bayes Rule:
+
+">
+  <meta property="og:image" content="//images/avatar.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Transformer + Noisy Channel">
+  <meta name="twitter:description" content="Transformer model directly estimates the posterior probability of a
+target sequence $y$ given a source sequence $x$. The Noisy Channel model
+operates in the reverse direction. It estimates the likelihood
+probability $p\left( x \middle| y \right)$ with the help of a language
+model probability $p\left( y \right)$. To do so, the Noisy channel model
+applies the Naive Bayes Rule:
+
+">
+  
+  <meta name="twitter:image" content="//images/avatar.jpg">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Transformer_+_NoisyChannel">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2019-08-15 00:00" class="post-meta__body date">Published on arXiv on: 15 Aug 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a> & <a href="/labs/#Google Brain">Google Brain</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Transformer + Noisy Channel> Transformer + Noisy Channel</h1>
+    <p>Transformer model directly estimates the posterior probability of a
+target sequence $y$ given a source sequence $x$. The Noisy Channel model
+operates in the reverse direction. It estimates the likelihood
+probability $p\left( x \middle| y \right)$ with the help of a language
+model probability $p\left( y \right)$. To do so, the Noisy channel model
+applies the Naive Bayes Rule:</p>
+
+\[p\left( y \middle| x \right) = \frac{p\left( x \middle| y \right)\text{.p}\left( y \right)}{p\left( x \right)}\]
+
+<p>The model responsible for calculating $p\left( y \middle| x \right)$ is
+called “<strong>Direct Model</strong>”, the model responsible for calculating
+$p\left( x \middle| y \right)$ is called “<strong>Channel Model</strong>”. Modeling
+$p(x)$ is ignored since it is constant for all $y$.</p>
+
+<p>The noisy channel approach was widely used in statistical machine
+translation. However, in this paper: <a href="https://arxiv.org/pdf/1908.05731.pdf">Simple and Effective Noisy Channel
+Modeling for Neural Machine
+Translation</a> published by FAIR in
+2019 they decided to use the standard Transformer architecture as a
+channel model. The official code for this paper can be found in the
+fairseq official GitHub repository:
+<a href="https://github.com/pytorch/fairseq/tree/master/examples/noisychannel">fairseq/noisychannel</a>.</p>
+
+<p>In this paper, a standard Transformer model is used as the channel
+model, they basically trained the model to translate the target sentence
+to the source sentence. And they trained another Transformer model as
+the direct model. And they also trained a transformer language model.</p>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>Using the English-German WMT’17 dataset for training, news2016 for
+validation and news2017 for testing, they used:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Language Model:</strong></u>They trained two big Transformer language models with
+<a href="https://github.com/pytorch/fairseq/blob/main/examples/language_model/README.adaptive_inputs.md">adaptive input
+representations</a>
+with 12 blocks. one on the German newscrawl data distributed by
+WMT’18 comprising 260M sentences and another one on the English
+newscrawl data comprising 193M sentences. Both use a BPE vocabulary
+of 32K tokens.</p>
+  </li>
+  <li>
+    <p><u><strong>Direct Model:</strong></u>
+They use big Transformers where the encoder and decoder embeddings
+are not shared between them since the source and target vocabularies
+were learned separately.</p>
+  </li>
+  <li>
+    <p><u><strong>Channel Model:</strong></u>
+They trained Transformer models to translate from the target to the
+source (En-De).</p>
+  </li>
+</ul>
+
+<p>For comparison, they tried the following configurations:</p>
+
+<ul>
+  <li>
+    <p>DIR: just the direct model.</p>
+  </li>
+  <li>
+    <p>DIR ENS: an ensemble of two direct models.</p>
+  </li>
+  <li>
+    <p>DIR+LM: a direct model + a language Model.</p>
+  </li>
+  <li>
+    <p>DIR+RL: a direct model + a right-to-left seq2seq model.</p>
+  </li>
+  <li>
+    <p>DIR+RL+LM: a direct model + a right-to-left seq2seq model + a
+language model.</p>
+  </li>
+  <li>
+    <p>CH+DIR: a channel model + a direct model.</p>
+  </li>
+  <li>
+    <p>CH+DIR+LM: a channel model + a direct model + a language model.</p>
+  </li>
+</ul>
+
+<h3 id="online-decoding">Online Decoding</h3>
+
+<p>To perform decoding in the noisy channel model, we will need to perform
+a two-step beam search. For beam size $k_{1}$ in the channel model, we
+will collect $k_{2}$ possible next words extensions from the direct
+model for each beam. The, we will score the resulting
+$k_{1} \times k_{2}$ according to the following equation:</p>
+
+\[\frac{1}{t}\log p\left( y \middle| x \right) + \frac{\lambda}{s}\left( \log p\left( x \middle| y \right) + \log p\left( y \right) \right)\]
+
+<p>Where $t$ is the length of the target prefix $y$, $s$ is the source
+sentence length and $\lambda$ is a tunable weight.</p>
+
+<p>In online decoding, you don’t have the whole target sentence. In this
+case, you can’t use the right-to-left seq2seq model since it doesn’t
+know how the target sentence will be like. The following table
+summarizes the BLEU score over news2016 and news2017 en-de datasets:</p>
+
+<div align="center">
+    <img src="media/Transformer_+_NoisyChannel/image1.png" width="450" />
+</div>
+
+<p>The previous results were produces using $k_{1} = 5,\ k_{2} = 10$.</p>
+
+<h3 id="re-ranking">Re-ranking</h3>
+
+<p>In re-ranking, you have access to the full target sentence. The purpose
+is just re-rank them. The following table shows the re-ranking BLEU with
+different n-best list sizes on news2016 of WMT De-En. As we can see, the
+noisy channel model configuration obtained the highest scores:</p>
+
+<div align="center">
+    <img src="media/Transformer_+_NoisyChannel/image2.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Transformer_+_NoisyChannel';
+      this.page.identifier = '/machine-translation/Transformer_+_NoisyChannel';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

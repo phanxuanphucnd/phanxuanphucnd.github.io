@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>De-biasing Word Vectors</title>
+  <meta name="title" content="De-biasing Word Vectors">
+  <meta name="description" content="In this paper: Man is to Computer Programmer as Woman is to Homemaker?
+Debiasing Word Embeddings published in
+2016, the researchers examined the gender biases that can be reflected in a
+word embedding and explore some algorithms for reducing the bias.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="De-biasing Word Vectors">
+  <meta itemprop="description" content="In this paper: Man is to Computer Programmer as Woman is to Homemaker?
+Debiasing Word Embeddings published in
+2016, the researchers examined the gender biases that can be reflected in a
+word embedding and explore some algorithms for reducing the bias.
+
+">
+  <meta itemprop="image" content="/word-embedding/media/de-biasing/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="De-biasing Word Vectors">
+  <meta property="og:description" content="In this paper: Man is to Computer Programmer as Woman is to Homemaker?
+Debiasing Word Embeddings published in
+2016, the researchers examined the gender biases that can be reflected in a
+word embedding and explore some algorithms for reducing the bias.
+
+">
+  <meta property="og:image" content="/word-embedding/media/de-biasing/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="De-biasing Word Vectors">
+  <meta name="twitter:description" content="In this paper: Man is to Computer Programmer as Woman is to Homemaker?
+Debiasing Word Embeddings published in
+2016, the researchers examined the gender biases that can be reflected in a
+word embedding and explore some algorithms for reducing the bias.
+
+">
+  
+  <meta name="twitter:image" content="/word-embedding/media/de-biasing/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/word-embedding/de-biasing">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2016-07-21 00:00" class="post-meta__body date">Published on arXiv on: 21 Jul 2016</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Boston University">Boston University</a> & <a href="/labs/#Microsoft Research">Microsoft Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=De-biasing Word Vectors> De-biasing Word Vectors</h1>
+    <p>In this paper: <a href="https://arxiv.org/pdf/1607.06520.pdf">Man is to Computer Programmer as Woman is to Homemaker?
+Debiasing Word Embeddings</a> published in
+2016, the researchers examined the gender biases that can be reflected in a
+word embedding and explore some algorithms for reducing the bias.</p>
+
+<p>First, what does biasing of word vectors really mean? OK, let’s put it
+that way. There are some words that relate only the females like
+“actress, waitress, mother, aunt, …” and there are some words that
+relate only the males like “actor, waiter, father, uncle, …”. And
+there some other words that can relate to the two genders like
+“programmer, developer, assistant, doctor, …”.</p>
+
+<p>Surprisingly, most of the word embedding that are out there are biasing
+towards a certain gender due to the context they were mentioned at.
+Let’s see the “glove.6B.50d.txt” for example, there are some words that
+relate to the female more that the male like “lipstick, arts,
+literature, doctor, receptionist, fashion, …”. And let’s be honest,
+some of them make perfect sense like “lipstick” for example, but there
+are also some of them that don’t make any sense like “doctor” and
+“receptionist” which must be gender unspecific.</p>
+
+<p>We'll see how to reduce the bias of these vectors, using an algorithm
+due to Boliukbasi 2016. Note that some word pairs such as
+"actor"/"actress" or "grandmother"/"grandfather" should remain
+gender specific, while other words such as "receptionist" or
+"technology" should be neutralized, i.e. not be gender-related. You
+will have to treat these two types of words differently when de-biasing.</p>
+
+<h2 id="implicit-association-test">Implicit Association Test</h2>
+
+<p>Implicit Association Test is the test used to check if two sets of words
+are biased towards a certain topic or not. And that’s how it works;
+assume that you have two sets of words that you want to check the bias
+between them (they are called attributes):</p>
+
+<ul>
+  <li>
+    <p>X: {male, man, boy, brother, he, him, his, son}.</p>
+  </li>
+  <li>
+    <p>Y: {female, woman, girl, sister, she, her, hers, daughter}.</p>
+  </li>
+</ul>
+
+<p>Now, let’s assume that we have another two sets of words that represent
+two opposing topics (they are called target words):</p>
+
+<ul>
+  <li>
+    <p>A: {math, algebra, geometry, calculus, equations, numbers}.</p>
+  </li>
+  <li>
+    <p>B: {poetry, art, dance, literature, novel, symphony, drama}.</p>
+  </li>
+</ul>
+
+<p>And this can be done via the following formula:</p>
+
+\[s\left( X,Y,A,B \right) = \sum_{x \in X}^{}s\left( x,A,B \right) - \sum_{y \in Y}^{}s\left( y,A,B \right)\]
+
+\[s\left( w,A,B \right) = \frac{1}{\text{card}\left( A \right)}\sum_{a \in A}^{}\cos\left( w,a \right) - \frac{1}{\text{card}\left( B \right)}\sum_{b \in B}^{}\cos\left( w,b \right)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$s\left( X,Y,A,B \right)$: is the association test between all words
+of attributes and target words. And it could have three possible
+values:</p>
+
+    <ul>
+      <li>
+        <p>If the score is <strong>positive</strong>, it means the association between X
+and A is big than Y and B. and the higher the score is, the
+more association there is.</p>
+      </li>
+      <li>
+        <p>If the score is <strong>negative</strong>, it means the association between Y
+and B is big than X and A. and the lower the score is, the
+more association there is.</p>
+      </li>
+      <li>
+        <p>If the score is <strong>zero</strong>, it means there are no association
+between X and A and Y and B.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>$s\left( w,A,B \right)$: is the association strength between word w
+and set A and away from set B.</p>
+  </li>
+  <li>
+    <p>$\text{card}\left( A \right)$: It’s the cardinality a set of words A
+which is a measure of a set's size, meaning the number of unique
+elements in that set. For instance, the set $A = { 1,2,4}$ has a
+cardinality of $3$ for the three elements that are in it.</p>
+  </li>
+</ul>
+
+<h2 id="neutralization">Neutralization</h2>
+
+<p>By neutralization, we mean to neutralize the bias for non-gender
+specific words. So, the words like “receptionist, doctor, literature,
+art, technology, …” will be gender unspecific. We are going to do that
+using some linear algebra concepts like so:</p>
+
+<div align="center">
+    <img src="media/de-biasing/image1.png" width="750" />
+</div>
+
+<p>The figure above should help visualizing what neutralization does. If
+you're using a 50-dimensional word embedding, the 50-dimensional space
+can be split into two parts: The gender-direction $\overrightarrow{g}$,
+and the remaining 49 dimensions, which we'll call
+<span>${\overrightarrow{g}}_{\bot}$</span>. Even though
+<span>${\overrightarrow{g}}_{\bot}$</span> is 49 dimensional, given the
+limitations of what we can draw on a screen, we illustrate it using a
+1-dimensional axis below.</p>
+
+<p>In linear algebra, we say that the 49-dimensional vector
+<span>${\overrightarrow{g}}_{\bot}$</span> is perpendicular (or “orthogonal”) to
+<span>$\overrightarrow{g}$</span>, meaning it is at can NOT be affected by
+<span>$\overrightarrow{g}$</span> . The neutralization step takes a vector such as
+<span>$e_{\text{receptionist}}$</span> and zeros out the component in the direction
+of <span>$\overrightarrow{g}$</span> , giving us
+<span>$e_{\text{receptionist}}^{\text{debiased}}$</span>.</p>
+
+\[e_{\text{debiased}} = e_{w} - e_{\text{proj}},e_{\text{proj}} = \frac{e_{w}\text{.g}}{\left\| g \right\|_{2}} \ast g\]
+
+<p>Where $e_{w}$ is the word embedding of a certain word $w$, $g$ is the
+gender direction, $e_{\text{proj}}$ is the projection of $e_{w}$ onto
+the direction $g$ and finally $e_{\text{debiased}}$ is the de-biased
+form of $e_{w}$.</p>
+
+<p>Let’s implement a function which can remove the bias of a given word:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">B</span>
+
+<span class="k">def</span> <span class="nf">neutralize</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">word_embedding</span><span class="p">):</span>
+    <span class="n">e_w</span> <span class="o">=</span> <span class="n">word_embedding</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+    <span class="n">e_proj</span> <span class="o">=</span> <span class="n">project</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+    <span class="n">e_debiased</span> <span class="o">=</span> <span class="n">e_w</span> <span class="o">-</span> <span class="n">e_proj</span>
+    <span class="k">return</span> <span class="n">e_debiased</span>
+</code></pre></div></div>
+<p>Now, we can try:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># we can get the gender vector by simply doing so:
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">g</span> <span class="o">=</span> <span class="n">embedding</span><span class="p">[</span><span class="s">'women'</span><span class="p">]</span> <span class="o">-</span> <span class="n">embedding</span><span class="p">[</span><span class="s">'man'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># cosine similarity before neutralizing:
+</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">embedding</span><span class="p">[</span><span class="s">'receptionist'</span><span class="p">],</span> <span class="n">g</span><span class="p">))</span>
+<span class="mf">0.330779417506</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e_debiased</span> <span class="o">=</span> <span class="n">neutralize</span><span class="p">(</span><span class="s">"receptionist"</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># cosine similarity after neutralizing:
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">e_debiased</span><span class="p">,</span> <span class="n">g</span><span class="p">))</span>
+<span class="o">-</span><span class="mf">3.26732746085e-17</span>
+</code></pre></div></div>
+
+<h2 id="equalization">Equalization</h2>
+
+<p>By equalization, we mean to equalize the values of gender-specific words
+like “(actress, actor), (father, mother), …”. Equalization is applied
+to pairs of words that you might want to have differ only through the
+gender property. As a concrete example, suppose that "actress" is
+closer to "babysit" than "actor." By applying neutralizing to
+"babysit", we can reduce the gender-stereotype associated with
+babysitting. But this still does not guarantee that "actor" and
+"actress" are equidistant from "babysit." The equalization algorithm
+takes care of this.</p>
+
+<p>The key idea behind equalization is to make sure that a particular pair
+of words are equi-distant from the 49-dimensional vector
+${\overrightarrow{g}}_{\bot}$. In pictures, this is how equalization
+works:</p>
+
+<div align="center">
+    <img src="media/de-biasing/image2.png" width="750" />
+</div>
+
+<p>The derivation of the linear algebra to do this is a bit more complex,
+but the key equations are:</p>
+
+\[\mu = \frac{e_{w1} + e_{w2}}{2},\mu_{B} = \text{proj}\left( \mu,{\text{bia}s}_{\text{axis}} \right),\mu_{\bot} = \mu - \mu_{B}\]
+
+\[e_{w1B} = \frac{\sqrt{\left| 1 - \left\| \mu_{\bot} \right\|_{2}^{2} \right|} \ast \text{proj}\left( e_{w1},\text{bias}_{\text{axis}} \right) - \mu_{B}}{\left| \text{proj}\left( e_{w1},\text{bias}_{\text{axis}} \middle| - \mu_{B} \right) \right|}\]
+
+\[e_{w2B} = \frac{\sqrt{\left| 1 - \left\| \mu_{\bot} \right\|_{2}^{2} \right|} \ast \text{proj}\left( e_{w2},\text{bias}_{\text{axis}} \right) - \mu_{B}}{\left| \text{proj}\left( e_{w2},\text{bias}_{\text{axis}} \middle| - \mu_{B} \right) \right|}\]
+
+\[e_{1} = e_{w1B} + \mu_{\bot},e_{2} = e_{w2B} + \mu_{\bot}\]
+
+<p>Let’s get to the implantation:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">equalize</span><span class="p">(</span><span class="n">pair</span><span class="p">,</span> <span class="n">bias_axis</span><span class="p">,</span> <span class="n">word_to_vec_map</span><span class="p">):</span>
+    <span class="n">w1</span><span class="p">,</span> <span class="n">w2</span> <span class="o">=</span> <span class="n">pair</span>
+    <span class="n">e_w1</span><span class="p">,</span> <span class="n">e_w2</span> <span class="o">=</span> <span class="n">word_to_vec_map</span><span class="p">[</span><span class="n">w1</span><span class="p">],</span> <span class="n">word_to_vec_map</span><span class="p">[</span><span class="n">w2</span><span class="p">]</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">e_w1</span> <span class="o">+</span> <span class="n">e_w2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span>
+    <span class="n">mu_B</span> <span class="o">=</span> <span class="n">project</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">bias_axis</span><span class="p">)</span>
+    <span class="n">mu_orth</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">-</span> <span class="n">mu_B</span>
+   
+    <span class="n">e1_orth</span> <span class="o">=</span> <span class="n">mu_orth</span>
+    <span class="n">e2_orth</span> <span class="o">=</span> <span class="n">mu_orth</span>
+    
+    <span class="n">e_w1B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mu_orth</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>\
+                <span class="o">*</span> <span class="p">(</span><span class="n">project</span><span class="p">(</span><span class="n">e_w1</span><span class="p">,</span> <span class="n">bias_axis</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_B</span><span class="p">)</span> \
+                <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">project</span><span class="p">(</span><span class="n">e_w1</span><span class="p">,</span> <span class="n">bias_axis</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_B</span><span class="p">))</span>
+
+    <span class="n">e_w2B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">normalize</span><span class="p">(</span><span class="n">mu_orth</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> \
+                <span class="o">*</span> <span class="p">(</span><span class="n">project</span><span class="p">(</span><span class="n">e_w2</span><span class="p">,</span> <span class="n">bias_axis</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_B</span><span class="p">)</span> \
+                <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nb">abs</span><span class="p">(</span><span class="n">project</span><span class="p">(</span><span class="n">e_w2</span><span class="p">,</span> <span class="n">bias_axis</span><span class="p">)</span> <span class="o">-</span> <span class="n">mu_B</span><span class="p">))</span>
+    
+    <span class="n">e1</span> <span class="o">=</span> <span class="n">e_w1B</span> <span class="o">+</span> <span class="n">e1_orth</span>
+    <span class="n">e2</span> <span class="o">=</span> <span class="n">e_w2B</span> <span class="o">+</span> <span class="n">e2_orth</span>
+    <span class="k">return</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span>
+</code></pre></div></div>
+
+<p>Now, let’s see it in action</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="c1"># cosine similarities before equalizing:
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">embedding</span><span class="p">[</span><span class="s">'man'</span><span class="p">],</span> <span class="n">g</span><span class="p">))</span>
+<span class="o">-</span><span class="mf">0.117110957653</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">embedding</span><span class="p">[</span><span class="s">'man'</span><span class="p">],</span> <span class="n">g</span><span class="p">))</span>
+<span class="mf">0.356666188463</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span> <span class="o">=</span> <span class="n">equalize</span><span class="p">((</span><span class="s">'man'</span><span class="p">,</span> <span class="s">'woman'</span><span class="p">),</span> <span class="n">g</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># cosine similarities after equalizing:
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">g</span><span class="p">))</span>
+<span class="o">-</span><span class="mf">0.700436428931</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">e2</span><span class="p">,</span> <span class="n">g</span><span class="p">))</span>
+<span class="o">-</span><span class="mf">0.700436428931</span>
+</code></pre></div></div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/word-embedding/de-biasing';
+      this.page.identifier = '/word-embedding/de-biasing';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

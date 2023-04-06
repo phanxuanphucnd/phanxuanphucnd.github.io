@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Align & Translate with Transformers</title>
+  <meta name="title" content="Align & Translate with Transformers">
+  <meta name="description" content="In this part, we are going to take a deep look into this paper: Jointly
+Learning to Align and Translate with Transformer
+Models which was published by
+Apple Inc. in 2019. The official code for this paper can be found in the
+official Fairseq GitHub repository:
+fairseq/joint_alignment_translation.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Align & Translate with Transformers">
+  <meta itemprop="description" content="In this part, we are going to take a deep look into this paper: Jointly
+Learning to Align and Translate with Transformer
+Models which was published by
+Apple Inc. in 2019. The official code for this paper can be found in the
+official Fairseq GitHub repository:
+fairseq/joint_alignment_translation.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Align_and_Translate/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Align & Translate with Transformers">
+  <meta property="og:description" content="In this part, we are going to take a deep look into this paper: Jointly
+Learning to Align and Translate with Transformer
+Models which was published by
+Apple Inc. in 2019. The official code for this paper can be found in the
+official Fairseq GitHub repository:
+fairseq/joint_alignment_translation.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Align_and_Translate/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Align & Translate with Transformers">
+  <meta name="twitter:description" content="In this part, we are going to take a deep look into this paper: Jointly
+Learning to Align and Translate with Transformer
+Models which was published by
+Apple Inc. in 2019. The official code for this paper can be found in the
+official Fairseq GitHub repository:
+fairseq/joint_alignment_translation.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Align_and_Translate/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Align_and_Translate">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2019-09-04 00:00" class="post-meta__body date">Published on arXiv on: 4 Sep 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Apple Inc.">Apple Inc.</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Align & Translate with Transformers> Align & Translate with Transformers</h1>
+    <p>In this part, we are going to take a deep look into this paper: <a href="https://arxiv.org/pdf/1909.02074.pdf">Jointly
+Learning to Align and Translate with Transformer
+Models</a> which was published by
+Apple Inc. in 2019. The official code for this paper can be found in the
+official Fairseq GitHub repository:
+<a href="https://github.com/pytorch/fairseq/tree/master/examples/joint_alignment_translation">fairseq/joint_alignment_translation</a>.</p>
+
+<p>Since translation and alignment tasks are very closely related, the
+publishers of this paper presented an approach to train a Transformer
+model to produce both accurate translations and alignments. The
+alignments are extracted from the attention probabilities learned during
+training. This approach produced competitive results compared to other
+statistical alignment tools such as GIZA++ without sacrificing
+translation accuracy.</p>
+
+<h2 id="attention-matrix">Attention Matrix</h2>
+
+<div align="center">
+    <img src="media/Align_and_Translate/image1.png" width="750" />
+</div>
+<p>In this part, we are going to recap how the encoder-decoder multi-head
+attention sub-layer works and how the attention matrix is represented.
+Let $d_{\text{emb}},\ d_{k},\ d_{v},\ H$ denote the embedding dimension,
+dimensions of the key and value projections and number of heads,
+respectively.</p>
+
+<p>The multi-head attention between a source sentence of $M$ tokens and a
+target sentence of $N$ tokens is calculated via the following equation:</p>
+
+\[\text{MultiHead}\left( Q,\ K,\ V \right) = Concat\left( A_{1},\ ...\ A_{H} \right)W^{O}\]
+
+\[A_{i} = Attention\left( QW_{i}^{Q},\ KW_{i}^{K},\ VW_{i}^{V} \right) = \text{softmax}\left( \frac{QW_{i}^{Q}\left( KW_{i}^{K} \right)^{T}}{\sqrt{d_{k}}} \right)VW_{i}^{V}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$A_{i} \in \mathbb{R}^{M \times N}$ is the Attention matrix of the
+$i^{th}$ head out of $H$ heads.</p>
+  </li>
+  <li>
+    <p>$W_{i}^{Q} \in \mathbb{R}^{d_{\text{emb}} \times d_{k}},\ W_{i}^{K} \in \mathbb{R}^{d_{\text{emb}} \times d_{k}},\ W_{i}^{V} \in \mathbb{R}^{d_{\text{emb}} \times d_{v}},\ W^{O} \in \mathbb{R}^{Nd_{v} \times d_{\text{emb}}}$
+are projections matrices of the $i^{th}$ head. All of them are learned
+parameters.</p>
+
+    <p>Each alignment matrix $A_{i}$ gives a probability distribution over
+source/target pair. This distribution is then converted to a
+discrete alignment by aligning each target word to the corresponding
+source word with the highest attention probability.</p>
+  </li>
+</ul>
+
+<h2 id="layer-average-baseline">Layer Average Baseline</h2>
+
+<p>As we can see from the previous sections, there are multiple heads and
+multiple layers in the transformer architecture. Which alignment should
+be considered the correct alignment of the input pair?</p>
+
+<p>In the paper, they found out that the best results come from
+<strong>averaging all attention heads of the second-to-last layer</strong> out
+of the six decoder layers they used. They refer to this as “the layer
+average baseline”.</p>
+
+<h2 id="multi-task-learning">Multi-task Learning</h2>
+
+<p>Multi-task learning is a subfield of machine learning in which multiple
+learning tasks are solved at the same time, while exploiting
+commonalities and differences across tasks. In this paper, the
+publishers exploited the correlation between Translation and Alignment
+tasks to create a multi-objective loss function $\mathcal{L}$:</p>
+
+\[\mathcal{L} = \mathcal{L}_{t} + \lambda\mathcal{L}_{a}\left( A \right)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$\lambda$ is a hyper-parameters to weigh the importance of these two
+loss functions.</p>
+  </li>
+  <li>
+    <p><span>$\mathcal{L}_{t}$</span> is the translation loss function given a source sentence <span>$s = \left[ s_{1}\text{…}s_{M} \right]$</span> and a target sentence <span>$t = \left[ t_{1}\text{…}t_{N} \right]$</span>:</p>
+  </li>
+</ul>
+
+\[\mathcal{L}_{t} = - \frac{1}{N}\sum_{i = 1}^{N}{\log\left( p\left( t_{i} \middle| s,\ t_{&lt; i} \right) \right)}\]
+
+<ul>
+  <li>$\mathcal{L}_{a}$ is the alignment loss:</li>
+</ul>
+
+\[\mathcal{L}_{a}\left( A \right) = - \frac{1}{N}\sum_{i = 1}^{N}{\sum_{j = 1}^{M}G_{i,j}^{p}\text{.}\log\left( A_{i,j} \right)}\]
+
+<p>The alignment loss is calculated in a supervised manner using the
+layer-average baseline as the true alignment. First, they converted the
+true alignments into a probability distribution. Let $G_{N \times M}$
+denote a 0-1 matrix such that $G_{i,j} = 1$ if the $j^{th}$ source token is
+aligned to the $i^{th}$ target token. Then, they normalized the rows of $G$
+to get matrix $G^{p}$.</p>
+
+<p>Calculating the translation loss <span>$\mathcal{L}_{t}$</span> needs a masked target
+while calculating the alignment loss <span>$\mathcal{L}_{a}$</span> needs the target
+without masking. That’s why the loss function is implemented by
+executing two forward passes of the decoder model: One with the masking
+of the future target tokens for computing the translation loss
+<span>$\mathcal{L}_{t}$</span> and the other one with no masking for computing the
+alignment loss <span>$\mathcal{L}_{a}$</span>.</p>
+
+<h2 id="results">Results</h2>
+
+<p>To achieve state-of-the-art results, they change to the big transformer
+configuration with an embedding size of 1024 and 16 attention heads, 6
+layers in the encoder and decoder. The total number of parameters is
+213M. They trained the transformer with a batch size of 7168 tokens on
+64 Volta GPUs for 30k updates and apply a learning rate of $1e^{-3}$,
+$\beta_{1} = 0.9$, $\beta_{2} = 0.98$. The dropout probability is set to
+$0.3$.</p>
+
+<p>As we can see from this table, the multi-task learning with full context
+(knowing of all target words) and with alignment generated from GIZA++
+toolkit achieved the least AER while maintaining the translation BLEU
+score on two different language-pairs.</p>
+
+<div align="center">
+    <img src="media/Align_and_Translate/image2.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Align_and_Translate';
+      this.page.identifier = '/machine-translation/Align_and_Translate';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

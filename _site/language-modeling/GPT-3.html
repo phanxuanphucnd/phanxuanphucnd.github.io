@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>GPT-3</title>
+  <meta name="title" content="GPT-3">
+  <meta name="description" content="GPT-3 is an enormous model built on the transformer-decoder architecture
+published in 2020 by OpenAI in this paper: “Language Models are
+Few-Shot Learners” whose title is
+very indicative of what the paper wanted to show. The paper didn’t
+provide any new architecture, they used the same architecture as GPT-2.
+They just made it way bigger and trained over more data.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="GPT-3">
+  <meta itemprop="description" content="GPT-3 is an enormous model built on the transformer-decoder architecture
+published in 2020 by OpenAI in this paper: “Language Models are
+Few-Shot Learners” whose title is
+very indicative of what the paper wanted to show. The paper didn’t
+provide any new architecture, they used the same architecture as GPT-2.
+They just made it way bigger and trained over more data.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/GPT-3/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="GPT-3">
+  <meta property="og:description" content="GPT-3 is an enormous model built on the transformer-decoder architecture
+published in 2020 by OpenAI in this paper: “Language Models are
+Few-Shot Learners” whose title is
+very indicative of what the paper wanted to show. The paper didn’t
+provide any new architecture, they used the same architecture as GPT-2.
+They just made it way bigger and trained over more data.
+
+">
+  <meta property="og:image" content="/language-modeling/media/GPT-3/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GPT-3">
+  <meta name="twitter:description" content="GPT-3 is an enormous model built on the transformer-decoder architecture
+published in 2020 by OpenAI in this paper: “Language Models are
+Few-Shot Learners” whose title is
+very indicative of what the paper wanted to show. The paper didn’t
+provide any new architecture, they used the same architecture as GPT-2.
+They just made it way bigger and trained over more data.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/GPT-3/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/GPT-3">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2020-05-28 00:00" class="post-meta__body date">Published on arXiv on: 28 May 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Open AI">Open AI</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=GPT-3> GPT-3</h1>
+    <p>GPT-3 is an enormous model built on the transformer-decoder architecture
+published in 2020 by OpenAI in this paper: “<a href="https://arxiv.org/pdf/2005.14165.pdf">Language Models are
+Few-Shot Learners</a>” whose title is
+very indicative of what the paper wanted to show. The paper didn’t
+provide any new architecture, they used the same architecture as GPT-2.
+They just made it way bigger and trained over more data.</p>
+
+<p>The whole purpose of this paper is to show that GPT-3 can be used with a
+variety of tasks using either zero-shot, or one-shot or a few-shots
+learning schemes and even reaching competitiveness with prior
+state-of-the-art fine-tuned models. Before getting into more details
+about the model, let’s first discuss what do I mean by these learning
+schemes and how they are different from fine-tuning:</p>
+
+<ul>
+  <li><u><strong>Few-shot (FS):</strong></u><br />
+It’s the setting where the model is given K (usually from 10
+to 100) examples of the task at inference time as conditioning,
+but no weight updates are allowed. As we can see in the following
+figure, GPT-3 was given <u>three</u> different examples along with
+the task description:</li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image1.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>One-shot (1S):</strong></u><br />
+It’s the same as few-shot except that only one
+demonstration is allowed, in addition to the task description. The
+reason to distinguish one-shot from few-shot is that it most
+closely matches the way in which some tasks are communicated to
+humans:</li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image2.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Zero-shot (0S):</strong></u><br />
+It’s the same as one-shot except that no demonstrations are
+allowed, just the task description. This method provides maximum
+potential for robustness but is also the most challenging setting
+even for humans.</li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image3.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Fine-Tuning (FT):</strong></u><br />
+It has been the most common approach in recent years, and involves
+updating the weights of a pre-trained model by training on a
+supervised dataset specific to the desired task. This setting
+lacks from poor generalization out-of-distribution:</li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image4.png" width="450" />
+</div>
+
+<h2 id="model">Model</h2>
+
+<p>As said earlier, they used the same model and architecture as GPT-2. To
+study the dependence of performance on model size, they trained 8
+different sizes of model as shown in the following table</p>
+
+<div align="center">
+    <img src="media/GPT-3/image5.png" width="750" />
+</div>
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$n_{\text{params}}$: is the total number of trainable parameters.</p>
+  </li>
+  <li>
+    <p>$n_{\text{layers}}$: is the total number of layers.</p>
+  </li>
+  <li>
+    <p>$d_{\text{model}}$: is the number of units in each bottleneck layer
+(we always have the feed-forward layer four times the size of the
+bottleneck layer,
+$d_{\text{feedforward}} = 4 \times d_{\text{model}}$).</p>
+  </li>
+  <li>
+    <p>$n_{\text{heads}}$: is the number of attention heads/layers, since
+each layer has just one attention head.</p>
+  </li>
+  <li>
+    <p>$d_{head}$: is the dimension of each attention head.</p>
+  </li>
+</ul>
+
+<p>As you can see, GPT3 is massive as its context-widow
+$n_{\text{ctx}} = 2048$ tokens wide with about 175 billion learnable
+parameters spread over 96 transformer-decoder layers.</p>
+
+<div align="center">
+    <img src="media/GPT-3/image6.png" width="750" />
+</div>
+
+<p>The data used for this models are according to the following table</p>
+
+<div align="center">
+    <img src="media/GPT-3/image7.png" width="750" />
+</div>
+
+<p>And the following is a comparison between the training time taken to
+train BERT, RoBERTa, T5 and GPT-3. As we can see from the graph, it took
+almost 5000 days to train GPT-3.</p>
+
+<div align="center">
+    <img src="media/GPT-3/image8.png" width="750" />
+</div>
+
+<h2 id="results">Results</h2>
+
+<p>The following is a comparison among the different learning schemes used
+with GPT-3 and the state or the art (fine-tuned) model on various tasks:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Language Modeling:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> Penn Tree Bank</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> perplexity</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image9.png" width="350" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Long-Range Language Modeling:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> LAMBADA</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> perplexity / Accuracy</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image10.png" width="450" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Story Completion:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> StoryCloze &amp; HellaSwag</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> Accuracy</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image11.png" width="450" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Question Answering:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> NaturalQS, WebQS &amp; TriviaQA</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> Accuracy</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image12.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Machine Translation:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> WMT’14 (Fr↔En), WMT’16 (De↔En) &amp; WMT’16 (Ro↔En).</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> BLEU</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image13.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Winograd-Style Tasks:</strong></u> determining to which word a
+pronoun refers</p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> Winograd &amp; WinogradXL</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> Accuracy</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image14.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Common Sense Reasoning:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> PIQA, ARC, OpenBookQA</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> Accuracy</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image15.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Reading Comprehension:</strong></u></p>
+
+    <ul>
+      <li>
+        <p><strong>Dataset:</strong> CoQA, DROP, QuAC, SQuADv2, RACE-h, RACE-m.</p>
+      </li>
+      <li>
+        <p><strong>Evaluation Metric:</strong> Accuracy for RACE-h &amp; RACE-m, and F1 for
+the rest.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/GPT-3/image16.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/GPT-3';
+      this.page.identifier = '/language-modeling/GPT-3';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

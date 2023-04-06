@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>NAT: Non-Autoregressive Transformer</title>
+  <meta name="title" content="NAT: Non-Autoregressive Transformer">
+  <meta name="description" content="NAT, stands for “Non-Autoregressive Translation”, is an NMT model that
+avoids the autoregressive property of the decoding and produces its
+outputs in parallel. NAT was created by Salesforce in 2017 and published
+in their paper: “Non-Autoregressive Neural Machine
+Translation”. The official code
+for this paper can be found on the official Salesforce GitHub
+repository: nonauto-nmt.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="NAT: Non-Autoregressive Transformer">
+  <meta itemprop="description" content="NAT, stands for “Non-Autoregressive Translation”, is an NMT model that
+avoids the autoregressive property of the decoding and produces its
+outputs in parallel. NAT was created by Salesforce in 2017 and published
+in their paper: “Non-Autoregressive Neural Machine
+Translation”. The official code
+for this paper can be found on the official Salesforce GitHub
+repository: nonauto-nmt.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/NAT/image2.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="NAT: Non-Autoregressive Transformer">
+  <meta property="og:description" content="NAT, stands for “Non-Autoregressive Translation”, is an NMT model that
+avoids the autoregressive property of the decoding and produces its
+outputs in parallel. NAT was created by Salesforce in 2017 and published
+in their paper: “Non-Autoregressive Neural Machine
+Translation”. The official code
+for this paper can be found on the official Salesforce GitHub
+repository: nonauto-nmt.
+
+">
+  <meta property="og:image" content="/machine-translation/media/NAT/image2.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NAT: Non-Autoregressive Transformer">
+  <meta name="twitter:description" content="NAT, stands for “Non-Autoregressive Translation”, is an NMT model that
+avoids the autoregressive property of the decoding and produces its
+outputs in parallel. NAT was created by Salesforce in 2017 and published
+in their paper: “Non-Autoregressive Neural Machine
+Translation”. The official code
+for this paper can be found on the official Salesforce GitHub
+repository: nonauto-nmt.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/NAT/image2.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/NAT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2017-11-07 00:00" class="post-meta__body date">Published on arXiv on: 7 Nov 2017</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Salesforce Research">Salesforce Research</a> & <a href="/labs/#The University of Hong Kong">The University of Hong Kong</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=NAT: Non-Autoregressive Transformer> NAT: Non-Autoregressive Transformer</h1>
+    <p>NAT, stands for “Non-Autoregressive Translation”, is an NMT model that
+avoids the autoregressive property of the decoding and produces its
+outputs in parallel. NAT was created by Salesforce in 2017 and published
+in their paper: “<a href="https://arxiv.org/pdf/1711.02281.pdf">Non-Autoregressive Neural Machine
+Translation</a>”. The official code
+for this paper can be found on the official Salesforce GitHub
+repository: <a href="https://github.com/salesforce/nonauto-nmt">nonauto-nmt</a>.</p>
+
+<p>Before getting into Non-Autoregressive model, let’s first recap what is
+an Autoregressive model. Given a source sentence
+$X = \left( x_{1},\ …x_{m} \right)$, an Autoregressive model factors the
+distribution over possible output sentences
+$Y = \left( y_{1},\ …y_{n} \right)$ into a chain of conditional
+probabilities with a an auto-regressive (left-to-right) manner as shown below:</p>
+
+\[p\left( Y \middle| X;\theta \right) = \prod_{t = 1}^{n}{p\left( y_{t} \middle| y_{0:t - 1},\ x_{1:m};\ \theta \right)}\]
+
+<p>Where the special tokens $y_{0} = \left\langle \text{bos} \right\rangle$
+and $y_{n + 1} = \left\langle \text{eos} \right\rangle$ are used to
+represent the beginning and end of all target sentences. These
+conditional probabilities are parameterized using a neural network
+$\theta$.</p>
+
+<h2 id="nat-architecture">NAT Architecture</h2>
+
+<p>The autoregressive model corresponds to the word-by-word nature of human
+language production and effectively captures the distribution of real
+translations. That’s why they achieve state-of-the-art performance on
+large-scale corpora. But there are also drawbacks such as individual steps of
+the decoder must be run sequentially rather than in parallel which takes longer.
+The NAT model proposed in this paper tries to solve that problem:</p>
+
+<div align="center">
+    <img src="media/NAT/image1.png" width="750" />
+</div>
+
+<p>The NAT model, as shown in the following figure, is composed of the following
+four modules: <u><strong>Encoder stack</strong></u>, <u><strong>Decoder stack
+</strong></u>, a newly added <u><strong>fertility predictor</strong></u> added
+at the end of the encoder stack, and a <u><strong>translation predictor
+</strong></u> added at the end of the decoder stack.</p>
+
+<div align="center">
+    <img src="media/NAT/image2.png" width="750" />
+</div>
+
+<h3 id="encoder-stack">Encoder Stack</h3>
+
+<p>The encoder stays unchanged from the original Transformer network ☺.</p>
+
+<h3 id="decoder-stack">Decoder Stack</h3>
+
+<p>To be able to parallelize the decoding process, the NAT needs to know
+how long the target sentence will be. And since the target sentence
+length is different but not that far from the source sentence, they
+initialized the decoding process using copied source inputs from the
+encoder side based on the word’s “fertility”.</p>
+
+<p>Since we are processing the output as a whole, we no longer need the
+masking before the self-attention. Instead, they only masked out each
+query position only from attending to itself, which they found to
+improve decoder performance relative to unmasked/standard  self-attention.</p>
+
+<p>Also, they added a new block called “<u><strong>Multi-head Positional
+Attention</strong></u>” in each decoder layer, which is a multi-head attention
+module with the same general attention mechanism used in other parts of the
+Transformer network:</p>
+
+\[\text{Attention}\left( Q,K,\ V \right) = \text{softmax}\left( \frac{QK^{T}}{\sqrt{d_{\text{model}}}} \right)\text{.V}\]
+
+<p>This incorporates positional information directly into the attention
+process and provides a stronger positional signal than the embedding
+layer alone.</p>
+
+<h3 id="fertility-predictor">Fertility Predictor</h3>
+
+<p>Words’ fertility are integers for each word in the source sentence that 
+correspond to the number of words in the target sentence that can be aligned to
+that source word if a hard alignment algorithm was used (like
+<a href="https://aclanthology.org/J93-2003.pdf">IBM Models</a> for example).</p>
+
+<p>Using the fertility predictor and given a source sentence
+$X = \left( x_{1},\ …x_{m} \right)$, the conditional probability
+over the possible output sentence $Y = \left( y_{1},\ …y_{n} \right)$ is:</p>
+
+\[p\left( Y \middle| X;\theta \right) = \sum_{f_{1},\ ...f_{m} \in \mathcal{F}}^{}\left( \prod_{t = 1}^{m}{p_{F}\left( f_{t} \middle| x_{1:m};\ \theta \right)}.\prod_{t = 1}^{n}{p\left( y_{t} \middle| x_{1}\left\{ f_{1} \right\},\ ...x_{m}\left\{ f_{m} \right\};\ \theta \right)} \right)\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$\mathcal{F} \in \left( f_{1},\ …f_{m} \right)$ is the set of
+all fertility sequences, one fertility value per source token.
+Knowing that the sum of all fertility values is the length of the
+target sentence:</li>
+</ul>
+
+\[\sum_{t = 1}^{m}f_{t} = n\]
+
+<ul>
+  <li>
+    <p>$p_{F}\left( f_{t} \middle| x_{1:m};\ \theta \right)$ is the
+fertility prediction model which is a one-layer neural network with
+a softmax classifier ($L = 50$  in these experiments) on top of the
+output of the last encoder layer. This models the way that fertility
+values are a property of each input word but depend on information
+and context from the entire sentence.</p>
+  </li>
+  <li>
+    <p><span>$x\left\{ f \right\}$</span> denotes the source token $x$ repeated
+$f$ times.</p>
+  </li>
+</ul>
+
+<h3 id="translation-predictor">Translation Predictor</h3>
+
+<p>At inference time, the model can identify the translation with the highest
+conditional probability by marginalizing over all possible latent fertility
+sequences. In other words, the optimal output translation sequence given a
+source sentence $x$ and an optimal sequence of fertility values $\widehat{f}$
+is:</p>
+
+\[\widehat{Y} = G\left( x_{1:m},\ {\widehat{f}}_{1:m};\theta \right)\]
+
+<p>As seen from the previous equation, finding an optimal output translation
+sequence heavily depends on the fertility values. To search over the whole
+fertility space is a big task. So, they proposed three heuristic decoding
+algorithms to reduce the search space of the NAT model given the fertility
+distribution $p_{F}$:</p>
+
+<ul>
+  <li><u><strong>Argmax Decoding:</strong></u><br />
+The optimal sequence of fertility value is the highest-probability
+fertility for each input word:</li>
+</ul>
+
+\[{\widehat{f}}_{t} = \underset{f}{\arg\max}{p_{F}\left( f_{t} \middle| x_{1:m};\theta \right)}\]
+
+<ul>
+  <li><u><strong>Average Decoding:</strong></u><br />
+The optimal sequence of fertility value is the the expectation of
+its corresponding softmax distribution ($L = 50$  in these experiments):</li>
+</ul>
+
+\[{\widehat{f}}_{t} = \text{Round}\left( \sum_{f_{t}=1}^{L}{p_{F}\left( f_{t} \middle| x_{1:m};\theta \right).f_{t}} \right)\]
+
+<ul>
+  <li><u><strong>Noisy parallel decoding (NPD):</strong></u><br />
+A more accurate approximation of the true optimum of the target
+distribution is to draw samples from the fertility space and compute
+the best translation for each fertility sequence. We can then use
+the autoregressive teacher to identify the best overall translation:</li>
+</ul>
+
+\[{\widehat{f}}_{t} = \underset{f_{t}\sim p_{F}}{\arg\max}{p_{AR}\left( G\left( x_{1:m},\ f_{1:m};\theta \right) \middle| X;\theta \right)}\]
+
+<h2 id="loss-function">Loss Function</h2>
+
+<p>Given a source sentence $X = \left{ x_{1},\ …x_{m} \right}$, a
+target sequence $Y = \left{ y_{1},\ …y_{n} \right}$ and a fertility
+values $f_{1:m}$, the loss function of the NAT model $\mathcal{L}$ can
+be described below:</p>
+
+\[\mathcal{L} = log\sum_{f_{1:m} \in \mathcal{F}}^{}{p_{F}\left( f_{1:m} \middle| x_{1:m};\ \theta \right)\text{.p}\left( y_{1:n} \middle| x_{1:m};\theta \right)}\]
+
+<p>The resulting loss function allows us to train the entire model in a
+supervised fashion, using the inferred fertilities to simultaneously
+train the translation model $p$ and supervise the fertility neural
+network model $p_{F}$.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+There are two possible options that can be used as labels for the the
+fertility network. The first is an external aligner, which produces a
+deterministic integer fertilities for each (source, target) pair in a
+training corpus. The second option is the attention weights used in an
+autoregressive teacher model.</p>
+</blockquote>
+
+<p>After training the NAT model to convergence, they proposed a fine-tuning
+step where they freeze a trained autoregressive teacher model while
+train the NAT model on its soft labels. This introduced an additional
+loss term consisting of the reverse K-L divergence with the teacher
+output distribution:</p>
+
+\[\mathcal{L}_{\text{RKL}}\left( f_{1:m};\ \theta \right) = \sum_{t = 1}^{n}{\sum_{y_{t}}^{}\left\lbrack \text{log\ }p_{\text{AR}}\left( y_{t} \middle| {\widehat{y}}_{1:t},\ x_{1:m} \right).p_{\text{NA}}\left( y_{t} \middle| x_{1:m},\ f_{1:m};\theta \right) \right\rbrack}\]
+
+<p>Where $p_{\text{AR}}$ is the probability distribution of the
+autoregressive teacher model, while $p_{\text{NA}}$ is the probability
+distribution of the NAT model. ${\widehat{y}}<em>{1:t}$ is the optimal
+output sequence which equals to
+$G\left( x</em>{1:m},\ f_{1:m};\theta \right)$. Such a loss is more
+favorable towards highly peaked student output distributions than a
+standard cross-entropy error would be.</p>
+
+<p>Then they trained the whole model jointly with a weighted sum
+($\lambda = 0.25$) of the original distillation loss and two such terms,
+one an expectation over the predicted fertility distribution, normalized
+with a baseline, and the other based on the external fertility inference
+model:</p>
+
+<div align="center">
+    <img src="media/NAT/image3.png" width="750" />
+</div>
+
+<p>Where ${\overline{f}}<em>{1:m}$ is the average fertility computed by the
+average decoding discussed before. The gradient with respect to the
+non-differentiable $\mathcal{L}</em>{\text{RL}}$ term can be estimated with
+REINFORCE, while term $\mathcal{L}_{\text{BP}}$ can be trained using
+ordinary back-propagation</p>
+
+<p>As seen from the below figure, using fine-tuning with a teacher model
+really helps improving the NAT model’s performance:</p>
+
+<div align="center">
+    <img src="media/NAT/image4.png" width="750" />
+</div>
+
+<h2 id="results">Results</h2>
+
+<p>Experiments were run on three widely used public machine translation
+corpora: <a href="https://wit3.fbk.eu/">IWSLT16 En-De</a>, <a href="http://www.statmt.org/wmt14/translation-task">WMT14
+En-De</a>, and <a href="http://www.statmt.org/wmt16/translation-task">WMT16
+En-Ro</a>. All the data are
+tokenized using byte-pair encoding (BPE). For WMT datasets, BPE
+vocabulary were shared; for IWSLT, they used separate vocabulary.
+Additionally, they shared encoder and decoder word embeddings only in
+WMT experiments.</p>
+
+<p>NAT model was initialized using the teacher model. The teacher model is a
+standard <a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+architecture with base configurations on the WMT dataset and smaller set
+of hyper-parameters when trained on IWSLT dataset since it’s smaller
+than WMT. The two sets of configuration can be seen below:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>$$N$$</th>
+            <th>$$d_{m}$$</th>
+            <th>$$d_{\text{ff}}$$</th>
+            <th>$$h$$</th>
+            <th>$$\epsilon_{l_{s}}$$</th>
+            <th>Warmup steps</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><strong>WMT</strong></td>
+        <td>6</td>
+        <td>512</td>
+        <td>2048</td>
+        <td>8</td>
+        <td>0</td>
+        <td>10k</td>
+    </tr>
+    <tr>
+        <td><strong>IWSLT</strong></td>
+        <td>5</td>
+        <td>287</td>
+        <td>507</td>
+        <td>8</td>
+        <td>0</td>
+        <td>746</td>
+    </tr>
+</table>
+</div>
+
+<p>The following table shows the BLEU scores on official test sets
+(newstest2014 for WMT En-De and newstest2016 for WMT En-Ro) and the
+development set for IWSLT. The NAT models without NPD use argmax
+decoding and latency is computed as the time to decode a single sentence
+without mini-batching, averaged over the whole test set:</p>
+
+<div align="center">
+    <img src="media/NAT/image5.png" width="750" />
+</div>
+
+<p>As seen from the previous table, the NAT performs between 2-5 BLEU
+points worse than its autoregressive teacher across all three datasets.</p>
+
+<p>The translation latency, computed as the time to decode a single
+sentence without mini-batching, for each sentence in the IWSLT
+development set as a function of its length. The autoregressive model
+has latency linear in the decoding length, while the latency of the NAT
+is nearly constant for typical lengths:</p>
+
+<div align="center">
+    <img src="media/NAT/image6.png" width="750" />
+</div>
+
+<p>They also conducted an extensive ablation study with the proposed NAT on
+the IWSLT dataset. First, they noted that the model fails to train when
+provided with only positional embeddings as input to the decoder.
+Second, they found out using teacher model really helps. Third, the
+fertility-based copying improves performance by four BLEU points when
+using ground-truth training or two when using distillation.</p>
+
+<div align="center">
+    <img src="media/NAT/image7.png" width="750" />
+</div>
+
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/NAT';
+      this.page.identifier = '/machine-translation/NAT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

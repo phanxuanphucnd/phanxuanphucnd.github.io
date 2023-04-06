@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>∆LM: Delta Language Modeling</title>
+  <meta name="title" content="∆LM: Delta Language Modeling">
+  <meta name="description" content="DeltaLM (∆LM) is a pre-trained multilingual encoder-decoder model whose
+encoder and decoder are initialized with a pre-trained multilingual
+encoder, and trained in a self-supervised way. DeltaLM was proposed by
+Microsoft in 2021 and published in their paper: “∆LM: Encoder-Decoder
+Pre-training for Language Generation and Translation by Augmenting
+Pretrained Multilingual
+Encoders”. The official code for
+this paper can be found on Microsoft’s GitHub repository:
+microsoft/deltalm.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="∆LM: Delta Language Modeling">
+  <meta itemprop="description" content="DeltaLM (∆LM) is a pre-trained multilingual encoder-decoder model whose
+encoder and decoder are initialized with a pre-trained multilingual
+encoder, and trained in a self-supervised way. DeltaLM was proposed by
+Microsoft in 2021 and published in their paper: “∆LM: Encoder-Decoder
+Pre-training for Language Generation and Translation by Augmenting
+Pretrained Multilingual
+Encoders”. The official code for
+this paper can be found on Microsoft’s GitHub repository:
+microsoft/deltalm.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/DeltaLM/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="∆LM: Delta Language Modeling">
+  <meta property="og:description" content="DeltaLM (∆LM) is a pre-trained multilingual encoder-decoder model whose
+encoder and decoder are initialized with a pre-trained multilingual
+encoder, and trained in a self-supervised way. DeltaLM was proposed by
+Microsoft in 2021 and published in their paper: “∆LM: Encoder-Decoder
+Pre-training for Language Generation and Translation by Augmenting
+Pretrained Multilingual
+Encoders”. The official code for
+this paper can be found on Microsoft’s GitHub repository:
+microsoft/deltalm.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/DeltaLM/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="∆LM: Delta Language Modeling">
+  <meta name="twitter:description" content="DeltaLM (∆LM) is a pre-trained multilingual encoder-decoder model whose
+encoder and decoder are initialized with a pre-trained multilingual
+encoder, and trained in a self-supervised way. DeltaLM was proposed by
+Microsoft in 2021 and published in their paper: “∆LM: Encoder-Decoder
+Pre-training for Language Generation and Translation by Augmenting
+Pretrained Multilingual
+Encoders”. The official code for
+this paper can be found on Microsoft’s GitHub repository:
+microsoft/deltalm.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/DeltaLM/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/DeltaLM">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2021-06-25 00:00" class="post-meta__body date">Published on arXiv on: 25 Jun 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft">Microsoft</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=∆LM: Delta Language Modeling> ∆LM: Delta Language Modeling</h1>
+    <p>DeltaLM (∆LM) is a pre-trained multilingual encoder-decoder model whose
+encoder and decoder are initialized with a pre-trained multilingual
+encoder, and trained in a self-supervised way. DeltaLM was proposed by
+Microsoft in 2021 and published in their paper: “<a href="https://arxiv.org/pdf/2106.13736.pdf">∆LM: Encoder-Decoder
+Pre-training for Language Generation and Translation by Augmenting
+Pretrained Multilingual
+Encoders</a>”. The official code for
+this paper can be found on Microsoft’s GitHub repository:
+<a href="https://github.com/microsoft/unilm/tree/master/deltalm">microsoft/deltalm</a>.</p>
+
+<div align="center">
+    <img src="media/DeltaLM/image1.png" width="750" />
+</div>
+
+<p>In the paper, they decided to use
+<a href="https://anwarvic.github.io/cross-lingual-lm/InfoXLM">InfoXLM</a> as the
+pre-trained Multilingual encoder to take advantage of its strong
+performance. InfoXLM uses the large-scale monolingual data and bilingual
+data and is jointly trained with a combination of the masked language
+model (MLM), translation language model (TLM), and cross-lingual
+contrast (XLCO) objectives. It has a shared vocabulary of 250,000 tokens
+based on the SentencePiece model.</p>
+
+<p>One challenge is how to initialize the decoder since the architecture of
+the decoder is different from that of the encoder. To overcome this
+problem, they introduced a new architecture for the decoder and called
+it “interleaved decoder”. This new architect has a more consistent
+structure with the encoder. In this way, the decoder can fully leverage
+all weights of the pre-trained encoder.</p>
+
+<h2 id="interleaved-decoder">Interleaved Decoder</h2>
+
+<p>As shown at the middle of the following figure, the standard
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+decoder consists of three modules: self-attention, cross-attention, and
+feed-forward network (FFN). In
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a> model, they
+initialized the self-attention and the FFN with the weights of the
+pre-trained encoder, while the cross-attention is initialized with
+either random weights or the same weights as the self-attention.
+However, to better leverage the full weights of the pre-trained encoder,
+they proposed a new-yet-similar architecture as seen on the right side
+of the following figure:</p>
+
+<div align="center">
+    <img src="media/DeltaLM/image2.png" width="750" />
+</div>
+
+<p>In the interleaved decoder, they interleaved the FFNs and the attention
+modules, so that the structure is consistent with the pre-trained
+encoder at the first part and similar to the decoder at the second part.
+The residual connections and the layer normalizations were performed in
+each sub-layers in the same way as vanilla Transformer layers.</p>
+
+<p>Now, with the interleaved structure, the decoder can be directly
+initialized with the pre-trained encoder. More specifically, the
+self-attentions and the bottom FFNs can be initialized using the odd
+layers of the InfoXLM pre-trained model, while the cross-attentions and
+the top FFNs can be initialized with the corresponding even layers.</p>
+
+<h2 id="pre-training">Pre-training</h2>
+
+<p>∆LM was pre-trained using 6TB multilingual data, which is a combination
+of CC100, CC-Net, and Wikipedia, covering 100 languages. Also, it was
+pre-trained using 88GB of bilingual data from CCAligned and OPUS, which
+has 77 languages. DeltaLM was pre-trained on two pre-training tasks:</p>
+
+<ul>
+  <li><u><strong>Span Corruption:</strong></u><br />
+As shown in the following figure, span corruption is the task of
+reconstructing the text spans based on the masked input sentence. It
+is proven to be effective for pre-training an encoder-decoder model.
+In this work, they followed
+<a href="https://anwarvic.github.io/cross-lingual-lm/mT5">mT5</a> model to
+apply this pre-training task to pre-train ∆LM on large-scale
+monolingual corpora.</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image3.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Translation Span Corruption:</strong></u><br />
+As shown in the following figure, two parallel sentences are
+concatenated together, then masked. And the model will have to
+figure out the text spans based on the input masked translation
+pair. In this work, they followed
+<a href="https://anwarvic.github.io/cross-lingual-lm/mT6">mT6</a> model to
+leverage large-scale bilingual corpora</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image4.png" width="750" />
+</div>
+
+<p>DeltaLM was pre-trained the model for $600,000$ steps with $2,048$ samples per
+batch and the input length was $512$ tokens. For the span corruption task, the
+probability of corrupted tokens is $15\%$ and the average length of spans is
+$3$. For the translation span corruption, the probability of corrupted tokens
+is $50\%$ and the span length is $3$.</p>
+
+<h2 id="results">Results</h2>
+
+<p>In this paper, they were considering the base-size Transformer model,
+with $768$ hidden size, $3,072$ FFN dimension, $12$ attention heads, and
+12 encoder/decoder layers. As said before, DeltaLM was initialized using
+InfoXLM-BASE. They used the Adam optimizer with
+$\beta_{1} = 0.9,\ \beta_{2} = 0.999$ with a linear learning rate
+scheduler with $10,000$ warm-up steps. A gradient clipping of $1.0$ was
+used.</p>
+
+<ul>
+  <li><strong>Machine Translation:</strong> They evaluated the models on the
+large-scale WMT-10 benchmark dataset which is a collection of 32.5
+million parallel data in English (En), French (Fr), Czech (Cs),
+German (De), Finnish (Fi), Latvian (Lv), Estonian (Et), Romanian
+(Ro), Hindi (Hi), Turkish (Tr) and Gujarati (Gu). The evaluation was
+done on the test dataset:</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image5.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Question Generation:</strong> this task takes an answer and the
+corresponding passage as the input and generates the related
+question. They used the Chinese XQG dataset where they split into
+135k/5k/3k samples as the training/validation/test sets.</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image6.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Abstractive Text Summarization:</strong> this task produces the main
+points of the input documents with new brief sentences. They used
+the French XGiga where it’s split ito 500k/5k/5k pairs for
+training/validation/test, respectively.</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image7.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Cross-lingual Text Summarization:</strong> This task aims to generate the
+summary of the input document in different languages. They used
+WikiLingua dataset which is a large-scale multilingual dataset with
+about 770k article-summary pairs.</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image8.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Cross-lingual Data-to-text Generation:</strong> This task requires an
+input of multiple triplets and generates a natural description based
+on the input data. They used WebNLG dataset which is a bilingual
+dataset of parallel DBpedia triple sets and short texts. The
+language directions are English-English and English-Russian. It
+contains about 17k triple sets and 45k short texts in English as
+well as 7k triple sets and 19k texts in Russian.</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image9.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Zero-shot Abstractive Summarization:</strong> They trained the model on
+the English-English training set and evaluate it on the
+French-French and Chinese-Chinese test sets. They used XGiga dataset
+where the training data consists of 50k text-summary pairs, while
+both the validation and test sets have 5k samples.</li>
+</ul>
+
+<div align="center">
+    <img src="media/DeltaLM/image10.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/DeltaLM';
+      this.page.identifier = '/cross-lingual-lm/DeltaLM';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

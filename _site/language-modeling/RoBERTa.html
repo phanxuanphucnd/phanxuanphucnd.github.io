@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>RoBERTa</title>
+  <meta name="title" content="RoBERTa">
+  <meta name="description" content="RoBERTa, stands for “Robustly optimized BERT approach”,
+is an approach to train BERT created by Facebook AI in 2019 and
+published in this paper: “RoBERTa: A Robustly Optimized BERT
+Pretraining Approach”. The official code
+for this paper can be found on Facebook’s FairSeq official GitHub repository:
+fairseq/roberta.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="RoBERTa">
+  <meta itemprop="description" content="RoBERTa, stands for “Robustly optimized BERT approach”,
+is an approach to train BERT created by Facebook AI in 2019 and
+published in this paper: “RoBERTa: A Robustly Optimized BERT
+Pretraining Approach”. The official code
+for this paper can be found on Facebook’s FairSeq official GitHub repository:
+fairseq/roberta.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/RoBERTa/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="RoBERTa">
+  <meta property="og:description" content="RoBERTa, stands for “Robustly optimized BERT approach”,
+is an approach to train BERT created by Facebook AI in 2019 and
+published in this paper: “RoBERTa: A Robustly Optimized BERT
+Pretraining Approach”. The official code
+for this paper can be found on Facebook’s FairSeq official GitHub repository:
+fairseq/roberta.
+
+">
+  <meta property="og:image" content="/language-modeling/media/RoBERTa/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RoBERTa">
+  <meta name="twitter:description" content="RoBERTa, stands for “Robustly optimized BERT approach”,
+is an approach to train BERT created by Facebook AI in 2019 and
+published in this paper: “RoBERTa: A Robustly Optimized BERT
+Pretraining Approach”. The official code
+for this paper can be found on Facebook’s FairSeq official GitHub repository:
+fairseq/roberta.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/RoBERTa/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/RoBERTa">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2019-07-26 00:00" class="post-meta__body date">Published on arXiv on: 26 Jul 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=RoBERTa> RoBERTa</h1>
+    <p>RoBERTa, stands for “<strong>R</strong>obustly <strong>o</strong>ptimized <strong>BERT</strong> <strong>a</strong>pproach”,
+is an approach to train BERT created by Facebook AI in 2019 and
+published in this paper: “<a href="https://arxiv.org/pdf/1907.11692.pdf">RoBERTa: A Robustly Optimized BERT
+Pretraining Approach</a>”. The official code
+for this paper can be found on Facebook’s FairSeq official GitHub repository:
+<a href="https://github.com/pytorch/fairseq/tree/master/examples/roberta">fairseq/roberta</a>.</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image0.png" width="450" />
+</div>
+
+<p>The authors of this paper has found out that BERT, when published, was
+significantly under-trained. So, they wrote this paper introducing an
+approach with the following:</p>
+
+<ul>
+  <li>
+    <p>Training the BERT model longer, on longer sequences, with bigger
+batches, over more data which increased the character-level BPE
+vocabulary size from 30K to 50K.</p>
+  </li>
+  <li>
+    <p>Dynamically changing the masking pattern applied to the training data.</p>
+  </li>
+  <li>
+    <p>Removing the next sentence prediction (NSP) objective.</p>
+  </li>
+</ul>
+
+<p>And just by doing these simple modifications, RoBERTa was able to
+exceed BERT and XLNet in almost all tasks on GLUE:</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image1.png" width="750" />
+</div>
+
+<p>In the following sections, we are going to discuss each modification out
+of the proposed three modifications.</p>
+
+<h2 id="data">Data</h2>
+
+<p>BERT is trained on a combination of BooksCorpus and English Wikipedia
+which totals 16GB of uncompressed text. On the other hand, RoBERTa is
+trained on a combination of the following data which totals 160 GB of
+uncompressed text:</p>
+
+<ul>
+  <li>
+    <p><a href="https://yknzhu.wixsite.com/mbweb">BooksCorpus</a> and English
+Wikipedia (This is the original data used to train BERT).</p>
+  </li>
+  <li>
+    <p><a href="https://commoncrawl.org/2016/10/news-dataset-available/">CC-NEWS</a>:
+collected from the English portion of the CommonCrawl News
+dataset. The data contains 63 million English news articles
+crawled between September 2016 and February 2019. (76GB after
+filtering).</p>
+  </li>
+  <li>
+    <p><a href="https://skylion007.github.io/OpenWebTextCorpus/">OpenWebText</a>: it’s
+the web content extracted from URLs shared on Reddit with at least
+three upvotes. (38GB).</p>
+  </li>
+  <li>
+    <p>Stories: a dataset containing a subset of CommonCrawl data filtered
+to match the story-like style of Winograd schemas. (31GB).</p>
+  </li>
+</ul>
+
+<p>The following table contains a simple comparison between RoBERTa and
+BERT using different amount of data:</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image2.png" width="750" />
+</div>
+
+<h2 id="batch-size">Batch Size</h2>
+
+<p>Past work in NMT has shown that training with very large mini-batches
+can both improve optimization speed and end-task performance when the
+learning rate is increased appropriately. BERT is also amenable to large
+batch training.</p>
+
+<p>The original BERT model was trained for 1 million steps with batch size
+of 256 sequences. So, in this paper the publishers increased the batch
+size and compared the performance of BERT on the development set of
+BooksCorpus and English Wikipedia as shown in the following table:</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image3.png" width="350" />
+</div>
+
+<p>We can see that training with large batches improves perplexity for the
+masked language modeling objective, as well as end-task accuracy. Large
+batches are also easier to parallelize via distributed data parallel
+training.</p>
+
+<p>And that was the first modification in the paper which is increasing the
+amount of data used for training BERT with bigger batch sizes. Now,
+let’s get to the second one.</p>
+
+<h2 id="static-vs-dynamic-masking">Static Vs. Dynamic Masking</h2>
+
+<p>As discussed before, BERT relies on randomly masking and predicting
+tokens. The original BERT implementation performed masking once during
+data preprocessing, resulting in a single static mask.</p>
+
+<p>In the paper, they proposed two different techniques for masking:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Static Masking:</strong></u> Where they duplicate training data
+10 times and mask each time with different mask pattern.</p>
+  </li>
+  <li>
+    <p><u><strong>Dynamic Masking:</strong></u> Where they generated the masking
+pattern every time a sequence is fed to the model.</p>
+  </li>
+</ul>
+
+<p>And the following table shows the result in comparison with the official
+results from BERT where we can see clearly that both proposed methods before
+better than the single masking:</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image4.png" width="450" />
+</div>
+
+<h2 id="nsp">NSP</h2>
+
+<p>In the original BERT paper, the model is trained to predict whether the
+observed sentence is next to the previous sentence or not via an
+auxiliary Next Sentence Prediction (NSP) loss. The NSP loss was
+hypothesized to be an important factor in training the original BERT
+model and removing it hurts the performance. However, some recent work
+has questioned the necessity of the NSP loss.</p>
+
+<p>So, to put this issue to rest, the publishers of the paper compared
+several alternative training formats:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Segment-pair + NSP:</strong></u><br />
+This follows the original input format used in BERT. Each input
+contains a pair of segments; each segment could contain multiple
+sentences.</p>
+  </li>
+  <li>
+    <p><u><strong>Sentence-pair + NSP:</strong></u><br />
+Each input contains a pair of sentences.</p>
+  </li>
+  <li>
+    <p><u><strong>Full-sentences:</strong></u><br />
+Each input is packed with full sentences, such that the
+total length is at most 512 tokens. Inputs may cross document
+boundaries. When we reach the end of one document, we begin
+sampling sentences from the next document and add an extra
+separator token between documents. The NSP loss is removed.</p>
+  </li>
+  <li>
+    <p><u><strong>Doc-sentences:</strong></u><br />
+Each input is packed with sentences of the same document, such
+that the total length is at most 512. The NSP loss is also
+removed.</p>
+  </li>
+</ul>
+
+<p>And the following table contains a comparison of these different
+training format on four different tasks.</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image5.png" width="750" />
+</div>
+
+<p>And in the table, we can see the following:</p>
+
+<ul>
+  <li>
+    <p>We find that using individual sentences hurts performance, which
+they hypothesized is because the model is not able to learn
+long-range dependencies.</p>
+  </li>
+  <li>
+    <p>Removing the NSP loss matches or slightly improves the performance.</p>
+  </li>
+  <li>
+    <p>Restricting sequences to come from a single document
+(<u><strong>Doc-sentences</strong></u>) performs slightly better than packing
+sequences from multiple documents (<u><strong>full-sentences</strong></u>).</p>
+  </li>
+</ul>
+
+<h2 id="base-vs-large-roberta">Base Vs Large RoBERTa</h2>
+
+<p>The same as BERT, the published or RoBERTa created two models sizes for
+it in order to compare performance:</p>
+
+<ul>
+  <li>
+    <p><strong>RoBERTa BASE:</strong> Comparable in size to the BERT-base.</p>
+  </li>
+  <li>
+    <p><strong>RoBERTa LARGE:</strong> Comparable in size to BERT-large.</p>
+  </li>
+</ul>
+
+<p>The following summarizes the difference between both models:</p>
+
+<div align="center">
+    <img src="media/RoBERTa/image6.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/RoBERTa';
+      this.page.identifier = '/language-modeling/RoBERTa';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

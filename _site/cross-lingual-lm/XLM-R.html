@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>XLM-R</title>
+  <meta name="title" content="XLM-R">
+  <meta name="description" content="XLM-R stands for “Cross-lingual Language Modeling-RoBERTa” which was
+created by FacebookAI in 2019 and published in this paper:
+“Unsupervised Cross-lingual Representation Learning at
+Scale”. The goal of paper is to
+improve the XLM model’s performance on both cross-lingual and
+monolingual understanding tasks. XLM-R follows the XLM model
+architecture with a changes that improve the performance at scale. And
+these changes are:
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="XLM-R">
+  <meta itemprop="description" content="XLM-R stands for “Cross-lingual Language Modeling-RoBERTa” which was
+created by FacebookAI in 2019 and published in this paper:
+“Unsupervised Cross-lingual Representation Learning at
+Scale”. The goal of paper is to
+improve the XLM model’s performance on both cross-lingual and
+monolingual understanding tasks. XLM-R follows the XLM model
+architecture with a changes that improve the performance at scale. And
+these changes are:
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/XLM-R/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="XLM-R">
+  <meta property="og:description" content="XLM-R stands for “Cross-lingual Language Modeling-RoBERTa” which was
+created by FacebookAI in 2019 and published in this paper:
+“Unsupervised Cross-lingual Representation Learning at
+Scale”. The goal of paper is to
+improve the XLM model’s performance on both cross-lingual and
+monolingual understanding tasks. XLM-R follows the XLM model
+architecture with a changes that improve the performance at scale. And
+these changes are:
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/XLM-R/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XLM-R">
+  <meta name="twitter:description" content="XLM-R stands for “Cross-lingual Language Modeling-RoBERTa” which was
+created by FacebookAI in 2019 and published in this paper:
+“Unsupervised Cross-lingual Representation Learning at
+Scale”. The goal of paper is to
+improve the XLM model’s performance on both cross-lingual and
+monolingual understanding tasks. XLM-R follows the XLM model
+architecture with a changes that improve the performance at scale. And
+these changes are:
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/XLM-R/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/XLM-R">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2019-11-05 00:00" class="post-meta__body date">Published on arXiv on: 5 Nov 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=XLM-R> XLM-R</h1>
+    <p>XLM-R stands for “Cross-lingual Language Modeling-RoBERTa” which was
+created by FacebookAI in 2019 and published in this paper:
+“<a href="https://arxiv.org/pdf/1911.02116.pdf">Unsupervised Cross-lingual Representation Learning at
+Scale</a>”. The goal of paper is to
+improve the XLM model’s performance on both cross-lingual and
+monolingual understanding tasks. XLM-R follows the XLM model
+architecture with a changes that improve the performance at scale. And
+these changes are:</p>
+
+<ul>
+  <li><strong>Maked Language Modeling:</strong><br />
+In XLM-R, they used the same MLM objective as the XLM model with
+only once change which is they removed the language embeddings
+<u>which allows the model to better deal with code-switching</u>.</li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image1.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p><strong>Removed TLM:</strong><br />
+The focus of this paper is Unsupervised Cross-lingual Representation
+Learning. So, it made sense to remove the supervised objective in
+the XLM model which was the Translation Language Modeling objective
+or TLM for short.</p>
+  </li>
+  <li>
+    <p><strong>Scaling to 100 languages:</strong><br />
+XLM-R is trained on 100 languages unlike XLM which was trained on
+just 15 languages. And for the first time, XLM-R shows that it is
+possible to have a single large model for all languages, without
+sacrificing per-language performance.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image2.png" width="1050" />
+</div>
+
+<ul>
+  <li>
+    <p><strong>Bigger Vocabulary:</strong><br />
+XLM-R uses a shared vocabulary of 250k tokens while XLM uses 95k.
+The vocabulary consists of subwords encoded using Byte-Pair Encoding
+(BPE).</p>
+  </li>
+  <li>
+    <p><strong>Validation Stopping Criterion:</strong><br />
+XLM uses the perplexity as a stopping criterion for pre-training. In
+XLM-R, they used downstream tasks as a stopping criterion as they
+observed that performance on downstream tasks continues to improve
+even after validation perplexity has plateaued.</p>
+  </li>
+  <li>
+    <p><strong>Increasing the Training Data:</strong><br />
+They collected monolingual data about 100 languages using <a href="https://github.com/facebookresearch/cc_net">common
+crawl</a> which was about
+2.5 Terabytes. The following figure shows the difference between
+Wikipedia (the data used to train multilingual BERT or mBERT) and
+Common Crawl (the data used to train XLM-R).</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image3.png" width="1050" />
+</div>
+
+<p>And that is basically it! There are no novel parts in this paper. However, this
+paper provides a good analysis of multilingual models as we are going to see
+next.</p>
+
+<h2 id="trade-offs">Trade-offs</h2>
+
+<p>As I said earlier, this paper doesn’t provide any novel parts but it
+provides a good understanding and analysis to the multilingual models
+according to various factors:</p>
+
+<h3 id="performance-vs--languages">Performance Vs # languages</h3>
+
+<p>In the paper, they called this the “the curse of multilinguality”. For a
+fixed sized model, the per-language capacity decreases as we increase
+the number of languages. While low-resource language performance can be
+improved by adding similar higher-resource languages. So, these two
+factors have to be traded off against each other.</p>
+
+<p>Using XNLI as a metric, the authors trained different fixed-size XLM-R models
+in 7, 15, 30, 60 and 100 languages. And they found out that; initially, as we
+go from 7 to 15 languages, the model is able to take advantage of positive
+transfer which improves performance, especially on low resource languages.
+Beyond this point the curse of multilinguality kicks in and degrades
+performance across all languages.</p>
+
+<div align="center">
+    <img src="media/XLM-R/image4.png" width="250" />
+</div>
+
+<p>The issue is even more prominent when the capacity of the model is small. To
+show this, they made the Transformer wider as they added more languages. They
+trained models in 7, 30, and 100 languages with hidden size of 768, 960, and
+1152 respectively. As the following figure shows, the added capacity allows
+XLM-30 to be on par with XLM-7, thus overcoming the curse of multilinguality.
+But the added capacity for XLM-100, however, is not enough and it still lags
+behind.</p>
+
+<div align="center">
+    <img src="media/XLM-R/image5.png" width="250" />
+</div>
+
+<h3 id="performance-vs-low--high-resource">Performance Vs Low / High-resource</h3>
+
+<p>Here, we study the effect of data sampling of high-resource (English and
+French) and low-resource (Swahili and Urdu) languages on the
+performance. Specifically, we investigate the impact of varying the
+$\alpha$ parameter which controls the exponential smoothing of the
+language sampling rate. Recap the <a href="\l">shared vocabulary part</a> from XLM
+if you can’t relate.</p>
+
+<p>Models trained with higher values of $\alpha$, see batches of high-resource
+languages more often which increases the performance on high-resource languages.
+And when we decrease the value of , the model see batches of low-resource
+languages more often. So, we need to trade-off between these two factors.</p>
+
+<div align="center">
+    <img src="media/XLM-R/image6.png" width="250" />
+</div>
+
+<p>They found that $\alpha = 0.3$ is the optimal value for α if we are
+considering both low-resource and high-resource languages.</p>
+
+<h3 id="performance-vs-vocabulary">Performance Vs Vocabulary</h3>
+
+<p>Previously, we showed the importance of scaling the model size as we
+increase the number of languages. Similarly, scaling the size of the
+shared vocabulary can improve the performance.</p>
+
+<p>To illustrate this effect, they trained multiple models with different
+vocabulary sizes while keeping the overall number of parameters constant
+by adjusting the width of the transformer. And as shown in the following
+figure, we observe a 2.8% increase in XNLI average accuracy as we
+increase the vocabulary size from 32K to 256K:</p>
+
+<div align="center">
+    <img src="media/XLM-R/image7.png" width="250" />
+</div>
+
+<h3 id="performance-vs-data-size">Performance Vs Data Size</h3>
+
+<p>As you have probably figured out, the more data you have, the better the
+cross-lingual language model will be. They compared the same model
+trained on two different datasets: Wikipedia (60 Gigabytes) and Common
+Crawl (2.5 Terabytes).</p>
+
+<div align="center">
+    <img src="media/XLM-R/image8.png" width="250" />
+</div>
+
+<h3 id="performance-vs-batch-size">Performance Vs Batch Size</h3>
+
+<p>Similarly for the batch sizes, the bigger the batch size is, the better
+the cross-lingual language model will be:</p>
+
+<div align="center">
+    <img src="media/XLM-R/image9.png" width="250" />
+</div>
+
+<h2 id="results">Results</h2>
+
+<p>Here, we are going to talk about the results of XLM-R model in
+comparison with all other state-of-the-art models on multiple tasks. In
+the paper, they used different sizes of XLM-R which are:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>XLM-R BASE</th>
+            <th>XLM-R</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><strong>Transformer Blocks</strong></td>
+        <td>12</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td><strong>Feed-Forward hidden neurons</strong></td>
+        <td>768</td>
+        <td>1024</td>
+    </tr>
+    <tr>
+        <td><strong>Attention Heads</strong></td>
+        <td>12</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td><strong>Parameters</strong></td>
+        <td>270 million</td>
+        <td>550 million</td>
+    </tr>
+</table>
+</div>
+
+<h3 id="multilingual-results">Multilingual Results</h3>
+
+<p>Here, we are going to compare the XLM-R model over cross-lingual
+understanding tasks such as:</p>
+
+<ul>
+  <li><strong>XNLI:</strong><br />
+The following table shows the performance on the XNLI dataset
+which contains 15 different languages. In the table we can see that
+using the translate-train-all approach which leverages training sets
+from multiple languages, XLM-R obtains a new state of the art on
+XNLI of 83.6% average accuracy:</li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image10.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>NER:</strong><br />
+The following table shows the results using CoNLL2002 and CoNLL-2003
+datasets using the F1 metric:</li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image11.png" width="450" />
+</div>
+
+<ul>
+  <li><strong>Question Answering:</strong><br />
+The following table summarizes the results on MLQA question
+answering using the F1 and EM (exact match) scores for zero-shot
+classification where models are fine-tuned on the English Squad
+dataset and evaluated on the 7 languages of MLQA:</li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image12.png" width="750" />
+</div>
+
+<h3 id="monolingual-results">Monolingual Results</h3>
+
+<p>Here, we are going to compare the XLM-R model over monolingual
+understanding tasks such as:</p>
+
+<ul>
+  <li><strong>GLUE:</strong><br />
+The following table shows the XLM-R performance on the the GLUE
+benchmark:</li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-R/image13.png" width="450" />
+</div>
+
+<h2 id="important-finding">Important Finding</h2>
+
+<p>In this paper, they proved that the multilingual models obtain better
+performance over their monolingual counter-parts. They provided the
+first comprehensive study to assess this claim on the XNLI benchmark.
+For comparison, they used XLM models (called it XLM-7) and monolingual
+BERT models on 7 languages and compare performance as shown in the
+following table:</p>
+
+<div align="center">
+    <img src="media/XLM-R/image14.png" width="450" />
+</div>
+
+<p>According to the former table, we can conclude the following:</p>
+
+<ul>
+  <li>
+    <p>Monolingual BERT models outperform XLM-7 for both Wikipedia and CC
+by 1.6% and 1.3% average accuracy.</p>
+  </li>
+  <li>
+    <p>XLM-7 outperforms BERT models when it leverages the training sets
+coming from multiple languages (translate-train-all).</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/XLM-R';
+      this.page.identifier = '/cross-lingual-lm/XLM-R';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

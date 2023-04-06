@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>UNdreaMT</title>
+  <meta name="title" content="UNdreaMT">
+  <meta name="description" content="The first model proposed in this area was created under the supervision
+of Cho in 2017 and published in this paper: “Unsupervised Neural
+Machine Translation”. The official code
+of this paper can be found in the following GitHub repository:
+UNdreaMT. The proposed system follows a
+standard encoder-decoder architecture with an attention mechanism where:
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="UNdreaMT">
+  <meta itemprop="description" content="The first model proposed in this area was created under the supervision
+of Cho in 2017 and published in this paper: “Unsupervised Neural
+Machine Translation”. The official code
+of this paper can be found in the following GitHub repository:
+UNdreaMT. The proposed system follows a
+standard encoder-decoder architecture with an attention mechanism where:
+
+">
+  <meta itemprop="image" content="/machine-translation/media/UNdreaMT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="UNdreaMT">
+  <meta property="og:description" content="The first model proposed in this area was created under the supervision
+of Cho in 2017 and published in this paper: “Unsupervised Neural
+Machine Translation”. The official code
+of this paper can be found in the following GitHub repository:
+UNdreaMT. The proposed system follows a
+standard encoder-decoder architecture with an attention mechanism where:
+
+">
+  <meta property="og:image" content="/machine-translation/media/UNdreaMT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="UNdreaMT">
+  <meta name="twitter:description" content="The first model proposed in this area was created under the supervision
+of Cho in 2017 and published in this paper: “Unsupervised Neural
+Machine Translation”. The official code
+of this paper can be found in the following GitHub repository:
+UNdreaMT. The proposed system follows a
+standard encoder-decoder architecture with an attention mechanism where:
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/UNdreaMT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/UNdreaMT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2017-10-30 00:00" class="post-meta__body date">Published on arXiv on: 30 Oct 2017</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#University of the Basque Country">University of the Basque Country</a> & <a href="/labs/#New York University">New York University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=UNdreaMT> UNdreaMT</h1>
+    <p>The first model proposed in this area was created under the supervision
+of Cho in 2017 and published in this paper: “<a href="https://arxiv.org/pdf/1710.11041.pdf">Unsupervised Neural
+Machine Translation</a>”. The official code
+of this paper can be found in the following GitHub repository:
+<a href="https://github.com/artetxem/undreamt">UNdreaMT</a>. The proposed system follows a
+standard encoder-decoder architecture with an attention mechanism where:</p>
+
+<ul>
+  <li>
+    <p>There is one encoder which is a two-layer bidirectional RNN</p>
+  </li>
+  <li>
+    <p>There are two decoders, each is a two-layer RNN.</p>
+  </li>
+  <li>
+    <p>All RNNs use GRU cells with 600 hidden units, and the dimensionality
+of the embeddings is set to 300.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/UNdreaMT/image1.png" width="750" />
+</div>
+
+<p>There are, however, three important aspects in which the system
+differs from the standard encoder-decoder NMT:</p>
+
+<ul>
+  <li>
+    <p><strong>Dual structure:</strong><br />
+While NMT systems are typically built for a specific translation
+direction (A→B). Here, the model exploited the dual nature of
+machine translation and handle both directions at the same time
+(A→B) and (B→A). Hence the usage of two decoders.</p>
+  </li>
+  <li>
+    <p><strong>Shared encoder:</strong><br />
+The system makes use of only one encoder that is shared by both
+languages involved. This universal encoder is aimed to produce a
+language independent representation of the input text, which each
+decoder should then transform into its corresponding language.</p>
+  </li>
+  <li>
+    <p><strong>Fixed Cross-lingual embeddings at encoder:</strong><br />
+While most NMT systems randomly initialize their embeddings and
+update them during training, they used pre-trained cross-lingual
+embeddings in the encoder that are kept fixed during training.</p>
+  </li>
+</ul>
+
+<p>This NMT system is trained in unsupervised using the following two
+strategies:</p>
+
+<ul>
+  <li>
+    <p>Denoising.</p>
+  </li>
+  <li>
+    <p>On-the-fly back-translation</p>
+  </li>
+</ul>
+
+<p>During training, we alternate between the two languages. Given two
+languages L1 and L2, each iteration would perform one mini-batch of
+denoising for L1, another one for L2, one mini-batch of on-the-fly
+back-translation from L1 to L2, and another one from L2 to L1.</p>
+
+<h2 id="denoising">Denoising</h2>
+
+<p>The whole idea of the system is to train a model to reconstruct its own
+input. More concretely, the system takes an input sentence in a given
+language, encode it using the shared encoder, and reconstruct the
+original sentence using the decoder of that language. That’s why we have
+two decoders for each language.</p>
+
+<p>But this training procedure is essentially a trivial copying task. And
+it’s highly probable that our model could just blindly copy elements
+from the input sequence without gaining any real knowledge. In order to
+avoid that, they used <u><strong>denoising</strong></u>. Denoising is the
+process of applying a noise function on the input. The noise function they
+used is “swapping”. For a sequence of N elements, they made N/2 random
+swaps of this kind.</p>
+
+<p>This way, the system needs to learn about the internal structure of the
+languages involved to be able to recover the correct word order. At the
+same time, by discouraging the system to rely too much on the word order
+of the input sequence.</p>
+
+<h2 id="on-the-fly-back-translation">On-the-fly Back-translation</h2>
+
+<p>So far, the model only uses monolingual data. In order to train our
+system in a true translation setting without violating the constraint of
+using nothing but monolingual corpora, they adapted the back-translation
+approach proposed to the model.</p>
+
+<p>More concretely, given an input sentence in one language, the system is
+used in inference mode with greedy decoding to translate the input to
+the other language. This way, we obtain a pseudo-parallel sentence pair,
+and train the system to predict the original sentence from this
+synthetic translation.</p>
+
+<p>Note that, contrary to standard back-translation, which uses an
+independent model to back-translate the entire corpus at one time, the
+model takes advantage of the dual structure of the proposed architecture
+to back-translate each mini-batch on-the-fly. Hence, the name
+“on-the-fly back-translation”.</p>
+
+<h2 id="results">Results</h2>
+
+<p>TO BE CONTINUED...</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/UNdreaMT';
+      this.page.identifier = '/machine-translation/UNdreaMT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

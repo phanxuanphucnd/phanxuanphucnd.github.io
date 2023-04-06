@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Language Modeling</title>
+  <meta name="title" content="Language Modeling">
+  <meta name="description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Language Modeling">
+  <meta itemprop="description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  <meta itemprop="image" content="//images/avatar.jpg">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Language Modeling">
+  <meta property="og:description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  <meta property="og:image" content="//images/avatar.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Language Modeling">
+  <meta name="twitter:description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  
+  <meta name="twitter:image" content="//images/avatar.jpg">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="main">
+  
+
+  
+  <div class="main-post-list">
+    
+    
+    
+    
+    
+    
+    <h1 class="page-heading">2020</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/GPT-3/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/GPT-3">GPT-3</a>
+            </h2>
+            <p class="excerpt">GPT-3 is an enormous model built on the transformer-decoder architecture
+published in 2020 by OpenAI in this paper: “Language Models are
+Few-Shot Learners” whose title is
+very indicative of what the paper wanted to show. The paper didn’t
+provide any new architecture, they used the same architecture as GPT-2.
+They just made it way bigger and trained over more data.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-05-28 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                28 May 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/adapter_fusion/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/adapter_fusion">Adapter Fusion</a>
+            </h2>
+            <p class="excerpt">AdapterFusion is a new variant of the Adapter layers
+ where it extends
+the functionality of adapters to be multi-tasking instead of being per a
+single task. AdapterFusion is proposed by researchers in UKP Lab,
+Technical University of Darmstadt and New York University and
+published in their paper: AdapterFusion: Non-Destructive Task
+Composition for Transfer Learning
+in May 2020.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-05-01 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                1 May 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/ETC/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/ETC">ETC: Extended Transformer Construction</a>
+            </h2>
+            <p class="excerpt">ETC stands for “Extended Transformer Construction” which is a new
+Transformer architecture for language modeling over long sentences and
+achieves state-of-the-art performance on various long-sentence tasks as
+shown in the following table. ETC was proposed by Google in 2020 and
+published in this paper: “ETC: Encoding Long and Structured Inputs in
+Transformers”. The official code
+for this paper can be found on Google Research’s official GitHub
+repository: research-etc-model
+.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-04-17 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                17 Apr 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Longformer/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/Longformer">Longformer: Long Transformer</a>
+            </h2>
+            <p class="excerpt">Transformer-based models are unable to process long sequences due to
+their self-attention operation, which has a time complexity of
+$O\left( n^{2} \right)$ where $n$ is the input length. Longformer stands
+for “Long Transformer” which is a encoder-side transformer with a novel
+attention mechanism that scales linearly with sequence length making it
+easy to process documents of thousands of tokens or longer. Longformer
+was proposed by Allen Institute in 2020 and published in their paper:
+Longformer: The Long-Document
+Transformer. The official code
+for this paper can be found in the official GitHub page of Allen
+Institute: allenai/longformer.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-04-10 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                10 Apr 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/ELECTRA/image2.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/ELECTRA">ELECTRA</a>
+            </h2>
+            <p class="excerpt">ELECTRA stands for “Efficiently Learning an Encoder that Classifies
+Token Replacements Accurately” which is a discriminator language
+model unlike the widely-used generative language models such as
+BERT, GPT, ...etc. ELECTRA was proposed by Stanford University in
+collaboration with Google Brain in 2020 and published in their paper:
+ELECTRA: Pre-training text Encoders.
+The official code of this paper can be found on Google Research’s official
+GitHub repository:
+google-research/electra.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-03-23 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                23 Mar 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/DistilBERT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/DistilBERT">DistilBERT</a>
+            </h2>
+            <p class="excerpt">DistilBERT is a smaller, faster, cheaper and lighter version of BERT
+created by Hugging Face in March 2020 and published in this paper:
+“DistilBERT, a distilled version of BERT: smaller, faster, cheaper and
+lighter”. In this paper, they
+used knowledge distillation to reduce the size of a BERT by 40%, while
+retaining 97% of its language understanding capabilities and being 60%
+faster. This was possible by using a triple loss function that combines
+language modeling, distillation and cosine-distance losses.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-03-01 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                1 Mar 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2019</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/BART/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/BART">BART</a>
+            </h2>
+            <p class="excerpt">BART stands for “Bidirectional Auto-regressive Transformer” which is a
+pre-training scheme for models created by Facebook AI in 2019 and
+published in this paper: “BART: Denoising Sequence-to-Sequence
+Pre-training for Natural Language Generation, Translation, and
+Comprehension”. Pre-training is
+the process of training a model with one task that is able to help it
+form parameters that can be used to make other tasks easier. And this is
+what we, human beings, do. We use our old knowledge of what we have
+learned in the past to understand new knowledge and handle a variety of
+new tasks.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-10-29 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                29 Oct 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/T5/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/T5">Google's T5</a>
+            </h2>
+            <p class="excerpt">T5 stands for “Text-to-Text Transfer Transformer” which is a
+text-to-text framework proposed by Google in 2019 and published in this
+paper: “Exploring the Limits of Transfer Learning with a Unified
+Text-to-Text Transformer”. The
+official code for this paper can be found on Google Research’s official
+GitHub repository:
+google-research/text-to-text-transfer-transformer.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-10-23 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                23 Oct 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/ALBERT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/ALBERT">ALBERT</a>
+            </h2>
+            <p class="excerpt">ALBERT, stands for “A Lite BERT”, reduced version of BERT which is a
+smaller, faster, cheaper and easier to scale. ALBERT was created by
+Google &amp; Toyota Technical Institute in February 2019 and published in
+this paper: “ALBERT: A Lite Bert For Self-Supervised Learning Of
+Language Representations” and you can
+fine the official code for this paper in Google Research’s official GitHub
+repository: google-research/ALBERT.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-09-26 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                26 Sep 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/TinyBERT/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/TinyBERT">TinyBERT</a>
+            </h2>
+            <p class="excerpt">TinyBERT is a distilled version of BERT using a novel knowledge
+distillation method called “Transformer distillation” that was specially
+designed for Transformer models such as
+BERT. TinyBERT was
+proposed in 2019 by Huawei Noah’s Ark Lab and published in this paper
+under the same name “TinyBERT: Distilling Bert For Natural Language
+Understanding”. The official code
+for this paper can be found in the following GitHub repository:
+TinyBERT.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-09-23 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                23 Sep 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/StructBERT/image4.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/StructBERT">StructBERT</a>
+            </h2>
+            <p class="excerpt">StructBERT stands for “Structural BERT” which is an extension of
+BERT created by
+incorporating language structures into pre-training. StructBERT was
+proposed in 2019 by Alibaba Group and published in their “StructBERT:
+Incorporating Language Structures Into Pre-Training For Deep Language
+Understanding” paper. The
+official code for this paper can be found in the following GitHub
+repository:
+alibaba/StructBERT.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-08-13 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                13 Aug 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/pollution/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/pollution">Big Models pollute Earth</a>
+            </h2>
+            <p class="excerpt">Recent progress in hardware and methodology for training neural networks
+has ushered in a new generation of large networks. These models have
+obtained notable gains in accuracy across many NLP tasks. However, these
+accuracy improvements depend on the availability of exceptionally large
+computational resources that necessitate similarly substantial energy
+consumption. As a result, these models are costly to train both
+financially and environmentally.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-08-02 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                2 Aug 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/RoBERTa/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/RoBERTa">RoBERTa</a>
+            </h2>
+            <p class="excerpt">RoBERTa, stands for “Robustly optimized BERT approach”,
+is an approach to train BERT created by Facebook AI in 2019 and
+published in this paper: “RoBERTa: A Robustly Optimized BERT
+Pretraining Approach”. The official code
+for this paper can be found on Facebook’s FairSeq official GitHub repository:
+fairseq/roberta.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-07-26 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                26 Jul 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/SpanBERT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/SpanBERT">SpanBERT</a>
+            </h2>
+            <p class="excerpt">SpanBERT is a model created by Facebook AI and Allen Institute in
+January 2019 and published in this paper “SpanBERT: Improving
+Pre-training by Representing and Predicting
+Spans”. SpanBERT is just an
+extension to BERT where it better represents and predict continuous
+random spans of text, rather than random tokens. This is crucial since
+many NLP tasks involve spans of text rather than single tokens. SpanBERT
+is different from BERT in both the masking scheme and the training
+objectives:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-07-24 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                24 Jul 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/XLNet/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/XLNet">XLNet</a>
+            </h2>
+            <p class="excerpt">XLNet stands for “Extra-Long Net” which is a model that integrates both
+GPT and BERT introduced in 2019 by Google Brain and published in this
+paper: “XLNet: Generalized Autoregressive Pretraining for Language
+Understanding” by the same
+authors of Transformer-XL. The official code for this paper can be found in
+the following GitHub repository: xlnet.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-06-19 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                19 Jun 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/MASS/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/MASS">MASS</a>
+            </h2>
+            <p class="excerpt">MASS, stands for “Masked Sequence to Sequence”, is a
+pre-training scheme proposed by Microsoft in 2019 and published in this
+paper: “MASS: Masked Sequence to Sequence Pre-training for Language
+Generation” and the code is
+publicly available on Microsoft’s official account on
+GitHub. Inspired by BERT, MASS
+encoder takes a sentence with a masked fragment as input, and its
+decoder predicts this masked fragment.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-05-07 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                7 May 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/GPT-2/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/GPT-2">GPT-2</a>
+            </h2>
+            <p class="excerpt">GPT-2 stands for “Generative Pre-trained Transformer” which is a
+language model published in this paper: “Language Models are
+Unsupervised Multitask
+Learners”
+by OpenAI in 2019. In the paper, they tried to demonstrate that language
+models can perform down-stream tasks such as (question answering,
+machine translation, reading comprehension, and summarization) in a
+zero-shot setting – without any parameter or architecture modification.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-02-14 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                14 Feb 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/adapter/image2.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/adapter">Adapter Layers</a>
+            </h2>
+            <p class="excerpt">At the current moment, the norm in NLP involves downloading and
+fine-tuning pre-trained models consisting of hundreds of millions, or
+even billions of parameters. Modifying these models, no matter how
+simple the modification is, requires re-training the whole model. And
+re-training these huge models is expensive, slow, and time-consuming,
+which impedes the progress in NLP. Adapters are one way to fix this
+problem.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-02-02 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                2 Feb 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Transformer-XL/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/Transformer-XL">Transformer-XL</a>
+            </h2>
+            <p class="excerpt">Transformer-XL, stands for “Transformer Extra Long”, is a language model
+published in this paper: “Transformer-XL: Attentive Language Models
+Beyond a Fixed-Length Context”
+by Google Brain in 2019.The official code for this paper can be found in the
+following GitHub repository: transformer-xl
+.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-01-09 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                9 Jan 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2018</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/BERT/image3.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/BERT">BERT</a>
+            </h2>
+            <p class="excerpt">BERT stands for “Bidirectional Encoder Representations from
+Transformers” which is a model published by researchers at Google in
+this paper: “BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding” in 2018.
+It has caused a stir in the NLP community by presenting state-of-the-art
+results in a wide variety of NLP tasks, including Question Answering
+(SQuAD v1.1), Natural Language Inference (MNLI), and others.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2018-10-11 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                11 Oct 2018</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/GPT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/GPT">GPT</a>
+            </h2>
+            <p class="excerpt">Transform is a state-of-the-art architecture for machine translation.
+OpenAI tried to use this architecture for the language modeling task in
+this paper “Improving Language Understanding by Generative
+Pre-Training”
+under the name “Improving Language Understanding by Generative
+Pre-Training” which was published in 2018. Pre-training is the process
+of training a model with one task (language modeling in the paper) that
+is able to help it form parameters that can be used to make other tasks
+easier (four other tasks: natural language inference, question
+answering, semantic similarity, and text classification).
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2018-06-11 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                11 Jun 2018</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2016</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/GCNN/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/GCNN">GCNN: Gated CNN</a>
+            </h2>
+            <p class="excerpt">One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Language Modeling with Gated Convolutional
+Networks”, proposed by FAIR
+(Facebook AI Research) in 2017, the researchers developed a new
+architecture that uses gating mechanism over stacked convolution layers
+that outperforms the
+Seq2Seq model.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2016-12-23 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                23 Dec 2016</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2011</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Tree_Recursive_NN/image7.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/Tree_Recursive_NN">Tree Recursive Neural Network</a>
+            </h2>
+            <p class="excerpt">Tree Recursive Neural Network is a model created by Richard Socher et al.
+and published in this paper: Parsing Natural Scenes and Natural Language
+with Recursive Neural
+Networks.
+The main idea behind Tree Recursive Neural Network is to provide a
+sentence embedding that could represent the meaning of the sentence the
+same way we did with word embedding. So, two sentences that of different
+words like “the country of my birth” and “the place where I was born”
+will have similar vector despite having totally different words. The
+meaning vector of a sentence is determined by actually two things:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2011-07-28 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                28 Jul 2011</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2003</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Neural_N-gram/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/Neural_N-gram">Neural N-gram Language Model</a>
+            </h2>
+            <p class="excerpt">As we discussed before, the n-gram language model has a few problems
+like the data sparsity and the big storage need. That’s why these
+problems were first tackled by Bengio et al in 2003 and published under
+the name “A Neural Probabilistic Language
+Model”,
+which introduced the first large-scale deep learning for natural
+language processing model. This model learns a distributed
+representation of words, along with the probability function for word
+sequences expressed in terms of these representations. The idea behind
+this architecture is to deal with the language model task as if it is a
+classification problems where:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2003-02-09 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                9 Feb 2003</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">1985</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/RNN/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/language-modeling/RNN">RNN: Recurrent Neural Networks</a>
+            </h2>
+            <p class="excerpt">The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="1985-09-19 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                19 Sep 1985</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+         </ol>
+      
+    <hr class="post-list__divider ">
+
+    <!--  -->
+  </div>
+  </div>
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

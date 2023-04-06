@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <title>Phuc Phan's Blog</title>
+    <link>http://localhost:4000/</link>
+    <description>I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</description>
+    <language>en-us</language>
+    <pubDate>Thu, 06 Apr 2023 12:16:36 +0700</pubDate>
+    <lastBuildDate>Thu, 06 Apr 2023 12:16:36 +0700</lastBuildDate>
+    <generator>Jekyll v3.9.3</generator>
+    <image>
+      <title>Phuc Phan's Blog</title>
+      <link>http://localhost:4000/</link>
+      <link>http://localhost:4000/images/avatar.jpg</link>
+      <width>70</width>
+      <height>70</height>
+    </image>
+    
+      
+      <item>
+        <title>mBERT: Multilingual BERT</title>
+        <description>mBERT is a multilingual BERT pre-trained on 104 languages, released by the
+authors of the original paper on Google Research’s official GitHub repository: google-research/bert
+ on 
+November 2018. mBERT follows the same structure of BERT. The only difference is
+that mBERT is pre-trained on concatenated Wikipedia data for 104 languages and
+it does surprisingly well compared to cross-lingual word embeddings on zero-shot
+cross-lingual transfer in XNLI dataset.
+
+</description>
+        <pubDate>Sun, 04 Nov 2018 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/cross-lingual-lm/mBERT</link>
+        <guid isPermaLink="true">http://localhost:4000/cross-lingual-lm/mBERT</guid>
+        
+        
+      </item>
+      
+      <item>
+        <title>XLM</title>
+        <description>XLM stands for “Cross-lingual Language Modeling” which is a model
+created by FacebookAI in 2019 and published in this paper:
+“Cross-lingual Language Model Pretraining”.
+XLM is an 12-layer encoder-transformer of with 1024
+hidden units, 16 heads, and GELU activation.
+
+</description>
+        <pubDate>Tue, 22 Jan 2019 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/cross-lingual-lm/XLM</link>
+        <guid isPermaLink="true">http://localhost:4000/cross-lingual-lm/XLM</guid>
+        
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>RNN: Recurrent Neural Networks</title>
+        <description>The neural n-gram language model we've seen earlier was trained using
+the a window-sized subset of the previous tokens. And this falls short
+with long sentences as where the contextual dependencies are longer than
+the window size. Now, we need a model that is able to capture
+dependencies outside the window. In other words, we need a system that
+has some kind of memory to save these long dependencies.
+
+</description>
+        <pubDate>Thu, 19 Sep 1985 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/language-modeling/RNN</link>
+        <guid isPermaLink="true">http://localhost:4000/language-modeling/RNN</guid>
+        
+        
+      </item>
+      
+      <item>
+        <title>Neural N-gram Language Model</title>
+        <description>As we discussed before, the n-gram language model has a few problems
+like the data sparsity and the big storage need. That’s why these
+problems were first tackled by Bengio et al in 2003 and published under
+the name “A Neural Probabilistic Language
+Model”,
+which introduced the first large-scale deep learning for natural
+language processing model. This model learns a distributed
+representation of words, along with the probability function for word
+sequences expressed in terms of these representations. The idea behind
+this architecture is to deal with the language model task as if it is a
+classification problems where:
+
+</description>
+        <pubDate>Sun, 09 Feb 2003 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/language-modeling/Neural_N-gram</link>
+        <guid isPermaLink="true">http://localhost:4000/language-modeling/Neural_N-gram</guid>
+        
+        
+      </item>
+      
+    
+      
+      <item>
+        <title>Attention Mechanism</title>
+        <description>A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.
+
+</description>
+        <pubDate>Mon, 01 Sep 2014 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/machine-translation/Attention</link>
+        <guid isPermaLink="true">http://localhost:4000/machine-translation/Attention</guid>
+        
+        
+      </item>
+      
+      <item>
+        <title>Seq2Seq</title>
+        <description>Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: Sequence to
+Sequence Learning with Neural Networks
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.
+
+</description>
+        <pubDate>Wed, 10 Sep 2014 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/machine-translation/Seq2Seq</link>
+        <guid isPermaLink="true">http://localhost:4000/machine-translation/Seq2Seq</guid>
+        
+        
+      </item>
+      
+    
+      
+    
+      
+      <item>
+        <title>Multilingual Google's NMT</title>
+        <description>GNMT stands for “Google Neural Machine Translation” which is a
+bilingual machine translation architecture that was
+discussed before in this post:
+GNMT. Here, we
+are going to discuss how they extended the bilingual nature of the GNMT
+model to be multilingual. The Multilingual GNMT architecture, as seen in
+the following figure, was proposed in 2016 by the Google Research team
+and published in this paper: Google’s Multilingual Neural Machine
+Translation System: Enabling Zero-Shot
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub repository:
+TensorFlow/GNMT.
+
+</description>
+        <pubDate>Mon, 14 Nov 2016 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/multilingual-nmt/Multilingual_GNMT</link>
+        <guid isPermaLink="true">http://localhost:4000/multilingual-nmt/Multilingual_GNMT</guid>
+        
+        
+      </item>
+      
+      <item>
+        <title>Massively MNMT</title>
+        <description>Massively MNMT is a multilingual many-to-many NMT model proposed by
+Google Research in 2019 and published in their paper: Massively
+Multilingual Neural Machine
+Translation. Massively MNMT is a
+standard Base-Transformer with 6 layers in both the encoder and the
+decoder. To enable many-to-many translation, the authors added a
+target-language prefix token to each source sentence.
+
+</description>
+        <pubDate>Tue, 02 Jul 2019 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/multilingual-nmt/Massively_MNMT</link>
+        <guid isPermaLink="true">http://localhost:4000/multilingual-nmt/Massively_MNMT</guid>
+        
+        
+      </item>
+      
+    
+      
+    
+      
+      <item>
+        <title>t-SNE</title>
+        <description>One of the popular things to do with word embedding, is to take this
+N-dimensional data and embed it in a two-dimensional space so that we
+can visualize them. The most common algorithm for doing this is the
+t-SNE algorithm created by Laurens van der Maaten and Geoffrey
+Hinton in 2008 and published in this paper: Visualizing data using
+t-SNE.
+
+</description>
+        <pubDate>Tue, 25 Nov 2008 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/word-embedding/t-SNE</link>
+        <guid isPermaLink="true">http://localhost:4000/word-embedding/t-SNE</guid>
+        
+        
+      </item>
+      
+      <item>
+        <title>Word2Vec</title>
+        <description>Word2Vec stands for “word-to-vector” is a model architecture created by
+Tomáš Mikolov from Google in 2013 and published in the paper: Efficient
+Estimation of Word Representations in Vector
+Space. This model aims at
+computing continuous vector representations of words from very large
+data sets.
+
+</description>
+        <pubDate>Sat, 07 Sep 2013 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/word-embedding/word2vec</link>
+        <guid isPermaLink="true">http://localhost:4000/word-embedding/word2vec</guid>
+        
+        
+      </item>
+      
+    
+  </channel>
+</rss>

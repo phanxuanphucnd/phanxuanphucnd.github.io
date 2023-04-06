@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>TinyBERT</title>
+  <meta name="title" content="TinyBERT">
+  <meta name="description" content="TinyBERT is a distilled version of BERT using a novel knowledge
+distillation method called “Transformer distillation” that was specially
+designed for Transformer models such as
+BERT. TinyBERT was
+proposed in 2019 by Huawei Noah’s Ark Lab and published in this paper
+under the same name “TinyBERT: Distilling Bert For Natural Language
+Understanding”. The official code
+for this paper can be found in the following GitHub repository:
+TinyBERT.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="TinyBERT">
+  <meta itemprop="description" content="TinyBERT is a distilled version of BERT using a novel knowledge
+distillation method called “Transformer distillation” that was specially
+designed for Transformer models such as
+BERT. TinyBERT was
+proposed in 2019 by Huawei Noah’s Ark Lab and published in this paper
+under the same name “TinyBERT: Distilling Bert For Natural Language
+Understanding”. The official code
+for this paper can be found in the following GitHub repository:
+TinyBERT.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/TinyBERT/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="TinyBERT">
+  <meta property="og:description" content="TinyBERT is a distilled version of BERT using a novel knowledge
+distillation method called “Transformer distillation” that was specially
+designed for Transformer models such as
+BERT. TinyBERT was
+proposed in 2019 by Huawei Noah’s Ark Lab and published in this paper
+under the same name “TinyBERT: Distilling Bert For Natural Language
+Understanding”. The official code
+for this paper can be found in the following GitHub repository:
+TinyBERT.
+
+">
+  <meta property="og:image" content="/language-modeling/media/TinyBERT/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TinyBERT">
+  <meta name="twitter:description" content="TinyBERT is a distilled version of BERT using a novel knowledge
+distillation method called “Transformer distillation” that was specially
+designed for Transformer models such as
+BERT. TinyBERT was
+proposed in 2019 by Huawei Noah’s Ark Lab and published in this paper
+under the same name “TinyBERT: Distilling Bert For Natural Language
+Understanding”. The official code
+for this paper can be found in the following GitHub repository:
+TinyBERT.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/TinyBERT/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/TinyBERT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          6 mins read
+        </span>
+      </p>
+      <time datetime="2019-09-23 00:00" class="post-meta__body date">Published on arXiv on: 23 Sep 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Huazhong University of Science and Technology">Huazhong University of Science and Technology</a> & <a href="/labs/#Huawei Noah's Ark Lab">Huawei Noah's Ark Lab</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=TinyBERT> TinyBERT</h1>
+    <p>TinyBERT is a distilled version of BERT using a novel knowledge
+distillation method called “Transformer distillation” that was specially
+designed for Transformer models such as
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>. TinyBERT was
+proposed in 2019 by Huawei Noah’s Ark Lab and published in this paper
+under the same name “<a href="https://arxiv.org/pdf/1909.10351.pdf">TinyBERT: Distilling Bert For Natural Language
+Understanding</a>”. The official code
+for this paper can be found in the following GitHub repository:
+<a href="https://github.com/huawei-noah/Pretrained-Language-Model/tree/master/TinyBERT">TinyBERT</a>.</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image1.png" width="750" />
+</div>
+
+<p>Knowledge distillation (KD) is a commonly used technique for reducing
+the size of big deep learning models. This technique was proposed by
+Geoffrey Hinton back in 2015 in this paper: <a href="https://arxiv.org/pdf/1503.02531.pdf">Distilling the knowledge in
+a neural network</a>. KD aims to
+transfer the knowledge embedded in a large network (called “teacher”) to
+a small network (called “student”) where the student network is trained
+to reproduce the behaviors of the teacher network.</p>
+
+<p>The proposed Transformer Distillation method works differently based on
+the type of layer to be distilled. Additionally, this method performs
+the knowledge distillation at both the pre-training and fine-tuning
+stages which ensures that TinyBERT can capture both the general-domain
+and task-specific knowledge of the teacher BERT.</p>
+
+<p>The following table shows a comparison between BERT-base,the proposed TinyBERT and other distilled variations:</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image2.png" width="750" />
+</div>
+
+<h2 id="transformer-distillation">Transformer Distillation</h2>
+
+<p>As said earlier, Transformer Distillation is a novel Knowledge
+Distillation technique for compressing transformer-based models and
+considering all types of layers including transformer layers, the
+embedding layer, and the prediction layer. Each layer will be distilled
+differently as we are going to see later.</p>
+
+<p>Assuming that the student model has M Transformer layers and teacher
+model has N Transformer layers, the student can acquire knowledge from
+the teacher by minimizing the following objective:</p>
+
+\[\mathcal{L}_{\text{model}} = \sum_{m = 0}^{M + 1}{\lambda_{m}\mathcal{L}_{\text{layer}}\left( S_{m},\ T_{g\left( m \right)} \right)}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$S$ and $T$ refer to the Student model and the Teacher model
+respectively.</p>
+  </li>
+  <li>
+    <p>$\lambda_{m}$ is the hyper-parameter that represents the importance
+of the m-th layer’s distillation. In the paper, they used
+$\lambda = 1$.</p>
+  </li>
+  <li>
+    <p>$g\left( m \right)$ is a mapping function that maps m-th student
+layer to a certain Teacher layer. In the paper, they used
+$g\left( m \right) = 3m$; knowing that $g\left( 0 \right) = 0$ which
+is the mapping of the embedding layer and
+$g\left( M + 1 \right) = N + 1$ which is the mapping of the
+prediction layer.</p>
+  </li>
+  <li>
+    <p>$\mathcal{L}_{\text{layer}}$ refers to the loss function of a given
+model layer which changes based on the layer type; it can be
+described in the following formula:</p>
+  </li>
+</ul>
+
+\[\mathcal{L}_{\text{layer}}\left( S_{m},\ T_{g\left( m \right)} \right) = \left\{ \begin{matrix}
+\mathcal{L}_{\text{embd}}\left( S_{0},\ T_{0} \right),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m = 0 \\
+\mathcal{L}_{\text{hid}}\left( S_{m},\ T_{g\left( m \right)} \right) + \mathcal{L}_{\text{attn}}\left( S_{m},\ T_{g\left( m \right)} \right),\ \ \ M \geq m &gt; 0 \\
+\mathcal{L}_{\text{pred}}\left( S_{M + 1},\ T_{N + 1} \right),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m = M + 1 \\
+\end{matrix} \right.\]
+
+<h3 id="embedding-layer-distillation">Embedding-Layer Distillation</h3>
+
+<p>Here, the student embedding layer $E^{S} \in \mathbb{R}^{l \times d}$
+has the same size as the teacher embedding layer
+$E^{T} \in \mathbb{R}^{l \times d}$ and it acquires knowledge by
+minimizing the following mean-squared error function where the matrix
+$W_{e} \in \mathbb{R}^{d \times d}$ is a learnable linear transformation
+matrix, $l$ is the length of the input text and $d$ is the model
+dimension:</p>
+
+\[\mathcal{L}_{\text{embd}} = \text{MSE}\left( E^{S}W_{e},\ E^{T} \right)\]
+
+<h3 id="transformer-layer-distillation">Transformer-Layer Distillation</h3>
+
+<p>As show in the following figure, the transformer-layer distillation
+consists of two parts:</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image3.png" width="350" />
+</div>
+
+<ul>
+  <li><u><strong>Attention-based distillation $\mathcal{L}_{\text{attn}}$</strong></u>:<br />
+That ensures that the linguistic knowledge is transferred from
+teacher BERT to student TinyBERT where the student learns to fit the
+attention matrices of multi-head attention from the teacher, and the
+objective is defined as:</li>
+</ul>
+
+\[\mathcal{L}_{\text{attn}} = \frac{1}{h}\sum_{i = 1}^{h}{\text{MSE}\left( A_{i}^{S},\ A_{i}^{T} \right)}\]
+
+<p>    Where $h$ is the number of attention heads and
+$A_{i}^{S} \in \mathbb{R}^{l \times 1}$ refers to the attention matrix
+corresponding to the i-th head of the student model and $l$ is the input
+text.</p>
+
+<ul>
+  <li><u><strong>Hidden states based distillation $\mathcal{L}_{\text{hid}}$:</strong></u><br />
+Here, the student hidden layer $H^{S} \in \mathbb{R}^{l \times d’}$
+has the smaller size than the teacher embedding layer
+$H^{T} \in \mathbb{R}^{l \times d}$ and it acquires knowledge by
+minimizing the following mean-squared error function where the
+matrix $W_{f} \in \mathbb{R}^{d’ \times d}$ is a learnable linear
+transformation matrix:</li>
+</ul>
+
+\[\mathcal{L}_{\text{hid}} = \text{MSE}\left( H^{S}W_{h},\ H^{T} \right)\]
+
+<h3 id="prediction-layer-distillation">Prediction-Layer Distillation</h3>
+
+<p>In addition to imitating the behaviors of intermediate layers, they also
+used the knowledge distillation to fit the predictions of teacher model
+according to the following loss function</p>
+
+\[\mathcal{L}_{\text{pred}} = \text{softmax}\left( z^{T} \right).\text{log\_softmax}\left( \frac{z^{S}}{t} \right)\]
+
+<p>Where $z^{S}$ and $z^{T}$ are the logits vectors predicted by the
+student and teacher respectively, $\text{log_softmax}$ means the log
+likelihood, and $t$ means the temperature value. According to the paper,
+$t = 1$ performs well.</p>
+
+<h2 id="tinybert-learning">TinyBERT Learning</h2>
+
+<p>As shown in the following figure, TinyBERT learning consist of two stages that
+are complementary to each other which are <u><strong>General
+Distillation</strong></u> and <u><strong>Task-specific Distillation</strong></u>.
+Although there is a big gap between BERT and TinyBERT in model size, by
+performing the proposed two-stage distillation, the TinyBERT can achieve
+comparable performances as large BERT in various NLP tasks.</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image4.png" width="750" />
+</div>
+
+<h3 id="general-distillation">General Distillation</h3>
+
+<p>In general distillation, the original BERT without fine-tuning is used
+as the teacher model along with a large-scale text corpus as the basic
+learning material. By performing the proposed Transformer distillation
+on the text from general domain, we obtain a general TinyBERT that can
+be fine-tuned for downstream tasks later.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+Due to the big reductions in the hidden/embedding size and the layer
+number, general TinyBERT performs relatively worse than the original
+BERT</p>
+</blockquote>
+
+<h3 id="task-specific-distillation">Task-specific Distillation:</h3>
+
+<p>In the task-specific distillation, the fine-tuned BERT is used as the
+teacher model along with an augmented data to extend the task-specific
+training set. With learning more task-related materials, the
+generalization capabilities of student model can be further improved.</p>
+
+<p>To augment the task-specific training set, they used a pre-trained
+language model BERT and GloVe word embeddings to do word-level
+replacement as shown in the following algorithm:</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image5.png" width="450" />
+</div>
+
+<p>Which can be explained in the following steps:</p>
+
+<ul>
+  <li>
+    <p>First, mask each word piece in a sentence.</p>
+  </li>
+  <li>
+    <p>If the selected word is a word-piece, then use BERT as a language
+model to predict $N$ most-likely words. Otherwise, use GloVe
+embeddings to get the top $N$ similar words.</p>
+  </li>
+  <li>
+    <p>Then, choose a random number uniformally. If the number is less than
+a certain threshold number $p_{t}$, then choose a random candidate
+from the suggested one. Otherwise, keep the word as it is.</p>
+  </li>
+  <li>
+    <p>In the paper, they applied this data augmentation method $N = 20$
+times to all the sentences of a downstream task while setting
+$p_{t} = 0.4$ for all our experiments.</p>
+  </li>
+</ul>
+
+<h2 id="experiments--results">Experiments &amp; Results</h2>
+
+<p>They evaluated TinyBERT on the General Language Understanding Evaluation
+(GLUE) benchmark, which is a collection of diverse natural language
+understanding tasks.The evaluation results are presented in the
+following table which shows that TinyBERT is consistently better than
+BERT-SMALL in all the GLUE tasks despite being same in size:</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image6.png" width="750" />
+</div>
+
+<p>The following table shows a comparison among three wider and deeper
+variants of TinyBERT and their evaluation results on different
+development sets.</p>
+
+<div align="center">
+    <img src="media/TinyBERT/image7.png" width="750" />
+</div>
+
+<p>We can clearly see that:</p>
+
+<ul>
+  <li>
+    <p>All the three TinyBERT variants can consistently outperform the
+original smallest TinyBERT, which indicates that the proposed KD
+method works for the student models of various model sizes.</p>
+  </li>
+  <li>
+    <p>For the CoLA task, the improvement is slight when only increasing
+the number of layers (from 49.7 to 50.6) or hidden size (from 49.7
+to 50.5). To achieve more dramatic improvements, the student model
+should become deeper and wider (from 49.7 to 54.0).</p>
+  </li>
+  <li>
+    <p>Another interesting observation is that the smallest 4-layer
+TinyBERT can even outperform the 6-layers baselines, which further
+confirms the effectiveness of the proposed KD method.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/TinyBERT';
+      this.page.identifier = '/language-modeling/TinyBERT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

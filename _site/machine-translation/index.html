@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Machine Translation</title>
+  <meta name="title" content="Machine Translation">
+  <meta name="description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Machine Translation">
+  <meta itemprop="description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  <meta itemprop="image" content="//images/avatar.jpg">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Machine Translation">
+  <meta property="og:description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  <meta property="og:image" content="//images/avatar.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Machine Translation">
+  <meta name="twitter:description" content="I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics: Cross-lingual Langluage Model,  Language Modeling,  Machine Translation,  Misc.,  Multilingual NMT, and  Word Embedding">
+  
+  <meta name="twitter:image" content="//images/avatar.jpg">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <div class="main">
+  
+
+  
+  <div class="main-post-list">
+    
+    
+    
+    
+    
+    
+    <h1 class="page-heading">2021</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/scaling_transformer/image4.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/scaling_transformer">Scaling Transformer</a>
+            </h2>
+            <p class="excerpt">Scaling model sizes, datasets and the total computation budget has been
+identified as a reliable approach to improve generalization performance
+on several machine learning tasks. Here, we are going to discuss a paper
+called “Scaling Laws for Neural Machine
+Translation” published by Google
+Research in 2021 where the researchers study the effect of scaling the
+transformer depths on the performance.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-09-16 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                16 Sep 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/BiT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/BiT">BiT: Bidirectional Training</a>
+            </h2>
+            <p class="excerpt">BiT stands for “Bidirectional Training” which is a simple and effective
+pre-training strategy for neural machine translation. BiT was proposed
+by The University of Sydney in collaboration with Peking University and
+JD Explore Academy in 2021 and published in this paper: Improving
+Neural Machine Translation by Bidirectional
+Training.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-09-16 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                16 Sep 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Data_Length_Bias/image3.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Data_Length_Bias">Dataset-Length Bias</a>
+            </h2>
+            <p class="excerpt">Neural Machine Translation (NMT) is known to suffer from a beam-search
+problem: after a certain point, increasing beam size causes an overall
+drop in translation quality. This effect is especially in long
+sentences. A factor that strongly contributes to the quality degradation
+with large beams is dataset-length bias which means that NMT
+datasets are strongly biased towards short sentences.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-09-13 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                13 Sep 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/HintedBT/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/HintedBT">Hinted Back-Translation</a>
+            </h2>
+            <p class="excerpt">HintedBT is a family of techniques that provides hints through tags
+on the source side and target side to the
+Back-translation
+mechanism to improve the effectiveness of the provided monolingual data.
+These techniques were proposed by Google Research in 2021 and published
+in their paper: HintedBT: Augmenting Back-Translation with Quality
+and.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-09-09 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                9 Sep 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/DrNMT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/DrNMT">Dr. NMT</a>
+            </h2>
+            <p class="excerpt">DrNMT stands for “Discriminative Reranking for Neural
+Machine Translation” which is a re-ranking framework created by
+Facebook AI in 2021 and published in this paper: Discriminative
+Reranking for Neural Machine
+Translation. The
+official implementation for this paper can be found in this GitHub
+repository:
+DrNMT.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-08-01 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                1 Aug 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Luna/image4.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Luna">Luna: Linear Attention Mechanism</a>
+            </h2>
+            <p class="excerpt">Luna stands for “Linear Unified Nested Attention” which is a novel
+attention mechanism that yields linear time and space complexity as
+opposed to standard attention mechanism proposed in the
+Transformer
+architecture that yields quadratic time and space complexity. Luna was
+proposed by FAIR in 2021 and published in the paper under the same name:
+“Luna: Linear Unified Nested
+Attention”. The official code
+for this paper can be found in the following GitHub repository:
+fairseq-apollo.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-06-03 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                3 Jun 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/REDER/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/REDER">REDER</a>
+            </h2>
+            <p class="excerpt">REDER stands for “Reversible Duplex Transformer” which is a
+Transformer
+model where its both ends can simultaneously input and output a distinct
+language thus enabling reversible machine translation by simply flipping
+the input and output ends. REDER was proposed by ByteDance AI lab in
+2022 and published in their paper: Duplex Sequence-to-Sequence Learning
+for Reversible Machine
+Translation. The official code
+for this paper can be found in the following GitHub repository:
+REDER.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-05-07 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                7 May 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/hallucination/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/hallucination">Hallucination</a>
+            </h2>
+            <p class="excerpt">As NMT systems are built on deep learning methodology which means that
+they exhibit both the strengths and weaknesses of the approach. For
+example, NMT systems make the best use of very large datasets but on the
+other hand they are poorly understood. For example, in many commercial
+translation systems, entering repeated words many times occasionally
+results in strange translations like this one from Vice’s blog
+post:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2021-04-14 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                14 Apr 2021</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2020</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Very_Deep_Transformer/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Very_Deep_Transformer">Very Deep Transformer</a>
+            </h2>
+            <p class="excerpt">Using a simple yet effective initialization technique that stabilizes
+training, researchers at Microsoft Research were able to build very deep
+Transformer
+models with up to 60 encoder layers. These models were explored in this
+paper published in 2020: Very Deep Transformers for Neural Machine
+Translation. The official code
+for this paper can be found in the following GitHub repository:
+exdeep-nmt.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-08-18 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                18 Aug 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Linformer/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Linformer">Linformer: Linear Transformer</a>
+            </h2>
+            <p class="excerpt">Linformer is an efficient version of the transformers proposed by
+Facebook AI in 2020 and published in this paper: “Linformer:
+Self-Attention with Linear
+Complexity”. The official code
+for this paper can be found in the FairSeq official GitHub repository:
+linformer.
+Linformer can perform the self-attention mechanism in the transformer in
+linear time $O\left( n \right)$ instead of a quadratic time
+$O\left( n^{2} \right)$ in both time and space. In this paper, the
+publishers demonstrate that the self-attention mechanism can be
+approximated by a low-rank matrix.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-06-08 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                8 Jun 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Reformer/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Reformer">Reformer: Efficient Transformer</a>
+            </h2>
+            <p class="excerpt">Reformer is an efficient version of the transformers proposed by Google
+Research in 2020 and published in this paper: “Reformer: The efficient
+Transformer”. The official code
+for this paper can be found in this GitHub repository:
+reformer-pytorch. In
+this paper, the authors introduced two techniques to improve the memory
+efficiency of Transformers while keeping the same great performance.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-01-13 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                13 Jan 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Evaluation/image10.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Evaluation">Evaluation Metrics</a>
+            </h2>
+            <p class="excerpt">Machine Translation models translate a given sentence by searching for
+the sentence that best suits a given criterion. However, all approaches
+have to be evaluated to quantify the quality and accuracy of the
+produced translations. Naturally, the best method would be to have human
+experts rate each produced translation (Candidate) in order to evaluate
+the whole MT system based on the reference translations.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2020-01-01 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                1 Jan 2020</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2019</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/CMLM_Transformer/image3.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/CMLM_Transformer">CMLM Transformer</a>
+            </h2>
+            <p class="excerpt">CMLM stands for “Conditional Masked Language Modeling” Transformer which
+is an encoder-decoder Transformer
+architecture trained with a masked
+language modeling (MLM) training objective and uses “masked-predict”
+algorithm for decoding. This model was proposed by FAIR in 2019 and
+published in their paper: Mask-Predict: Parallel Decoding of
+Conditional Masked Language
+Models. The official code for
+this paper can be found on Facebook Research’s official GitHub
+repository:
+facebookresearch/Mask-Predict.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-09-04 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                4 Sep 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Align_and_Translate/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Align_and_Translate">Align & Translate with Transformers</a>
+            </h2>
+            <p class="excerpt">In this part, we are going to take a deep look into this paper: Jointly
+Learning to Align and Translate with Transformer
+Models which was published by
+Apple Inc. in 2019. The official code for this paper can be found in the
+official Fairseq GitHub repository:
+fairseq/joint_alignment_translation.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-09-04 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                4 Sep 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="/images/avatar-light.jpg" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Transformer_+_NoisyChannel">Transformer + Noisy Channel</a>
+            </h2>
+            <p class="excerpt">Transformer model directly estimates the posterior probability of a
+target sequence $y$ given a source sequence $x$. The Noisy Channel model
+operates in the reverse direction. It estimates the likelihood
+probability $p\left( x \middle| y \right)$ with the help of a language
+model probability $p\left( y \right)$. To do so, the Noisy channel model
+applies the Naive Bayes Rule:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-08-15 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                15 Aug 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Tagged_BT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Tagged_BT">Tagged Back-Translation</a>
+            </h2>
+            <p class="excerpt">Tagged BT stands for “Tagged Back-Translation” which is a simpler
+alternative Noised
+BT,
+consisting of tagging back-translated source sentences with an extra token.
+Tagged BT was proposed in 2019 by Google and published in this paper: Tagged
+Back-translation.
+Tagged BT results on WMT outperform noised BT in English-Romanian and match
+performance on English-German:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-06-15 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                15 Jun 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Robust_NMT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Robust_NMT">Robust NMT</a>
+            </h2>
+            <p class="excerpt">Neural machine translation (NMT) often suffers from the vulnerability to
+noisy perturbation in the input. Google AI has proposed an approach to
+improving the robustness of NMT models called AdvGen published in 2019
+in their paper: Robust Neural Machine Translation with Doubly
+Adversarial Inputs. AdvGen
+consists of two parts:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-06-06 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                6 Jun 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/SB-NMT/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/SB-NMT">SB-NMT: Synchronous Bidirectional NMT</a>
+            </h2>
+            <p class="excerpt">SB NMT stands for “Synchronous Bi-directional Neural Machine
+Translation” which is a model proposed by the the University of Chinese
+Academy of Sciences in 2019 and published in their paper under the same
+name: Synchronous Bidirectional Neural Machine
+Translation. The official code
+for this paper can be found on the following GitHub repository:
+sb-nmt.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-05-13 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                13 May 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="/images/avatar-light.jpg" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Evolved_Transformer">The Evolved Transformer</a>
+            </h2>
+            <p class="excerpt">The Evolved Transformer (ET) ia an evolved version of the Transformer
+architecture created by applying Neural Architecture Search (NAS)
+algorithm over the standard architecture.The Evolved Transformer was
+proposed by Google Brain in 2019 and published in their paper with the
+same name: The Evolved Transformer.
+The official implementation of the Evolved Transformer can be found on the
+Tensor2Tensor official GitHub repository:
+tensor2tensor/universal_transformer.py.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2019-01-30 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                30 Jan 2019</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2018</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="/images/avatar-light.jpg" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/translationese_effect">Translationese Effect</a>
+            </h2>
+            <p class="excerpt">Translationese is a common term that refers to to translated texts. The
+fundamental law of translation states that “phenomena pertaining to the
+make-up of the source text tend to be transferred to the target text”
+which means that translated texts tend to be simpler and retain some
+characteristics from the source language.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2018-08-21 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                21 Aug 2018</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Context-Aware_Transformer/image2.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Context-Aware_Transformer">Context-Aware Transformer</a>
+            </h2>
+            <p class="excerpt">Context-Aware Transformer is a modified version of the
+Transformer
+model which is designed to allow the flow of information from the
+context to the decoder to provide better and more coherent results.
+Context-Aware Transformer was proposed by Yandex, University of
+Edinburgh, and University of Amsterdam in 2018 and published in their
+paper: Context-Aware Neural Machine Translation Learns Anaphora
+Resolution.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2018-07-15 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                15 Jul 2018</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Universal_Transformer/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Universal_Transformer">UT: Universal Transformer</a>
+            </h2>
+            <p class="excerpt">In “Universal Transformers”, the researchers from Google extended the
+standard Transformer architecture to be computationally universal
+(Turing complete) using a novel, efficient flavor of parallel-in-time
+recurrence which yields stronger results across a wider range of tasks.
+This model was proposed by Google AI in 2018 and published in their
+paper: Universal Transformers.
+The official code of this paper can be found on the Tensor2Tensor
+official GitHub repository:
+tensor2tensor/universal_transformer.py.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2018-07-10 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                10 Jul 2018</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/RNMT_plus/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/RNMT_plus">RNMT+</a>
+            </h2>
+            <p class="excerpt">RNMT stands for “RNN N-based Neural Machine Translation models” which
+are the models that used recurrent networks in the architecture. RNMT+
+is an enhanced version of RNMT models proposed by Google AI in 2018 and
+published in their paper: The Best of Both Worlds: Combining Recent
+Advances in Neural Machine
+Translation. In this paper, the
+researchers took a step back and looked at techniques and methods that
+contributed significantly to the success of recent models and tried to
+apply them to the RNMT model resulting in RNMT+.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2018-04-26 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                26 Apr 2018</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2017</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/NAT/image2.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/NAT">NAT: Non-Autoregressive Transformer</a>
+            </h2>
+            <p class="excerpt">NAT, stands for “Non-Autoregressive Translation”, is an NMT model that
+avoids the autoregressive property of the decoding and produces its
+outputs in parallel. NAT was created by Salesforce in 2017 and published
+in their paper: “Non-Autoregressive Neural Machine
+Translation”. The official code
+for this paper can be found on the official Salesforce GitHub
+repository: nonauto-nmt.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-11-07 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                7 Nov 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/UMT_with_monolingual_data/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/UMT_with_monolingual_data">Unsupervised Machine Translation with Monolingual Data</a>
+            </h2>
+            <p class="excerpt">The second model proposed in this area was created by Facebook AI in
+2017 and published in this paper: “Unsupervised Machine Translation
+Using Monolingual Corpora only”.
+The proposed system follows a standard encoder-decoder architecture with
+standard attention mechanism assisted by a back-translation procedure
+where
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-10-31 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                31 Oct 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/UNdreaMT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/UNdreaMT">UNdreaMT</a>
+            </h2>
+            <p class="excerpt">The first model proposed in this area was created under the supervision
+of Cho in 2017 and published in this paper: “Unsupervised Neural
+Machine Translation”. The official code
+of this paper can be found in the following GitHub repository:
+UNdreaMT. The proposed system follows a
+standard encoder-decoder architecture with an attention mechanism where:
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-10-30 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                30 Oct 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/MUSE/image5.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/MUSE">MUSE</a>
+            </h2>
+            <p class="excerpt">MUSE or “Multilingual Unsupervised and Supervised Embeddings” is a
+framework created by Facebook AI in 2017 and published in this paper:
+Word Translation Without Parallel
+Data. The official implementation
+of the framework can be found in this GitHub repository:
+MUSE.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-10-11 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                11 Oct 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Transformer/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Transformer">Transformers</a>
+            </h2>
+            <p class="excerpt">Transformer architecture is a novel architecture for encoder-decoder
+paradigm created in an attempt to combine all good things from
+Seq2Seq
+architecture and
+ConvS2S with
+attention mechanisms. Transformer was proposed by a team from Google
+Research and Google Brain in 2017 and published in a paper under the
+name: “Attention is all you
+need”. The official code for this
+paper can be found on the Tensor2Tensor official GitHub repository:
+tensor2tensor.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-06-12 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                12 Jun 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/SMT_Vs_NMT/image4.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/SMT_Vs_NMT">SMT Vs NMT</a>
+            </h2>
+            <p class="excerpt">Although the NMT had made remarkable achievements on particular
+translation experiments, researchers were wondering if the good
+performance persists on other tasks and can NMT indeed replace SMT.
+Accordingly, Junczys-Dowmunt et
+al. who
+performed experiments on the “United Nations Parallel Corpus” which
+involves 15 language pairs and 30 translation directions, and NMT was
+either on par with or surpassed SMT across all 30 translation directions
+in the experiment measured through BLEU scores which proves how
+promising NMT is.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-06-12 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                12 Jun 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/ConvS2S/image2.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/ConvS2S">ConvS2S</a>
+            </h2>
+            <p class="excerpt">One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Convolutional Sequence to Sequence
+Learning”, proposed by FAIR
+(Facebook AI Research) in 2017. The official repository for this paper
+can be found on fairseq/convs2s.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2017-05-08 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                8 May 2017</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2016</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="/images/avatar-light.jpg" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Gated_CNN">Gated CNN</a>
+            </h2>
+            <p class="excerpt">One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Language Modeling with Gated Convolutional
+Networks”, proposed by FAIR
+(Facebook AI Research) in 2016.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2016-12-23 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                23 Dec 2016</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Dual_Learning/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Dual_Learning">Dual Learning for Machine Translation</a>
+            </h2>
+            <p class="excerpt">Dual learning is a RL mechanism used mainly for machine translation,
+proposed in 2016 by the University of Technology in China in
+collaboration with Microsoft and published in this paper: “Dual
+Learning for Machine
+Translation”. One of the
+limitation of machine translation systems is the limited parallel data
+due to the the lack of human labeling. The dual-learning mechanism can
+enable an NMT system to automatically learn from monolingual data (in
+both the source and target languages) through a dual-learning game.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2016-11-01 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                1 Nov 2016</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/GNMT/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/GNMT">GNMT: Google's NMT</a>
+            </h2>
+            <p class="excerpt">GNMT stands for “Google’s Neural Machine Translation” which is a deep
+machine translation model proposed in 2016 by Google Research and
+published in this paper: Google’s Neural Machine Translation System:
+Bridging the Gap between Human and Machine
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub
+repository:
+TensorFlow/GNMT.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2016-09-26 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                26 Sep 2016</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2015</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Back-Translation/image0.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Back-Translation">Back-translation</a>
+            </h2>
+            <p class="excerpt">Back-translation is a semi-supervised mechanism proposed in this paper:
+“Improving Neural Machine Translation Models with Monolingual
+Data” by the Rico Sennrich and
+the University of Edinburgh in 2015 that uses a reverse translation
+system make the best use out of target-side monolingual data.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2015-11-20 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                20 Nov 2015</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Fusion/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Fusion">Fusion</a>
+            </h2>
+            <p class="excerpt">The fusion technique is proposed by the University of Montreal in 2015
+and published in this paper: “On Using Monolingual Corpora in Neural
+Machine Translation”. The idea
+about fusion is to integrate a language model (LM) trained only on
+monolingual data (target language) into an NMT system. Since this paper
+was published in 2015, it uses the encoder-decoder architecture. So, the
+integrating part will be done on the decoder’s side.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2015-03-11 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                11 Mar 2015</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+    </ol>
+    <h1 class="page-heading">2014</h1>
+    <ol class="timeline">
+      
+      
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Seq2Seq/image1.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Seq2Seq">Seq2Seq</a>
+            </h2>
+            <p class="excerpt">Sequence-to-sequence (seq2seq) models or encoder-decoder architecture,
+created by IlyaSutskever and published in their paper: Sequence to
+Sequence Learning with Neural Networks
+published in 2014, have enjoyed great success in a machine translation,
+speech recognition, and text summarization.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2014-09-10 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                10 Sep 2014</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+        
+      
+    
+    
+        <li class="timeline-inverted">
+          <div class="timeline-album">
+            <div class="timeline-image">
+              
+              <img class="img-me" src="media/Attention/image3.png" alt="">
+            </div>
+          </div>
+          <div class="timeline-panel">
+            <h2 class="post-list__post-title post-title"><a href="/machine-translation/Attention">Attention Mechanism</a>
+            </h2>
+            <p class="excerpt">A potential issue with the Seq2Seq approach is that a neural network
+needs to be able to compress all the necessary information of a source
+sentence into a fixed-length vector (context vector). This may make it
+difficult for the neural network to cope with long sentences, especially
+those that are longer than the sentences in the training corpus. This
+paper: “On the Properties of Neural Machine Translation:
+Encoder–Decoder Approaches”
+showed that indeed the performance of a basic encoder–decoder
+deteriorates rapidly as the length of an input sentence increases.
+
+&hellip;</p>
+            <div class="post-list__meta">
+              <time datetime="2014-09-01 00:00" class="post-list__meta--date date"> Published on arXiv on :
+                1 Sep 2014</time>
+            </div>
+            <hr class="post-list__divider">
+          </div>
+        </li>
+         </ol>
+      
+    <hr class="post-list__divider ">
+
+    <!--  -->
+  </div>
+  </div>
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

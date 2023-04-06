@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>CRISS</title>
+  <meta name="title" content="CRISS">
+  <meta name="description" content="CRISS stands for “Cross-lingual Retrieval for Iterative
+Self-Supervised Training” which was created by FacebookAI in
+2020 and published in this paper: “Cross-lingual Retrieval for
+Iterative Self-Supervised
+Training. The official code for
+this paper can be found in the fairseq GitHub repository:
+criss.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="CRISS">
+  <meta itemprop="description" content="CRISS stands for “Cross-lingual Retrieval for Iterative
+Self-Supervised Training” which was created by FacebookAI in
+2020 and published in this paper: “Cross-lingual Retrieval for
+Iterative Self-Supervised
+Training. The official code for
+this paper can be found in the fairseq GitHub repository:
+criss.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/CRISS/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="CRISS">
+  <meta property="og:description" content="CRISS stands for “Cross-lingual Retrieval for Iterative
+Self-Supervised Training” which was created by FacebookAI in
+2020 and published in this paper: “Cross-lingual Retrieval for
+Iterative Self-Supervised
+Training. The official code for
+this paper can be found in the fairseq GitHub repository:
+criss.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/CRISS/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CRISS">
+  <meta name="twitter:description" content="CRISS stands for “Cross-lingual Retrieval for Iterative
+Self-Supervised Training” which was created by FacebookAI in
+2020 and published in this paper: “Cross-lingual Retrieval for
+Iterative Self-Supervised
+Training. The official code for
+this paper can be found in the fairseq GitHub repository:
+criss.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/CRISS/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/CRISS">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2020-06-16 00:00" class="post-meta__body date">Published on arXiv on: 16 Jun 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=CRISS> CRISS</h1>
+    <p>CRISS stands for “<strong>C</strong>ross-lingual <strong>R</strong>etrieval for <strong>I</strong>terative
+<strong>S</strong>elf-<strong>S</strong>upervised Training” which was created by FacebookAI in
+2020 and published in this paper: “<a href="https://arxiv.org/pdf/2006.09526.pdf">Cross-lingual Retrieval for
+Iterative Self-Supervised
+Training</a>. The official code for
+this paper can be found in the fairseq GitHub repository:
+<a href="https://github.com/pytorch/fairseq/blob/master/examples/criss">criss</a>.</p>
+
+<p>CRISS is a novel self-supervised training technique that iteratively
+trains a multilingual NMT model on mined bi-text data with the help a
+cross-lingual model. The cross-lingual language model used here is a
+pre-trained mBART model as shown below:</p>
+
+<div align="center">
+    <img src="media/CRISS/image1.png" width="750" />
+</div>
+
+<p>As see from the previous figure, CRISS consists of different components:</p>
+
+<ul>
+  <li>
+    <p>Cross-lingual language model (pre-trained mBART).</p>
+  </li>
+  <li>
+    <p>Bi-text Mined data.</p>
+  </li>
+  <li>
+    <p>Multilingual NMT (standard Seq2Seq Transformer Model).</p>
+  </li>
+</ul>
+
+<h2 id="pre-trained-mbart">Pre-trained mBART</h2>
+
+<p>mBART is used with CRISS because it’s able to form a language-agnostic
+sentence representation. To understand the language agnosticity of
+mBART, they performed the following study on the TED58 dataset which
+contains multi-way translations of TED talks in 58 languages.</p>
+
+<p>For each language pair, they encoded both the source and target
+sentences using mBART to obtain two sentence representations. They did
+that for the whole dataset. Then, for each sentence in the source
+language, then found the closest sentence in the target language using
+cosine similarity. And they found out that mBART was able to retrieve
+the correct translation with 57% accuracy on average as shown in the
+following figure:</p>
+
+<div align="center">
+    <img src="media/CRISS/image2.png" width="450" />
+</div>
+
+<p>The high retrieval accuracy suggests that the pre-trained mBART model is able
+to generate language agnostic representation that are aligned at the semantic
+level in the vector space. Moreover this cross-lingual representation can be
+improved by a relatively small amount of parallel data of just one direction.
+As we can see from the following figure, the sentence retrieval accuracy
+was improved for all language directions by 27% (absolute) on average
+after fine-tuning it on just Japanese-English parallel dataset (223, 000
+sentence pairs in the IWSLT17).</p>
+
+<div align="center">
+    <img src="media/CRISS/image3.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+This is a very important discover! This means that in order to train a
+multilingual model that can translate between N languages, we don’t need
+to fine-tune it all $N(N - 1)$ language pairs, but only a subset of
+them.</p>
+</blockquote>
+
+<h2 id="bi-text-mining">Bi-text Mining</h2>
+
+<p>To mine bi-text data without supervised signals, they proposed the
+following algorithm which uses monolingual data of two languages as an
+input and a pre-trained MNMT model. The full algorithms can be seen
+below:</p>
+
+<div align="center">
+    <img src="media/CRISS/image4.png" width="750" />
+</div>
+
+<p>As we can see, the algorithm is pretty self-explanatory with three
+additional functions used. Let’s understand them one-by-one:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Embed():</strong></u><br />
+This function takes a sentence and a model and returns the sentence
+representation of the given sentence resulting from the give model.</p>
+  </li>
+  <li>
+    <p><u><strong>KNN():</strong></u><br />
+This is the K-Nearest-Neighbor algorithm. This function takes as
+input three variables: the vector representation of the source
+sentence, the dataset of the target language, and an integer k. And
+it returns the nearest k vectors from the given dataset to the given
+sentence representation.
+<a href="https://github.com/facebookresearch/faiss">FAISS</a> tool is used here
+for fast searching.</p>
+  </li>
+  <li>
+    <p><u><strong>score():</strong></u><br />
+This function takes as an input two sentence representations
+and returns the score based on the margin function which is
+considered cosine score normalized by average distances. The margin
+scoring function is defined below:</p>
+  </li>
+</ul>
+
+\[\text{score}\left( x,y \right) = \frac{\cos\left( x,y \right)}{\sum_{z \in N_{x}}^{}\frac{\cos\left( x,z \right)}{2k} + \sum_{z \in N_{y}}^{}\frac{\cos\left( z,y \right)}{2k}}\]
+
+<p>Using this algorithm enables us to create bi-text data in an
+unsupervised manner. Now, let’s get to how to use this mined bi-text
+data to train MNMT model.</p>
+
+<h2 id="multilingual-training">Multilingual Training</h2>
+
+<p>The following algorithm shows how to perform a multilingual training.
+First, we simply augment each mined pair $\left( x,y \right)$ of
+sentences by adding a target language token at the beginning of y to
+form a target language token augmented pair $\left( x,y’ \right)$. Then,
+we aggregate all mined pairs <span>$\left\{ \left( x,y \right)’ \right\}$</span>
+of the mined language pairs into a single data set to train a standard
+seq2seq machine translation transformer models from the pre-trained
+mBART model.</p>
+
+<div align="center">
+    <img src="media/CRISS/image5.png" width="750" />
+</div>
+
+<h2 id="unsupervised-mt">Unsupervised MT</h2>
+
+<p>CRISS was evaluated on unsupervised neural machine translation
+benchmarks that cover both low resource and high resource language
+directions. For English-French, they used WMT’14, for English-German and
+English-Romanian, they used WMT’16 test data, and for English-Nepali and
+English-Sinhala, they used Flores test set.</p>
+
+<p>As shown in the following table, the CRISS model overperforms
+state-of-the-art in 9 out of 10 language directions:</p>
+
+<div align="center">
+    <img src="media/CRISS/image6.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/CRISS';
+      this.page.identifier = '/multilingual-nmt/CRISS';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

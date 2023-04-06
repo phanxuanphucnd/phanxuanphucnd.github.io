@@ -15,7 +15,7 @@ layout: null
     <image>
       <title>{{ site.title | xml_escape }}</title>
       <link>{{ site.url }}{{ site.baseurl }}/</link>
-      <link>{{ "/images/avatar.png" | prepend: site.baseurl | prepend: site.url }}</link>
+      <link>{{ "/images/avatar.jpg" | prepend: site.baseurl | prepend: site.url }}</link>
       <width>70</width>
       <height>70</height>
     </image>

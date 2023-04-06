@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>GNMT: Google's NMT</title>
+  <meta name="title" content="GNMT: Google's NMT">
+  <meta name="description" content="GNMT stands for “Google’s Neural Machine Translation” which is a deep
+machine translation model proposed in 2016 by Google Research and
+published in this paper: Google’s Neural Machine Translation System:
+Bridging the Gap between Human and Machine
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub
+repository:
+TensorFlow/GNMT.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="GNMT: Google's NMT">
+  <meta itemprop="description" content="GNMT stands for “Google’s Neural Machine Translation” which is a deep
+machine translation model proposed in 2016 by Google Research and
+published in this paper: Google’s Neural Machine Translation System:
+Bridging the Gap between Human and Machine
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub
+repository:
+TensorFlow/GNMT.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/GNMT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="GNMT: Google's NMT">
+  <meta property="og:description" content="GNMT stands for “Google’s Neural Machine Translation” which is a deep
+machine translation model proposed in 2016 by Google Research and
+published in this paper: Google’s Neural Machine Translation System:
+Bridging the Gap between Human and Machine
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub
+repository:
+TensorFlow/GNMT.
+
+">
+  <meta property="og:image" content="/machine-translation/media/GNMT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GNMT: Google's NMT">
+  <meta name="twitter:description" content="GNMT stands for “Google’s Neural Machine Translation” which is a deep
+machine translation model proposed in 2016 by Google Research and
+published in this paper: Google’s Neural Machine Translation System:
+Bridging the Gap between Human and Machine
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub
+repository:
+TensorFlow/GNMT.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/GNMT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/GNMT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          8 mins read
+        </span>
+      </p>
+      <time datetime="2016-09-26 00:00" class="post-meta__body date">Published on arXiv on: 26 Sep 2016</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=GNMT: Google's NMT> GNMT: Google's NMT</h1>
+    <p>GNMT stands for “Google’s Neural Machine Translation” which is a deep
+machine translation model proposed in 2016 by Google Research and
+published in this paper: <a href="https://arxiv.org/pdf/1609.08144.pdf">Google’s Neural Machine Translation System:
+Bridging the Gap between Human and Machine
+Translation</a>. The official code
+for this paper can be found in the TensorFlow’s official GitHub
+repository:
+<a href="https://github.com/NVIDIA/DeepLearningExamples/tree/master/TensorFlow/Translation/GNMT">TensorFlow/GNMT</a>.</p>
+
+<p>GNMT is a deep LSTM network with 8 encoder (1 bi-directional layer and 7
+uni-directional layers) and 8 decoder layers (all uni-directional
+layers) with residual connections throughout the architecture as well as
+attention connections from the decoder network to the encoder. To
+improve parallelism and therefore decrease training time, the model was
+partitioned on 8 different GPUs; one for each layer.</p>
+
+<div align="center">
+    <img src="media/GNMT/image1.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+In case you didn’t pay attention, the first layer of the encoder module
+is bi-directional to allow the best possible coverage of the source
+context. The output from the forward path
+${\overrightarrow{\mathbb{x}}}_t^{f}$ is concatenated with the output
+from the backward path ${\overleftarrow{\mathbb{x}}}_t^{b}$ and then
+fed to the next layer of the encoder:</p>
+
+  <div align="center">
+    <img src="media/GNMT/image2.png" width="750" />
+</div>
+</blockquote>
+
+<p>This model follows the common sequence-to-sequence learning framework.
+It has three components: an encoder network, a decoder network, and an
+attention network. Next, let’s see how it works. Let
+$\left( X,\ Y \right)$ be a source and target sentence pair where
+$X = \left\{ x_{1},\ …x_{m} \right\}$ is a set of $M$ tokens and
+$Y = \left\{ y_{1},\ …y_{n} \right\}$ is a set of $N$ tokens. The
+encoder transforms the source sentence $X$ into a list of fixed sized
+vectors:</p>
+
+\[\mathbb{x}_{1},\ ...\mathbb{x}_{m} = \text{EncoderRNN}\left( x_{1},\ ...x_{m} \right)\]
+
+<p>Given this list of vectors
+<span>$\left\{ \mathbb{x}_1,\ …\mathbb{x}_m \right\}$</span>, along with the
+start-of-sentence symbol <span>$y_{0} = \left\langle /s \right\rangle$</span>,
+the decoder generates the translation autoregressively (one token at a time),
+until the special end-of-sentence symbol <span>$\left\langle /s \right\rangle$</span>
+is produced:</p>
+
+\[y_{i} = \text{DecoderRNN}\left( \left\{ y_{0},\ ...y_{i - 1} \right\},\left\{ \mathbb{x}_{1},\ ...\mathbb{x}_{m} \right\} \right)\]
+
+<p>The encoder and decoder are connected through an attention module which
+is a feed-forward network that allows the decoder to focus on different
+regions of the source sentence during the course of decoding. Let
+$y_{i - 1}$ be the decoder’s output from the past decoding time step,
+the attention context $a_{i}$ for the current time step is computed
+according to the following formulas:</p>
+
+\[s_{t} = \text{Attention}\left( y_{i - 1},\ \mathbb{x}_{1},\ ...\mathbb{x}_{m} \right)\]
+
+\[p_{t} = \text{Softmax}\left( s_{t} \right) = \frac{\exp\left( s_{t} \right)}{\sum_{t = 1}^{M}{\exp\left( s_{t} \right)}}\]
+
+\[a_{i} = \sum_{t = 1}^{M}{p_{t}.}\mathbb{x}_{t}\]
+
+<p>Deep stacked networks often give better accuracy over shallower models,
+but deep networks suffer from gradient vanishing; which means that
+gradients get very small which makes training very slow or impossible at
+sometimes. To overcome this issue, they used residual connections
+between layers in the encoder and the decoder.</p>
+
+<p>More concretely, let <span>$\text{LSTM}_{i}$</span> and
+<span>$\text{LSTM}_{i + 1}$</span> be the <span>$i^{\text{th}}$</span> and
+<span>$\left( i + 1 \right)^{\text{th}}$</span> LSTM layers in a stack, whose
+parameters are <span>$W^{i}$</span> and <span>$W^{i + 1}$</span> respectively.
+At the <span>$t^{\text{th}}$</span> time step, the stacked LSTM residual
+connection will be:</p>
+
+\[c_{t}^{i},m_{t}^{i} = \text{LSTM}_{i}\left( c_{t - 1}^{i},\ m_{t - 1}^{i},\ x_{t}^{i - 1};\ W^{i} \right)\]
+
+\[x_{t}^{i} = m_{t}^{i} + x_{t}^{i - 1}\]
+
+\[c_{t}^{i + 1},m_{t}^{i + 1} = \text{LSTM}_{i + 1}\left( c_{t - 1}^{i + 1},\ m_{t - 1}^{i + 1},\ x_{t}^{i};\ W^{i + 1} \right)\]
+
+<p>Neural Machine Translation models often operate with fixed word
+vocabularies, but translation is fundamentally an open vocabulary
+problem and that can cause problems. To fix this issue, they decided to
+use a subword tokenization model called “Wordpiece Model”.</p>
+
+<h2 id="wordpiece-model">Wordpiece Model</h2>
+
+<p>Wordpiece Model (WPM) is a word segmentation algorithm created by
+Schuster and Nakajima in their paper: “<a href="https://static.googleusercontent.com/media/research.google.com/en/pubs/archive/37842.pdf">Japanese, Korean Voice
+Search</a>”
+published in 2012 while there were trying to find a good word segmentor
+to solve the Japanese/Korean voice problem at Google. This approach is
+completely data-driven and the following is the algorithm:</p>
+
+<ol>
+  <li>
+    <p>Initialize the vocabulary to include every character present in the
+training data.</p>
+  </li>
+  <li>
+    <p>Build a character language model using the previous sequences.</p>
+  </li>
+  <li>
+    <p>Merge those with the highest likelihood into a new symbol. For
+example "$\text{ug}$" would have only been merged if the
+probability of "$\text{ug}$" divided by "$u$" and "$g$" is
+greater than for any other character-pair.</p>
+  </li>
+  <li>
+    <p>Keep merging until certain vocabulary size is met or the likelihood
+falls below a certain threshold.</p>
+  </li>
+</ol>
+
+<p>At interference, use the built vocabulary to split words into subwords
+that can be found in the vocabulary. Here is an example of a word
+sequence and the corresponding wordpiece sequence:</p>
+
+\[Sentence:\ Jet\ makers\ feud\ over\ seat\ width\ with\ big\ orders\ at\ stake\]
+
+\[wordpieces:\ \_ J\ et\ \_ makers\ \_ fe\ ud\ \_ over\ \_ seat\ \_ width\ \_ with\ \_ big\ \_ orders\ \_ at\ \_ stake\]
+
+<p>In the above example, the word “$\text{Jet}$” wasn’t found in the
+vocabulary, that’w why it was broken into two wordpieces “$\text{_J}$” and
+“$\text{et}$” that are in the vocabulary. Same goes for the word
+“$\text{feud}$” which got broken into two wordpieces “$\text{_fe}$” and
+“$\text{ud}$”. The other words remain as single wordpieces since they
+were already in the vocabulary.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+“_” is a special character added to mark the beginning of a word.</p>
+</blockquote>
+
+<p>Choosing the vocabulary of the wordpiece model is a hyper-parameter that
+you can tune based on your experiments. However, a total vocabulary
+between 8k and 32k wordpieces usually achieves better results and fast
+decoding.</p>
+
+<h2 id="beam-search">Beam Search</h2>
+
+<p>When decoding, they used beam search algorithm
+($\text{beam size} = 3.0$) which maximizes the score function
+$s\left( Y,\ X \right) = \log\left( P\left( Y \middle| X \right) \right)$.
+After the hypothesis gets the end-of-sentence token, they applied a
+refined version of the beam search algorithm which is exactly the same
+as the standard beam search with two important refinements:</p>
+
+<ul>
+  <li><u><strong>Coverage Penalty:</strong></u><br />
+Coverage penalty aims at favoring translations that fully cover the
+source sentence according to the attention module. The coverage
+penalty is computed by the following formula knowing that
+$\left| X \right|$ is the length of the source sentence $X$,
+$p_{i,j}$ is the attention probability of the the $i^{\text{th}}$
+source word with the $j^{\text{th}}$ target word, and
+$\beta \in \left\lbrack 0,1 \right\rbrack$ is a hyper-parameter:</li>
+</ul>
+
+\[cp\left( X;Y \right) = \beta*\sum_{i = 1}^{\left| X \right|}{\log\left( \min\left( \sum_{j = 1}^{\left| Y \right|}p_{i,j},\ 1.0 \right) \right)}\]
+
+<ul>
+  <li><u><strong>Length Penalty:</strong></u><br />
+With length penalty, they aimed at normalizing the sentence length
+to account for the fact that hypotheses have different length.
+Without it, beam search will favor shorter results over longer ones.
+The length penalty term is computed by the following formula knowing
+that is $\left| Y \right|$ the length of $Y$and
+$\alpha \in \left\lbrack 0,1 \right\rbrack$ is a hyper-parameter:</li>
+</ul>
+
+\[lp\left( Y \right) = \left( \frac{5 + \left| Y \right|}{5 + 1} \right)^{\alpha}\]
+
+<p>Now, the beam search score function is:</p>
+
+\[s\left( Y,\ X \right) = \frac{\log\left( P\left( Y \middle| X \right) \right)}{cp\left( X;Y \right) + lp\left( Y \right)}\]
+
+<p><strong>Note:</strong><br />
+$\alpha \in \left\lbrack 0.6,0.7 \right\rbrack$ was usually found to be
+best. However, they used $\alpha = \beta = 0.2$ in this paper. Also
+notice that when $\alpha = 0$ and $\beta = 0$, the decoder falls back to
+pure beam search.</p>
+
+<h2 id="experiments--results">Experiments &amp; Results</h2>
+
+<p>All models’ trainable parameters were uniformly initialized between
+$\left\lbrack - 0.04:0.04 \right\rbrack$. Gradient clipping was applied
+at $5.0$. As an optimizer, they used a combination of Adam and simple
+SGD learning algorithms. Adam was used for the first $60k$ steps, after
+which they switched to simple SGD. For the Adam part, they used a
+learning rate of $0.0002$, and $0.5$ for the SGD part. They used a
+mini-batch of $128$ examples.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+They used a combination of Adam and SGD because Adam (green) accelerated
+training at the beginning, but converged to a worse point than the
+combination (red) as shown below in the following graph:</p>
+
+  <div align="center">
+   <img src="media/GNMT/image3.png" width="450" />
+</div>
+</blockquote>
+
+<p>They evaluated the model on the WMT En→Fr dataset (36M examples), the
+WMT En→De dataset (5M examples), as well as many Google’s internal
+production datasets. For testing, they used newstest2014; and for
+validation, they used newstest2012 and newstest2013. To prevent
+overfitting, they applied dropout with a dropout probability of $0.2$
+for En→Fr and $0.3$ for En→De datasets.</p>
+
+<p>The following table summarizes the results of running different
+variations of GNMT on the En→Fr (left) and En→De (right) datasets
+against the best Phrase-Based Machine Translation (PBMT) production
+system for Google Translate along with the best models proposed by other
+papers (last five models). As can be seen, “WPM-32K” achieves amazing
+results.</p>
+
+<div align="center">
+    <img src="media/GNMT/image4.png" width="750" />
+</div>
+
+<p>As seen in the past table, they have tried <u><strong>six</strong></u>
+variations of the GNMT model:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Word:</strong></u><br />
+They selected the most frequent 212K source words as the
+source vocabulary and the most popular 80k target words as the
+target vocabulary. Out-of-Vocabulary (OOV) words were converted into
+special &lt;first_char&gt;_UNK_&lt;last_char&gt; symbols. Then, the
+attention mechanism was used to copy a corresponding word from the
+source to replace these unknown words during decoding.</p>
+  </li>
+  <li>
+    <p><u><strong>Character:</strong></u><br />
+They used characters instead of words as input to the GNMT and
+expected the decoder to generate characters as the output.</p>
+  </li>
+  <li>
+    <p><u><strong>WPM:</strong></u><br />
+All three models are the same GNMT model with the vocabulary size
+being the only difference. WPM-8k, WPM-16k, and WPM-32k refers to
+the same GNMT model with vocabulary of 8k, 16k, and 32k tokens
+respectively.</p>
+  </li>
+  <li>
+    <p><u><strong>Mixed word/character:</strong></u><br />
+This is a similar algorithm to the WPM that uses a fixed vocabulary.
+Then, out-of-vocabulary (OOV) words are collapsed into special
+prefixes (&lt;B&gt;,&lt;M&gt;, and &lt;E&gt;) prepended to the words’
+characters. These special prefixes mean: beginning, middle, and end
+of the word, respectively. For example, the OOV word “Miki” will be
+converted to “&lt;B&gt;M &lt;M&gt;i &lt;M&gt;k &lt;E&gt;i”.</p>
+  </li>
+</ul>
+
+<p>And the following table summarizes the GNMT (WMP-32k) performance on
+Google’s internal production datasets in comparison with the best
+Phrase-Based Machine Translation (PBMT) production system for Google
+Translate and the a human translator:</p>
+
+<div align="center">
+    <img src="media/GNMT/image5.png" width="750" />
+</div>
+
+<p>As expected, these results show that GNMT system outperforms the PBMT
+system in every language pair but not to the extent of surpassing the
+human translator.</p>
+
+<h2 id="rl-refined-model">RL-refined Model</h2>
+
+<p>Given a dataset of parallel text pairs denoted
+$\mathcal{D} \equiv \left\{ \left( X^{\left( i \right)},\ Y^{\left( i \right)} \right),\ …\left( X^{\left( \left| \mathcal{D} \right| \right)},\ Y^{\left( \left| \mathcal{D} \right| \right)} \right) \right\}$
+of size $\left| \mathcal{D} \right|$, a machine translation model aims
+at maximizing the sum of log probabilities of the ground-truth outputs
+given the corresponding inputs:</p>
+
+\[\mathcal{O}_{\text{ML}}\left( \theta \right) = \sum_{i = 1}^{\left| \mathcal{D} \right|}{\log\ P_{\theta}\left( Y^{＊\left( i \right)} \middle| X^{\left( i \right)} \right)}\]
+
+<p>The main problem with this objective is that it does not reflect the
+BLEU score; outputs with higher BLEU scores should obtain higher
+probabilities. In this paper, they attempted to refine the model using
+reinforcement learning as expressed below:</p>
+
+\[\mathcal{O}_{\text{RL}}\left( \theta \right) = \sum_{i = 1}^{\left| \mathcal{D} \right|}{\sum_{Y \in \mathcal{Y}}^{}{P_{\theta}\left( Y \middle| X^{\left( i \right)} \right)\text{.r}\left( {Y,Y}^{＊\left( i \right)} \right)}}\]
+
+<p>Where $r\left( {Y,Y}^{＊\left( i \right)} \right)$ denotes the
+per-sentence score, and $\mathcal{Y}$ is a set of all the hypotheses
+sentences. The BLEU score has some undesirable properties when used for
+single sentences, as it was designed to be a corpus measure. Therefore,
+they decided to use GLEU with reinforcement learning instead. For the
+GLEU score, they recorded 1, 2, 3 or 4 (n-grams) tokens in output and
+target sequence. Then, computed the recall in the ground truth sequence,
+and the precision in the generated output sequence. Now, GLEU score is
+simply the minimum of recall and precision:</p>
+
+\[GLEU = min\left( \text{precision}\left( Y^{＊} \right),\ Recall\left( Y \right) \right),\ \ \ GLEU \in \left\lbrack 0,1 \right\rbrack\]
+
+<p>To further stabilize training, they optimized a linear combination of
+<span>$\mathcal{O}_{\text{ML}}$</span> and <span>$\mathcal{O}_{\text{RL}}$</span>
+objectives using a hyper-parameter $\alpha$ (typically set to be $0.017$):</p>
+
+\[\mathcal{O}_{\text{Mixed}}\left( \theta \right) = \alpha*\mathcal{O}_{\text{ML}}\left( \theta \right) + \mathcal{O}_{\text{RL}}\left( \theta \right)\]
+
+<p>The following table presents the average of 8 independent models
+with/without refinement. The results shows that the refined model
+slightly improves the performance:</p>
+
+<div align="center">
+    <img src="media/GNMT/image6.png" width="750" />
+</div>
+
+<p>To obtain state-of-the-art results on En→Fr dataset and En→Fr dataset
+with $41.16$ and $26.30$ respectively, they combined 8 different
+RL-refined models</p>
+
+<div align="center">
+    <img src="media/GNMT/image7.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The refinement model is applied after the ML model converges. Then, the
+refinement is trained until the BLEU score does not change much on the
+development set which usually happens after around 400k steps.</p>
+</blockquote>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/GNMT';
+      this.page.identifier = '/machine-translation/GNMT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

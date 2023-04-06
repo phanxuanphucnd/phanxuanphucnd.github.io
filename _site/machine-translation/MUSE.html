@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>MUSE</title>
+  <meta name="title" content="MUSE">
+  <meta name="description" content="MUSE or “Multilingual Unsupervised and Supervised Embeddings” is a
+framework created by Facebook AI in 2017 and published in this paper:
+Word Translation Without Parallel
+Data. The official implementation
+of the framework can be found in this GitHub repository:
+MUSE.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="MUSE">
+  <meta itemprop="description" content="MUSE or “Multilingual Unsupervised and Supervised Embeddings” is a
+framework created by Facebook AI in 2017 and published in this paper:
+Word Translation Without Parallel
+Data. The official implementation
+of the framework can be found in this GitHub repository:
+MUSE.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/MUSE/image5.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="MUSE">
+  <meta property="og:description" content="MUSE or “Multilingual Unsupervised and Supervised Embeddings” is a
+framework created by Facebook AI in 2017 and published in this paper:
+Word Translation Without Parallel
+Data. The official implementation
+of the framework can be found in this GitHub repository:
+MUSE.
+
+">
+  <meta property="og:image" content="/machine-translation/media/MUSE/image5.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MUSE">
+  <meta name="twitter:description" content="MUSE or “Multilingual Unsupervised and Supervised Embeddings” is a
+framework created by Facebook AI in 2017 and published in this paper:
+Word Translation Without Parallel
+Data. The official implementation
+of the framework can be found in this GitHub repository:
+MUSE.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/MUSE/image5.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/MUSE">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2017-10-11 00:00" class="post-meta__body date">Published on arXiv on: 11 Oct 2017</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a> & <a href="/labs/#University of Le Mans">University of Le Mans</a> & <a href="/labs/#Sorbonne University">Sorbonne University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=MUSE> MUSE</h1>
+    <p>MUSE or “Multilingual Unsupervised and Supervised Embeddings” is a
+framework created by Facebook AI in 2017 and published in this paper:
+<a href="https://arxiv.org/pdf/1710.04087.pdf">Word Translation Without Parallel
+Data</a>. The official implementation
+of the framework can be found in this GitHub repository:
+<a href="https://github.com/facebookresearch/MUSE">MUSE</a>.</p>
+
+<p>From the name of the paper, we can see that MUSE is for <u><strong>word
+translation</strong></u> not <u><strong>machine translation</strong></u> which shows that
+MUSE is more of a look-up table (bilingual dictionary) rather than being
+a machine translation model. The crazy part about MUSE is that It builds
+bilingual dictionary between two languages without the use of any
+parallel corpora. And despite that it outperforms supervised
+state-of-the-art methods on English-Italian where metric is the average
+precision over top 1, 5, 10 words respectively.</p>
+
+<div align="center">
+    <img src="media/MUSE/image1.png" width="450" />
+</div>
+
+<p>MUSE leverages adversarial training to learn that linear mapping from a
+source to a target space and it operates in three steps as shown in the
+following figure where there are two sets of embeddings trained
+independently on monolingual data, English words in red denoted by
+$\mathbf{X}$ and Italian words in blue denoted by $\mathbf{Y}$, which we
+want to align/translate. In this figure, each dot represents a word in
+that space where the dot size is proportional to the frequency of the
+words in the training corpus.</p>
+
+<div align="center">
+    <img src="media/MUSE/image1.png" width="450" />
+</div>
+
+<p>MUSE focuses on learning a mapping $\mathbf{\text{WX}}$ between these
+two sets such that translations are close in the shared space. It does
+that in three steps:</p>
+
+<ol>
+  <li><strong>Adversarial Model:</strong><br />
+Using adversarial learning, we learn a rotation matrix $\mathbf{W}$
+which roughly aligns the two distributions. The green stars are
+randomly selected words that are fed to the discriminator to
+determine whether the two word embeddings come from the same
+distribution.</li>
+</ol>
+
+<div align="center">
+    <img src="media/MUSE/image3.png" width="150" />
+</div>
+
+<ol>
+  <li><strong>Refinement Procedure:</strong><br />
+The mapping $\mathbf{W}$ is further refined via Procrustes. This
+method uses frequent words aligned by the previous step as anchor
+points, and minimizes an energy function that corresponds to a
+spring system between anchor points. The refined mapping is then
+used to map all words in the dictionary.</li>
+</ol>
+
+<div align="center">
+    <img src="media/MUSE/image4.png" width="150" />
+</div>
+
+<ol>
+  <li><strong>CSLS:</strong><br />
+Finally, we translate by using the mapping $\mathbf{W}$ and a
+distance metric (CSLS) that expands the space where there is high
+density of points (like the area around the word “cat”), so that
+“hubs” (like the word “cat”) become less close to other word vectors
+than they would otherwise.</li>
+</ol>
+
+<div align="center">
+    <img src="media/MUSE/image5.png" width="150" />
+</div>
+
+<h2 id="adversarial-model">Adversarial Model</h2>
+
+<p>Let $X = \left\{ x_{1},\ …x_{n} \right\}$ and
+$Y = \left\{ y_{1},\ …y_{m} \right\}$ be two sets of $n$ and $m$ word
+embeddings coming from a source and a target language respectively. An
+adversarial setting formed as a two-player game where the two players
+are:</p>
+
+<ul>
+  <li><u><strong>Discriminator:</strong></u><br />
+A classification model trained to distinguish between the mapped
+source embeddings $\mathbf{W}\mathbf{X}$ and the target embeddings
+$\mathbf{Y}$. The discriminator aims at maximizing its ability to
+identify the origin of an embedding.</li>
+</ul>
+
+\[\mathcal{L}_{D}\left( \theta_{D} \middle| W \right) = - \frac{1}{n}\sum_{i = 1}^{n}{\log P_{\theta_{D}}\left( \text{source} = 1 \middle| Wx_{i} \right)} - \frac{1}{m}\sum_{i = 1}^{m}{\log P_{\theta_{D}}\left( \text{source} = 0 \middle| y_{i} \right)}\]
+
+<ul>
+  <li><u><strong>W Mapping:</strong></u><br />
+(Which can be seen as a generator) is model jointly trained to fool
+the discriminator by making $\mathbf{\text{WX}}$ and $\mathbf{Y}$ as
+similar as possible.</li>
+</ul>
+
+\[\mathcal{L}_{W}\left( W \middle| \theta_{D} \right) = - \frac{1}{n}\sum_{i = 1}^{n}{\log P_{\theta_{D}}\left( \text{source} = 0 \middle| Wx_{i} \right)} - \frac{1}{m}\sum_{i = 1}^{m}{\log P_{\theta_{D}}\left( \text{source} = 1 \middle| y_{i} \right)}\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$\mathcal{L}_D$ is the discriminator loss while $\mathcal{L}_W$
+is the mapping loss.</p>
+  </li>
+  <li>
+    <p>$\theta_{D}$ is the discriminator parameters.</p>
+  </li>
+  <li>
+    <p>$W$ is the learned linear mapping.</p>
+  </li>
+  <li>
+    <p>$P_{\theta_{D}}\left( \text{source} = 1 \middle| z \right)$ is the
+probability that a vector $z$ is the mapping of a source embedding.
+And $P_{\theta_{D}}\left( \text{source} = 0 \middle| z \right)$ is
+the probability that a vector $z$ is the mapping of a target
+embedding.</p>
+  </li>
+</ul>
+
+<h2 id="refinement-procedure">Refinement Procedure</h2>
+
+<p>The adversarial approach tries to align all words irrespective of their
+frequencies. However, rare words are harder to align. Under the
+assumption that the mapping is linear, it is then better to infer the
+mapping using only the most frequent words as anchors. The mapping
+$\mathbf{W}$ is further refined via Procrustes analysis which
+advantageously offers a closed form solution obtained from the singular
+value decomposition:</p>
+
+\[W^{*} = \underset{W \in O_{d}\left( \mathbb{R} \right)}{\arg\min}{\left\| WX - Y \right\|_{F} = UV^{T},\ \ \ \ \ \ \text{with }\text{U}\Sigma V^{T} = \text{SVD}\left( YX^{T} \right)}\]
+
+<p>This method uses frequent words aligned by the previous step as anchor
+points, and minimizes an energy function that corresponds to a spring
+system between anchor points. The refined mapping is then used to map
+all words in the dictionary.</p>
+
+<h2 id="csls">CSLS</h2>
+
+<p>CSLS stands for “Cross-Domain Similarity Local Scaling” which is a novel
+metric proposed by the authors as a comparison metric between two
+different language embeddings. Given a mapped source word embedding
+$Wx_{s}$ and a target embedding $y_{t}$, the CSLS can be formulated as:</p>
+
+\[\text{CSLS}\left( Wx_{s},\ y_{t} \right) = 2\cos\left( Wx_{s},\ y_{t} \right) - r_{T}\left( Wx_{s} \right) - r_{S}\left( y_{t} \right)\]
+
+\[r_{T}\left( Wx_{s} \right) = \frac{1}{K}\sum_{y_{t} \in \mathcal{N}_{T}\left( Wx_{s} \right)}^{}{\cos\left( Wx_{s},\ y_{t} \right)}\]
+
+\[r_{S}\left( y_{t} \right) = \frac{1}{K}\sum_{Wx_{s} \in \mathcal{N}_{S}\left( y_{t} \right)}^{}{\cos\left( Wx_{s},\ y_{t} \right)}\]
+
+<p>Note that all $K$ elements of <span>$\mathcal{N}_{T}\left( Wx_{s} \right)$</span>
+are words from the target language and all $K$ elements of
+<span>$\mathcal{N}_{S}\left( y_{t} \right)$</span> are mapped words from the
+source language.</p>
+
+<h2 id="training-details">Training Details</h2>
+
+<ul>
+  <li>
+    <p>They used unsupervised word vectors that were trained using
+fastText.</p>
+  </li>
+  <li>
+    <p>These correspond to monolingual embeddings of dimension 300 trained
+on Wikipedia corpora; therefore, the mapping $\mathbf{W}$ has size
+300×300.</p>
+  </li>
+  <li>
+    <p>Words are lower-cased, and those that appear less than 5 times are
+discarded for training.</p>
+  </li>
+  <li>
+    <p>As a post-processing step, they only considered the first 200k most
+frequent words.</p>
+  </li>
+  <li>
+    <p>For discriminator, they used a MLP with two hidden layers of size
+2048, and Leaky-ReLU activation functions with dropout of 0.1
+trained using stochastic gradient descent with a batch size of 32, a
+learning rate of 0.1 and a decay of 0.95 both for the discriminator
+and W mapping.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/MUSE';
+      this.page.identifier = '/machine-translation/MUSE';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

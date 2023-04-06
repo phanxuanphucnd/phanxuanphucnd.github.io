@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Tree Recursive Neural Network</title>
+  <meta name="title" content="Tree Recursive Neural Network">
+  <meta name="description" content="Tree Recursive Neural Network is a model created by Richard Socher et al.
+and published in this paper: Parsing Natural Scenes and Natural Language
+with Recursive Neural
+Networks.
+The main idea behind Tree Recursive Neural Network is to provide a
+sentence embedding that could represent the meaning of the sentence the
+same way we did with word embedding. So, two sentences that of different
+words like “the country of my birth” and “the place where I was born”
+will have similar vector despite having totally different words. The
+meaning vector of a sentence is determined by actually two things:
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Tree Recursive Neural Network">
+  <meta itemprop="description" content="Tree Recursive Neural Network is a model created by Richard Socher et al.
+and published in this paper: Parsing Natural Scenes and Natural Language
+with Recursive Neural
+Networks.
+The main idea behind Tree Recursive Neural Network is to provide a
+sentence embedding that could represent the meaning of the sentence the
+same way we did with word embedding. So, two sentences that of different
+words like “the country of my birth” and “the place where I was born”
+will have similar vector despite having totally different words. The
+meaning vector of a sentence is determined by actually two things:
+
+">
+  <meta itemprop="image" content="/language-modeling/media/Tree_Recursive_NN/image7.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Tree Recursive Neural Network">
+  <meta property="og:description" content="Tree Recursive Neural Network is a model created by Richard Socher et al.
+and published in this paper: Parsing Natural Scenes and Natural Language
+with Recursive Neural
+Networks.
+The main idea behind Tree Recursive Neural Network is to provide a
+sentence embedding that could represent the meaning of the sentence the
+same way we did with word embedding. So, two sentences that of different
+words like “the country of my birth” and “the place where I was born”
+will have similar vector despite having totally different words. The
+meaning vector of a sentence is determined by actually two things:
+
+">
+  <meta property="og:image" content="/language-modeling/media/Tree_Recursive_NN/image7.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tree Recursive Neural Network">
+  <meta name="twitter:description" content="Tree Recursive Neural Network is a model created by Richard Socher et al.
+and published in this paper: Parsing Natural Scenes and Natural Language
+with Recursive Neural
+Networks.
+The main idea behind Tree Recursive Neural Network is to provide a
+sentence embedding that could represent the meaning of the sentence the
+same way we did with word embedding. So, two sentences that of different
+words like “the country of my birth” and “the place where I was born”
+will have similar vector despite having totally different words. The
+meaning vector of a sentence is determined by actually two things:
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/Tree_Recursive_NN/image7.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/Tree_Recursive_NN">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2011-07-28 00:00" class="post-meta__body date">Published on arXiv on: 28 Jul 2011</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Stanford University">Stanford University</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Tree Recursive Neural Network> Tree Recursive Neural Network</h1>
+    <p>Tree Recursive Neural Network is a model created by Richard Socher et al.
+and published in this paper: <a href="https://www-nlp.stanford.edu/pubs/SocherLinNgManning_ICML2011.pdf">Parsing Natural Scenes and Natural Language
+with Recursive Neural
+Networks</a>.
+The main idea behind Tree Recursive Neural Network is to provide a
+sentence embedding that could represent the meaning of the sentence the
+same way we did with word embedding. So, two sentences that of different
+words like “the country of my birth” and “the place where I was born”
+will have similar vector despite having totally different words. The
+meaning vector of a sentence is determined by actually two things:</p>
+
+<ul>
+  <li>
+    <p>The meaning of the words forming this sentence.</p>
+  </li>
+  <li>
+    <p>The rules/structure that combined these words.</p>
+  </li>
+</ul>
+
+<p>Back in the old days, we used certain rules determined by linguists to
+form a grammatical structure for a given sentence. The algorithm that
+forms such a tree is called “CKY” and it was widely used for “parsing”
+which is to form a binary tree for a given sentence that describes the
+syntactic structure of the given sentence. So, given a sentence like
+“the day of my birth”, CKY will return a binary tree that looks like
+this:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image1.png" width="450" />
+</div>
+
+<p>But now in Tree Recursive NN, we are going to use word embeddings and
+RNN to from a tree of a given sentence. The same sentence will appear
+like the following figure. As we can see, it has the same structure as
+before but an additional information which is the “sentence embedding”.
+The embedding vector at the top of the structure is what makes this
+model super important:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image2.png" width="450" />
+</div>
+
+<p>How are we going to calculate these sentence embedding in Tree Recursive
+NN? The idea is when we want to build a representation or a larger unit,
+we need to take the representation of its children and stick them to some
+kind of neural network which will return two things:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image3.png" width="350" />
+</div>
+
+<ul>
+  <li>
+    <p>A vector that is going to represent the meaning of the children.</p>
+  </li>
+  <li>
+    <p>The score of how reasonable the new node would be.</p>
+  </li>
+</ul>
+
+<p>Now, we can use this simple neural network to parse a sentence. The
+easiest way to do that is to run a greedy parser that is going to look
+at what seems best and make decisions of every action and proceed along.
+We can start of the sentence “the cat sat on the mat” and we are going
+to take each pair of words and calculate the representation of that pair
+just like so:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image4.png" width="750" />
+</div>
+
+<p>Then, we are going to take the pair that score best and merge it into a
+constituent. At that point, we could repeat the same step after
+considering the new pair as a new word. So, in this example, we can see
+that the pair “the cat” has the highest score. Then, we need to combine
+it into one constituent and recalculate the word pairs like so:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image5.png" width="750" />
+</div>
+
+<p>Now, the highest score is “the mat” word pair. So, we are going to
+combine them into one constituent and recalculate the word pairs like
+so:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image6.png" width="750" />
+</div>
+
+<p>We keep doing that till we form the Tree Recursive neural network:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image7.png" width="750" />
+</div>
+
+<h2 id="recursive-nn">Recursive NN</h2>
+
+<p>As we can see, we will be able to form a recursive tree depending on
+this neural network that could combine two word-vectors into one with
+additional information which is the score of how plausible this merge
+is. Now, let’s talk about how to form such a neural network.</p>
+
+<h3 id="standard-recursive-nn">Standard Recursive NN</h3>
+
+<p>The simplest way of Neural Network to use here in our Tree Recursive NN
+is to form one single weight matrix Tree RNN like so:</p>
+
+<div align="center">
+    <img src="media/Tree_Recursive_NN/image8.png" width="450" />
+</div>
+
+<p>Which can be represented like so putting in mind that $\begin{bmatrix}
+c_{1} <br />
+c_{2} <br />
+\end{bmatrix}$ means concatenating the two word-vectors of the two
+children $c_{1}$ and $c_{2}$. The weights that we need to learn in this
+simple neural network are $W$ and $U$:</p>
+
+\[parent = tanh\left( W\begin{bmatrix}
+c_{1} \\
+c_{2} \\
+\end{bmatrix} + b \right),score = U^{T}\text{.parent}\]
+
+<p>But this simple representation has a few problems:</p>
+
+<ul>
+  <li>
+    <p>This simple single matrix could capture some phenomena but not
+adequate for complex, higher order composition and long sentences.</p>
+  </li>
+  <li>
+    <p>There is no interaction between the input words.</p>
+  </li>
+  <li>
+    <p>The composition function $tanh\left( W\begin{bmatrix}
+c_{1} <br />
+c_{2} <br />
+\end{bmatrix} + b \right)$ is the same for all syntactic categories.
+So, we have just one weight matrix and it doesn’t matter if we are
+putting (adjective and a noun) or (a verb and an object) or even (a
+word and a period). For all these cases, we are using the same
+weight matrix $W$.</p>
+  </li>
+</ul>
+
+<h3 id="cvg">CVG</h3>
+
+<p>CVG or Compositional Vector Grammars is another way to make a better and
+faster Recursive NN. The idea behind this method is to combine the
+Probabilistic Context Free Grammar (PCFG) with the Tree Recursive NN.</p>
+
+<p>TO BE CONTINUED</p>
+
+<h2 id="max-margin-loss-function">Max-Margin Loss Function</h2>
+
+<p>Here, we will discuss a popular error metric known as the maximum margin
+objective. The idea behind using this objective is to ensure that the
+score computed for "true" labeled data points is higher than the score
+computed for "false" labeled data points.</p>
+
+<p>For example, we want the score computed for the "true" sentence
+"Museums in Paris are amazing" as s and the score computed for the
+"false" labeled window "Not all museums in Paris" as S~c~
+(subscripted as c to signify that the window is "corrupt"). Then, our
+objective function would be to maximize (S − S~c~) or to minimize (S~c~
+− S):</p>
+
+<p>However, the above optimization objective is risky in the sense that it
+does not attempt to create a margin of safety. We would want the
+"true" labeled data point to score higher than the "false" labeled
+data point by some positive margin Δ. In other words, we would want
+error to be:</p>
+
+\[Loss = max\left( \Delta + S_{c} - S,0 \right)\]
+
+<p>What we want to do is to find the best Tree which has the highest score,
+and we are kind of approximated this by getting the best constituent at
+every particular point in a time. So, the final thing is to set a loss
+function that we need to optimize. The loss function we are going to use
+here is called the “max-margin loss function”:</p>
+
+\[s\left( x,y \right) = \sum_{n \in nodes\left( y \right)}^{}s_{n}\]
+
+\[J = \sum_{i}^{}{s\left( x_{i},y_{i} \right)} - \max_{y \in A\left( x_{i} \right)}\left( s\left( x_{i},y \right) + \Delta\left( y,y_{i} \right) \right)\]
+
+<p>Where, $x$ is a sentence, $y$ is a parse tree, $A\left( x \right)$ is a
+structure search for the best tree. We have used the greedy search, but
+a good substitute would be a beam search. The loss
+$\Delta\left( y,y_{i} \right)$ penalizes all incorrect decisions.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/Tree_Recursive_NN';
+      this.page.identifier = '/language-modeling/Tree_Recursive_NN';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

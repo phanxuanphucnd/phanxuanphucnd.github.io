@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>XLM-E: XLM via ELECTRA</title>
+  <meta name="title" content="XLM-E: XLM via ELECTRA">
+  <meta name="description" content="XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
+a cross-lingual language model that was pre-trained on two
+ELECTRA-style
+tasks as we are going to see later. XLM-E was proposed by Microsoft in
+2021 and published in their paper: Cross-lingual Language Model
+Pre-training via ELECTRA. The
+official code for this paper can be found on Microsoft’s GitHub
+repository: microsoft/unilm.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="XLM-E: XLM via ELECTRA">
+  <meta itemprop="description" content="XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
+a cross-lingual language model that was pre-trained on two
+ELECTRA-style
+tasks as we are going to see later. XLM-E was proposed by Microsoft in
+2021 and published in their paper: Cross-lingual Language Model
+Pre-training via ELECTRA. The
+official code for this paper can be found on Microsoft’s GitHub
+repository: microsoft/unilm.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/XLM-E/image3.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="XLM-E: XLM via ELECTRA">
+  <meta property="og:description" content="XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
+a cross-lingual language model that was pre-trained on two
+ELECTRA-style
+tasks as we are going to see later. XLM-E was proposed by Microsoft in
+2021 and published in their paper: Cross-lingual Language Model
+Pre-training via ELECTRA. The
+official code for this paper can be found on Microsoft’s GitHub
+repository: microsoft/unilm.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/XLM-E/image3.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XLM-E: XLM via ELECTRA">
+  <meta name="twitter:description" content="XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
+a cross-lingual language model that was pre-trained on two
+ELECTRA-style
+tasks as we are going to see later. XLM-E was proposed by Microsoft in
+2021 and published in their paper: Cross-lingual Language Model
+Pre-training via ELECTRA. The
+official code for this paper can be found on Microsoft’s GitHub
+repository: microsoft/unilm.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/XLM-E/image3.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/XLM-E">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2021-06-30 00:00" class="post-meta__body date">Published on arXiv on: 30 Jun 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft">Microsoft</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=XLM-E: XLM via ELECTRA> XLM-E: XLM via ELECTRA</h1>
+    <p>XLM-E stands for “Cross-lingual Language Modeling via Electra” which is
+a cross-lingual language model that was pre-trained on two
+<a href="https://anwarvic.github.io/language-modeling/ELECTRA">ELECTRA</a>-style
+tasks as we are going to see later. XLM-E was proposed by Microsoft in
+2021 and published in their paper: <a href="https://arxiv.org/pdf/2106.16138.pdf">Cross-lingual Language Model
+Pre-training via ELECTRA</a>. The
+official code for this paper can be found on Microsoft’s GitHub
+repository: <a href="https://github.com/microsoft/unilm">microsoft/unilm</a>.</p>
+
+<p>Using a pre-trained language model and then fine-tune it on downstream
+tasks has become a de facto trend in the field. However, these
+pre-training techniques such as (Masked Language Modeling (MLM),
+Translation Masked Modeling (TLM), ...etc.) usually requires massive
+computation resources. As shown in the following figure, XLM-E (red
+line) achieves 130x speedup compared with XLM-R augmented with TLM and
+around 100x speedup compared with
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a>,
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-Align">XLM-Align</a>, and
+<a href="https://anwarvic.github.io/cross-lingual-lm/InfoXLM">InfoXLM</a>:</p>
+
+<div align="center">
+    <img src="media/XLM-E/image1.png" width="450" />
+</div>
+
+<h2 id="pre-training">Pre-training</h2>
+
+<p>Similar to <a href="https://anwarvic.github.io/language-modeling/ELECTRA">ELECTRA</a>,
+XLM-E has two Transformer components, i.e., generator and discriminator. The
+generator predicts the masked tokens given the masked sentence or translation
+pair, and the discriminator distinguishes whether the tokens are replaced by
+the generator. XLM-E was pre-trained on two different pre-training tasks:
+<u><strong>multilingual replaced token detection (MRTD)</strong></u>, and
+<u><strong>translation replaced token detection (TRTD)</strong></u>. The
+overall training objective is to minimize:</p>
+
+\[\mathcal{L} = \mathcal{L}_{\text{MLM}} + \lambda\mathcal{L}_{\text{MRTD}} + \mathcal{L}_{\text{TLM}} + \lambda\mathcal{L}_{\text{TRTD}}\]
+
+<h3 id="multilingual-rtd">Multilingual RTD</h3>
+
+<p>This pre-training task is a multilingual form of the Replaced Token
+Detection (RTD) task introduced in the
+<a href="https://anwarvic.github.io/language-modeling/ELECTRA">ELECTRA</a> model.
+Here is a small recap on RTD. The RTD task requires the model to
+distinguish real input tokens from corrupted multilingual sentences. The
+input sentences get corrupted by the generator model, and the
+discriminator should be able to classify the real tokens from the
+replaced ones as shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/XLM-E/image2.png" width="450" />
+</div>
+
+<p>The multilingual RTD is exactly the same with a few differences:</p>
+
+<ul>
+  <li>
+    <p>The input text can be in various languages.</p>
+  </li>
+  <li>
+    <p>Both the generator and the discriminator are shared across
+languages. The vocabulary is also shared for different languages.</p>
+  </li>
+  <li>
+    <p>Masking is done uniformly while it was only $15\%\ $in the ELECTRA
+paper.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+They also tried span masking, but it significantly weakened the generator’s
+prediction accuracy, which in turn harmed the pre-training.</p>
+</blockquote>
+
+<p>Given a input sequence $x$ that was masked using $M_{e}$ set of random
+positions; the loss function of the generator $G$ is:</p>
+
+\[\mathcal{L}_{\text{MLM}}\left( x;\ \theta_{G} \right) = - \sum_{i \in M_{e}}^{}{\text{log}\left(p_{G}\left( x_{i} \middle| x^{\text{masked}} \right) \right)}\]
+
+<p>The loss function of the discriminator $D$ is the following; knowing
+that $n$ is the length of $x$ and $r_{i}$ is the label of the output (1
+for “yes” and 0 for “No”):</p>
+
+\[\mathcal{L}_{\text{MRTD}}\left( x;\theta_{D} \right) = - \sum_{i = 1}^{n}{\log\left( p_{D}\left( r_{i} \middle| x^{\text{corrupt}} \right) \right)}\]
+
+<h3 id="translation-rtd">Translation RTD</h3>
+
+<p>Translation RTD is a novel discriminative pre-training task which aims
+to distinguish real input tokens from the translation pairs concatenated
+together. An input translation pair $\left( e,f \right)$ gets
+concatenated together into a single sentence and then treated the same
+way as MRTD as shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/XLM-E/image3.png" width="750" />
+</div>
+
+<p>Given a concatenated translation pair $\left\lbrack e;f \right\rbrack$
+that was masked using $M_{e}$ and $M_{f}$ sets of random positions for
+$e$ and $f$ respectively, the loss function of the generator $G$ is:</p>
+
+\[\mathcal{L}_{\text{TLM}}\left( e,f;\theta_{G} \right) = - \sum_{i \in M_{e}}^{}{\log\left( p_{G}\left( e_{i} \middle| \left\lbrack e;f \right\rbrack^{\text{masked}} \right) \right)}\]
+
+\[\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  - \sum_{i \in M_{f}}^{}{\log\left( p_{G}\left( f_{i} \middle| \left\lbrack e;f \right\rbrack^{\text{masked}} \right) \right)}\]
+
+<p>The loss function of the discriminator $D$ is the following; knowing
+that $n$ is the length of the concatenation and $r_{i}$ is the label of
+the output (1 for “yes” and 0 for “No”):</p>
+
+\[\mathcal{L}_{\text{TRTD}}\left( e,f;\theta_{D} \right) = - \sum_{i = 1}^{n}{\log\left( p_{D}\left( r_{i} \middle| \left\lbrack e;f \right\rbrack^{\text{corrupt}} \right) \right)}\]
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The generators in these pre-training tasks act like language models.
+That’s why their loss functions were marked as
+<span>$\mathcal{L}_{\text{MLM}}$</span> and <span>$\mathcal{L}_{\text{TLM}}$.</span></p>
+</blockquote>
+
+<h2 id="gated-relative-position-bias">Gated Relative Position Bias</h2>
+
+<p>In this paper, they proposed to use gated relative position bias
+inspired by the <a href="https://anwarvic.github.io/language-modeling/RNN">GRU</a>
+cells, in the self-attention mechanism. First, let’s recap how the
+self-attention mechanism works. Given, input tokens
+$\left\{ x_{1},\ …x_{n} \right\}$, the self-attention mechanism uses
+$q_{i}$, $k_{i}$, and $v_{i}$ for each input to compute the head output
+${\widetilde{h}}_{i}$ as shown below:</p>
+
+\[{\widetilde{h}}_{i} = \text{softmax}\left\lbrack \frac{q_{i}W_{i}^{Q}\left( k_{i}W_{i}^{K} \right)^{T}}{\sqrt{d_{k}}} \right\rbrack v_{i}W_{i}^{V}\]
+
+<p>Where
+$W_{i}^{Q},W_{i}^{K} \in \mathbb{R}^{d_{m} \times d_{k}},W_{i}^{V} \in \mathbb{R}^{d_{m} \times d_{v}}$
+are learned matrices. In this paper, the self-attention output is
+slightly different as shown below:</p>
+
+\[{\widetilde{h}}_{i} = \text{softmax}\left\lbrack \frac{q_{i}W_{i}^{Q}\left( k_{i}W_{i}^{K} \right)^{T}}{\sqrt{d_{k}}} + b_{i - j} \right\rbrack v_{i}W_{i}^{V}\]
+
+<p>Where $b_{i - j}$ denotes the gated relative position bias which is
+computed via:</p>
+
+\[g^{\left( \text{update} \right)},\ g^{\left( \text{reset} \right)} = \sigma\left( q_{i}\text{.u} \right),\ \sigma\left( q_{i}\text{.v} \right)\]
+
+\[b_{i - j} = d_{i - j} + g^{\left( \text{update} \right)}d_{i - j} + \left( 1 - g^{\left( \text{update} \right)} \right).wg^{\left( \text{reset} \right)}d_{i - j}\]
+
+<p>Where $d_{i - j}$ is learnable relative position bias, the vectors
+$u,\ v \in \mathbb{R}^{d_{k}}$ are parameters, σ is the sigmoid
+function, and $w \in \mathbb{R}$ is a learnable value.</p>
+
+<h2 id="results">Results</h2>
+
+<p>In the following experiments, they used a 12-layer Transformer as the
+discriminator, with hidden size of 768, and FFN hidden size of 3,072 while they
+used a 4-layer Transformer as the discriminator using the same hyper-parameters.
+They used the same vocabulary with
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a> that consists of
+250K subwords tokenized by SentencePiece.</p>
+
+<div align="center">
+    <img src="media/XLM-E/image4.png" width="350" />
+</div>
+
+<p>They jointly pre-trained the generator and the discriminator using Adam
+optimizer for 125K training steps with a dynamic batching of
+approximately 1M tokens. $\lambda$ was set to $50$. Check the following
+table for the full list of pre-training hyper-parameters.</p>
+
+<p>For pre-training, they used the CC-100 dataset for the MRTD task which
+contains texts in 100 languages collected from
+<a href="https://github.com/facebookresearch/cc_net">CommonCrawl</a>. They used
+parallel corpora in 100 languages, collected from MultiUN, IIT Bombay,
+OPUS, WikiMatrix, and CCAligned, for the TRTD task. For sampling, they
+used temperature sampling of $T = \frac{10}{7}$.</p>
+
+<p>After pre-training the XLM-E model was fine-tuned on various tasks from
+the XTREME benchmark. The following table shows the hyper-parameters
+used when fine-tuning. The XTREME benchmark contains seven cross-lingual
+understanding tasks, namely part-of-speech tagging (POS) on the
+Universal Dependencies v2.5, NER named entity recognition on the Wikiann
+dataset, cross-lingual natural language inference on XNLI, cross-lingual
+paraphrase adversaries from word scrambling (PAWS-X), and cross-lingual
+question answering on MLQA, XQuAD, and TyDiQA-GoldP.</p>
+
+<div align="center">
+    <img src="media/XLM-E/image5.png" width="750" />
+</div>
+
+<p>The following table shows the evaluation results on XTREME benchmark
+knowing that results of XLM-E and XLM-R~base~ are averaged over five
+runs.</p>
+
+<div align="center">
+    <img src="media/XLM-E/image6.png" width="750" />
+</div>
+
+<p>As seen from the previous table, XLM-E outperforms previous models on
+Question Answering and Classification problems while achieves
+competitive performance of Structured Predictions. All of that while
+uses substantially less computation:</p>
+
+<div align="center">
+    <img src="media/XLM-E/image7.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/XLM-E';
+      this.page.identifier = '/cross-lingual-lm/XLM-E';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

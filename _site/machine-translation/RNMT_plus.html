@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>RNMT+</title>
+  <meta name="title" content="RNMT+">
+  <meta name="description" content="RNMT stands for “RNN N-based Neural Machine Translation models” which
+are the models that used recurrent networks in the architecture. RNMT+
+is an enhanced version of RNMT models proposed by Google AI in 2018 and
+published in their paper: The Best of Both Worlds: Combining Recent
+Advances in Neural Machine
+Translation. In this paper, the
+researchers took a step back and looked at techniques and methods that
+contributed significantly to the success of recent models and tried to
+apply them to the RNMT model resulting in RNMT+.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="RNMT+">
+  <meta itemprop="description" content="RNMT stands for “RNN N-based Neural Machine Translation models” which
+are the models that used recurrent networks in the architecture. RNMT+
+is an enhanced version of RNMT models proposed by Google AI in 2018 and
+published in their paper: The Best of Both Worlds: Combining Recent
+Advances in Neural Machine
+Translation. In this paper, the
+researchers took a step back and looked at techniques and methods that
+contributed significantly to the success of recent models and tried to
+apply them to the RNMT model resulting in RNMT+.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/RNMT_plus/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="RNMT+">
+  <meta property="og:description" content="RNMT stands for “RNN N-based Neural Machine Translation models” which
+are the models that used recurrent networks in the architecture. RNMT+
+is an enhanced version of RNMT models proposed by Google AI in 2018 and
+published in their paper: The Best of Both Worlds: Combining Recent
+Advances in Neural Machine
+Translation. In this paper, the
+researchers took a step back and looked at techniques and methods that
+contributed significantly to the success of recent models and tried to
+apply them to the RNMT model resulting in RNMT+.
+
+">
+  <meta property="og:image" content="/machine-translation/media/RNMT_plus/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RNMT+">
+  <meta name="twitter:description" content="RNMT stands for “RNN N-based Neural Machine Translation models” which
+are the models that used recurrent networks in the architecture. RNMT+
+is an enhanced version of RNMT models proposed by Google AI in 2018 and
+published in their paper: The Best of Both Worlds: Combining Recent
+Advances in Neural Machine
+Translation. In this paper, the
+researchers took a step back and looked at techniques and methods that
+contributed significantly to the success of recent models and tried to
+apply them to the RNMT model resulting in RNMT+.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/RNMT_plus/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/RNMT_plus">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2018-04-26 00:00" class="post-meta__body date">Published on arXiv on: 26 Apr 2018</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google AI">Google AI</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=RNMT+> RNMT+</h1>
+    <p>RNMT stands for “RNN N-based Neural Machine Translation models” which
+are the models that used recurrent networks in the architecture. RNMT+
+is an enhanced version of RNMT models proposed by Google AI in 2018 and
+published in their paper: <a href="https://arxiv.org/pdf/1804.09849.pdf">The Best of Both Worlds: Combining Recent
+Advances in Neural Machine
+Translation</a>. In this paper, the
+researchers took a step back and looked at techniques and methods that
+contributed significantly to the success of recent models and tried to
+apply them to the RNMT model resulting in RNMT+.</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>RNMT+ is a new architecture -as shown below- that was built using
+different components borrowed from different previous architectures like
+<a href="https://anwarvic.github.io/machine-translation/RNN">RNN</a>,
+<a href="https://anwarvic.github.io/machine-translation/ConvS2S">ConvS2S</a>, and
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformers</a>.
+These modifications made the model significantly outperform all
+individual architectures.</p>
+
+<p>RNMT+ consists of 6 bidirectional LSTM layers in the encoder. For each
+bidirectional layer, the outputs of the forward layer and the backward
+layer are concatenated before being fed into the next layer. The decoder
+network consists of 8 unidirectional LSTM layers. Residual connections
+are added to the third layer and above for both the encoder and decoder.
+RNMT+ has $1024$ LSTM nodes in all encoder and decoder layers. The input
+embedding dimension is $1024\ $as well</p>
+
+<div align="center">
+    <img src="media/RNMT_plus/image1.png" width="750" />
+</div>
+
+<p>Inspired by the Transformer model, per-gate layer normalization is
+applied within each LSTM cell which greatly stabilizes training. No
+non-linearity is applied to the LSTM output. A projection layer is added
+to the encoder final output. Multi-head additive attention is used
+instead of the single-head attention other RNMT models. In addition to
+feeding the attention context to all decoder LSTM layers, it is also fed
+to the softmax.</p>
+
+<p>Regarding regularization, they used the following techniques:</p>
+
+<ul>
+  <li>
+    <p><strong>Dropout:</strong> They applied dropout to both embedding layers and each
+LSTM layer output before it is added to the next layer’s input.
+Attention dropout is also applied.</p>
+  </li>
+  <li>
+    <p><strong>Label Smoothing:</strong> They used uniform label smoothing with an
+$uncertainty = 0.1$.</p>
+  </li>
+  <li>
+    <p><strong>L2 Regularization:</strong> L2 regularization (weight Decay) was applied
+only for WMT’14 En→De task as the corpus is smaller and thus more
+regularization is required.</p>
+  </li>
+</ul>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>All experiments of this paper compared RNMT+ with ConvS2S and
+Transformers. They were done on the standard WMT’14 En→Fr and En→De
+datasets. Each sentence was tokenized using Moses tokenizer and then
+encoded using Wordpiece Model. A shared vocabulary of 32K sub-word units
+for each source-target language pair was used. They used newstest 2014
+for testing and a combination of newstest 2012 and newstest 2013 for
+validation.</p>
+
+<p>For training, they used We use Adam optimizer with
+$\beta_{1} = 0.9,\ \beta_{2} = 0.999,\ \epsilon = 10^{- 6}$ and varied
+the learning rate according to the following schedule:</p>
+
+\[lr = 10^{- 4}*min\left( 1 + \frac{t*\left( n - 1 \right)}{n*p},\ n,\ n*\left( 2n \right)^{\frac{s - n*t}{e - s}} \right)\]
+
+<p>Where $t$ is the current step, $n$ is the number of concurrent model
+replicas used in training, $p = 500$ is the number of warm-up steps,
+$s = 600,000$ is the start step of the exponential decay, and
+$e = 1,200,000$ is the end step of the decay. Specifically, they first
+increased the learning rate linearly during the number of warm-up steps,
+kept it a constant until the decay’s start step $s$, then exponentially
+decayed it until the decay end step $e$, and kept it at $5*10^{- 5}$
+after the decay ends.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+In order to ensure a fair setting for comparison, they implemented all
+architectures using the same framework, the same pre-processed data and
+evaluation methodology for all our experiments. The only thing changes
+was the batch size: RNMT+ used $4096$ sentence pairs while ConvS2S and
+Transformer used $65536$.</p>
+</blockquote>
+
+<p>The following table shows that RNMT+ slightly performs better than the
+Transformer-Big model on both WMT14 En→Fr (left table) and En→De (right
+table) tasks. Note that the numbers before and after ‘$\pm$’ are the
+mean and standard deviation of test BLEU score over an evaluation
+window.</p>
+
+<div align="center">
+    <img src="media/RNMT_plus/image2.png" width="750" />
+</div>
+
+<p>The following table shows RNMT+ performance after removing each one of
+the most important techniques used in the model independently. The
+results shown below were obtained by averaging BLEU scores on WMT’14 En
+→ Fr test set. An asterisk ‘*’ indicates an unstable training. From the
+table, we can see that <strong>layer normalization</strong> is most critical
+component to stabilize the training process.</p>
+
+<div align="center">
+    <img src="media/RNMT_plus/image3.png" width="450" />
+</div>
+
+<h2 id="hybrid-models">Hybrid Models</h2>
+
+<p>In an encoder-decoder architecture, a natural assumption is that the
+role of an encoder is to build feature representations that can best
+encode the meaning of the source sequence, while a decoder should be
+able to process and interpret the representations from the encoder and,
+at the same time, track the current target history.</p>
+
+<p>So, they tried to find out which model out of the two models
+(Transformer-Big &amp; RNMT+) has the best encoder and the best decoder.
+They did that by combining the encoder from a certain model and the
+decoder from the other model. The following table shows that the
+Transformer-big architecture has the best encoder while RNMT+ has the
+best decoder.</p>
+
+<div align="center">
+    <img src="media/RNMT_plus/image4.png" width="450" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+They tried to add ConvS2S to the past experiment, but it took a lot of
+time to train it and the results weren’t promising. So, they skipped it.</p>
+</blockquote>
+
+<h2 id="better-encoder">Better Encoder</h2>
+
+<p>Lastly, they tried to mix the RNMT+ encoder with the Transformer encoder
+to produce a new architecture for the encoder that combines the best
+things from the two models that could result in richer feature
+representations. They tried two different architectures (as shown
+below):</p>
+
+<div align="center">
+    <img src="media/RNMT_plus/image5.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p><u><strong>Cascaded Encoder:</strong></u><br />
+The cascaded encoder aims at combining the representational
+power of RNNs and self-attention. The idea is to enrich a set of
+stateful representations by cascading a feature extractor with a
+focus on vertical mapping. The transformer encoder is fine-tuned
+while the RNMT+ encoder is frozen.</p>
+  </li>
+  <li>
+    <p><u><strong>Multi-Column Encoder:</strong></u><br />
+A multi-column encoder merges the outputs of several independent
+encoders into a single combined representation. They found out the
+best way to merge these outputs into a single representation is by a
+simple concatenation of individual column outputs.</p>
+  </li>
+</ul>
+
+<p>According to the following table, the <u><strong>cascaded encoder</strong></u>
+improves over the Transformer encoder by more than 0.5 BLEU points on the WMT’14
+En→Fr task which suggests that the Transformer encoder is able to extract richer
+representations if the input is augmented with sequential context. On the other
+hand, the <strong>multi-column encoder</strong> followed by an RNMT+ decoder achieves better
+results on WMT’14 En→De task.</p>
+
+<div align="center">
+    <img src="media/RNMT_plus/image6.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/RNMT_plus';
+      this.page.identifier = '/machine-translation/RNMT_plus';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

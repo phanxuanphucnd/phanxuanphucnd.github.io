@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>XLM-T</title>
+  <meta name="title" content="XLM-T">
+  <meta name="description" content="XLM-T stands for “Cross-lingual Language Modeling-Transformer” which is
+a multi-lingual machine translation model proposed by Microsoft in 2020
+and published in their paper: XLM-T: Scaling up Multilingual Machine
+Translation with Pretrained Cross-lingual Transformer
+Encoders. The official code of this
+paper can be found in Microsoft’s official GitHub repository:
+unilm/xlmt. Most
+existing MNMTs adopt a randomly initialized Transformer backbone. In
+this work, the researchers used an a pre-trained cross-lingual
+Transformer encoder such as
+(XLM or
+XLM-R) to
+initialize both the encoder and decoder of the multilingual NMT model,
+and then fine-tuned it with multilingual parallel data.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="XLM-T">
+  <meta itemprop="description" content="XLM-T stands for “Cross-lingual Language Modeling-Transformer” which is
+a multi-lingual machine translation model proposed by Microsoft in 2020
+and published in their paper: XLM-T: Scaling up Multilingual Machine
+Translation with Pretrained Cross-lingual Transformer
+Encoders. The official code of this
+paper can be found in Microsoft’s official GitHub repository:
+unilm/xlmt. Most
+existing MNMTs adopt a randomly initialized Transformer backbone. In
+this work, the researchers used an a pre-trained cross-lingual
+Transformer encoder such as
+(XLM or
+XLM-R) to
+initialize both the encoder and decoder of the multilingual NMT model,
+and then fine-tuned it with multilingual parallel data.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/XLM-T/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="XLM-T">
+  <meta property="og:description" content="XLM-T stands for “Cross-lingual Language Modeling-Transformer” which is
+a multi-lingual machine translation model proposed by Microsoft in 2020
+and published in their paper: XLM-T: Scaling up Multilingual Machine
+Translation with Pretrained Cross-lingual Transformer
+Encoders. The official code of this
+paper can be found in Microsoft’s official GitHub repository:
+unilm/xlmt. Most
+existing MNMTs adopt a randomly initialized Transformer backbone. In
+this work, the researchers used an a pre-trained cross-lingual
+Transformer encoder such as
+(XLM or
+XLM-R) to
+initialize both the encoder and decoder of the multilingual NMT model,
+and then fine-tuned it with multilingual parallel data.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/XLM-T/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XLM-T">
+  <meta name="twitter:description" content="XLM-T stands for “Cross-lingual Language Modeling-Transformer” which is
+a multi-lingual machine translation model proposed by Microsoft in 2020
+and published in their paper: XLM-T: Scaling up Multilingual Machine
+Translation with Pretrained Cross-lingual Transformer
+Encoders. The official code of this
+paper can be found in Microsoft’s official GitHub repository:
+unilm/xlmt. Most
+existing MNMTs adopt a randomly initialized Transformer backbone. In
+this work, the researchers used an a pre-trained cross-lingual
+Transformer encoder such as
+(XLM or
+XLM-R) to
+initialize both the encoder and decoder of the multilingual NMT model,
+and then fine-tuned it with multilingual parallel data.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/XLM-T/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/XLM-T">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2020-12-31 00:00" class="post-meta__body date">Published on arXiv on: 31 Dec 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft Research">Microsoft Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=XLM-T> XLM-T</h1>
+    <p>XLM-T stands for “Cross-lingual Language Modeling-Transformer” which is
+a multi-lingual machine translation model proposed by Microsoft in 2020
+and published in their paper: <a href="https://arxiv.org/pdf/2012.15547.pdf">XLM-T: Scaling up Multilingual Machine
+Translation with Pretrained Cross-lingual Transformer
+Encoders</a>. The official code of this
+paper can be found in Microsoft’s official GitHub repository:
+<a href="https://github.com/microsoft/unilm/tree/master/xlmt">unilm/xlmt</a>. Most
+existing MNMTs adopt a randomly initialized Transformer backbone. In
+this work, the researchers used an a pre-trained cross-lingual
+Transformer encoder such as
+(<a href="https://anwarvic.github.io/cross-lingual-lm/XLM">XLM</a> or
+<a href="https://anwarvic.github.io/cross-lingual-lm/XLM-R">XLM-R</a>) to
+initialize both the encoder and decoder of the multilingual NMT model,
+and then fine-tuned it with multilingual parallel data.</p>
+
+<div align="center">
+    <img src="media/XLM-T/image1.png" width="750" />
+</div>
+
+<p>In this paper, the researchers have adopted XLM-R BASE as the pretrained
+encoder and conduct extensive experiments on multilingual machine translation
+with 10 language pairs from <a href="http://www.statmt.org/">WMT</a> dataset and 94
+language pairs from <a href="http://opus.nlpl.eu/opus-100.php">OPUS</a> datasets; the
+stats of these datasets can be found on page 13 of the paper. XLM-T achieved
+significant and consistent gains on both high, medium and low-resource 
+languages. The following table shows that clearly in comparison with the best
+system from this paper (<a href="https://arxiv.org/pdf/2004.11867.pdf">Zhang et al., 2020</a>)
+on high/medium/low resource language pairs from OPUS-100 test sets.</p>
+
+<div align="center">
+    <img src="media/XLM-T/image2.png" width="750" />
+</div>
+
+<h2 id="initialization-strategy">Initialization Strategy</h2>
+
+<p>XLM-R BASE model has 12-layer encoder, 6-layer decoder, 768 hidden size,
+12 attention head, and 3,072 dimensions of feed-forward layers and was
+trained in 100 languages using more than two terabytes of filtered
+CommonCrawl data with MLM objective. In the paper, the researchers used
+it to initialize both the encoder and decoder of the Transformer-based
+multilingual NMT model.</p>
+
+<ul>
+  <li>
+    <p><strong><u>Initializing cross-lingual encoder:</u></strong><br />
+To initialize the encoder with pre-trained XLM-R, the researchers tried to
+make the architectures consistent. To be able to do that, they did the
+following:</p>
+
+    <ul>
+      <li>
+        <p>They added a layer-normalization layer after the embedding layer
+and did not scale up the word embedding.</p>
+      </li>
+      <li>
+        <p>They used post layer normalization for both the attention layers
+and feed-forward layers.</p>
+      </li>
+      <li>
+        <p>They changed the activation function inside the feed-forward
+layers to be GELU instead of ReLU.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/XLM-T/image3.png" width="750" />
+</div>
+
+<ul>
+  <li><strong><u>Initializing cross-lingual decoder:</u></strong><br />
+The architecture of the decoder is the same as that of the encoder, except
+that there is a cross-attention layer after the self-attention layer.</li>
+</ul>
+
+<p>To analyze the effect this initialization strategy, they conducted an
+ablation study by removing the encoder initialization and decoder
+initialization. The following table summarizes the results:</p>
+
+<div align="center">
+    <img src="media/XLM-T/image4.png" width="450" />
+</div>
+
+<p>It shows that the encoder initialization mainly contributes to the
+improvements of X → En. Similarly, the decoder initialization mainly
+benefits E → X. Moreover, it concludes that the encoder initialization
+contributes to more gains than the decoder initialization for
+multilingual NMT. Now, we have our pre-trained encoder-decoder MNMT
+model ready to be fine-tuned. Let’s see how fine-tuning was performed.</p>
+
+<h2 id="multilingual-fine-tuning">Multilingual Fine-tuning</h2>
+
+<p>Suppose we have $L$ languages to translate in a model. Among these
+languages, we have $N$ bilingual corpora, each of which contains
+parallel sentences
+$\left\{ \left( x_{L_{i}}^{1},\ x_{L_{j}}^{1} \right),\left( x_{L_{i}}^{2},\ x_{L_{j}}^{2} \right),\ …\left( x_{L_{i}}^{k},\ x_{L_{j}}^{k} \right) \right\}$
+between language $L_{i}$ and language $L_{j}$, where $k$ is the number
+of training instances. Given the corpora, we are able to train a
+multilingual model $P_{\theta}$ that enables the translation among
+different languages. With the parallel data of $N$ language direction,
+the model is learned with the following objective:</p>
+
+\[L = - \sum_{i}^{N}{\sum_{j \neq i}^{N}{\log\left( P_{\theta}\left( x_{L_{i}}^{k},\ x_{L_{j}}^{k} \right) \right)}}\]
+
+<p>A simple concatenation of all parallel data will lead to poor
+performance on low-resource translation because of the imbalanced data.
+The researchers in the paper used temperature sampling to up-sample
+low-resource languages. For a given language pair $l$ with $D_{l}$
+parallel sentences, the probability of the sample being from language
+$L_{i}$ using this strategy is:</p>
+
+\[p_{L_{i}} = \left( \frac{D_{L_{i}}}{\sum_{j}^{N}D_{L_{j}}} \right)^{\frac{1}{T}}\]
+
+<p>To reduce over-sampling of low-resource languages in the early stage of
+training, they employed a dynamic temperate sampling mechanism. The
+temperature is low at the beginning of training and is gradually
+increased for the first several epochs as shown in the following
+formula:</p>
+
+\[T_{i} = \min\left( T,\ T_{0} + \frac{i}{N}\left( T - T_{0} \right) \right)\]
+
+<p>where $T_{0}$ is the initial temperature, $T$ is the peak temperature,
+and $N$ is the number of warming-up epochs. In the paper, they used
+$T_{0} = 1.0$, $T = 5.0$, and $N = 5$ for all of their experiments.</p>
+
+<h2 id="training--testing">Training &amp; Testing</h2>
+
+<p>The model was trained using Adam Optimizer with $\beta_{1} = 0.9$ and
+$\beta_{2} = 0.98$. The learning rate is in the range of $3e^{- 4}$ to
+$5e^{- 4}$ with a warming-up step of $4,000$. Label smoothing
+cross-entropy was used with $0.1$ smoothing ratio. The dropout of
+attention layers was set to $0.0$, while being $0.1$ for the rest.</p>
+
+<p>The source length and the target length were limited to be
+$256\ $tokens. For the WMT-10 dataset, the batch size was $4,096$ and
+the gradients were accumulated for $16$ batches. For the OPUS-100
+dataset, the batch size was $2,048$ and the gradients were updated every
+$32$ batches. During testing, they used beam search with a beam size of
+$5$ with $1.0$ as length penalty. All results below were obtained by
+averaging the last 5 checkpoints.</p>
+
+<p>In this paper, they used two baselines one is bilingual and the other is
+many-to-many; both are Transformer-big architecture with a 6-layer
+encoder and decoder and the embedding size, the hidden size, embedding
+size and the number of attention head is 1024, 1024, and 16 respectively
+while the dimension of feed-forward layer is 4096. These two baselines
+were using SentencePiece model with a vocabulary size of 64,000 tokens
+extracted from the training set.</p>
+
+<p>The following table shows the BLUE score bilingual, many-to-English, and
+many-to-many models on WMT-10. On the top are the models trained with
+original parallel data, while the bottom are combined with
+back-translation. The languages are ordered from high-resource (left) to
+low-resource (right).</p>
+
+<div align="center">
+    <img src="media/XLM-T/image5.png" width="750" />
+</div>
+
+<p>And the following table is the same as before but when the source
+language is English instead of English being the target as in the
+previous table:</p>
+
+<div align="center">
+    <img src="media/XLM-T/image6.png" width="750" />
+</div>
+
+<p>The previous two tables were showing the results on WMT-10 dataset. The
+following table shows the BLEU score in comparison with the best model
+in this paper (<a href="https://arxiv.org/pdf/2004.11867.pdf">Zhang et al.,
+2020</a>) on high/medium/low resource
+language pairs in OPUS-100 test sets. “WR” is the win ratio (%) compared
+to <em>ref</em>:</p>
+
+<div align="center">
+    <img src="media/XLM-T/image7.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/XLM-T';
+      this.page.identifier = '/multilingual-nmt/XLM-T';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Analyzing M4 using SVCCA</title>
+  <meta name="title" content="Analyzing M4 using SVCCA">
+  <meta name="description" content="Multilingual Neural Machine Translation (MNMT) models have yielded large
+empirical success in transfer learning settings. However, these
+black-box representations are poorly understood, and their mode of
+transfer remains elusive. This paper “Investigating Multilingual NMT
+Representations at Scale”
+published by Google in 2019 attempted to understand MNMT representations
+(specifically Google’s
+M4 model) using
+Singular Value Canonical Correlation Analysis (SVCCA). Google’s
+unofficial code for the SVCCA framework can be found on their official
+GitHub repository: google/svcca.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Analyzing M4 using SVCCA">
+  <meta itemprop="description" content="Multilingual Neural Machine Translation (MNMT) models have yielded large
+empirical success in transfer learning settings. However, these
+black-box representations are poorly understood, and their mode of
+transfer remains elusive. This paper “Investigating Multilingual NMT
+Representations at Scale”
+published by Google in 2019 attempted to understand MNMT representations
+(specifically Google’s
+M4 model) using
+Singular Value Canonical Correlation Analysis (SVCCA). Google’s
+unofficial code for the SVCCA framework can be found on their official
+GitHub repository: google/svcca.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/Analyzing_M4/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Analyzing M4 using SVCCA">
+  <meta property="og:description" content="Multilingual Neural Machine Translation (MNMT) models have yielded large
+empirical success in transfer learning settings. However, these
+black-box representations are poorly understood, and their mode of
+transfer remains elusive. This paper “Investigating Multilingual NMT
+Representations at Scale”
+published by Google in 2019 attempted to understand MNMT representations
+(specifically Google’s
+M4 model) using
+Singular Value Canonical Correlation Analysis (SVCCA). Google’s
+unofficial code for the SVCCA framework can be found on their official
+GitHub repository: google/svcca.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/Analyzing_M4/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Analyzing M4 using SVCCA">
+  <meta name="twitter:description" content="Multilingual Neural Machine Translation (MNMT) models have yielded large
+empirical success in transfer learning settings. However, these
+black-box representations are poorly understood, and their mode of
+transfer remains elusive. This paper “Investigating Multilingual NMT
+Representations at Scale”
+published by Google in 2019 attempted to understand MNMT representations
+(specifically Google’s
+M4 model) using
+Singular Value Canonical Correlation Analysis (SVCCA). Google’s
+unofficial code for the SVCCA framework can be found on their official
+GitHub repository: google/svcca.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/Analyzing_M4/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/Analyzing_M4">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2019-09-05 00:00" class="post-meta__body date">Published on arXiv on: 5 Sep 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google">Google</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Analyzing M4 using SVCCA> Analyzing M4 using SVCCA</h1>
+    <p>Multilingual Neural Machine Translation (MNMT) models have yielded large
+empirical success in transfer learning settings. However, these
+black-box representations are poorly understood, and their mode of
+transfer remains elusive. This paper “<a href="https://arxiv.org/pdf/1909.02197.pdf">Investigating Multilingual NMT
+Representations at Scale</a>”
+published by Google in 2019 attempted to understand MNMT representations
+(specifically <a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s
+M4</a> model) using
+Singular Value Canonical Correlation Analysis (SVCCA). Google’s
+unofficial code for the SVCCA framework can be found on their official
+GitHub repository: <a href="https://github.com/google/svcca">google/svcca</a>.</p>
+
+<h2 id="svcca-recap">SVCCA Recap</h2>
+
+<p>As mentioned earlier, SVCCA stands for “Singular Value Canonical
+Correlation Analysis” which is a technique to compare vector
+representations in a way that is both invariant to affine
+transformations and fast to compute. This framework was proposed by
+Google Brain in 2018 and published in this paper: <a href="https://arxiv.org/pdf/1706.05806.pdf">SVCCA: Singular
+Vector Canonical Correlation Analysis for Deep Learning Dynamics and
+Interpretability</a>. The following
+is how SVCCA works.</p>
+
+<p>For a given dataset of $n$ examples
+$X = \left\{ x_{1},\ …\ x_{n} \right\}$,
+$z_{i}^{l} \in \mathbb{R}^{n}$ is defined as a vector of the neuron $i$
+values of layer $l$ in a neural network across all examples. <u><strong>Note
+that this is a different vector from the often-considered "layer
+representation" vector of a single point.</strong></u> Within this
+formalism, the Singular Vector Canonical Correlation Analysis (SVCCA)
+proceeds as follows:</p>
+
+<ul>
+  <li>SVCCA takes as input two (not necessarily different) sets of neurons
+(typically layers of a network):</li>
+</ul>
+
+\[l_{1} = \left\{ z_{1}^{l_{1}},\ ...z_{n}^{l_{1}} \right\},\ \ \ \ \ l_{2} = \left\{ z_{1}^{l_{2}},\ ...z_{n}^{l_{2}} \right\}\]
+
+<ul>
+  <li>First, SVCCA performs a Singular Value Decomposition (SVD) of each
+subspace to get smaller dimension while keeping $99\%$ of the
+variance.</li>
+</ul>
+
+\[{l'}_{1} = SVD\left( l_{1} \right) = \left\{ {z'\ }_{1}^{l_{1}},\ ...{z'\ }_{n_{1}}^{l_{1}} \right\},\ \ where\ n_{1} &lt; n\]
+
+\[{l'}_{2} = SVD\left( l_{2} \right) = \left\{ {z'\ }_{1}^{l_{2}},\ ...{z'\ }_{n_{2}}^{l_{2}} \right\},\ \ where\ n_{2} &lt; n\]
+
+<ul>
+  <li>Then, SVCCA uses the Canonical Correlation Analysis (CCA) to
+linearly transform ${l’}_1$ and ${l’}_2$ to be as aligned as
+possible. CCA is a well established statistical method for
+understanding the similarity of two different sets of random
+variables. It does that by linearly transform (${l’}_1$ and
+${l’}_2$) vectors to another vectors (${\widetilde{l}}_1$ and
+${\widetilde{l}}_2$) where the correlation
+<span>$corr = \left\{ \rho_1,\ …\rho_{\min\left( n_1, n_2 \right)} \right\}$</span>
+is maximized:</li>
+</ul>
+
+\[{\widetilde{l}}_{1} = W_{1}{l'}_{1} = \left\{ {\widetilde{z}}_{1}^{l_{1}},\ ...{\widetilde{z}\ }_{n_{1}}^{l_{1}} \right\}\]
+
+\[{\widetilde{l}}_{2} = W_{2}{l'}_{2} = \left\{ {\widetilde{z}}_{1}^{l_{2}},\ ...{\widetilde{z}\ }_{n_{2}}^{l_{2}} \right\}\]
+
+<ul>
+  <li>With these steps, SVCCA outputs pairs of aligned directions,
+(${\widetilde{z}}_i^{l_1}$ , ${\widetilde{z}}_i^{l_2}$) and
+how well they correlate, $\rho_i$.</li>
+</ul>
+
+<p>Now that we have reviewed what SVCCA is all about; let’s get back to
+the paper and see how they used SVCCA. In the paper, they applied
+SVCCA on the sentence-level of the hidden representation of
+<a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s M4</a> model
+averaging over the sequence time-steps.</p>
+
+<p>More concretely, given a batch of size $B$ sentences of max length
+$T$ in a certain language, the hidden representation of any layer of
+this MNMT model will be a tensor of $(B \times T \times C)$
+dimension where $C$ is the model’s dimension. Applying an average
+pooling operation on the time-steps (sentence length) will result in
+a matrix of $(B \times C)$ dimension. This is equivalent to assuming
+that every token in a sentence from language A is equally likely to
+be aligned to each token in an equivalent sentence in language B.</p>
+
+<h2 id="mnmt-learns-language-similarity">MNMT Learns Language Similarity</h2>
+
+<p>Using the top-layer of the encoder of <a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s
+M4</a> model, they have
+clustered all languages together based on their SVCCA similarities.
+Then, they used the “Laplacian Eigenmaps” algorithm implemented in
+scikit-learn as
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.manifold.SpectralEmbedding.html">sklearn.SpectralEmbedding</a>
+method to visualize these similarities across all languages found in the
+dataset that was used to train <a href="https://anwarvic.github.io/multilingual-nmt/M4">Google’s
+M4</a>. This dataset is an
+English-centric dataset containing sentences in 103 languages. The
+following figure is the result:</p>
+
+<div align="center">
+    <img src="media/Analyzing_M4/image1.png" width="750" />
+</div>
+
+<p>From analyzing these similarities, they have observed remarkable
+findings:</p>
+
+<ul>
+  <li>The resulting clusters are grouped not only by the language-family
+(e.g. Slavic), but also by branches within the language-family (e.g.
+South Slavic), branches within those branches (e.g. Western
+Subgroup), and dialects within those (e.g. Serbo-Croatian). The
+following figure is a visualization of the Slavic languages:</li>
+</ul>
+
+<div align="center">
+    <img src="media/Analyzing_M4/image2.png" width="750" />
+</div>
+
+<ul>
+  <li>Clustering captures the linguistic similarity
+between languages (sharing similar grammatical properties) and the
+lexical similarity (having the same alphabet/scripts and thus
+sharing many subwords). However, the the lexical similarity gets
+weaker as we move up on the encoder level. The following figure
+shows the representations of the Turkic and Slavic languages; within
+each family there are languages that are written in Cyrillic and
+Roman alphabets. As you can see languages that use Cyrillic-scripts
+(blue) are clustered together according to the first encoder layer’s
+representation. However, they get closer to the Roman-scripts
+languages (orange) at the last encoder layer’s representation.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Analyzing_M4/image3.png" width="450" />
+</div>
+
+<ul>
+  <li>
+    <p>Similarity evolves across encoder/decoder Layers. For each layer,
+they first computed the pair-wise similarity between all pairs of
+languages. Then, they aggregated these score into a distribution and
+represented in the following figures.</p>
+
+    <ul>
+      <li>
+        <p>As seen in the X-to-English (left) figure:</p>
+
+        <ul>
+          <li>
+            <p>On the encoder side: the similarity between the source
+languages (X) increase as we move up the encoder layer,
+suggesting that the encoder attempts to learn a common
+representation for all source languages. However,
+representations at the last layer of the encoder are far
+from being perfectly aligned.</p>
+          </li>
+          <li>
+            <p>On the decoder side: as the decoder incorporates more
+information from the source language (X), representations
+of the target (En) diverge. This is in line with some
+findings that show that the translated text is predictive
+of the source language.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>For English-to-Any (right) figure: We observe a similar trend
+where representations of the source language (En) diverge as
+we move up the encoder. Same as it happens with the decoder of
+the left figure.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/Analyzing_M4/image4.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/Analyzing_M4';
+      this.page.identifier = '/multilingual-nmt/Analyzing_M4';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

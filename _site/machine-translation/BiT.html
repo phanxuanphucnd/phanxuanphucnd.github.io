@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>BiT: Bidirectional Training</title>
+  <meta name="title" content="BiT: Bidirectional Training">
+  <meta name="description" content="BiT stands for “Bidirectional Training” which is a simple and effective
+pre-training strategy for neural machine translation. BiT was proposed
+by The University of Sydney in collaboration with Peking University and
+JD Explore Academy in 2021 and published in this paper: Improving
+Neural Machine Translation by Bidirectional
+Training.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="BiT: Bidirectional Training">
+  <meta itemprop="description" content="BiT stands for “Bidirectional Training” which is a simple and effective
+pre-training strategy for neural machine translation. BiT was proposed
+by The University of Sydney in collaboration with Peking University and
+JD Explore Academy in 2021 and published in this paper: Improving
+Neural Machine Translation by Bidirectional
+Training.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/BiT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="BiT: Bidirectional Training">
+  <meta property="og:description" content="BiT stands for “Bidirectional Training” which is a simple and effective
+pre-training strategy for neural machine translation. BiT was proposed
+by The University of Sydney in collaboration with Peking University and
+JD Explore Academy in 2021 and published in this paper: Improving
+Neural Machine Translation by Bidirectional
+Training.
+
+">
+  <meta property="og:image" content="/machine-translation/media/BiT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BiT: Bidirectional Training">
+  <meta name="twitter:description" content="BiT stands for “Bidirectional Training” which is a simple and effective
+pre-training strategy for neural machine translation. BiT was proposed
+by The University of Sydney in collaboration with Peking University and
+JD Explore Academy in 2021 and published in this paper: Improving
+Neural Machine Translation by Bidirectional
+Training.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/BiT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/BiT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          2 mins read
+        </span>
+      </p>
+      <time datetime="2021-09-16 00:00" class="post-meta__body date">Published on arXiv on: 16 Sep 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#The University of Sydney">The University of Sydney</a> & <a href="/labs/#Peking University">Peking University</a> & <a href="/labs/#JD Explore Academy">JD Explore Academy</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=BiT: Bidirectional Training> BiT: Bidirectional Training</h1>
+    <p>BiT stands for “Bidirectional Training” which is a simple and effective
+pre-training strategy for neural machine translation. BiT was proposed
+by The University of Sydney in collaboration with Peking University and
+JD Explore Academy in 2021 and published in this paper: <a href="https://arxiv.org/pdf/2109.07780.pdf">Improving
+Neural Machine Translation by Bidirectional
+Training</a>.</p>
+
+<p>The motivation behind this strategy is that when human learn foreign
+languages, knowing both directions $x_{i} \rightarrow y_{i}$ and
+$y_{i} \rightarrow x_{i}$ may help human easily master the bilingual
+knowledge. Simply put, they proposed using a system trained on
+bi-directional data as an initialization for a unidirectional system.</p>
+
+<p>Specifically, they proposed pre-training NMT models using bilingual data
+created by reconstructing the training samples from
+($\overrightarrow{B}:\ \text{source} \rightarrow \text{target}$) to
+($\overset{\overleftrightarrow{}}{B}:source + target \rightarrow target + source$)”,
+where the training data was doubled as shown in the following formula:</p>
+
+\[\overset{\overleftrightarrow{}}{B} = \left\{ \left( x_{i},\ y_{i} \right) \cup \left( y_{i},\ x_{i} \right) \right\}_{i = 1}^{N}\]
+
+<p>Where the pre-training objective is:</p>
+
+\[\overset{\overleftrightarrow{}}{\mathcal{L}}\left( \theta \right) = \overrightarrow{\mathcal{L}}\left( \theta \right) + \overleftarrow{\mathcal{L}}\left( \theta \right)\]
+
+\[\overset{\overleftrightarrow{}}{\mathcal{L}}\left( \theta \right) = \underset{\theta}{\arg\max}\left( \log\left( p\left( y \middle| x;\theta \right) \right) \right) + \underset{\theta}{\arg\max}\left( \log\left( p\left( x \middle| y;\theta \right) \right) \right)\]
+
+<p>Pre-training lasts for 1/3 of the total training steps and fine-tuning
+is performs on the required direction $\overrightarrow{B}$ with the rest
+of 2/3 training steps.</p>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>In this paper, they tried five translation datasets whose data sizes
+range from 160K to 38M sentence-pairs as shown in the following table.
+All language pairs were trained on Transformer-BIG except IWSLT14 En↔De
+and WMT16 En↔Ro; they were trained on Transformer-BASE because of their
+extremely small data size. Also, the performance was measured by
+averaging the model’s last 10 checkpoints to avoid stochasticity.</p>
+
+<div align="center">
+    <img src="media/BiT/image1.png" width="750" />
+</div>
+
+<p>The previous table show that BiT achieves significant improvements over
+strong baseline Transformer in 7 out of 10 directions, and the rest of 3
+directions also show promising performance. This demonstrates the
+effectiveness and universality of BiT.</p>
+
+<p>To dispel the doubt that BiT works also on distant language pairs, they
+trained two models on Zh↔En and Ja→En language pairs. The following
+table shows that BiT significantly and incrementally improves the
+translation quality in all cases.</p>
+
+<div align="center">
+    <img src="media/BiT/image2.png" width="350" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/BiT';
+      this.page.identifier = '/machine-translation/BiT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

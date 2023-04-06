@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>DistilBERT</title>
+  <meta name="title" content="DistilBERT">
+  <meta name="description" content="DistilBERT is a smaller, faster, cheaper and lighter version of BERT
+created by Hugging Face in March 2020 and published in this paper:
+“DistilBERT, a distilled version of BERT: smaller, faster, cheaper and
+lighter”. In this paper, they
+used knowledge distillation to reduce the size of a BERT by 40%, while
+retaining 97% of its language understanding capabilities and being 60%
+faster. This was possible by using a triple loss function that combines
+language modeling, distillation and cosine-distance losses.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="DistilBERT">
+  <meta itemprop="description" content="DistilBERT is a smaller, faster, cheaper and lighter version of BERT
+created by Hugging Face in March 2020 and published in this paper:
+“DistilBERT, a distilled version of BERT: smaller, faster, cheaper and
+lighter”. In this paper, they
+used knowledge distillation to reduce the size of a BERT by 40%, while
+retaining 97% of its language understanding capabilities and being 60%
+faster. This was possible by using a triple loss function that combines
+language modeling, distillation and cosine-distance losses.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/DistilBERT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="DistilBERT">
+  <meta property="og:description" content="DistilBERT is a smaller, faster, cheaper and lighter version of BERT
+created by Hugging Face in March 2020 and published in this paper:
+“DistilBERT, a distilled version of BERT: smaller, faster, cheaper and
+lighter”. In this paper, they
+used knowledge distillation to reduce the size of a BERT by 40%, while
+retaining 97% of its language understanding capabilities and being 60%
+faster. This was possible by using a triple loss function that combines
+language modeling, distillation and cosine-distance losses.
+
+">
+  <meta property="og:image" content="/language-modeling/media/DistilBERT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DistilBERT">
+  <meta name="twitter:description" content="DistilBERT is a smaller, faster, cheaper and lighter version of BERT
+created by Hugging Face in March 2020 and published in this paper:
+“DistilBERT, a distilled version of BERT: smaller, faster, cheaper and
+lighter”. In this paper, they
+used knowledge distillation to reduce the size of a BERT by 40%, while
+retaining 97% of its language understanding capabilities and being 60%
+faster. This was possible by using a triple loss function that combines
+language modeling, distillation and cosine-distance losses.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/DistilBERT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/DistilBERT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2020-03-01 00:00" class="post-meta__body date">Published on arXiv on: 1 Mar 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Hugging Face">Hugging Face</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=DistilBERT> DistilBERT</h1>
+    <p>DistilBERT is a smaller, faster, cheaper and lighter version of BERT
+created by Hugging Face in March 2020 and published in this paper:
+“<a href="https://arxiv.org/pdf/1910.01108.pdf">DistilBERT, a distilled version of BERT: smaller, faster, cheaper and
+lighter</a>”. In this paper, they
+used knowledge distillation to reduce the size of a BERT by 40%, while
+retaining 97% of its language understanding capabilities and being 60%
+faster. This was possible by using a triple loss function that combines
+language modeling, distillation and cosine-distance losses.</p>
+
+<p>The following figure shows a simple comparison between DistilBERT and
+other models with respect to the number of parameters; which shows that
+DistilBERT is small enough to run on the edge, e.g. on mobile devices.</p>
+
+<div align="center">
+    <img src="media/DistilBERT/image1.png" width="750" />
+</div>
+
+<h2 id="knowledge-distillation">Knowledge Distillation</h2>
+
+<p>Knowledge distillation is a compression technique in which a compact
+model (the student) is trained to reproduce the behaviour of a larger
+model (the teacher). The teacher is trained on the hard labels (labels
+that belongs to one class) while the student is trained on soft labels
+(the class probabilities) which resulted from the teacher. In other
+words, the teacher is trained on the true labels from the training data
+and results probabilities that will be used to teach the student.</p>
+
+<div align="center">
+    <img src="media/DistilBERT/image2.png" width="750" />
+</div>
+
+<h2 id="triple-loss">Triple Loss</h2>
+
+<p>In this paper, the student (DistilBERT) is trained with a triple loss
+which is a linear combination of three different losses which are:</p>
+
+<ul>
+  <li><span>$\mathcal{L}_{\text{ce}}$</span>:<br />
+a distillation loss over the soft target probabilities of the teacher
+(BERT) where $t_{i}$ is the probability estimated by the teacher and
+$s_{i}$ is the probability estimated by the student.</li>
+</ul>
+
+\[\mathcal{L}_{\text{ce}} = \sum_{i}^{}{t_{i}\text{.log}\left( s_{i} \right)}\]
+
+<p>   Calculating the probability ($t_{i}$ and $s_{i}$) is done using the
+softmax-temperature function where T is the temperature that controls
+the smoothness of the output distribution knowing that the same
+temperature will be used for the student and the teacher:</p>
+
+\[p_{i} = \frac{\exp\left( \frac{z_{i}}{T} \right)}{\sum_{j}^{}{\exp\left( \frac{z_{j}}{T} \right)}}\]
+
+<ul>
+  <li><span>$\mathcal{L}_{\text{MLM}}$</span>:<br />
+a masked language model loss; the same as BERT where ${\widehat{x}}<em>{i}$ is
+the predicted word and $x</em>{i}$ is the true word.</li>
+</ul>
+
+\[\mathcal{L}_{\text{MLM}}\left( x_{i} \right) = - \log\left( {\widehat{x}}_{i} \middle| x_{i} \right)\]
+
+<ul>
+  <li><span>$\mathcal{L}_{\cos}$</span>:<br />
+a cosine embedding loss which will tend to align the directions of the
+student and teacher hidden states vectors.</li>
+</ul>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>The student (DistilBERT) has the same general architecture as BERT with
+these changes:</p>
+
+<ul>
+  <li>
+    <p>The token-type embeddings and the pooler are removed.</p>
+  </li>
+  <li>
+    <p>The number of layers is reduced by a factor of 2.</p>
+  </li>
+  <li>
+    <p>Most of the operations used in the Transformer architecture (linear
+layer and layer normalisation) are highly optimized in modern
+linear algebra frameworks.</p>
+  </li>
+  <li>
+    <p>Taking advantage of the common dimensionality between teacher and
+student networks, they initialized the student from the teacher by
+taking one layer out of two.</p>
+  </li>
+  <li>
+    <p>Following best practices, they used a very large batches (up to 4K
+examples per batch) using dynamic masking and without the next
+sentence prediction (NSP) objective.</p>
+  </li>
+</ul>
+
+<p>And to show how efficient that was, let’s look on a simple
+comparison between DistilBERT and BERT on GLUE:</p>
+
+<div align="center">
+    <img src="media/DistilBERT/image3.png" width="750" />
+</div>
+
+<p>As we can see, DistilBERT retains 97% of BERT’s performance while being
+40% smaller and 60% faster as shown in the following table:</p>
+
+<div align="center">
+    <img src="media/DistilBERT/image4.png" width="350" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/DistilBERT';
+      this.page.identifier = '/language-modeling/DistilBERT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

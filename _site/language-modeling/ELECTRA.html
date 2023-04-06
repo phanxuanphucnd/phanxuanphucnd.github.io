@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>ELECTRA</title>
+  <meta name="title" content="ELECTRA">
+  <meta name="description" content="ELECTRA stands for “Efficiently Learning an Encoder that Classifies
+Token Replacements Accurately” which is a discriminator language
+model unlike the widely-used generative language models such as
+BERT, GPT, ...etc. ELECTRA was proposed by Stanford University in
+collaboration with Google Brain in 2020 and published in their paper:
+ELECTRA: Pre-training text Encoders.
+The official code of this paper can be found on Google Research’s official
+GitHub repository:
+google-research/electra.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="ELECTRA">
+  <meta itemprop="description" content="ELECTRA stands for “Efficiently Learning an Encoder that Classifies
+Token Replacements Accurately” which is a discriminator language
+model unlike the widely-used generative language models such as
+BERT, GPT, ...etc. ELECTRA was proposed by Stanford University in
+collaboration with Google Brain in 2020 and published in their paper:
+ELECTRA: Pre-training text Encoders.
+The official code of this paper can be found on Google Research’s official
+GitHub repository:
+google-research/electra.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/ELECTRA/image2.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="ELECTRA">
+  <meta property="og:description" content="ELECTRA stands for “Efficiently Learning an Encoder that Classifies
+Token Replacements Accurately” which is a discriminator language
+model unlike the widely-used generative language models such as
+BERT, GPT, ...etc. ELECTRA was proposed by Stanford University in
+collaboration with Google Brain in 2020 and published in their paper:
+ELECTRA: Pre-training text Encoders.
+The official code of this paper can be found on Google Research’s official
+GitHub repository:
+google-research/electra.
+
+">
+  <meta property="og:image" content="/language-modeling/media/ELECTRA/image2.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ELECTRA">
+  <meta name="twitter:description" content="ELECTRA stands for “Efficiently Learning an Encoder that Classifies
+Token Replacements Accurately” which is a discriminator language
+model unlike the widely-used generative language models such as
+BERT, GPT, ...etc. ELECTRA was proposed by Stanford University in
+collaboration with Google Brain in 2020 and published in their paper:
+ELECTRA: Pre-training text Encoders.
+The official code of this paper can be found on Google Research’s official
+GitHub repository:
+google-research/electra.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/ELECTRA/image2.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/ELECTRA">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2020-03-23 00:00" class="post-meta__body date">Published on arXiv on: 23 Mar 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Stanford University">Stanford University</a> & <a href="/labs/#Google Brain">Google Brain</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=ELECTRA> ELECTRA</h1>
+    <p>ELECTRA stands for “Efficiently Learning an Encoder that Classifies
+Token Replacements Accurately” which is a <u><strong>discriminator language
+model</strong></u> unlike the widely-used generative language models such as
+BERT, GPT, ...etc. ELECTRA was proposed by Stanford University in
+collaboration with Google Brain in 2020 and published in their paper:
+<a href="https://arxiv.org/pdf/2003.10555.pdf">ELECTRA: Pre-training text Encoders</a>.
+The official code of this paper can be found on Google Research’s official
+GitHub repository:
+<a href="https://github.com/google-research/electra">google-research/electra</a>.</p>
+
+<p>Generative language models such as BERT was pre-trained using MLM
+objective where some tokens of the input sentence get masked, then the
+model is trained to reconstruct them back. These generative models
+produce good results but they require large amounts of data and
+computation power to be effective.</p>
+
+<p>This paper suggests an alternative pre-training task called “Replaced
+Token Detection” (RTD for short) that won’t require that much data or
+computation power. According to the following table, the “Replaced Token
+Detection” method outperforms MLM pre-training given the same model size, data,
+and compute budget:</p>
+
+<div align="center">
+    <img src="media/ELECTRA/image1.png" width="750" />
+</div>
+
+<h2 id="replaced-token-detection-rtd">Replaced Token Detection (RTD)</h2>
+
+<p>Replaced Token Detection is a pre-training task that was introduced in
+this paper as a replacement for MLM. Instead of masking, this method
+corrupts the input by replacing some tokens with plausible alternatives
+sampled from a small generator network. And the discriminator (ELECTRA)
+learns to distinguish between the original tokens and the synthetically
+generated ones as shown below:</p>
+
+<div align="center">
+    <img src="media/ELECTRA/image2.png" width="750" />
+</div>
+
+<p>As seen in the above figure, this task trains two neural networks; each
+consists of a transformer-encoder architecture that maps a sequence of
+input tokens $X = \left\lbrack x_{1},\ …\ x_{n} \right\rbrack$ into a
+sequence of vectors
+$h\left( X \right) = \left\lbrack h_{1},\ …\ h_{n} \right\rbrack$.</p>
+
+<ul>
+  <li><u><strong>Generator</strong></u> $G$:<br />
+Given an input $X = \left\lbrack x_{1},\ …\ x_{n} \right\rbrack$,
+MLM first selects a random set of positions (integers from 1 to n)
+with a probability of $15\%$ to mask out tokens $X^{\text{masked}}$.
+Then, the generator learns to predict the original tokens of the
+masked-out ones. For a given position $t$ where
+$x_{t} = \left\lbrack \text{MASK} \right\rbrack$, the generator
+outputs a probability for generating a particular token $x_{t}$ with
+a softmax layer where $e\left( x \right)$ is the embedding of token
+$x$:</li>
+</ul>
+
+\[p_{G}\left( x_{t} \middle| X \right) = \text{softmax}\left( {e\left( x_{t} \right)}^{T}.h_{G}\left( X \right)_{t} \right)\]
+
+<ul>
+  <li><u><strong>Discriminator (ELECTRA)</strong></u> $D$:<br />
+For a given position $t$, the discriminator predicts whether the
+token $x_{t}$ is “real” or generated $X^{\text{corrupt}}$ using a
+sigmoid layer:</li>
+</ul>
+
+\[D\left( X,t \right) = \text{sigmoid}\left( w^{T}.h_{D}\left( X \right)_{t} \right)\]
+
+<p>And when training the model on the Replaced Token Detection task, the
+model tries to minimize the following loss function over a large corpus
+$\mathcal{X}$ of raw text:</p>
+
+\[\mathcal{L} = \min_{\theta_{G},\ \theta_{D}}\left( \sum_{X \in \mathcal{X}}^{}{\mathcal{L}_{\text{MLM}}\left( X,\ \theta_{G} \right) + \lambda\mathcal{L}_{\text{Disc}}\left( X,\ \theta_{D} \right)} \right)\]
+
+\[\mathcal{L}_{\text{MLM}}\left( X,\ \theta_{G} \right) = \mathbb{E}\left( \sum_{i \in m}^{}{- log\ p_{G}\left( x_{i} \middle| X^{\text{masked}} \right)} \right)\]
+
+\[\mathcal{L}_{\text{Disc}}\left( X,\ \theta_{D} \right) = \mathbb{E}\left( \sum_{t = 1}^{n}{- \mathbb{l}\left( x_{t}^{\text{corrupt}} = x_{t} \right)\text{.log}\left( D\left( X^{\text{corrupt}},\ t \right) \right) - \mathbb{l}\left( x_{t}^{\text{corrupt}} \neq x_{t} \right)\text{.log}\left( 1 - D\left( X^{\text{corrupt}},\ t \right) \right)} \right)\]
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+This task looks like a GAN (General Adversarial Network) but it is not
+adversarial since the generator doesn’t try to fool the discriminator.
+Its job is to generate replace the masked tokens with the exact tokens
+that were masked.</p>
+</blockquote>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>For most of the experiments, ELECTRA was pre-trained on the same data as
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a>, which
+consists of 3.3 Billion tokens from Wikipedia and BooksCorpus. However,
+Large models were pre-trained on the data used for
+<a href="https://anwarvic.github.io/language-modeling/XLNet">XLNet</a>, which
+extends the BERT dataset to 33B tokens by including data from ClueWeb,
+CommonCrawl, and Gigaword. For fine-tuning on GLUE, a simple linear
+classifiers is added on top of ELECTRA.</p>
+
+<p>The following table compares various small models on the GLUE dev set.
+BERT-Small/Base use the same hyper-parameters as ELECTRA-Small/Base. The
+table shows that ELECTRA performs better than BERT scoring 5 GLUE points
+higher.</p>
+
+<div align="center">
+    <img src="media/ELECTRA/image3.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+In the original
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> paper, there
+were no BERT~Small~. They created BERT~Small~ using a smaller
+hyper-parameters of BERT~Base~; they reduced the sequence length (from
+512 to 128), with smaller batch size (from 256 to 128), smaller hidden
+dimension size (from 768 to 256), and smaller token embeddings (from 768
+to 128). To provide a fair comparison, they created BERT-Small model
+using the same hyper-parameters and trained it 1.5M steps, so it uses
+the same training FLOPs as ELECTRA-Small, which was trained for 1M
+steps.</p>
+</blockquote>
+
+<p>The following table compares ELECTRA-Large with BERT~Large~ on the GLUE
+dev set. ELECTRA-Large was trained for longer steps; ELECTRA-400k was
+trained for 400k steps which is 25% of RoBERTa training time and
+ELECTRA-1.74M was trained for 1.74M steps which is similar to RoBERTa
+training time. The table shows that ELCETRA-400k performs comparably to
+RoBERTa and XLNet and ELECTRA-1.75M outperforms the other models on
+various tasks.</p>
+
+<div align="center">
+    <img src="media/ELECTRA/image4.png" width="750" />
+</div>
+
+<p>Same applies for SQuAD benchmark, ELECTRA-1.75M scores better than all
+masked-language modelings given the same compute resources:</p>
+
+<div align="center">
+    <img src="media/ELECTRA/image5.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The following is the complete list of all hyper-parameters used for
+ELECTRA on pre-training (left) and fine-tuning (right):</p>
+</blockquote>
+
+<div align="center">
+    <img src="media/ELECTRA/image6.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/ELECTRA';
+      this.page.identifier = '/language-modeling/ELECTRA';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

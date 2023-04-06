@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Transformer-XL</title>
+  <meta name="title" content="Transformer-XL">
+  <meta name="description" content="Transformer-XL, stands for “Transformer Extra Long”, is a language model
+published in this paper: “Transformer-XL: Attentive Language Models
+Beyond a Fixed-Length Context”
+by Google Brain in 2019.The official code for this paper can be found in the
+following GitHub repository: transformer-xl
+.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Transformer-XL">
+  <meta itemprop="description" content="Transformer-XL, stands for “Transformer Extra Long”, is a language model
+published in this paper: “Transformer-XL: Attentive Language Models
+Beyond a Fixed-Length Context”
+by Google Brain in 2019.The official code for this paper can be found in the
+following GitHub repository: transformer-xl
+.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/Transformer-XL/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Transformer-XL">
+  <meta property="og:description" content="Transformer-XL, stands for “Transformer Extra Long”, is a language model
+published in this paper: “Transformer-XL: Attentive Language Models
+Beyond a Fixed-Length Context”
+by Google Brain in 2019.The official code for this paper can be found in the
+following GitHub repository: transformer-xl
+.
+
+">
+  <meta property="og:image" content="/language-modeling/media/Transformer-XL/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Transformer-XL">
+  <meta name="twitter:description" content="Transformer-XL, stands for “Transformer Extra Long”, is a language model
+published in this paper: “Transformer-XL: Attentive Language Models
+Beyond a Fixed-Length Context”
+by Google Brain in 2019.The official code for this paper can be found in the
+following GitHub repository: transformer-xl
+.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/Transformer-XL/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/Transformer-XL">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2019-01-09 00:00" class="post-meta__body date">Published on arXiv on: 9 Jan 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Carnegie Mellon University">Carnegie Mellon University</a> & <a href="/labs/#Google Brain">Google Brain</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Transformer-XL> Transformer-XL</h1>
+    <p>Transformer-XL, stands for “Transformer Extra Long”, is a language model
+published in this paper: “<a href="https://arxiv.org/pdf/1901.02860.pdf">Transformer-XL: Attentive Language Models
+Beyond a Fixed-Length Context</a>”
+by Google Brain in 2019.The official code for this paper can be found in the
+following GitHub repository: <a href="https://github.com/kimiyoung/transformer-xl">transformer-xl
+</a>.</p>
+
+<p>In this paper, the authors are trying to increase the context-dependency scope.
+Hence, the name of the paper: Transformer-XL Attentive Language Models Beyond a
+Fixed-Length Context. A simple comparison between Transformer-XL and GPT and
+BERT can be summarized in the following figure:</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image1.png" width="750" />
+</div>
+
+<p>In the transformer architecture, we split the input paragraph into
+sentences, each sentence can’t exceed a certain length (it’s 512 in
+BERT). After splitting the paragraph into sentences or “segments”, then
+we train our model as shown in the following image where we assume the
+allowed length is just <u>four</u>:</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image2.png" width="450" />
+</div>
+
+<p>As you can see, segment 2 is after segment 1 in the same paragraph. But
+according to the transformer architecture, they are totally independent
+which causes another problem called “context fragmentation” where the
+model lacks the necessary contextual information to predict the first
+few symbols due to the way the context was selected. Transformer-XL
+solves this problem by providing a segment-level recurrence mechanism.
+And since transformer-XL uses larger context-dependency length, the
+authors decided to use a different positional encoding than the vanilla
+transformer.</p>
+
+<p>So, the key innovations behind this paper can be summarized into two
+things:</p>
+
+<ul>
+  <li>
+    <p>Segment-level recurrence mechanism.</p>
+  </li>
+  <li>
+    <p>Relative positional encoding scheme.</p>
+  </li>
+</ul>
+
+<h2 id="segment-level-recurrence">Segment-level Recurrence</h2>
+
+<p>The goal of the recurrence mechanism is to enable long-term dependencies
+by using information from previous segments. Similarly to the vanilla
+version, Transformer-XL processes the first segment of tokens but keeps
+the outputs of the hidden layers. When the following segment is
+processed, each hidden layer receives two inputs:</p>
+
+<ul>
+  <li>
+    <p>The output of the previous hidden layer of that segment, as in the
+vanilla version (the grey arrows in the chart below).</p>
+  </li>
+  <li>
+    <p>The output of the previous hidden layer from the previous segment
+(the green arrows) that allows the model to create long-term
+dependencies.</p>
+  </li>
+</ul>
+
+<p>Technically, the two inputs are concatenated and then used to calculate
+the Key and the Value matrices of the (current Head of the current layer
+of the) current segment. This addition provides the network with more
+information in regards to the weights (importance) of each token, but it
+doesn’t change the Value matrix.</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image3.png" width="750" />
+</div>
+
+<p>In each segment, each hidden layer receives the output of the previous
+hidden layer and the output of the previous segment. It increases the
+largest possible dependency by using contextual information from several
+previous segments.</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image4.png" width="450" />
+</div>
+
+<p>This mechanism can be applied at the decoding step with no problem as
+shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image5.png" width="750" />
+</div>
+
+<h2 id="relative-positional-encoding">Relative Positional Encoding</h2>
+
+<p>Naively applying recurrence introduces another technical challenge. That
+is, the positional information is incoherent, and tokens from different
+segments have the same positional encoding, which is referred to as
+<u><strong>temporal confusion</strong></u>. To address this challenge,
+Transformer-XL employs novel relative positional encodings.</p>
+
+<p>In the vanilla transformer, positional encodings were depending on the
+index of the tokens. This positional encoding is depending on the
+relative distance between tokens, hence the name: <u>relative</u>
+positional encoding. In the paper this was done by expanding the simple
+query-key multiplication of the Attention Head’s Score.</p>
+
+<p>First, let’s recap what was the query-key multiplication in the
+attention mechanism of the vanilla transformer:</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image6.png" width="750" />
+</div>
+
+<p>Following the idea of only relying on relative positional information,
+they proposed to reparameterize the four terms as follows:</p>
+
+<div align="center">
+    <img src="media/Transformer-XL/image7.png" width="750" />
+</div>
+
+<p>With the following changes:</p>
+
+<ul>
+  <li>
+    <p>The first change they made is to replace all appearances of the
+absolute positional embedding $U_{j}$ for computing key vectors in
+term $(b)$ and $(d)$ with its relative counterpart $R_{i - j}$ .
+Note that $R$ is a sinusoid encoding matrix without learnable
+parameters.</p>
+  </li>
+  <li>
+    <p>Secondly, we introduce a trainable parameter $u \in \mathbb{R}^{d}$
+to replace the query $U_{i}^{T}W_{q}^{T}$ in term $(c)$. In this
+case, since the query vector is the same for all query positions,
+it suggests that the attentive bias towards different words should
+remain the same regardless of the query position.</p>
+  </li>
+  <li>
+    <p>With a similar reasoning, a trainable parameter
+$v \in \mathbb{R}^{d}$ is added to substitute $U_{i}^{T}W_{q}^{T}$
+in term $(d)$.</p>
+  </li>
+  <li>
+    <p>Finally, we deliberately separate the two weight matrices $W_{k,E}$
+and $W_{k,R}$ for producing the content-based key vectors and
+location-based key vectors respectively.</p>
+  </li>
+</ul>
+
+<p>Under the new parameterization, each term has an intuitive meaning:</p>
+
+<ul>
+  <li>
+    <p><strong>Term (a)</strong>: represents content-based addressing.</p>
+  </li>
+  <li>
+    <p><strong>Term (b)</strong>: captures a content-dependent positional bias.</p>
+  </li>
+  <li>
+    <p><strong>Term (c)</strong>: governs a global content bias</p>
+  </li>
+  <li>
+    <p><strong>Term (d)</strong>: encodes a global positional bias.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/Transformer-XL';
+      this.page.identifier = '/language-modeling/Transformer-XL';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>BERT</title>
+  <meta name="title" content="BERT">
+  <meta name="description" content="BERT stands for “Bidirectional Encoder Representations from
+Transformers” which is a model published by researchers at Google in
+this paper: “BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding” in 2018.
+It has caused a stir in the NLP community by presenting state-of-the-art
+results in a wide variety of NLP tasks, including Question Answering
+(SQuAD v1.1), Natural Language Inference (MNLI), and others.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="BERT">
+  <meta itemprop="description" content="BERT stands for “Bidirectional Encoder Representations from
+Transformers” which is a model published by researchers at Google in
+this paper: “BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding” in 2018.
+It has caused a stir in the NLP community by presenting state-of-the-art
+results in a wide variety of NLP tasks, including Question Answering
+(SQuAD v1.1), Natural Language Inference (MNLI), and others.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/BERT/image3.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="BERT">
+  <meta property="og:description" content="BERT stands for “Bidirectional Encoder Representations from
+Transformers” which is a model published by researchers at Google in
+this paper: “BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding” in 2018.
+It has caused a stir in the NLP community by presenting state-of-the-art
+results in a wide variety of NLP tasks, including Question Answering
+(SQuAD v1.1), Natural Language Inference (MNLI), and others.
+
+">
+  <meta property="og:image" content="/language-modeling/media/BERT/image3.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BERT">
+  <meta name="twitter:description" content="BERT stands for “Bidirectional Encoder Representations from
+Transformers” which is a model published by researchers at Google in
+this paper: “BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding” in 2018.
+It has caused a stir in the NLP community by presenting state-of-the-art
+results in a wide variety of NLP tasks, including Question Answering
+(SQuAD v1.1), Natural Language Inference (MNLI), and others.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/BERT/image3.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/BERT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2018-10-11 00:00" class="post-meta__body date">Published on arXiv on: 11 Oct 2018</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google AI">Google AI</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=BERT> BERT</h1>
+    <p>BERT stands for “Bidirectional Encoder Representations from
+Transformers” which is a model published by researchers at Google in
+this paper: “<a href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding</a>” in 2018.
+It has caused a stir in the NLP community by presenting state-of-the-art
+results in a wide variety of NLP tasks, including Question Answering
+(SQuAD v1.1), Natural Language Inference (MNLI), and others.</p>
+
+<p>BERT’s key technical innovation is applying the bidirectional training
+to the openAI Transformer. See, the openAI transformer gave us a
+fine-tunable pre-trained language model based on the Transformer. But
+something went missing in this transition from LSTMs to Transformers.
+LSTM language model was bi-directional, but the openAI transformer only
+trains a forward language model. BERT introduced a novel technique to
+train the openAI transformer in bi-directional manner which is to train
+BERT using two unsupervised tasks:</p>
+
+<ul>
+  <li>
+    <p><strong>Masked LM (MLM):</strong> To catch the contextual relation between words.
+Very important for tasks like languge modeling, text
+classification, ...etc.</p>
+  </li>
+  <li>
+    <p><strong>Next Sentence Prediction (NSP):</strong> To catch the contextual relation
+between sentences. Very important for tasks like Question
+Answering, Natural Language Inference... etc.</p>
+  </li>
+</ul>
+
+<h2 id="mlm">MLM</h2>
+
+<p>Since bidirectional conditioning requires each word to indirectly see
+itself and others in a multi-layered context, researchers had to find a
+way to overcome this obstacle. And they did that by introducing
+<u><strong>masks</strong></u>. Previously, this technique was called “Cloze
+procedure” where the key idea is to remove words from the input and
+predict them with the remaining input. As you’ve probably guessed, this
+is very similar to the CBOW model for distributed word embeddings.</p>
+
+<div align="center">
+    <img src="media/BERT/image1.png" width="750" />
+</div>
+
+<p>In the paper; they said that before feeding word sequences into BERT,
+15% of the words in each sequence are replaced with a [MASK] token;
+and the type of mask will be different according to the following
+distribution</p>
+
+<ul>
+  <li>
+    <p>80% of the time: the mask will be [MASK].</p>
+  </li>
+  <li>
+    <p>10% of the time: the mask will be a random word.</p>
+  </li>
+  <li>
+    <p>10% of the time: The mask will be the original word.</p>
+
+    <p>The advantage of this procedure is that the Transformer-encoder does
+not know which words it will be asked to predict or which have been
+replaced by random words, so it is forced to keep a distributional
+contextual representation of every input token. Additionally,
+because random replacement only occurs for 1.5% of all tokens (i.e.,
+10% of 15%), this does not seem to harm the model’s language
+understanding capability.</p>
+
+    <p>After that, the model attempts to predict the original value of the
+masked words, based on the context provided by the other,
+non-masked, words in the sequence. In technical terms, the
+prediction of the output words requires:</p>
+  </li>
+  <li>
+    <p>Adding a classification layer on top of the encoder output.</p>
+  </li>
+  <li>
+    <p>Multiplying the output vectors by the embedding matrix, transforming
+them into the vocabulary dimension.</p>
+  </li>
+  <li>
+    <p>Calculating the probability of each word in the vocabulary with softmax.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/BERT/image2.png" width="750" />
+</div>
+
+<p>The BERT loss function takes into consideration only the prediction of
+the masked values and ignores the prediction of the non-masked words. As
+a consequence, the model converges slower than directional models.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+There is a new token [CLS] added to the start of the input sentence
+when passed to BERT. [CLS] stands for classification and this is just
+a way to tell BERT we are using your architecture for classification.</p>
+</blockquote>
+
+<p>Now, let’s ask a very important question: what happens if we increased the
+masking percentage to more than 15%? Actually, researchers at Princeton tried
+to answer this question in their paper “<a href="https://arxiv.org/pdf/2202.08005.pdf">Should You Mask 15% in Masked Language
+Modeling?</a>” published in 2022. And they
+found out that masking up to 40% of input tokens can outperform the 15%
+baseline, and even masking 80% can preserve most of the performance,
+as measured by fine-tuning on downstream tasks. You can use this GitHub
+repository: <a href="https://github.com/princeton-nlp/dinkytrain">princeton-nlp/dinkytrain</a>
+to reproduce their results.</p>
+
+<h2 id="nsp">NSP</h2>
+
+<p>Many important downstream tasks such as Question Answering and Natural
+Language Inference are based on understanding the relationship between
+two sentences, which is not directly captured by language modeling.</p>
+
+<p>In order to make BERT better at handling relationships between multiple
+sentences, the pre-training process includes an additional task called
+“Next Sentence Prediction (NSP)” where the model receives pairs of
+sentences as input and learns to predict if the second sentence in the
+pair is the subsequent sentence in the original document.</p>
+
+<p>During training, 50% of the inputs are a pair in which the second
+sentence is the subsequent sentence in the original document, while in
+the other 50% a random sentence from the corpus is chosen as the second
+sentence. To help the model distinguish between the two sentences in
+training, the input is processed in the following way before entering
+the model:</p>
+
+<ul>
+  <li>
+    <p>A [CLS] token is inserted at the beginning of the first sentence
+and a [SEP] token is inserted at the end of each sentence.</p>
+  </li>
+  <li>
+    <p>A sentence embedding indicating Sentence A or Sentence B is added to
+each token. Sentence embeddings are similar in concept to token
+embeddings with a vocabulary of 2.</p>
+  </li>
+  <li>
+    <p>A positional embedding is added to each token to indicate its
+position in the sequence. The concept and implementation of
+positional embedding are presented in the Transformer paper.</p>
+  </li>
+</ul>
+
+<p>And all of this information can be seen in the following figure:</p>
+
+<div align="center">
+    <img src="media/BERT/image3.png" width="750" />
+</div>
+
+<h2 id="fine-tuning-tasks">Fine-tuning Tasks</h2>
+
+<div align="center">
+    <img src="media/BERT/image4.png" width="450" />
+</div>
+
+<p>Fine-tuning in this context means <u><strong>using BERT for a specific task</strong></u>
+such as QA, text classification, language inference, ...etc. BERT can be used
+for a wide variety of language tasks, while only adding a small layer to the
+core model as explained in:</p>
+
+<ul>
+  <li><strong>Text Classification:</strong><br />
+Classification tasks such as sentiment analysis are done
+similarly to Next Sentence classification, by adding a
+classification layer on top of the Transformer output for the
+[CLS] token.</li>
+</ul>
+
+<div align="center">
+    <img src="media/BERT/image5.png" width="450" />
+</div>
+
+<ul>
+  <li><strong>Question Answering:</strong><br />
+A question-answering model can be trained by learning two extra
+vectors that mark the beginning and the end of the answer.</li>
+</ul>
+
+<div align="center">
+    <img src="media/BERT/image6.png" width="450" />
+</div>
+
+<ul>
+  <li><strong>Named Entity Recognition (NER):</strong><br />
+BERT can be trained by feeding the output vector of each token
+into a classification layer that predicts the NER label.</li>
+</ul>
+
+<h2 id="bert-linguistic-patterns">BERT Linguistic Patterns</h2>
+
+<p>According to this paper “<a href="https://arxiv.org/pdf/1905.05950.pdf">BERT Rediscovers the Classical NLP
+Pipeline</a>” published by Google in
+2019, the authors of this paper found out that different layers of BERT
+capture different linguistic semantics. For example, they found out that
+lower layers of BERT encode more local syntax while higher layers
+capture more complex semantics. They used a pre-trained BERT-base &amp;
+BERT-Large on eight different tasks.</p>
+
+<p>The following table shows the layer-wise metrics on BERT-base (left) and
+BERT-large (right) where blue bars are mixing weights that tell us
+<u><strong>which layers are most relevant when a probing classifier at this
+layer has access to the whole BERT model</strong></u>, while purple
+bars are differential scores normalized for each task which 
+<u><strong>measures how much better we do on the probing task if we observe
+one additional encoder layer</strong></u>:</p>
+
+<div align="center">
+    <img src="media/BERT/image7.png" width="450" />
+</div>
+
+<p>From the past figure, if we have access to the whole BERT model, we can
+see the following with respect to each task:</p>
+
+<ul>
+  <li>
+    <p><strong>Part-of-speech (POS):</strong> The purple bars show that the first few
+layers are the most important; and the blue bars show us that
+probing the first layers will have the same effect as the last
+layers.</p>
+  </li>
+  <li>
+    <p><strong>Constituents (Consts.):</strong> The purple bars show that the first few
+layers are the most important; and the blue bars show us that
+probing the middle layers will have the highest effect.</p>
+  </li>
+  <li>
+    <p><strong>Dependencies (Deps.):</strong> The purple bars show that the first few
+layers of BERT-base are the most important while the middle layers
+of BERT-large are the most important; and the blue bars show us that
+probing the middle layers will have the highest effect.</p>
+  </li>
+  <li>
+    <p><strong>Entities:</strong> The purple bars show that the first few layers are the
+most important; and the blue bars show us that probing the
+middle-last layers will have the highest effect.</p>
+  </li>
+  <li>
+    <p><strong>Semantic role labeling (SRL):</strong> The purple bars show that the
+first few layers are the most important; and the blue bars show us
+that probing the middle layers will have the highest effect.</p>
+  </li>
+  <li>
+    <p><strong>Coreference (Coref.):</strong> The purple bars show that the last few
+layers are the least important; and the blue bars show us that
+probing the middle-last layers will have the highest effect.</p>
+  </li>
+  <li>
+    <p><strong>Semantic proto-roles (SPR):</strong> The purple bars show all layers are
+important; and the blue bars show us that probing over all layers
+has the same effect.</p>
+  </li>
+  <li>
+    <p><strong>Relation classification (SemEval):</strong> The purple bars show all
+layers are important; and the blue bars show us that probing over
+all layers has the same effect.</p>
+  </li>
+</ul>
+
+<h2 id="base--large-bert">Base / Large BERT</h2>
+
+<p>The paper presents two model sizes for BERT:</p>
+
+<ul>
+  <li>
+    <p><strong>BERT BASE:</strong> Comparable in size to the OpenAI Transformer in order
+to compare performance.</p>
+  </li>
+  <li>
+    <p><strong>BERT LARGE:</strong> A ridiculously huge model which achieved the state
+of the art results reported in the paper.</p>
+  </li>
+</ul>
+
+<p>The following summarizes the difference between both models:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>BERT SMALL</th>
+            <th>BERT BASE</th>
+            <th>BERT LARGE</th>
+        </tr>
+    </thead>
+    <tr>
+        <td><strong>Transformer Blocks</strong></td>
+        <td>4</td>
+        <td>12</td>
+        <td>24</td>
+    </tr>
+    <tr>
+        <td><strong>Feed-Forward hidden neurons</strong></td>
+        <td>312</td>
+        <td>768</td>
+        <td>1024</td>
+    </tr>
+    <tr>
+        <td><strong>Attention Heads</strong></td>
+        <td>12</td>
+        <td>12</td>
+        <td>16</td>
+    </tr>
+    <tr>
+        <td><strong>Input Tokens</strong></td>
+        <td>512</td>
+        <td>512</td>
+        <td>512</td>
+    </tr>
+    <tr>
+        <td><strong>Parameters</strong></td>
+        <td>14.5 million</td>
+        <td>110 million</td>
+        <td>345 million</td>
+    </tr>
+    <tr>
+        <td><strong>Hardware for Training</strong></td>
+        <td>-</td>
+        <td>4 TPU + 4 days</td>
+        <td>16 TPU + 4 days</td>
+    </tr>
+    <tr>
+        <td><strong>Hardware for Inference</strong></td>
+        <td>-</td>
+        <td>1 GPU</td>
+        <td>1 TPU</td>
+    </tr>
+</table>
+</div>
+
+<h2 id="bert-vs-gpt">BERT Vs GPT</h2>
+
+<p>The most comparable existing pre-training method to BERT is OpenAI GPT,
+which trains a left-to-right Transformer LM on a large text corpus. In
+fact, many of the design decisions in BERT were intentionally made to
+make it as close to GPT as possible so that the two methods could be
+minimally compared. However, there are several other differences:</p>
+
+<ul>
+  <li>
+    <p>GPT is trained on the BooksCorpus (800M words); BERT is trained on
+the BooksCorpus (800M words) and Wikipedia (2,500M words).</p>
+  </li>
+  <li>
+    <p>GPT uses a sentence separator ([SEP]) and classifier token
+([CLS]) which are only introduced at fine-tuning time; BERT
+learns [SEP], [CLS] and sentence A/B embeddings during
+pre-training.</p>
+  </li>
+  <li>
+    <p>GPT was trained for 1M steps with a batch size of 32,000 words; BERT
+was trained for 1M steps with a batch size of 128,000 words.</p>
+  </li>
+  <li>
+    <p>GPT used the same learning rate of 5e-5 for all fine-tuning
+experiments; BERT chooses a task-specific fine-tuning learning
+rate which performs the best on the development set.</p>
+  </li>
+</ul>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/BERT';
+      this.page.identifier = '/language-modeling/BERT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

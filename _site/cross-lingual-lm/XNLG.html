@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>XNLG</title>
+  <meta name="title" content="XNLG">
+  <meta name="description" content="XNLG stands for “Cross-lingual Natural Language Generation” which is an
+encoder-decoder cross-lingual model designed for Natural Language
+Generation (NLG) tasks such as question generation and abstractive
+summarization. This model was created by Microsoft in 2019 and published
+in their paper: Cross-Lingual Natural Language Generation via
+Pre-Training. The official code
+for this paper is found in the following GitHub repository:
+xnlg.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="XNLG">
+  <meta itemprop="description" content="XNLG stands for “Cross-lingual Natural Language Generation” which is an
+encoder-decoder cross-lingual model designed for Natural Language
+Generation (NLG) tasks such as question generation and abstractive
+summarization. This model was created by Microsoft in 2019 and published
+in their paper: Cross-Lingual Natural Language Generation via
+Pre-Training. The official code
+for this paper is found in the following GitHub repository:
+xnlg.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/XNLG/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="XNLG">
+  <meta property="og:description" content="XNLG stands for “Cross-lingual Natural Language Generation” which is an
+encoder-decoder cross-lingual model designed for Natural Language
+Generation (NLG) tasks such as question generation and abstractive
+summarization. This model was created by Microsoft in 2019 and published
+in their paper: Cross-Lingual Natural Language Generation via
+Pre-Training. The official code
+for this paper is found in the following GitHub repository:
+xnlg.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/XNLG/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="XNLG">
+  <meta name="twitter:description" content="XNLG stands for “Cross-lingual Natural Language Generation” which is an
+encoder-decoder cross-lingual model designed for Natural Language
+Generation (NLG) tasks such as question generation and abstractive
+summarization. This model was created by Microsoft in 2019 and published
+in their paper: Cross-Lingual Natural Language Generation via
+Pre-Training. The official code
+for this paper is found in the following GitHub repository:
+xnlg.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/XNLG/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/XNLG">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2019-09-23 00:00" class="post-meta__body date">Published on arXiv on: 23 Sep 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Beijing Institute of Technology">Beijing Institute of Technology</a> & <a href="/labs/#Microsoft">Microsoft</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=XNLG> XNLG</h1>
+    <p>XNLG stands for “Cross-lingual Natural Language Generation” which is an
+encoder-decoder cross-lingual model designed for Natural Language
+Generation (NLG) tasks such as question generation and abstractive
+summarization. This model was created by Microsoft in 2019 and published
+in their paper: <a href="https://arxiv.org/pdf/1909.10481.pdf">Cross-Lingual Natural Language Generation via
+Pre-Training</a>. The official code
+for this paper is found in the following GitHub repository:
+<a href="https://github.com/CZWin32768/xnlg">xnlg</a>.</p>
+
+<p>As shown in the following figure, XNLG is an encoder-decoder
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+model pre-trained on on monolingual NLG training data and can be
+fine-tuned later on other languages which can boost performance for the
+low-resource settings.</p>
+
+<div align="center">
+    <img src="media/XNLG/image1.png" width="750" />
+</div>
+
+<h2 id="pre-training">Pre-training</h2>
+
+<p>Given a parallel corpus <span>$\mathcal{D}_{p}$</span> and a monolingual corpus
+<span>$\mathcal{D}_{m}$</span>, the XNLG pre-training is done in two stages as
+shown below:</p>
+
+<ul>
+  <li><strong>Stage #1:</strong> pre-trains the encoder on two tasks: Masked Language
+Modeling (MLM) and cross-lingual Masked Language Modeling (XMLM)
+where the encoder learns to minimize:</li>
+</ul>
+
+\[\mathcal{L}_{1} = \sum_{\left( x,y \right) \in \mathcal{D}_{p}}^{}\mathcal{L}_{\text{XMLM}}^{\left( x,y \right)} + \sum_{x \in \mathcal{D}_{m}}^{}\mathcal{L}_{\text{MLM}}^{\left( x \right)}\]
+
+<ul>
+  <li><strong>Stage #2:</strong> pre-trains the model
+where the decoder parameters are updated while freezing the encoder
+parameters on two tasks: (Denoising Auto-Encoding) DAE and
+cross-lingual Auto-Encoding (XAE). Here, the model learns to
+minimize:</li>
+</ul>
+
+\[\mathcal{L}_{2} = \sum_{\left( x,y \right) \in \mathcal{D}_{p}}^{}\mathcal{L}_{\text{XAE}}^{\left( x,y \right)} + \sum_{x \in \mathcal{D}_{m}}^{}\mathcal{L}_{\text{DAE}}^{\left( x \right)}\]
+
+<div align="center">
+    <img src="media/XNLG/image2.png" width="350" />
+    <img src="media/XNLG/image3.png" width="350" />
+</div>
+
+<p>These are the the two stages of pre-training in XNLG, now let’s dive
+deeper into pre-training tasks mentioned above:</p>
+
+<ul>
+  <li><u><strong>Masked Language Modeling (MLM):</strong></u><br />
+The masked language modeling (MLM) task was first proposed by the
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> paper.
+Given an input sequenc $x$, MLM randomly masks $15\%$ of the tokens
+in a monolingual sentence. Each masked token is substituted with a
+special token $\left\lbrack M \right\rbrack$, a random token, or the
+unchanged token with probabilities of $80\%$, $10\%$, and $10\%$,
+respectively to create a masked sequence $x_{\backslash M_{x}}$
+knowing that $M_{x}$ is the set of randomly masked positions. The
+monolingual MLM loss is defined as:</li>
+</ul>
+
+\[\mathcal{L}_{\text{MLM}}^{\left( x \right)} = - \sum_{i \in M_{x}}^{}{\log\left( p\left( x_{i} \middle| x_{\backslash M_{x}} \right) \right)}\]
+
+<ul>
+  <li><u><strong>Cross-lingual Masked Language Modeling (XMLM):</strong></u><br />
+Similar to MLM, the masked token prediction task can be extended to
+cross-lingual settings. Given a parallel corpus, bilingual sentences
+$\left( x,\ y \right)$ can be concatenated to form one sequence
+which can be used as the input of MLM. Given $M_{x}$ and $M_{y}$ as
+the sets of masked positions of $x$ and $y$ respectively, the XMLM
+loss is defined as:</li>
+</ul>
+
+\[\mathcal{L}_{\text{XMLM}}^{\left( x,\ y \right)} = - \sum_{i \in M_{x}}^{}{\log\left( p\left( x_{i} \middle| x_{\backslash M_{x}},\ y_{\backslash M_{y}} \right) \right)} - \sum_{i \in M_{y}}^{}{\log\left( p\left( y_{i} \middle| x_{\backslash M_{x}},\ y_{\backslash M_{y}} \right) \right)}\]
+
+<div align="center">
+    <img src="media/XNLG/image4.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Denoising Auto-Encoding (DAE):</strong></u><br />
+Given monolingual sentence $x$, DAE applies noise functions
+over the input sentence producing perturbed sentence $\widehat{x}$.
+Its objective is to train the whole model to restore the original
+sentence. The noise functions applied here are: shuffling, randomly
+dropping tokens with a probability of $0.1$, and randomly replacing
+tokens with the special padding token [P] with a probability of
+$0.1$. The DAE loss function is defined as:</li>
+</ul>
+
+\[\mathcal{L}_{\text{DAE}}^{\left( x \right)} = - \sum_{i = 1}^{\left| x \right|}{\log\left( p\left( x_{i} \middle| \widehat{x},\ x_{&lt; i} \right) \right)}\]
+
+<ul>
+  <li><u><strong>Cross-Lingual Auto-Encoding (XAE):</strong></u><br />
+XAE is a the multilingual-version DAE which can be viewed as a
+machine translation task. The cross-lingual auto-encoding loss is:</li>
+</ul>
+
+\[\mathcal{L}_{\text{XAE}}^{\left( x,\ y \right)} = - log\left( p\left( y \middle| x \right) \right) - log\left( p\left( x \middle| y \right) \right)\]
+
+<div align="center">
+    <img src="media/XNLG/image5.png" width="750" />
+</div>
+
+<h2 id="fine-tuning">Fine-tuning</h2>
+
+<p>In the fine-tuning procedure, there are two scenarios:</p>
+
+<ul>
+  <li>
+    <p><u><strong>Fine-tuning for Any-to-Others NLG:</strong></u><br />
+Fine-tuning any language to non-English. In this scenario,
+they observed catastrophic forgetting of target language. To
+overcome that, they keep the decoder and the word embeddings frozen
+and only update the encoder parameters during fine-tuning.</p>
+  </li>
+  <li>
+    <p><u><strong>Fine-tuning for Any-to-English NLG:</strong></u><br />
+Fine-tuning any language to English. In this scenario, they freeze
+the encoder parameters, and update the decoder parameters.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+When the target language is the same as the language of training data,
+they fine-tuned all parameters.</p>
+</blockquote>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>They conducted experiments over two cross-lingual NLG downstream tasks:
+cross-lingual question generation, and cross-lingual abstractive
+summarization. They used a pre-trained XNLG with a 10-layer encoder and
+a 6-layer decoder. For every Transformer layer, they used $1024$ hidden
+units, $8$ attention heads, and GELU activations.</p>
+
+<p>In the first pre-training stage, they directly used the pre-trained XLM
+to initialize the XNLG parameters. In the second pre-training stage,
+they used Wikipedia as the monolingual data for the DAE objective, and
+MultiUN as the parallel data for the XAE objective. In pre-training,
+they used Adam optimizer with a linear warm-up over the first $4k$ steps
+and linear decay for later steps, and the learning rate is set to
+$10^{- 4}$. The pre-training batch size is $64$, and the sequence length
+is set to $256$.</p>
+
+<p>For fine-tuning on downstream NLG tasks, they used Adam optimizer with a
+learning rate of $5 \times 10^{- 6}$. They set the batch size as $16$
+and $32$ for question generation and abstractive summarization,
+respectively. They truncate the input sentences to the first $256$
+tokens. During decoding, they used beam search with a beam size of $3$,
+and limit the length of the target sequence to $80$ tokens.</p>
+
+<p>The following table shows the evaluation results of monolingual
+supervised question generation for English and Chinese. BL is short for
+BLEU, MTR for METEOR, and RG for ROUGE.</p>
+
+<div align="center">
+    <img src="media/XNLG/image6.png" width="450" />
+</div>
+
+<p>The following table shows the evaluation results of zero-shot
+Chinese-Chinese question generation. These results show that XNLG
+consistently performs better than baselines in both zero-shot and
+monolingual supervised setting.</p>
+
+<div align="center">
+    <img src="media/XNLG/image7.png" width="450" />
+</div>
+
+<p>The following table shows the ROUGE evaluation results of supervised
+monolingual summarization. These results show that XNLG outperforms all
+the baseline models on both French and Chinese AS:</p>
+
+<div align="center">
+    <img src="media/XNLG/image8.png" width="450" />
+</div>
+
+<p>To check the effect of pre-training techniques on the performance, they
+conduct ablation studies models were evaluated on zero-shot
+Chinese-Chinese question generation task. The results show that the
+model benefits from the DAE objective for the zero-shot Chinese question
+generation task. The results also demonstrate that combining DAE and XAE
+can alleviate the spurious correlation issue and improves cross-lingual
+NLG.</p>
+
+<div align="center">
+    <img src="media/XNLG/image9.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/XNLG';
+      this.page.identifier = '/cross-lingual-lm/XNLG';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

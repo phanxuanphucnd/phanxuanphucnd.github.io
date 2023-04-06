@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Unicoder: Universal Encoder</title>
+  <meta name="title" content="Unicoder: Universal Encoder">
+  <meta name="description" content="Unicoder is an abbreviation of “Universal Encoder” which is a language
+encoder that is universal across different number of languages. The
+Unicoder model was proposed by Microsoft in 2019 and published in this
+paper: Unicoder: A Universal Language Encoder by Pre-training with
+Multiple Cross-lingual Tasks.
+The official code for this paper can be found on Microsoft’s official
+GitHub repository:
+microsoft/Unicoder.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Unicoder: Universal Encoder">
+  <meta itemprop="description" content="Unicoder is an abbreviation of “Universal Encoder” which is a language
+encoder that is universal across different number of languages. The
+Unicoder model was proposed by Microsoft in 2019 and published in this
+paper: Unicoder: A Universal Language Encoder by Pre-training with
+Multiple Cross-lingual Tasks.
+The official code for this paper can be found on Microsoft’s official
+GitHub repository:
+microsoft/Unicoder.
+
+">
+  <meta itemprop="image" content="/cross-lingual-lm/media/Unicoder/image3.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Unicoder: Universal Encoder">
+  <meta property="og:description" content="Unicoder is an abbreviation of “Universal Encoder” which is a language
+encoder that is universal across different number of languages. The
+Unicoder model was proposed by Microsoft in 2019 and published in this
+paper: Unicoder: A Universal Language Encoder by Pre-training with
+Multiple Cross-lingual Tasks.
+The official code for this paper can be found on Microsoft’s official
+GitHub repository:
+microsoft/Unicoder.
+
+">
+  <meta property="og:image" content="/cross-lingual-lm/media/Unicoder/image3.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Unicoder: Universal Encoder">
+  <meta name="twitter:description" content="Unicoder is an abbreviation of “Universal Encoder” which is a language
+encoder that is universal across different number of languages. The
+Unicoder model was proposed by Microsoft in 2019 and published in this
+paper: Unicoder: A Universal Language Encoder by Pre-training with
+Multiple Cross-lingual Tasks.
+The official code for this paper can be found on Microsoft’s official
+GitHub repository:
+microsoft/Unicoder.
+
+">
+  
+  <meta name="twitter:image" content="/cross-lingual-lm/media/Unicoder/image3.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/cross-lingual-lm/Unicoder">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2019-11-03 00:00" class="post-meta__body date">Published on arXiv on: 3 Nov 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft Research">Microsoft Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Unicoder: Universal Encoder> Unicoder: Universal Encoder</h1>
+    <p>Unicoder is an abbreviation of “Universal Encoder” which is a language
+encoder that is universal across different number of languages. The
+Unicoder model was proposed by Microsoft in 2019 and published in this
+paper: <a href="https://aclanthology.org/D19-1252.pdf">Unicoder: A Universal Language Encoder by Pre-training with
+Multiple Cross-lingual Tasks</a>.
+The official code for this paper can be found on Microsoft’s official
+GitHub repository:
+<a href="https://github.com/microsoft/Unicoder">microsoft/Unicoder</a>.</p>
+
+<p>A universal language encoder, or Unicoder, is a model that is able to
+generate a sentence representation embedding independent on the input
+language. From the name of the paper, we can see that they were able to
+create this universal language encoder by using pre-training of
+cross-lingual tasks. These cross-lingual tasks help Unicoder to learn
+the mappings of different languages. And that’s what we are going to
+talk about next.</p>
+
+<h2 id="pre-training-objectives">Pre-training Objectives</h2>
+
+<p>In this part, we are going to discuss the five language modeling
+objectives used for the language modeling pre-training in the Unicoder.
+Since the XLM model outperformed mBERT in cross-lingual tasks, Unicoder
+uses the same structure as XLM and uses the same pre-training tasks
+along with three more novel pre-training tasks; all listed below:</p>
+
+<h3 id="mlm">MLM</h3>
+
+<p>MLM stands for “Masked Language Modeling” which is the first objective
+out of the five objectives used for learning the Unicoder. MLM is the
+same objective used for BERT where we randomly sample $15\%$ of the BPE
+tokens from the text streams, replace them by a $\lbrack MASK\rbrack$
+token $80\%$ of the time, by a random token $10\%$ of the time, and we
+keep them unchanged $10\%$ of the time.</p>
+
+<div align="center">
+    <img src="media/Unicoder/image1.png" width="750" />
+</div>
+
+<p>In fact, there are two differences between this approach and the one
+used with BERT:</p>
+
+<ul>
+  <li>
+    <p>Here, they used text streams of an arbitrary number of sentences
+(truncated at 256 tokens) instead of pairs of sentences.</p>
+  </li>
+  <li>
+    <p>To counter the imbalance between frequent tokens (e.g. punctuations
+or stop words) and rare tokens, they sub-sampled the frequent
+outputs according to a multinomial distribution, whose weights are
+proportional to the square root of their invert frequencies.</p>
+  </li>
+</ul>
+
+<h3 id="tlm">TLM</h3>
+
+<p>TLM stands for “Translation Language Modeling” which is the second
+objective used for pre-training the Unicoder. MLM objective is
+unsupervised and only requires monolingual data and cannot be used to
+leverage parallel data when it is available. So, this objective is used
+to leverage the existence of parallel data to improve cross-lingual
+pre-training.</p>
+
+<p>TLM is an extension of MLM objective, where instead of considering
+monolingual text streams, we concatenate parallel sentences and perform
+MLM over this concatenation. For example, let’s assume that we have a
+parallel entry of two languages English and French as shown below:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image2.png" width="750" />
+</div>
+
+<p>To predict a word masked in an English sentence, the model can either
+attend to surrounding English words or to the French translation,
+encouraging the model to align the English and French representations.
+In particular, the model can leverage the French context if the English
+one is not sufficient to infer the masked English words. To facilitate
+the alignment, we also reset the positions of target sentences.</p>
+
+<h3 id="word-recovery">Word Recovery</h3>
+
+<p>This task aims to let the pre-trained model learn the underlying word
+alignments between two languages. This task is mainly motivated by the
+attention matrix used in the neural machine translation models. So,
+let’s first recap how that attention mechanism worked:</p>
+
+<p>Given a bilingual sentence pair $\left( X,\ Y \right)$ of two languages
+$\left( s,\ t \right)$ of lengths $n$ and $m$ respectively, we obtain
+word embeddings $\left( X^{s},\ Y^{t} \right)$. The XLM way of doing
+that is by adding the language and position embeddings over this pair to
+obtain word embeddings:</p>
+
+\[X^{s} = \left\{ x_{1}^{s},...x_{n}^{s} \right\},\ \ \ \ \ \ \ Y^{t} = \left\{ y_{1}^{t},...y_{m}^{t} \right\}\]
+
+<p>Now that we have word embeddings, let’s apply the attention mechanism to
+obtain attentive embeddings
+$X^{t} = \left\{ x_{1}^{t},…x_{n}^{t} \right\}$. Using a trainable
+weight $W \in \mathbb{R}^{3 \times h}$ where $h$ is the word embedding
+dimension, the attention matrix
+$A_{\text{ij}} \in \mathbb{R}^{m \times n}$ will be:</p>
+
+\[A_{\text{ij}} = W\left\lbrack x_{i}^{s},\ y_{j}^{t},\ x_{i}^{s}\bigodot y_{j}^{s} \right\rbrack\]
+
+<p>Where:</p>
+
+<ul>
+  <li>
+    <p>$x_{i}^{s}$ is the $i^{\text{th}}$ word embedding of the source
+sentence $s$.</p>
+  </li>
+  <li>
+    <p>$y_{j}^{t}$ is the $j^{\text{th}}$ word embedding of the target
+sentence $t$.</p>
+  </li>
+  <li>
+    <p>$\bigodot$ is element-wise multiplication.</p>
+  </li>
+  <li>
+    <p>$\lbrack a,\ b\rbrack$ is the concatenation of two vectors; $a$ and
+$b$.</p>
+  </li>
+</ul>
+
+<p>Now, the attentive embeddings $X^{t} = \left\{ x_{1}^{t},…x_{n}^{t} \right\}$
+will be computed as:</p>
+
+\[x_{i}^{t} = \sum_{j = 1}^{n}{\text{softmax}\left( A_{\text{ij}} \right)y_{j}^{t}}\]
+
+<p>That’s how the attention mechanism works. Given that attentive embedding
+$X^{t}$ to this task, the model tries to predict the original sentence
+$X$ as shown in the following graph:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image3.png" width="450" />
+</div>
+
+<h3 id="paraphrase-classification">Paraphrase Classification</h3>
+
+<p>This task takes the concatenation of two sentences from different
+languages as input and classifies whether they are with the same meaning
+or not. This task is shown below in the following figure:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image4.png" width="750" />
+</div>
+
+<p>The dataset used in this task is created from machine translation
+datasets. Each bilingual sentence pair $\left( X,\ Y \right)$ servers as
+a positive sample. For negative samples, the most straight forward
+method is to replace $Y$ to a random sampled sentence from the target
+language. But this will make the classification task too easy.</p>
+
+<div align="center">
+    <img src="media/Unicoder/image5.png" width="450" />
+</div>
+
+<p>To make the negative samples hard, they
+trained a light-weight paraphrase model with random negative samples.
+Then, they used this model to select sentence with high similarity score
+to $X$ but doesn’t equal to $Y$ as hard negative samples. They chose
+Deep Averaging Network (DAN) from this
+<a href="https://aclanthology.org/P15-1162.pdf">paper</a> as the light-weight
+model. The dataset had $50\%$ positive samples and $50\%$ negative
+samples.</p>
+
+<h3 id="cross-lingual-masked-language-model">Cross-lingual Masked Language Model</h3>
+
+<p>Previous successful pre-training language models such as
+<a href="https://anwarvic.github.io/language-modeling/BERT">BERT</a> and
+<a href="https://anwarvic.github.io/language-modeling/GPT">GPT</a>, were conducted
+on document-level corpus rather than sentence-level corpus.
+Cross-lingual document is a sequence of sentences, and the sentences are
+written with different languages.</p>
+
+<p>That’s why the researchers proposed cross-lingual masked language model
+task whose input come from cross-lingual document. One issue is that
+people won’t write cross-lingual document in most cases. To solve this
+issue, they decided to construct such the cross-lingual document-level
+corpus by replacing the sentences to their translation. Then, they
+masked this document-level corpus the same way as MLM as shown below:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image6.png" width="750" />
+</div>
+
+<p>In the paper, they replaced sentences with even indices to their
+translation in the other language separating them with
+$\left\lbrack /S \right\rbrack$ token. They truncated the cross-lingual
+document till it became $256$-tokens long, then fed it to the Unicoder.</p>
+
+<h3 id="data">Data</h3>
+
+<p>Unicoder is pre-trained on 15 languages. For MLM, they used the Wikipedia of
+these 15 languages. The other four tasks needed MT dataset, so they used the
+same dataset as the XLM paper which were collected from MultiUN, IIT Bombay
+corpus, OpenSubtitles 2018, EUbookshop corpus and GlobalVoices. The number of
+parallel data they used is reported at the following table:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image7.png" width="450" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong></p>
+
+  <ul>
+    <li>
+      <p>When training, all language were sampled equally.</p>
+    </li>
+    <li>
+      <p>The max sequence length of MLM and cross-lingual language model
+is 256. For the other three tasks with two sentences as input, they
+set the max sequence length to 128 so the sum of them is 256.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="multilingual-fine-tuning">Multilingual Fine-tuning</h2>
+
+<p>The fine-tuning task used in this paper is <strong>machine translation</strong>.
+There are three settings that people use when it comes to using machine
+translation for fine-tuning; and they are:</p>
+
+<ul>
+  <li>
+    <p><strong>TRANSLATE-TRAIN:</strong> fine-tune the model on pseudo translation of
+<u>target</u> language training set and test it on <u>target</u>
+testing set.</p>
+  </li>
+  <li>
+    <p><strong>TRANSLATE-TEST:</strong> fine-tune the model on <u>source</u> training
+set and test it on pseudo translation of <u>source</u> testing
+set.</p>
+  </li>
+  <li>
+    <p><strong>TEST:</strong> fine-tune the model on <u>source</u> training set and
+test it on <u>target</u> testing set.</p>
+  </li>
+</ul>
+
+<p>To further understand the difference , let’s assume that the source language is
+English and the target language is Chinese. Each dataset has training set and
+test set and the task is to evaluate on Chinese test, then the three settings
+will do as the following figure:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image8.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The source language and the target can be more than one language; but they can
+never intersect. In other words, a language can’t be in the source and the
+target at the same time.</p>
+</blockquote>
+
+<p>Inspired by multi-task learning, the authors proposed a new fine-tuning
+strategy called “Multilingual Fine-tuning” where fine-tuning is done on
+training data of <strong>source language + pseudo translation of the source language</strong>
+as shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image9.png" width="550" />
+</div>
+
+<h2 id="results">Results</h2>
+
+<p>The Unicoder model is initialized from the XLM model, which means it is
+a $12$-layer transformer with $1024\ $hidden units, $16\ $heads, GELU
+activation. To build the vocabulary, they used BPE tokenization where
+the vocabulary size is $95,000$. To train Unicoder, they used Adam
+optimizer with learning rate that starts from $1e^{- 5}$ with invert
+square root decay. As a regularizer, they used a dropout of $0.1$. The
+batch size was set to $512$ in pre-training and $32$ in fine-tuning.</p>
+
+<p>They fine-tuned Unicoder over these benchmarks:</p>
+
+<ul>
+  <li><strong>XNLI:</strong> The following table shows test accuracy on the 15 XNLI
+languages. The source language here is English while the target
+language changes. The tables shows that Unicoder with Multilingual
+Fine-tuning achieves the best performance across all 15 languages.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Unicoder/image10.png" width="750" />
+</div>
+
+<p>    Using more languages in fine-tuning leads to better
+performance on the XNLI benchmark:</p>
+
+<div align="center">
+    <img src="media/Unicoder/image11.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>XQA:</strong> The following table shows test accuracy on the XQA. The
+average column is the average of “French (fr)” and “German (de)”
+result. And again, Unicoder with multilingual fine-tuning achieves
+the best performance across all three languages.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Unicoder/image12.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/cross-lingual-lm/Unicoder';
+      this.page.identifier = '/cross-lingual-lm/Unicoder';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

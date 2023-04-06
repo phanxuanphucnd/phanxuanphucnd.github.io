@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Hallucination</title>
+  <meta name="title" content="Hallucination">
+  <meta name="description" content="As NMT systems are built on deep learning methodology which means that
+they exhibit both the strengths and weaknesses of the approach. For
+example, NMT systems make the best use of very large datasets but on the
+other hand they are poorly understood. For example, in many commercial
+translation systems, entering repeated words many times occasionally
+results in strange translations like this one from Vice’s blog
+post:
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Hallucination">
+  <meta itemprop="description" content="As NMT systems are built on deep learning methodology which means that
+they exhibit both the strengths and weaknesses of the approach. For
+example, NMT systems make the best use of very large datasets but on the
+other hand they are poorly understood. For example, in many commercial
+translation systems, entering repeated words many times occasionally
+results in strange translations like this one from Vice’s blog
+post:
+
+">
+  <meta itemprop="image" content="/machine-translation/media/hallucination/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Hallucination">
+  <meta property="og:description" content="As NMT systems are built on deep learning methodology which means that
+they exhibit both the strengths and weaknesses of the approach. For
+example, NMT systems make the best use of very large datasets but on the
+other hand they are poorly understood. For example, in many commercial
+translation systems, entering repeated words many times occasionally
+results in strange translations like this one from Vice’s blog
+post:
+
+">
+  <meta property="og:image" content="/machine-translation/media/hallucination/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hallucination">
+  <meta name="twitter:description" content="As NMT systems are built on deep learning methodology which means that
+they exhibit both the strengths and weaknesses of the approach. For
+example, NMT systems make the best use of very large datasets but on the
+other hand they are poorly understood. For example, in many commercial
+translation systems, entering repeated words many times occasionally
+results in strange translations like this one from Vice’s blog
+post:
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/hallucination/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/hallucination">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          8 mins read
+        </span>
+      </p>
+      <time datetime="2021-04-14 00:00" class="post-meta__body date">Published on arXiv on: 14 Apr 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft">Microsoft</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Hallucination> Hallucination</h1>
+    <p>As NMT systems are built on deep learning methodology which means that
+they exhibit both the strengths and weaknesses of the approach. For
+example, NMT systems make the best use of very large datasets but on the
+other hand they are poorly understood. For example, in many commercial
+translation systems, entering repeated words many times occasionally
+results in strange translations like this one from Vice’s <a href="https://www.vice.com/en_uk/article/j5npeg/why-is-google-translate-spitting-out-sinister-religious-prophecies">blog
+post</a>:</p>
+
+<div align="center">
+    <img src="media/hallucination/image1.png" width="750" />
+</div>
+
+<p>This phenomenon was named “Hallucination” by researchers at Google AI
+when writing their paper: <a href="https://openreview.net/pdf?id=SJxTk3vB3m">Hallucinations in Neural Machine
+Translation</a> published in 2018. They
+called it “Hallucination” since the output is untethered from the input. The
+paper “<a href="https://arxiv.org/pdf/2104.06683.pdf">The Curious Case of Hallucinations in Neural Machine Translation
+</a>” published in 2021 by Microsoft has
+categorized the “Hallucination” phenomenon into two categories:</p>
+
+<ul>
+  <li>
+    <p>Hallucinations under Perturbations (HP)</p>
+  </li>
+  <li>
+    <p>Natural Hallucinations (NH)</p>
+  </li>
+</ul>
+
+<h2 id="hallucination-under-perturbation-hp">Hallucination Under Perturbation (HP)</h2>
+
+<p>This type of hallucination was first discussed by <a href="https://openreview.net/pdf?id=SJxTk3vB3m">Hallucinations in
+Neural Machine Translation</a>
+paper which was published in 2018 by Google AI. In this paper, the
+researchers were able to reproduce hallucination by just adding a single
+token to the input source sentence. They called this process
+“perturbation”. And they defined the hallucination as <u><strong>a translation
+of a perturbed input sentence that has almost no words in common with
+the translation of the unperturbed sentence</strong></u>. Hallucination Under
+Perturbation can be categorized into four types:</p>
+
+<ul>
+  <li>Grammatically correct output that bears no relation to the input
+text:</li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image2.png" width="750" />
+</div>
+
+<ul>
+  <li>Ungrammatical output with oscillatory structure:</li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image3.png" width="1050" />
+</div>
+
+<ul>
+  <li>Output that remains largely in the source language:</li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image4.png" width="750" />
+</div>
+
+<ul>
+  <li>Output that jumps to the end of the sequence:</li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image5.png" width="1050" />
+</div>
+
+<p>Using the <a href="https://anwarvic.github.io/machine-translation/GNMT">GNMT</a>
+model with a single layered bidirectional LSTM in the encoder and two
+layered unidirectional LSTM in the decoder plus the attention mechanism,
+BPE encoded vocabulary, and the following algorithm, they were able to
+produce hallucination in $73\%$ of sentences in WMT De→En 2016 test set
+using a greedy decoding and $48\%$ using beam search decoding:</p>
+
+<div align="center">
+    <img src="media/hallucination/image6.png" width="750" />
+</div>
+
+<p>The algorithm goes as follows:</p>
+
+<ul>
+  <li>
+    <p>First, they split tokens into several types: common (100 most common
+tokens), rare (100 least common tokens), mid-frequency tokens
+(randomly sampled 100 tokens from the remaining tokens), and
+punctuation tokens.</p>
+  </li>
+  <li>
+    <p>Then, they used an <strong>adjusted BLEU</strong> score to evaluate the model’s
+hypotheses. They adjusted the BLEU score by re-weighting the n-grams
+in the BLEU score computation to favor having any words in common
+between the two sentences (1.0 for one-grams and 0.8 for bi-grams
+and disregarded other n-grams).</p>
+  </li>
+  <li>
+    <p>According to the paper, poor translations tend to have adjusted BLEU
+score $\leq 0.09$. So, they discarded them and kept good
+translations. The following are few examples on how the adjusted
+BLEU scores change by changing the translation quality:</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image7.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p>Then, each source sentence in the dataset -that had good translation- is
+perturbed by inserting a token at one of the following positions:
+<u><strong>beginning</strong></u>, <u><strong>end</strong></u>,
+<u><strong>second to the end</strong></u>, or <u><strong>randomly in the
+middle</strong></u>.</p>
+  </li>
+  <li>
+    <p>Then, the model tries to translate this perturbed sentence. If the
+adjusted BLEU score of the new translation is $\leq 0.01$, this
+sentence is considered a “hallucination”.</p>
+  </li>
+</ul>
+
+<p>They studied the effect of different hyper-parameters (canonical model with
+greedy decoding, beam search decoding, 512 &amp; 1024 hidden units, 16k &amp; 32k BPE
+codes) respectively affected hallucination percentages. They found that
+<strong>beam search</strong> and <strong>increasing the vocabulary size to 32K BPE codes</strong> did
+significantly lower the mean percentage of hallucinations; that’s why they
+have a red star ☺.</p>
+<div align="center">
+    <img src="media/hallucination/image8.png" width="750" />
+</div>
+
+<p>They also studied how different types of perturbations (using common tokens
+only, using mid-frequency tokens only, using rare tokens only, at the beginning
+of the sentence, at the end of the sentence, at the second-end of the sentence,
+randomly in the middle of the sentence) respectively impacted the hallucination
+percentage of the canonical model. As seen from the following figure,
+<u><strong>adding a perturbing token to the beginning</strong></u> of the input
+sequence produces the least hallucinations.</p>
+
+<h3 id="reduce-hp">Reduce HP</h3>
+
+<p>Later in the same paper, they investigated the effect of different
+methodologies on the hallucination percentage. They used the following
+techniques along with the canonical GNMT model introduced earlier:</p>
+
+<ul>
+  <li>
+    <p><strong>DO:</strong> Dropout regularization of $0.1$ in all feed-forward layers.</p>
+  </li>
+  <li>
+    <p><strong>L2E:</strong> L2 regularization on embeddings.</p>
+  </li>
+  <li>
+    <p><strong>L2R:</strong> L2 regularization on recurrent weights.</p>
+  </li>
+  <li>
+    <p><strong>L2:</strong> L2 regularization on all weights</p>
+  </li>
+  <li>
+    <p><strong>DA:</strong> Data augmentation on the training data by perturbing all
+training sentences. This doubled the training set.</p>
+  </li>
+  <li>
+    <p><strong>TDIS:</strong> “Tied Decoder with Initial State” is a dynamical
+regularization method where the initial state of the decoder was
+tied to last step of the encoder.</p>
+  </li>
+  <li>
+    <p><strong>CFN:</strong> “Chaos-free network” is a dynamical regularization method
+which cannot produce chaos. This was done by replacing the LSTM
+cells with CFN cells with 256 hidden units.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+All L2 regularization used weighting hyper-parameters of $1 \times 10^{- 4}$
+and $1 \times 10^{- 5}$.</p>
+</blockquote>
+
+<p>According to the following graph, the canonical model with the augmented
+training data <u><strong>(DA) has the least percentage of
+hallucination</strong></u>. On the other hand, the CFN model resulted in a
+significant increase in the hallucination percentage:</p>
+
+<div align="center">
+    <img src="media/hallucination/image10.png" width="750" />
+</div>
+
+<p>Since Data augmentation (DA) resulted in the least hallucination percentage,
+they studied it further with different perturbation methods. They found out
+that <u><strong>DA model would be less prone to hallucinate when perturbed with
+types of tokens or positions it had been trained against</strong></u>.</p>
+
+<div align="center">
+    <img src="media/hallucination/image11.png" width="750" />
+</div>
+
+<p>And according to the previous graph, <u><strong>the most reliable way to produce
+hallucination is to append a common token at the beginning of the source
+sentence</strong></u>.</p>
+
+<blockquote>
+  <p><strong>Very Important Note:</strong><br />
+They studied the <a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer
+</a> model (TR)
+implemented in the <a href="https://github.com/tensorflow/tensor2tensor">Tensor2Tensor</a>
+library with tiny-configuration (2 hidden layers, 128 hidden size, 512 filter
+size, and 4 heads) and had a greedy BLEU score of 17.5, which is a little lower
+than our GNMT models. They found out that the transformer model hallucinates
+significantly less than the GNMT canonical model. However, it still can be
+perturbed to hallucinate on average $15\%$ of the time.</p>
+
+  <div align="center">
+   <img src="media/hallucination/image12.png" width="250" />
+</div>
+</blockquote>
+
+<h3 id="reason-behind-hp">Reason Behind HP</h3>
+
+<p>In the “<a href="https://openreview.net/pdf?id=SJxTk3vB3m">Hallucinations in Neural Machine
+Translation</a>” paper, the
+researchers didn’t provide an answer to “why this perturbation generates
+hallucination?”. Luckily, the paper “<a href="https://arxiv.org/pdf/2104.06683.pdf">The Curious Case of Hallucinations
+in Neural Machine Translation</a>”
+published in 2021 has a hypothesis that explains the reason which is
+“<u><strong>Samples that have high memorization values in the NMT model
+are most likely to generate hallucinations when perturbed</strong></u>”.</p>
+
+<p>To validate this hypothesis, they used the Memorization Value Estimator
+(MVE) algorithm proposed by this paper: “<a href="https://papers.nips.cc/paper/2020/hash/1e14bfe2714193e7af5abc64ecbd6b46-Abstract.html">What neural networks memorize
+and why: Discovering the long tail via influence
+estimation</a>”
+to calculate the memorization values of sentences. The MVE algorithm can
+be seen down below where $S$ is IWSLT-2014 De-En dataset with $n = 160k$
+samples, $A$ is a Transformer model, $t = 10$, $M$ is BLEU:</p>
+
+<div align="center">
+    <img src="media/hallucination/image13.png" width="750" />
+</div>
+
+<p>Then, they perturbed the highest sentences that values into a certain
+range of memorization values. And Since, each input sentence can appear
+in the hallucinated samples multiple times, they reported both Unique
+and Total number of Hallucinations generated:</p>
+
+<div align="center">
+    <img src="media/hallucination/image14.png" width="750" />
+</div>
+
+<p>The previous figure shows that as the memorization values increase, the number
+of unique (Unique HP) as well as total hallucinations (Total HP) keeps
+increasing as well, demonstrating a <u><strong>strong positive correlation
+between hallucination frequency and memorization values</strong></u>.</p>
+
+<h2 id="natural-hallucination-nh">Natural Hallucination (NH)</h2>
+
+<p>Natural Hallucinations is the type of hallucination that happens to an
+unperturbed input source sequence where the NMT model tend to generate
+translations that are severely inadequate. Natural hallucinations can be
+categorized into two categories:</p>
+
+<ul>
+  <li><strong>Detached Hallucinations:</strong> A fluent but completely inadequate
+translation.</li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image15.png" width="750" />
+</div>
+
+<ul>
+  <li><strong>Oscillatory Hallucinations:</strong> A translation that contains
+repeating n-grams.</li>
+</ul>
+
+<div align="center">
+    <img src="media/hallucination/image16.png" width="750" />
+</div>
+
+<h3 id="reason-behind-nh">Reason Behind NH</h3>
+
+<p>In the same paper, the researchers provided a hypothesis to explain why
+Natural Hallucinations exist. They suggested that <u><strong>Corpus-level
+noise patterns (invalid source-target pairs) dictate the type of natural
+hallucinations generated by the NMT model</strong></u>.</p>
+
+<p>To validate this hypothesis, they needed to create corpus-level noised
+data. To be able to do that, they first constructed IRS (invalid
+reference set) which is a small set of 21 invalid source-target pairs
+chosen randomly. Then, they created four different corpus-level noised
+data; each is 21k samples of invalid source-target sentence pairs. By
+invalid, I mean the target sentence is not a valid translation for the
+source sentence.</p>
+
+<p>The idea behind designing the following corpus-level noise patterns is
+that they are very common in web-based corpora due to the widespread of
+automatic mining algorithms. Also, each noise pattern challenges
+something different in the translation model:</p>
+
+<div align="center" class="inline-table">
+<table>
+    <thead>
+        <tr>
+            <th>Noise Pattern</th>
+            <th>Description</th>
+            <th>Challenges</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>Unique-Unique (U-U)</td>
+        <td>21K random unique source sentences; each sentence is paired with
+        an unrelated unique random target sentence.</td>
+        <td>Both encoder and decoder are required to produce representations
+        that are vastly different than the one seen before in the data.</td>
+    </tr>
+    <tr>
+        <td>Repeat-Repeat (R-R)</td>
+        <td>21 unique source sentences from IRS, and pair each with unrelated
+        unique random target sentence from IRS, and repeat each such pair 1000
+        times.</td>
+        <td>Challenges the memorization of the model.</td>
+    </tr>
+    <tr>
+        <td>Repeat-Unique (R-U)</td>
+        <td>The same 21 random unique source sentences as RR, repeat each 1000
+        times, and pair each repeat with unrelated unique random target
+        sentence from WMT.</td>
+        <td>The decoder is required to generate unique translations for the
+        same sources, thereby encouraging decoder instability.</td>
+    </tr>
+    <tr>
+        <td>Unique-Repeat (U-R)</td>
+        <td>21 random unique target sentences from the IRS. Each target
+        sentence is repeated 1000 times, each repeat is paired with an
+        unrelated unique random source sentence from WMT.</td>
+        <td>The encoder is required to produce the same representations for
+        unique inputs.</td>
+    </tr>
+</table>
+</div>
+
+<p>Then, they trained 5 transformer models. Each model is six layers with
+$512$ embedding size, $1024$ FFN layer dimension, and $4$ attention
+heads. Training was done on the IWSLT En-De 2014 corpus (160K samples) +
+corpus-level noised data leaving one model without noise. Then, they
+analyzed the resulting models in terms of the generated translations on
+three different sets:</p>
+
+<ul>
+  <li>
+    <p><strong>IWSLT:</strong> The IWSLT De-En 2014 test set.</p>
+  </li>
+  <li>
+    <p><strong>Invalid reference set (IRS):</strong> The 21 unique detached
+source-target sentence pairs.</p>
+  </li>
+  <li>
+    <p><strong>Valid reference set (VRS):</strong> The same 21 source sentences as the
+IRS, but now they are paired with their valid (correct) references.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+IRS set exists in four corpus-noise patterns: it is contained in the
+RR training data, its source sentences are present in the RU
+training data and its target sentences are present in the UR
+training data. The main purpose of evaluating models on IRS is to
+measure memorization of the overlapping source/targets.</p>
+</blockquote>
+
+<p>Using the above three evaluation sets, they computed the following metrics:</p>
+
+<ul>
+  <li>
+    <p><strong>BLEU:</strong> The BLEU score for each evaluation set.</p>
+  </li>
+  <li>
+    <p><strong>IRS-NH:</strong> The percentage of natural hallucinations (NH) (manually
+identified) in the translations of the IRS.</p>
+  </li>
+  <li>
+    <p><strong>IRS-OH:</strong> The percentage of oscillatory hallucinations (OH)
+(manually identified) in the translations of the IRS.</p>
+  </li>
+  <li>
+    <p><strong>IRS-Repeats:</strong> The percentage of the hallucinations that exactly
+match a reference in the training data.</p>
+  </li>
+</ul>
+
+<p>The results can be seen in the following table where the boxes marked with ‘-‘
+are the cases that didn’t convey any useful information:</p>
+
+<div align="center">
+    <img src="media/hallucination/image17.png" width="750" />
+</div>
+
+<p>From the previous table, we can say the following:</p>
+
+<ul>
+  <li>
+    <p>The Test-BLEU is not greatly affected by the corpus-level noise.</p>
+  </li>
+  <li>
+    <p>The IRS-BLEU indicates that the model memorized the IRS data when
+R-R noise pattern is used, which makes total sense.</p>
+  </li>
+  <li>
+    <p>The U-R and U-R noise patterns lead to high natural hallucinations.</p>
+  </li>
+  <li>
+    <p>The R-U noise pattern leads to a very high percentage of oscillatory
+hallucinations.</p>
+  </li>
+</ul>
+
+<p>The past hallucination stats were done manually. This is not scalable,
+that’s why they proposed an automatic NH detection algorithm that can
+work on scale. The algorithm works at the corpus-level:</p>
+
+<div align="center">
+    <img src="media/hallucination/image18.png" width="750" />
+</div>
+
+<p>They used the past algorithm to measure the effect of Knowledge
+Distillation (KD) and Back-translation (BT) techniques on natural
+hallucinations. And they found out that:</p>
+
+<ul>
+  <li>
+    <p>For both KD and BT, U-R noise pattern leads to severe amplifications
+while R-R causes the least hallucinations.</p>
+  </li>
+  <li>
+    <p>For KD, all noise patterns lead to increase in natural
+hallucination.</p>
+  </li>
+  <li>
+    <p>For BT, U-R and U-U noise patterns lead to large number of repeated
+generations.</p>
+  </li>
+</ul>
+
+<p>The official code and datasets used in the past experiments can be found in the
+following GitHub repository: <a href="https://github.com/vyraun/hallucinations">hallucinations</a>.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/hallucination';
+      this.page.identifier = '/machine-translation/hallucination';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

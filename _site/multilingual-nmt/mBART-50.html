@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>mBART-50</title>
+  <meta name="title" content="mBART-50">
+  <meta name="description" content="In this part, we are going to discuss this paper: Multilingual
+Translation with Extensible Multilingual Pretraining and
+Finetuning (the official code:
+mbart)
+which doubles the number of languages in
+mBART to suppor
+multilingual machine translation models of 50 languages without loss of
+performance. Also, This paper tried to fix some of the issues found in
+mBART such as:
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="mBART-50">
+  <meta itemprop="description" content="In this part, we are going to discuss this paper: Multilingual
+Translation with Extensible Multilingual Pretraining and
+Finetuning (the official code:
+mbart)
+which doubles the number of languages in
+mBART to suppor
+multilingual machine translation models of 50 languages without loss of
+performance. Also, This paper tried to fix some of the issues found in
+mBART such as:
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/mBART-50/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="mBART-50">
+  <meta property="og:description" content="In this part, we are going to discuss this paper: Multilingual
+Translation with Extensible Multilingual Pretraining and
+Finetuning (the official code:
+mbart)
+which doubles the number of languages in
+mBART to suppor
+multilingual machine translation models of 50 languages without loss of
+performance. Also, This paper tried to fix some of the issues found in
+mBART such as:
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/mBART-50/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mBART-50">
+  <meta name="twitter:description" content="In this part, we are going to discuss this paper: Multilingual
+Translation with Extensible Multilingual Pretraining and
+Finetuning (the official code:
+mbart)
+which doubles the number of languages in
+mBART to suppor
+multilingual machine translation models of 50 languages without loss of
+performance. Also, This paper tried to fix some of the issues found in
+mBART such as:
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/mBART-50/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/mBART-50">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2020-08-02 00:00" class="post-meta__body date">Published on arXiv on: 2 Aug 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=mBART-50> mBART-50</h1>
+    <p>In this part, we are going to discuss this paper: <a href="https://arxiv.org/pdf/2008.00401.pdf">Multilingual
+Translation with Extensible Multilingual Pretraining and
+Finetuning</a> (the official code:
+<a href="https://github.com/pytorch/fairseq/tree/master/examples/mbart">mbart</a>)
+which doubles the number of languages in
+<a href="https://anwarvic.github.io/multilingual-nmt/mBART">mBART</a> to suppor
+multilingual machine translation models of 50 languages without loss of
+performance. Also, This paper tried to fix some of the issues found in
+mBART such as:</p>
+
+<ul>
+  <li>
+    <p>mBART was pre-trained using noising functions like “Text infilling”
+and “sentence permutation” and it was fine-tuned on machine
+translation on bitext. As you can see, fine-tuning on bitext to
+translate from one language to another does not leverage the full
+capacity of the multilingual pre-training.</p>
+  </li>
+  <li>
+    <p>mBART was only trained on 25 languages, so fine-tuning to translate
+on a model not part of these 25 languages is not possible.</p>
+
+    <p>In this paper, they propose multilingual fine-tuning (ML-FT) on
+mBART that leads to doubling the supported languages without loss of
+performance on the original 25 languages and without starting from
+scratch. This sallows languages to be added flexibly, while
+preserving the performance.</p>
+  </li>
+</ul>
+
+<h2 id="multilingual-fine-tuning">Multilingual Fine-tuning</h2>
+
+<p>Multilingual fine-tuning (ML-FT) is proposed as a replacement to the
+bilingual fine-tuning used earlier in the mBART paper. So, instead of
+training a model from language i to language j, a model is trained to
+translate N languages to N other languages which creates one model
+capable of translating many languages to many other languages, which has
+efficiency and storage maintenance benefits.</p>
+
+<p>To perform multilingual fine-tuning, they collected bitexts of different
+language pairs <span>$\left( i,\ j \right)$</span> into a collection
+<span>$\mathcal{B}_{i,j} = \left( \left( x_{i},\ y_{i} \right) \right)$</span>
+for each direction of any two languages $i$ and $j$. Each bitext pair
+<span>$\left( x_{i},\ y_{i} \right)$</span> is augmented by adding a language token
+at the beginning. And since the training dataset sizes are imbalanced as
+different languages have different quantities of bitext, they trained
+the model with temperature up-sampling, which up-samples lower resource
+pairs:</p>
+
+\[p_{i,\ j} \propto \left( \frac{\left| \mathcal{B}_{i,\ j} \right|}{\sum_{i,j}^{}\mathcal{B}_{i,\ j}} \right)^{\frac{1}{T}}\]
+
+<p>To measure the effect of the multilingual fine-tuning method over mBART,
+compared it with three strong baselines:</p>
+
+<ul>
+  <li>
+    <p><strong>Bilingual from Scratch (BL-Scratch):</strong><br />
+They trained bilingual translation models with standard Transformer
+models for translation into and from English to 49 languages.</p>
+  </li>
+  <li>
+    <p><strong>Bilingual Fine-tuning (BL-FT):</strong><br />
+Bilingual finetuning adapts the mBART model into bilingual machine
+translation models by training for longer on translation bitext. For
+each language direction, they fine-tuned for 40K updates.</p>
+  </li>
+  <li>
+    <p><strong>Multilingual from Scratch (ML-Scratch):</strong><br />
+They trained 3 different multlilingual models from scratch for 500K
+updates and through different batch sizes, learning rates, and
+upsampling temperature for best performing. These 3 models are:</p>
+
+    <ul>
+      <li>
+        <p><strong>Many-to-one (N → 1):</strong> It encodes N languages and decodes to
+English.</p>
+      </li>
+      <li>
+        <p><strong>One-to-Many (1 → N):</strong> It encodes English and decoded to N
+languages.</p>
+      </li>
+      <li>
+        <p><strong>Many-to-Many (N ↔ N):</strong> It encodes and decodes N languages
+using English as a pivot language (L1 → English → L2).</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>First, they evaluated mBART on the original 25 languages using different
+fine-tuning methods. The following results are the improvement in BLEU compared
+to BL-Scratch which show that ML-FT has consistently stronger results in the
+Many-to-one setting. However, in the one-to-Many setting BL-FT is better:</p>
+
+<div align="center">
+    <img src="media/mBART-50/image1.png" width="750" />
+</div>
+
+<p>Then, they extended the bitext data to another 25 languages forming a dataset
+of 50 languages (ML 50 Benchmark) and they extended mBART embedding layers with
+randomly initialized vectors for the extra set of 25 language tokens. The
+following results are the improvement in BLEU compared to BL-Scratch which
+show the effect as before which is ML-FT has consistently stronger results in
+the Many-to-one setting:</p>
+
+<div align="center">
+    <img src="media/mBART-50/image2.png" width="750" />
+</div>
+
+<p>These results show that ML-FT is the best fine-tuning methods
+for multilingual neural machine translation systems no matter
+the number of languages supported.</p>
+
+<h2 id="ml50-benchmark">ML50 Benchmark</h2>
+
+<p>To demonstrate the impact of multilingual fine-tuning on additional
+languages, the published created the ML50 Benchmark. ML50 standardizes
+the training and evaluation schemes across 50 different languages, from
+extremely low resource languages like Xhosa and Gujarati to high
+resource languages like French and German. The full list of languages is
+shown in the following table:</p>
+
+<div align="center">
+    <img src="media/mBART-50/image3.png" width="750" />
+</div>
+
+<p>The languages surrounded by a red box are the new 25 languages added to
+the benchmark. As we can see, there are five categories to the 50
+languages based on the amount of available training data.</p>
+
+<h2 id="mbart-25-vs-mbart-50">mBART-25 Vs mBART-50</h2>
+
+<p>In this part, we are going to discuss if adding additional languages to
+mBART is harmful for performance on the original 25 languages knowing
+that the model remains the same size. The following figure show a
+comparison between mBART-25 and mBART-50 over the original 25 languages
+when doing bilingual fine-tuning (BL-FT):</p>
+
+<div align="center">
+    <img src="media/mBART-50/image4.png" width="750" />
+</div>
+
+<p>We can see that the performance is almost exactly the same with both
+models, indicating that the number of languages can be doubled without
+loss of performance.That’s outstanding!! This means that we can extend
+mBART to other languages without loss of performance in the original
+languages.</p>
+
+<p>To put things into perspective, the original mBART was trained for 2.5
+weeks on 256 Nvidia V100 GPUs on only 25 languages. There are hundreds
+of different languages in the world, so restarting pre-training from
+scratch to add any new language would be difficult. These results show
+that extending mBART to another set of languages is possible using
+ML-FT.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/mBART-50';
+      this.page.identifier = '/multilingual-nmt/mBART-50';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

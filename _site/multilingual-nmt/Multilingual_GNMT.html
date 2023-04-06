@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Multilingual Google's NMT</title>
+  <meta name="title" content="Multilingual Google's NMT">
+  <meta name="description" content="GNMT stands for “Google Neural Machine Translation” which is a
+bilingual machine translation architecture that was
+discussed before in this post:
+GNMT. Here, we
+are going to discuss how they extended the bilingual nature of the GNMT
+model to be multilingual. The Multilingual GNMT architecture, as seen in
+the following figure, was proposed in 2016 by the Google Research team
+and published in this paper: Google’s Multilingual Neural Machine
+Translation System: Enabling Zero-Shot
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub repository:
+TensorFlow/GNMT.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Multilingual Google's NMT">
+  <meta itemprop="description" content="GNMT stands for “Google Neural Machine Translation” which is a
+bilingual machine translation architecture that was
+discussed before in this post:
+GNMT. Here, we
+are going to discuss how they extended the bilingual nature of the GNMT
+model to be multilingual. The Multilingual GNMT architecture, as seen in
+the following figure, was proposed in 2016 by the Google Research team
+and published in this paper: Google’s Multilingual Neural Machine
+Translation System: Enabling Zero-Shot
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub repository:
+TensorFlow/GNMT.
+
+">
+  <meta itemprop="image" content="/multilingual-nmt/media/Multilingual_GNMT/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Multilingual Google's NMT">
+  <meta property="og:description" content="GNMT stands for “Google Neural Machine Translation” which is a
+bilingual machine translation architecture that was
+discussed before in this post:
+GNMT. Here, we
+are going to discuss how they extended the bilingual nature of the GNMT
+model to be multilingual. The Multilingual GNMT architecture, as seen in
+the following figure, was proposed in 2016 by the Google Research team
+and published in this paper: Google’s Multilingual Neural Machine
+Translation System: Enabling Zero-Shot
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub repository:
+TensorFlow/GNMT.
+
+">
+  <meta property="og:image" content="/multilingual-nmt/media/Multilingual_GNMT/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Multilingual Google's NMT">
+  <meta name="twitter:description" content="GNMT stands for “Google Neural Machine Translation” which is a
+bilingual machine translation architecture that was
+discussed before in this post:
+GNMT. Here, we
+are going to discuss how they extended the bilingual nature of the GNMT
+model to be multilingual. The Multilingual GNMT architecture, as seen in
+the following figure, was proposed in 2016 by the Google Research team
+and published in this paper: Google’s Multilingual Neural Machine
+Translation System: Enabling Zero-Shot
+Translation. The official code
+for this paper can be found in the TensorFlow’s official GitHub repository:
+TensorFlow/GNMT.
+
+">
+  
+  <meta name="twitter:image" content="/multilingual-nmt/media/Multilingual_GNMT/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/multilingual-nmt/Multilingual_GNMT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2016-11-14 00:00" class="post-meta__body date">Published on arXiv on: 14 Nov 2016</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Multilingual Google's NMT> Multilingual Google's NMT</h1>
+    <p>GNMT stands for “Google Neural Machine Translation” which is a
+<u><strong>bilingual</strong></u> machine translation architecture that was
+discussed before in this post:
+<a href="https://anwarvic.github.io/machine-translation/GNMT">GNMT</a>. Here, we
+are going to discuss how they extended the bilingual nature of the GNMT
+model to be multilingual. The Multilingual GNMT architecture, as seen in
+the following figure, was proposed in 2016 by the Google Research team
+and published in this paper: <a href="https://arxiv.org/pdf/1611.04558.pdf">Google’s Multilingual Neural Machine
+Translation System: Enabling Zero-Shot
+Translation</a>. The official code
+for this paper can be found in the TensorFlow’s official GitHub repository:
+<a href="https://github.com/NVIDIA/DeepLearningExamples/tree/master/TensorFlow/Translation/GNMT">TensorFlow/GNMT</a>.</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image1.png" width="750" />
+</div>
+
+<p>The researchers of this paper have found out that this architecture,
+which is used mainly for bilingual translation, can be extended to
+multiple languages using a simple method that doesn’t change anything in
+the architecture. <u><strong>The method they used was just to add an artificial
+token to the input sequence to indicate the required target
+language.</strong></u> That’s it!! All other parts of the system like
+encoder, decoder, attention mechanism, and shared WordPiece vocabulary
+stayed exactly the same.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+This paper was the first paper to validate the use of true multilingual
+translation using a single encoder-decoder model. That’s why some
+consider it the founding basis for Multilingual NMT systems.</p>
+</blockquote>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>The multilingual GNMT model architecture is identical to the
+<a href="https://anwarvic.github.io/machine-translation/GNMT">GNMT</a> model as
+shown below with only one addition which is to add an artificial token
+at the beginning of the input sentence to indicate the required target
+language. In this example, the token $\left\langle 2es \right\rangle$
+indicates that the target sentence is in Spanish. Also, the source
+sentence is reversed as a processing step.</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image1.png" width="750" />
+</div>
+
+<p>To be able to make use of multilingual data within a single system, they
+proposed adding an artificial token at the beginning of the input
+sentence to indicate the target language. For instance, to translate to
+Spanish (from any language), the $\left\langle 2es \right\rangle$ token
+should be added to the beginning of the source sentence like so:</p>
+
+\[\left\langle 2es \right\rangle\ Hello,\ how\ are\ you? \rightarrow Hola,\ ¿cómo\ estás?\]
+
+<p>Instead of:</p>
+
+\[Hello,\ how\ are\ you? \rightarrow Hola,\ ¿cómo\ estás?\]
+
+<blockquote>
+  <p><strong>Very Important Note:</strong><br />
+When training, they didn’t specify the source language. Not specifying
+the source language is simpler, and can handle input with code-switching
+(as discussed later. Also, context provides enough language
+evidence to produce the correct translation when there are two words
+with the same spelling in two different source languages that have
+different meanings.</p>
+</blockquote>
+
+<h2 id="data">Data</h2>
+
+<p>In this paper, they trained the model on publicly-available datasets
+along with Google-internal production datasets. The datasets used for
+most of the experiments performed in this paper were:</p>
+
+<ul>
+  <li>
+    <p>WMT’14 English(En)→French(Fr).</p>
+  </li>
+  <li>
+    <p>WMT’14 English→German(De).</p>
+  </li>
+  <li>
+    <p>Internal dataset English↔Japanese(Ja).</p>
+  </li>
+  <li>
+    <p>Internal dataset English↔Korean(Ko).</p>
+  </li>
+  <li>
+    <p>Internal dataset English↔Spanish(Es).</p>
+  </li>
+  <li>
+    <p>Internal dataset English↔Portuguese(Pt).</p>
+  </li>
+</ul>
+
+<p>They used a shared WordPiece model of all the source and target data
+with $32,000$ word pieces. They used newstest2014 and newstest2015 as
+test sets. They used a combination of newstest2012 and newstest2013 as
+the development set.</p>
+
+<h2 id="results">Results</h2>
+
+<p>The training protocols used here are mostly identical to the
+<a href="https://anwarvic.github.io/machine-translation/GNMT">GNMT</a>. The only
+thing changed was that they used larger batch sizes with a slightly
+higher initial learning rate to speed up the convergence of these
+models.</p>
+
+<blockquote>
+  <p><strong>Note</strong>:<br />
+In the paper, they compared uniform batching (each batch has one language-pair) and mixed batching (each batch has more than one language- pair) and they found out that mixed batching significantly improve efficiency of the serving system.</p>
+</blockquote>
+
+<p>In training, they applied the multilingual GNMT in several different
+configurations: <strong>Many-to-One</strong>, <strong>One-to-Many</strong>, and <strong>Many-to-Many</strong>.
+And to measure the influence of varying amounts of training data per
+language pair, they explored two strategies:</p>
+
+<ul>
+  <li>
+    <p><strong>Oversampling:</strong> where they over-sampled the data from all language
+pairs to be of the same size as the largest language pair</p>
+  </li>
+  <li>
+    <p><strong>No Oversampling:</strong> where they mix the data as is without any
+change.</p>
+  </li>
+</ul>
+
+<h3 id="many-to-one">Many-to-One</h3>
+
+<p>Here, the multilingual GNMT have multiple source languages and a single
+target language. Since there is only a single target language, no
+additional source token is required. In this part, they performed three
+sets of experiments:</p>
+
+<ul>
+  <li>They combined German→English and French→English to train a
+multilingual GNMT and compared it to two single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image2.png" width="750" />
+</div>
+
+<ul>
+  <li>They combined Japanese→English and Korean→English (<strong>with oversampling</strong>)
+and compared it to two single bilingual models trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image3.png" width="450" />
+</div>
+
+<ul>
+  <li>They combined Spanish→English and Portuguese→English (<strong>with
+oversampling</strong>) and compared it to two single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image4.png" width="450" />
+</div>
+
+<p>All results presented above shows that multilingual GNMT outperforms the
+baseline single systems despite the fact that all of the models have the
+same architecture and number of parameters.</p>
+
+<h3 id="one-to-many">One-to-Many</h3>
+
+<p>Here, the multilingual GNMT have a single source language and multiple
+target languages. Here, they prepended the input with an additional
+token to specify the target language. As before, they performed three
+sets of experiments:</p>
+
+<ul>
+  <li>They combined English→German and English→French to train a
+multilingual GNMT and compared it to two single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image5.png" width="750" />
+</div>
+
+<ul>
+  <li>They combined English→Japanese and English→Korean(<strong>with
+oversampling</strong>) and compared it to two single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image6.png" width="450" />
+</div>
+
+<ul>
+  <li>They combined English→Spanish and English→Portuguese (<strong>with
+oversampling</strong>) and compared it to two single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image7.png" width="450" />
+</div>
+
+<p>All results presented above shows that multilingual GNMT outperforms the
+baseline single systems in some cases but not always.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+Based on the first table, The model with no oversampling achieves better
+results on the larger language (English→French) compared to the smaller
+one (English→German).</p>
+</blockquote>
+
+<h3 id="many-to-many">Many-to-Many</h3>
+
+<p>Here, the multilingual GNMT have multiple source languages and multiple
+target languages. Here, they prepended the input with an additional
+token to specify the target language. As before, they performed three
+sets of experiments:</p>
+
+<ul>
+  <li>They combined English↔German and English↔French to train a
+multilingual GNMT and compared it to four single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image8.png" width="750" />
+</div>
+
+<ul>
+  <li>They combined English↔Japanese and English↔Korean(<strong>with
+oversampling</strong>) and compared it to four single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image9.png" width="750" />
+</div>
+
+<ul>
+  <li>They combined English↔Spanish and English↔Portuguese (<strong>with
+oversampling</strong>) and compared it to four single bilingual models
+trained independently.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image10.png" width="750" />
+</div>
+
+<p>The results presented above show that the multilingual production models
+with the same model size and vocabulary size as the single language
+models are quite close to the baselines. The average relative loss in
+BLEU score across all experiments is only approximately $2.5\%$.</p>
+
+<h3 id="large-scale-model">Large-scale Model</h3>
+
+<p>In this part, they tried to combine 12 language pairs having a total of
+$12*255M = 3B$ parameters into a single multilingual model. To achieve
+that, they tried a range of multilingual models starting from $255M$
+(the same size as a single GNMT) up to $650M$ parameters. The following
+table shows the results knowing that all models were over-sampled:</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image11.png" width="750" />
+</div>
+
+<p>The table above shows that multilingual models are on average worse than
+the bilingual models and the average difference gets smaller when going
+to larger multilingual models. However, the largest multilingual model
+still has about five times less parameters than the combined single
+models which requires roughly 1/12-th of the training time (or computing
+resources).</p>
+
+<h2 id="zero-shot-translation">Zero-shot Translation</h2>
+
+<p>Zero-shot Translation is when the model is able to translate between
+language pairs that has never seen during training. Some call it
+“Implicit Bridging”; unlike “Explicit Bridging” where we translate the
+source language to a bridge language (usually English) and then to the
+target language.</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image12.png" width="750" />
+</div>
+
+<p>To demonstrate the zero-shot performance, they build two multilingual
+models:</p>
+
+<ul>
+  <li>
+    <p>Model trained on (Portuguese→English and English→Spanish)... 2
+pairs.</p>
+  </li>
+  <li>
+    <p>Model trained on (Portuguese↔English and English↔Spanish)... 4
+pairs.</p>
+  </li>
+</ul>
+
+<p>The following table shows the comparison of phrase-based machine translation
+(PBMT) system, Bilingual NMT, and Multilingual NMT on Portuguese→Spanish
+translation:</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image13.png" width="750" />
+</div>
+
+<p>From the previous table, we can see that:</p>
+
+<ul>
+  <li>
+    <p>NMT system outperforms the PBMT system.</p>
+  </li>
+  <li>
+    <p>Both Model 1 and Model 2 can perform zero-shot translation with
+reasonable quality and Model 2 outperforms Model 1 by up to 3 BLEU
+points while having the same number of parameters.</p>
+  </li>
+  <li>
+    <p>The model at the last row (f) achieves that highest BLEU. This model
+can’t be called zero-shot since it is created by incrementally
+training Model 2 with a small amount of true Portuguese→Spanish
+parallel data.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The zero-shot translation works better when the source and target
+languages are from the same family; like Portuguese and Spanish.
+They tried zero-shot learning (implicitly bridged) with Spanish and
+Japanese and the result was worse as shown below:</p>
+
+  <div align="center">
+    <img src="media/Multilingual_GNMT/image14.png" width="450" />
+</div>
+</blockquote>
+
+<p>The model at the last row had the best performance which raises an
+important question: what is the best way to use additional parallel
+data when you have multilingual GNMT? To answer this question, they
+trained a multilingual GNMT model on English↔{Belarusian(Be),
+Russian(Ru), Ukrainian(Uk)} languages which they called
+“<u><strong>Zero-shot</strong></u>”, then they tried to add additional
+Ru↔{Belarusian(Be), Ukrainian(Uk)} parallel data in two different
+ways:</p>
+
+<ul>
+  <li>
+    <p>Training a new multilingual model with all available parallel data
+mixed equally. They called this “<u><strong>From-scratch</strong></u>”.</p>
+  </li>
+  <li>
+    <p>Incrementally training the multilingual model on the additional
+parallel data. They call this “<u><strong>Incremental</strong></u>”.</p>
+  </li>
+</ul>
+
+<p>The following table shows that incrementing the zero-shot models with a small
+amount of additional parallel data achieves almost the same results as
+training the model from-scratch:</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image15.png" width="750" />
+</div>
+
+<h2 id="code-switching">Code-Switching</h2>
+
+<p>Code-switching is the process of forming a sentence in more than one
+language as shown in the following figure where we can see a sentence
+formed by mixing English and Hindi. Interestingly, multilingual GNMT can
+handle code-switching sentences <u><strong>despite the fact that no such
+code-switching samples were present in the training data</strong></u>.</p>
+
+<div align="center">
+    <img src="media/Multilingual_GNMT/image16.png" width="750" />
+</div>
+
+<p>I would love to see some examples of how the model performed on
+code-switching samples, but sadly they didn’t provide any. No problem,
+though! It still one of the best papers I have ever read. Respect!</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/multilingual-nmt/Multilingual_GNMT';
+      this.page.identifier = '/multilingual-nmt/Multilingual_GNMT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Hinted Back-Translation</title>
+  <meta name="title" content="Hinted Back-Translation">
+  <meta name="description" content="HintedBT is a family of techniques that provides hints through tags
+on the source side and target side to the
+Back-translation
+mechanism to improve the effectiveness of the provided monolingual data.
+These techniques were proposed by Google Research in 2021 and published
+in their paper: HintedBT: Augmenting Back-Translation with Quality
+and.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Hinted Back-Translation">
+  <meta itemprop="description" content="HintedBT is a family of techniques that provides hints through tags
+on the source side and target side to the
+Back-translation
+mechanism to improve the effectiveness of the provided monolingual data.
+These techniques were proposed by Google Research in 2021 and published
+in their paper: HintedBT: Augmenting Back-Translation with Quality
+and.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/HintedBT/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Hinted Back-Translation">
+  <meta property="og:description" content="HintedBT is a family of techniques that provides hints through tags
+on the source side and target side to the
+Back-translation
+mechanism to improve the effectiveness of the provided monolingual data.
+These techniques were proposed by Google Research in 2021 and published
+in their paper: HintedBT: Augmenting Back-Translation with Quality
+and.
+
+">
+  <meta property="og:image" content="/machine-translation/media/HintedBT/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hinted Back-Translation">
+  <meta name="twitter:description" content="HintedBT is a family of techniques that provides hints through tags
+on the source side and target side to the
+Back-translation
+mechanism to improve the effectiveness of the provided monolingual data.
+These techniques were proposed by Google Research in 2021 and published
+in their paper: HintedBT: Augmenting Back-Translation with Quality
+and.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/HintedBT/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/HintedBT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2021-09-09 00:00" class="post-meta__body date">Published on arXiv on: 9 Sep 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Hinted Back-Translation> Hinted Back-Translation</h1>
+    <p>HintedBT is a family of techniques that provides <u><strong>hints through tags
+on the source side and target side</strong></u> to the
+<a href="https://anwarvic.github.io/machine-translation/Back-Translation">Back-translation</a>
+mechanism to improve the effectiveness of the provided monolingual data.
+These techniques were proposed by Google Research in 2021 and published
+in their paper: <a href="https://arxiv.org/pdf/2109.04443.pdf">HintedBT: Augmenting Back-Translation with Quality
+and</a>.</p>
+
+<p><a href="https://anwarvic.github.io/machine-translation/Back-Translation">Back-translation</a>
+is one such widely used data augmentation technique in which synthetic
+parallel data is created by translating monolingual data in the target
+language to the source language using a baseline system. However, in
+order to get high quality parallel back-translated (BT) data, we either
+need a high quality target→source translation model or a high quality
+parallel (bitext) data. Both are limited when it comes to low-resource
+languages.</p>
+
+<p>To overcome that, existing methods either use all BT data available which leads
+to low-quality translation models, or use various cleaning techniques to filter
+out lower quality BT data which reduces the amount of data available for
+training low-resource languages even more.</p>
+
+<p>HintedBT provides the solution of this problem by providing two
+different techniques that can be combined or used independently:</p>
+
+<ul>
+  <li>
+    <p>Quality Tagging</p>
+  </li>
+  <li>
+    <p>Translit Tagging</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/HintedBT/image1.png" width="750" />
+</div>
+
+<h2 id="quality-tagging">Quality Tagging</h2>
+
+<p>Quality Tagging approach uses all the BT data by utilizing quality
+information about each instance by using multiple tags on the source
+sentence to hint of the quality of the BT pair. For each sentence pair,
+the quality was determined by the following steps:</p>
+
+<ul>
+  <li>
+    <p>Use <a href="https://anwarvic.github.io/cross-lingual-LM/LaBSE">LaBSE</a> to
+compute sentence embeddings of the two sentences. LaBSE is a
+BERT-based language agnostic cross-lingual model.</p>
+  </li>
+  <li>
+    <p>Compute the cosine similarity between these source and target
+embeddings.</p>
+  </li>
+  <li>
+    <p>This score is treated as the quality score</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+This method can be seen as an extension to the <a href="https://anwarvic.github.io/machine-translation/Tagged_BT">Tagged
+BT</a>
+approach.</p>
+</blockquote>
+
+<p>Now, we know how they calculated the quality of a sentence pair. Next, we need
+to know how they designed the binning mechanism. By binning mechanism, I mean
+how they divided all sentence pairs into bins where each bin has a bunch of
+sentence pairs. In the paper, they designed the binning mechanism by using:</p>
+
+<ul>
+  <li>
+    <p><strong>Equal Volume Binning</strong>: They calculated the quality score of the
+$N$ sentence-pairs, then they sorted them by their quality score,
+and finally divided them into $k$ equally sized groups.</p>
+  </li>
+  <li>
+    <p><strong>Four bins</strong>: They experimented with different number of bins (see
+experiments) and found out that <u><strong>four</strong></u> or
+<u><strong>three</strong></u> bins provide the best performance.</p>
+  </li>
+</ul>
+
+<p>The following figure shows a sentence-pair after applying Quality Tagging; the
+tags indicate the bin index prepended to the source sentence:</p>
+
+<div align="center">
+    <img src="media/HintedBT/image2.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+They also experimented using <u>Equal Width Binning</u> (to divide the quality
+score range) instead instead of <u>Equal Volume Binning</u> (to divide the data
+points range) and found out that the former leads to unbalanced data which isn’t
+preferable.</p>
+</blockquote>
+
+<h2 id="translit-tagging">Translit Tagging</h2>
+
+<p>Translit Tagging approach uses all the BT data by adding a tag to the
+target sentence indicating whether this sentence pair needs either
+<u><strong>translation</strong></u> or <u><strong>translation + transliteration
+</strong></u>. Hence the name “Translit”. If the target was fully translated,
+the method will prepend &lt;Txn&gt; to the target sentence. Otherwise, it will
+&lt;Both&gt; to the target sentence as seen below:</p>
+
+<div align="center">
+    <img src="media/HintedBT/image3.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+Transliteration is when you sound a word of one language using the
+scripts of other languages. We do that all the time when writing our
+names in other language; like “أحمد” will be written in English as “Ahmed”. In
+the following example, we can see the difference between translation and<br />
+translation + transliteration:</p>
+
+  <div align="center">
+    <img src="media/HintedBT/image4.png" width="750" />
+</div>
+</blockquote>
+
+<p>Transliteration is a big issue especially in low-resource languages.
+According to the following table found in the paper, more than 60% of
+the sentence-pairs in three different low-resource languages contain
+both translation + transliteration:</p>
+
+<div align="center">
+    <img src="media/HintedBT/image5.png" width="750" />
+</div>
+
+<p>This huge percentage of translation + transliteration in the datasets
+puts a pressure on the trained model to identify implicitly which source
+words should be translated to the target language and which need to be
+transliterated. In this paper, they did that by using the following
+steps:</p>
+
+<ul>
+  <li>
+    <p>For each word in the source sentence, they used FST (Finite State
+Transducer) transliteration models from this
+<a href="https://aclanthology.org/W17-4002.pdf">paper</a> to generate 10
+English (i.e., the target language) transliterations.</p>
+  </li>
+  <li>
+    <p>If any of these transliterations are present in the corresponding
+target, they would categorize this pair as &lt;Both&gt;. As you might
+have guessed, it only needs one word to prepend this tag.</p>
+  </li>
+  <li>
+    <p>If not, they would categorize it as &lt;Txn&gt;.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+They experimented prepending the translit tag to source sentence but it didn’t
+perform as we are going to discuss later in the experiments.</p>
+</blockquote>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>In this paper, all experiments were performed on three low-resource
+languages: Hindi→English (hi→en), Gujarati→English (gu→en), and
+Tamil→English (ta→en). The training/dev/test stats of the data used can
+be seen in the following table:</p>
+
+<div align="center">
+    <img src="media/HintedBT/image6.png" width="750" />
+</div>
+
+<p>All three models used in these experiments were standard Transformer
+architecture with 6 layers on the encoder and the decoder for hi→en and
+4 layers on the decoder for both gu→en and ta→en. The dimension of
+transformer layers, token embeddings and positional embeddings is
+$1024$, the feed-forward layer dimension is $8192$, and number of
+attention heads is $16$.</p>
+
+<p>For training, we use the Adafactor optimizer with $\beta_{1} = 0.9$ and
+$\beta_{1} = 0.98$, and the learning rate is varied with warm-up for
+40,000 steps followed by decay as in the original paper for 300k step
+using a batch size of 3k across all models and tokenize the source and
+target using WordPiece tokenization.</p>
+
+<h3 id="baselines">Baselines</h3>
+
+<p>In the paper, they presented five baseline models:</p>
+
+<ul>
+  <li>
+    <p><strong>bitext:</strong> Model trained only on bitext data.</p>
+  </li>
+  <li>
+    <p><strong>bitext + full-BT:</strong> Model trained on bitext data and an additional
+23M back-translated pairs.</p>
+  </li>
+  <li>
+    <p><strong>bitext + Iterative-BT:</strong> Model trained with two iterations of
+back-translation (in the forward and reverse directions).</p>
+  </li>
+  <li>
+    <p><strong>bitext + tagged-full-BT:</strong> Model trained on bitext data using
+tagged Back-Translation data. A tag is added to the source in every
+sentence pair to help the model distinguish between natural (bitext)
+and synthetic (BT) data.</p>
+  </li>
+  <li>
+    <p><strong>bitext + LaBSE topk-BT:</strong> Model trained on bitext data and topk
+best quality BT pairs. Quality is estimated using LaBSE scores, and
+they grid-searched with at least 6 LaBSE threshold values and choose
+the one which gives the best BLEU on the dev set. The chosen
+threshold yields 20M BT sentences for hi→en, 10M for gu→en and 5M
+for ta→en.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/HintedBT/image7.png" width="750" />
+</div>
+
+<h3 id="results">Results</h3>
+
+<p>The following table shows the comparison between different variations of
+HintedBT and baseline models. As we can see, HintedBT provides the best
+results on the three languages. Also, quality tagging provides similar
+results to topk-BT and it’s in face more efficient than topk-BT in terms
+of computational resources:</p>
+
+<div align="center">
+    <img src="media/HintedBT/image8.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/HintedBT';
+      this.page.identifier = '/machine-translation/HintedBT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

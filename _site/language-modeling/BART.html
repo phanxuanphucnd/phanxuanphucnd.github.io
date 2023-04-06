@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>BART</title>
+  <meta name="title" content="BART">
+  <meta name="description" content="BART stands for “Bidirectional Auto-regressive Transformer” which is a
+pre-training scheme for models created by Facebook AI in 2019 and
+published in this paper: “BART: Denoising Sequence-to-Sequence
+Pre-training for Natural Language Generation, Translation, and
+Comprehension”. Pre-training is
+the process of training a model with one task that is able to help it
+form parameters that can be used to make other tasks easier. And this is
+what we, human beings, do. We use our old knowledge of what we have
+learned in the past to understand new knowledge and handle a variety of
+new tasks.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="BART">
+  <meta itemprop="description" content="BART stands for “Bidirectional Auto-regressive Transformer” which is a
+pre-training scheme for models created by Facebook AI in 2019 and
+published in this paper: “BART: Denoising Sequence-to-Sequence
+Pre-training for Natural Language Generation, Translation, and
+Comprehension”. Pre-training is
+the process of training a model with one task that is able to help it
+form parameters that can be used to make other tasks easier. And this is
+what we, human beings, do. We use our old knowledge of what we have
+learned in the past to understand new knowledge and handle a variety of
+new tasks.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/BART/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="BART">
+  <meta property="og:description" content="BART stands for “Bidirectional Auto-regressive Transformer” which is a
+pre-training scheme for models created by Facebook AI in 2019 and
+published in this paper: “BART: Denoising Sequence-to-Sequence
+Pre-training for Natural Language Generation, Translation, and
+Comprehension”. Pre-training is
+the process of training a model with one task that is able to help it
+form parameters that can be used to make other tasks easier. And this is
+what we, human beings, do. We use our old knowledge of what we have
+learned in the past to understand new knowledge and handle a variety of
+new tasks.
+
+">
+  <meta property="og:image" content="/language-modeling/media/BART/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BART">
+  <meta name="twitter:description" content="BART stands for “Bidirectional Auto-regressive Transformer” which is a
+pre-training scheme for models created by Facebook AI in 2019 and
+published in this paper: “BART: Denoising Sequence-to-Sequence
+Pre-training for Natural Language Generation, Translation, and
+Comprehension”. Pre-training is
+the process of training a model with one task that is able to help it
+form parameters that can be used to make other tasks easier. And this is
+what we, human beings, do. We use our old knowledge of what we have
+learned in the past to understand new knowledge and handle a variety of
+new tasks.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/BART/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/BART">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2019-10-29 00:00" class="post-meta__body date">Published on arXiv on: 29 Oct 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=BART> BART</h1>
+    <p>BART stands for “Bidirectional Auto-regressive Transformer” which is a
+pre-training scheme for models created by Facebook AI in 2019 and
+published in this paper: “<a href="https://arxiv.org/pdf/1910.13461.pdf">BART: Denoising Sequence-to-Sequence
+Pre-training for Natural Language Generation, Translation, and
+Comprehension</a>”. Pre-training is
+the process of training a model with one task that is able to help it
+form parameters that can be used to make other tasks easier. And this is
+what we, human beings, do. We use our old knowledge of what we have
+learned in the past to understand new knowledge and handle a variety of
+new tasks.</p>
+
+<p>BART was published in a paper under the name: “Denoising
+Sequence-to-Sequence Pre-training for Natural Language Generation,
+Translation, and Comprehension”. From, the name of the paper, we can
+conclude the following:</p>
+
+<ul>
+  <li>
+    <p>The pre-training method in BART is <strong>denoising</strong>; denoising is when
+you corrupt the input text with an arbitrary noising function, and
+try to reconstruct the original text.</p>
+  </li>
+  <li>
+    <p>BART is a sequence-to-sequence model or encoder-decoder architecture.</p>
+  </li>
+  <li>
+    <p>BART is for any sequence-to-sequence data such as natural language
+generation, machine translation, and machine comprehension.</p>
+  </li>
+</ul>
+
+<p>Put in simple words, BART is the same as the standard transformer that
+we discussed with NMT with a few differences:</p>
+
+<ul>
+  <li>
+    <p>BART uses Bi-directional encoder (same as BERT) and a
+uni-directional decoder from left to right (same as GPT).</p>
+  </li>
+  <li>
+    <p>BART uses GELU as an activation function instead of ReLU.</p>
+  </li>
+  <li>
+    <p>The parameters are initialized from a $\mathcal{N}\left( 0,\ 0.02 \right)$
+distribution.</p>
+  </li>
+  <li>
+    <p>BART is pre-trained.</p>
+  </li>
+</ul>
+<div align="center">
+    <img src="media/BART/image1.png" width="450" />
+</div>
+
+<h2 id="pre-training">Pre-training</h2>
+
+<p>The encoder and the decoder are pre-trained in BART using different
+techniques. The encoder is pre-trained by masking some of the input
+tokens and trying to predict these masked tokens (same as BERT). While
+the decoder is trained by giving the preceding tokens and trying to
+predict the next token (same as GPT).</p>
+
+<div align="center">
+    <img src="media/BART/image1.png" width="450" />
+</div>
+
+<p>Unlike any other model, BART allows us to apply any type of document
+corruption. In the paper, they experimented with several previously
+proposed and novel transformations which are summarized below:</p>
+
+<ul>
+  <li>
+    <p><strong>Token Masking</strong>: Following BERT random tokens are sampled and
+replaced with [MASK] token.</p>
+  </li>
+  <li>
+    <p><strong>Token Deletion</strong>: Random tokens are deleted from the input. In
+contrast to token masking, the model must decide which positions
+are missing inputs.</p>
+  </li>
+  <li>
+    <p><strong>Sentence Permutation</strong>: A document is divided into sentences based
+on full stops, and these sentences are shuffled in a random order.</p>
+  </li>
+  <li>
+    <p><strong>Document Rotation</strong>: A token is chosen uniformly at random, and
+the document is rotated so that it begins with that token. This
+task trains the model to identify the start of the document.</p>
+  </li>
+  <li>
+    <p><strong>Text Infilling</strong>: Following SpanBERT, a number of text spans are
+sampled, with span lengths drawn from a Poisson distribution
+($\lambda = 3$). Each span is replaced with a single [MASK]
+token. 0-length spans correspond to the insertion of [MASK]
+tokens. Text infilling teaches the model to predict how many
+tokens are missing from a span.</p>
+  </li>
+</ul>
+
+<p>And the following table summarizes which noising function perform
+best at which task. All models are of comparable size and are
+trained for 1M steps on a combination of books and Wikipedia data.
+Performance varies considerably across tasks, but the BART models
+with text infilling demonstrate the most consistently strong
+performance:</p>
+
+<div align="center">
+    <img src="media/BART/image3.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+These noising functions can be combined as seen in the last entry of
+the above table.</p>
+</blockquote>
+
+<h2 id="fine-tuning-tasks">Fine-tuning Tasks</h2>
+
+<p>Same as BERT, The representations produced by BART can be used in
+several ways for downstream applications.</p>
+
+<ul>
+  <li><strong>Text Classification:</strong><br />
+The same input is fed into the encoder and decoder, and the
+final hidden state of the final decoder token is fed into new
+multi-class linear classifier. This approach is related to the CLS
+token in BERT.</li>
+</ul>
+
+<div align="center">
+    <img src="media/BART/image4.png" width="450" />
+</div>
+
+<ul>
+  <li>
+    <p><strong>Sequence Generation:</strong><br />
+Because BART has an autoregressive decoder, it can be directly
+fine tuned for sequence generation tasks such as abstractive
+question answering and summarization.</p>
+  </li>
+  <li>
+    <p><strong>Machine Translation:</strong><br />
+We replace BART’s encoder embedding layer with a new randomly
+initialized encoder. The model is trained end-to-end, which trains
+the new encoder to map foreign words into an input that BART can
+de-noise to English. The encoder part is trained in two steps, in
+both cases backpropagating the cross-entropy loss from the output
+of the BART model:</p>
+
+    <ul>
+      <li>
+        <p>In the first step, we freeze BART parameters and only update the
+randomly initialized source encoder, the BART positional
+embeddings, and the self-attention input projection matrix of
+BART’s encoder first layer.</p>
+      </li>
+      <li>
+        <p>In the second step, we train all model parameters for a small
+number of iterations.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/BART/image5.png" width="450" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/BART';
+      this.page.identifier = '/language-modeling/BART';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

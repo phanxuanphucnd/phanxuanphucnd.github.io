@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Contextualized Word Embedding: ELMO & BERT</title>
+  <meta name="title" content="Contextualized Word Embedding: ELMO & BERT">
+  <meta name="description" content="In the past few years, a number of new methods leveraging contextualized
+embeddings have been proposed. These are based on the notion that
+embeddings for words should be based on contexts in which they are used.
+This context can be the position and presence of surrounding words in
+the sentence, paragraph, or document.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Contextualized Word Embedding: ELMO & BERT">
+  <meta itemprop="description" content="In the past few years, a number of new methods leveraging contextualized
+embeddings have been proposed. These are based on the notion that
+embeddings for words should be based on contexts in which they are used.
+This context can be the position and presence of surrounding words in
+the sentence, paragraph, or document.
+
+">
+  <meta itemprop="image" content="/word-embedding/media/contextualized_word_embedding/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Contextualized Word Embedding: ELMO & BERT">
+  <meta property="og:description" content="In the past few years, a number of new methods leveraging contextualized
+embeddings have been proposed. These are based on the notion that
+embeddings for words should be based on contexts in which they are used.
+This context can be the position and presence of surrounding words in
+the sentence, paragraph, or document.
+
+">
+  <meta property="og:image" content="/word-embedding/media/contextualized_word_embedding/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contextualized Word Embedding: ELMO & BERT">
+  <meta name="twitter:description" content="In the past few years, a number of new methods leveraging contextualized
+embeddings have been proposed. These are based on the notion that
+embeddings for words should be based on contexts in which they are used.
+This context can be the position and presence of surrounding words in
+the sentence, paragraph, or document.
+
+">
+  
+  <meta name="twitter:image" content="/word-embedding/media/contextualized_word_embedding/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/word-embedding/contextualized_word_embedding">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2018-03-22 00:00" class="post-meta__body date">Published on arXiv on: 22 Mar 2018</time>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Contextualized Word Embedding: ELMO & BERT> Contextualized Word Embedding: ELMO & BERT</h1>
+    <p>In the past few years, a number of new methods leveraging contextualized
+embeddings have been proposed. These are based on the notion that
+embeddings for words should be based on contexts in which they are used.
+This context can be the position and presence of surrounding words in
+the sentence, paragraph, or document.</p>
+
+<h2 id="elmo">ELMO</h2>
+
+<p>ELMO stands for “Embeddings from Language Models” and it is based on a
+very important concept which is <strong>contextualized word embeddings</strong>.
+Contextualized word embeddings means that: instead of using a fixed
+embedding for each word, let’s look at the entire sentence before
+assigning each word in it an embedding.”. So, each word will have a
+different embedding based on the context of the sentence.</p>
+
+<p>So, for example the word “Paris”, it can be used to describe the city or
+it can be a female name like “Paris Hilton” for example. In all previous
+word embedding techniques, the word “Paris” wil lhave the same word
+embedding for both the city and the name. In ELMO, “Paris” will still
+have just one embedding vector where it sums all the multiple embeddings
+resulting from the different context the word appeared at.</p>
+
+<div align="center">
+    <img src="media/contextualized_word_embedding/image1.png" width="750" />
+</div>
+
+<p>ELMO was published in this paper: “<a href="https://arxiv.org/pdf/1802.05365.pdf">Deep contextualized word
+representations</a>” by “Allen
+Institute for AI” in 2018. And ELMO creates these contextualized word
+embeddings by using a bi-directional LSTM trained on a massive dataset
+to predict the next word in a sequence of words - a task called Language
+Modeling. This is convenient because we have vast amounts of text data
+that such a model can learn from without needing labels.</p>
+
+<div align="center">
+    <img src="media/contextualized_word_embedding/image2.png" width="750" />
+</div>
+
+<p>ELMO comes up with the contextualized embedding from bi-directional LSTM
+through the following three steps:</p>
+
+<ul>
+  <li>
+    <p>Given a word “w”, we will concatenate the forward and backward word
+embeddings of each word at every layer. So, in the previous
+architecture, where ELMO has only two layers, we will have three
+sets of vectors:</p>
+
+    <ul>
+      <li>
+        <p>Concatenate the forward and backward of the “stick” word embeddings.</p>
+      </li>
+      <li>
+        <p>Concatenate the forward and backward of the first LSTM layer.</p>
+      </li>
+      <li>
+        <p>Concatenate the forward and backward of the second LSTM layer.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Multiply each word vector by learnable parameters that represent the
+importance of that word embedding.</p>
+  </li>
+  <li>
+    <p>Eventually, sum all three weighted vectors together to get just one
+vector.</p>
+  </li>
+</ul>
+
+<p>And all three steps can be summarized in the following image:</p>
+
+<div align="center">
+    <img src="media/contextualized_word_embedding/image3.png" width="750" />
+</div>
+
+<h2 id="bert">BERT</h2>
+
+<p>This part relies heavily on BERT and how it works. So, if you need a
+refresher, check the BERT part in the language model document. BERT
+stands for “Bidirectional Encoder Representations from Transformers” and
+it’s a language model architecture that can be fine-tuned for various
+tasks. BERT, also, can be used to create contextualized word embeddings
+like ELMO as shown in the following figure:</p>
+
+<div align="center">
+    <img src="media/contextualized_word_embedding/image4.png" width="750" />
+</div>
+
+<p>According to the paper: “<a href="https://arxiv.org/pdf/1810.04805.pdf">BERT: Pre-training of Deep Bidirectional
+Transf</a>”, the output of each
+encoder layer along each token’s path can be used as a word embedding
+for that token. And according to the paper, there are some word vectors
+that work best as contextualized word embedding knowing that it might
+depend on the task. So, the task the paper used was NER and the
+following summarized the results:</p>
+
+<div align="center">
+    <img src="media/contextualized_word_embedding/image5.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/word-embedding/contextualized_word_embedding';
+      this.page.identifier = '/word-embedding/contextualized_word_embedding';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Reformer: Efficient Transformer</title>
+  <meta name="title" content="Reformer: Efficient Transformer">
+  <meta name="description" content="Reformer is an efficient version of the transformers proposed by Google
+Research in 2020 and published in this paper: “Reformer: The efficient
+Transformer”. The official code
+for this paper can be found in this GitHub repository:
+reformer-pytorch. In
+this paper, the authors introduced two techniques to improve the memory
+efficiency of Transformers while keeping the same great performance.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Reformer: Efficient Transformer">
+  <meta itemprop="description" content="Reformer is an efficient version of the transformers proposed by Google
+Research in 2020 and published in this paper: “Reformer: The efficient
+Transformer”. The official code
+for this paper can be found in this GitHub repository:
+reformer-pytorch. In
+this paper, the authors introduced two techniques to improve the memory
+efficiency of Transformers while keeping the same great performance.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Reformer/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Reformer: Efficient Transformer">
+  <meta property="og:description" content="Reformer is an efficient version of the transformers proposed by Google
+Research in 2020 and published in this paper: “Reformer: The efficient
+Transformer”. The official code
+for this paper can be found in this GitHub repository:
+reformer-pytorch. In
+this paper, the authors introduced two techniques to improve the memory
+efficiency of Transformers while keeping the same great performance.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Reformer/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Reformer: Efficient Transformer">
+  <meta name="twitter:description" content="Reformer is an efficient version of the transformers proposed by Google
+Research in 2020 and published in this paper: “Reformer: The efficient
+Transformer”. The official code
+for this paper can be found in this GitHub repository:
+reformer-pytorch. In
+this paper, the authors introduced two techniques to improve the memory
+efficiency of Transformers while keeping the same great performance.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Reformer/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Reformer">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          7 mins read
+        </span>
+      </p>
+      <time datetime="2020-01-13 00:00" class="post-meta__body date">Published on arXiv on: 13 Jan 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#U.C. Berkeley">U.C. Berkeley</a> & <a href="/labs/#Google Research">Google Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Reformer: Efficient Transformer> Reformer: Efficient Transformer</h1>
+    <p>Reformer is an efficient version of the transformers proposed by Google
+Research in 2020 and published in this paper: “<a href="https://arxiv.org/pdf/2001.04451.pdf">Reformer: The efficient
+Transformer</a>”. The official code
+for this paper can be found in this GitHub repository:
+<a href="https://github.com/lucidrains/reformer-pytorch">reformer-pytorch</a>. In
+this paper, the authors introduced two techniques to improve the memory
+efficiency of Transformers while keeping the same great performance.</p>
+
+<ul>
+  <li>
+    <p>They replaced the dot-product attention by one that uses
+locality-sensitive hashing, changing its complexity from
+$O\left( N^{2} \right)$ to
+$O\left( N \text{log}\left( N \right) \right)$, where $N$ is the
+length of the sequence.</p>
+  </li>
+  <li>
+    <p>They used reversible residual layers instead of the standard
+residuals, which allows storing activations only once in the
+training process instead of $L$ times, where $L$ is the number of
+layers.</p>
+  </li>
+  <li>
+    <p>They split activations inside feed-forward layers and processing
+them in chunks which removes the effect of the depth and saves
+memory inside feed-forward layers.</p>
+
+    <p>Before getting into more details, let’s first see how a transformer
+model consumes memory assuming that the vocabulary is $V$, the word
+embedding size is $d$, the input sequence length is $L$, the depth
+of the feed-forward network is $d_{\text{ff}}$ where the $i^{th}$ layer
+has $N_{i}$ neurons, and the number of batches is $B$:</p>
+  </li>
+  <li>
+    <p>Word embedding matrix is $V*d$.</p>
+  </li>
+  <li>
+    <p>Positional Embedding is $d*L$.</p>
+  </li>
+  <li>
+    <p>Feed-forward weights $\prod_{i = 1}^{d_{\text{ff}}}N_{i}$.</p>
+  </li>
+  <li>
+    <p>The original paper uses 6 heads of attention, each attention head
+has:</p>
+
+    <ul>
+      <li>
+        <p>$3*L*d$ parameters for V, Q and K.</p>
+      </li>
+      <li>
+        <p>$L*L$ attention weights.</p>
+
+        <p>This is just for one layer, the memory with N layers is N-times
+larger than that due to the fact that activations need to be
+stored for back-propagation. And all of that was just for the
+encoder, the decoder takes even more memory. Also, this was done
+using one batch, using the batch size will roughly multiply this
+number by a factor of B. And the standard way of saving
+parameters is float-32 bit. So, all this needs to be multiplied
+by 4 to get the number of bytes needed for saving this model.
+Which is a lot!</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Nowadays, researchers tend to use large-scale long-sequence transformers
+since they yield great results. But this strains resources to the point
+that this trend is breaking NLP research as these large Transformer
+models can only realistically be trained in large industrial research
+laboratories. And that’s hurting the field since only the big
+corporations are the ones who can afford such a thing. So, there was a
+need for a more efficient Transformer.</p>
+
+<h2 id="lsh-attention">LSH Attention</h2>
+
+<p>LSH Attention stands for “Locality-Sensitive Hashing Attention” which is
+a memory and computationally efficient way to perform the attention
+mechanism. A hashing scheme that assigns each vector $x$ to a hash
+$h(x)$ is called “locality-sensitive” if nearby vectors get the same
+hash with high probability and distant ones do not.</p>
+
+<h3 id="dot-product-attention">Dot-product Attention</h3>
+
+<p>Before getting into the First, let’s recap the standard attention used
+in the original Transformer paper which was the scaled dot-product
+attention:</p>
+
+\[\text{Attention}\left( Q,\ K,\ V \right) = softmax\left( \frac{QK^{T}}{\sqrt{d_{k}}} \right)V\]
+
+<p>As we can see from the previous formula, the input consists of queries
+$Q$, keys $K$ and values $V$. These matrices are obtained by projecting
+the contextualized word embedding (Word embedding + position embedding)
+into $Q$, $K$, and $V$ (each of $B*L*d$ dimension) using three different
+feed-forward networks.</p>
+
+<h3 id="modifications">Modifications</h3>
+
+<p>LSH attention can be seen as a more optimized form of the scaled-dot
+product attention which was obtains using the following modifications:</p>
+
+<ul>
+  <li>
+    <p>It uses the same feed-forward network to obtain both $Q$ and $K$ as
+it turns out that this does not affect the performance of the
+Transformer model.</p>
+  </li>
+  <li>
+    <p>It doesn’t calculate the whole $QK^{T}$ term. It only computes the
+attention for each query $q_{i}$ separately and then re-computes it
+on the backward pass when needed for gradients.</p>
+  </li>
+  <li>
+    <p>According to the equation, the model actually is interested in the
+most similar q and k represented in the
+$\text{softmax}\left( QK^{T} \right)$ term. That’s why LSH attention
+only considers a subset of $K$ that are close to $q_{i}$ rather than
+the whole $K$. The problem of finding nearest neighbors quickly in
+high-dimensional spaces can be solved by <a href="http://arxiv.org/abs/1509.02897">Local-sensitivity
+hashing</a> scheme, hence the name of
+the mechanism.</p>
+  </li>
+</ul>
+
+<p>So, now let’s rewrite the same scaled-dot product attention formula
+after putting in mind the mentioned modifications:</p>
+
+\[o_{i} = \sum_{j \in \mathcal{P}_{i}}^{}{\exp\left( q_{i}.k_{j} - z\left( i,\ \mathcal{P}_{i} \right) \right)v_{j}}\]
+
+\[\mathcal{P}_{i} = \left\{ j:\ i \geq j \right\}\]
+
+<p>As you can see, now we are considering just a single query position i at
+a time (denoted <span>$q_{i}$</span>). We introduced the notion
+<span>$\mathcal{P}_{i}$</span> to represent the set that the query at position
+i attends to. And we replaced the normalizing term in the softmax
+<span>$\sum_{i \in L}^{}{\exp\left( q_{i}.k_{i} \right)}$</span> with a
+function <span>$z$</span>.</p>
+
+<p>For batching purposes, we typically perform attention over a larger set
+<span>${\widetilde{\mathcal{P}}}_{i} = \left[ 0,\ 1,\ …,\ l \right]$</span>
+while masking out elements not in <span>$\mathcal{P}_{i}$</span> using a
+masking function <span>$m()$</span>. So, the formula becomes:</p>
+
+\[o_{i} = \sum_{j \in {\widetilde{\mathcal{P}}}_{i}}^{}{\exp\left( q_{i}.k_{j} - m\left( j,\ \mathcal{P}_{i} \right) - z\left( i,\ \mathcal{P}_{i} \right) \right)v_{j}}\]
+
+\[\text{m}\left( j,\ \mathcal{P}_{i} \right) = \left\{ \begin{matrix}
+\infty\ \ \ \ \ \ \text{if}\text{j} \notin \mathcal{P}_{i} \\
+0\ \ \ \ \ \ \text{otherwise} \\
+\end{matrix} \right.\]
+
+<h3 id="lsh-attention-mechanism">LSH Attention Mechanism</h3>
+
+<p>Now, let’s turn to LSH attention, which we can think of in terms of
+restricting the set <span>$\mathcal{P}_{i}$</span> by only allowing attention
+within a single hash bucket
+<span>$\mathcal{P}_{i} = \left( j:h\left( q_{i} \right) = h\left( k_{i} \right) \right)$</span>.
+And this can be done by the following steps:</p>
+
+<div align="center">
+    <img src="media/Reformer/image1.png" width="750" />
+</div>
+
+<ul>
+  <li>
+    <p>First, apply the LSH scheme over the given queries Q and keys K by
+employing random projections. To get $b$ hashes, we first fix a
+random matrix $R$ of size
+$\left\lbrack b_{k},\ \frac{b}{2} \right\rbrack$. And then define a
+hashing function $h(x) = \text{argmax}(\lbrack xR; - xR\rbrack)$
+where $\lbrack u;\ v\rbrack$ denotes the concatenation of two
+vectors knowing that they ensured that
+$h\left( k_{j} \right) = h\left( q_{j} \right)$ by setting
+$\frac{q_{j}}{\left| q_{j} \right|}$.</p>
+  </li>
+  <li>
+    <p>Then, sort the queries and keys according to their hash bucket and
+then allow attention within each bucket (right graph) rather than
+the full matrix (left graph).</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/Reformer/image2.png" width="750" />
+</div>
+
+<ul>
+  <li>Next, they sorted the queries by bucket number and, within each
+bucket, by sequence position; this defines a permutation where
+$i \rightarrow s_{i}$ after sorting. In the sorted attention matrix,
+pairs from the same bucket will cluster near the diagonal.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Reformer/image3.png" width="350" />
+</div>
+
+<ul>
+  <li>Hash buckets in this formulation tend to have different number of
+queries and keys. In fact, it is possible for a bucket to contain
+many queries but no keys. To alleviate these issues, they process
+$m$ consecutive queries where they attend to each other, and one
+chunk back. In the following graph $m = 2$.</li>
+</ul>
+
+<div align="center">
+    <img src="media/Reformer/image4.png" width="350" />
+</div>
+
+<ul>
+  <li>Following our earlier notation, this corresponds to setting where
+$m = \frac{2*l}{n_{\text{buckets}}}$ where $l$ is the sequence
+length and the average bucket size is
+$\frac{l}{n_{\text{buckets}}}$:</li>
+</ul>
+
+\[{\widetilde{\mathcal{P}}}_{i} = \left\{ j:\ \left\lfloor \frac{s_{i}}{m} \right\rfloor - 1 \leq \left\lfloor \frac{s_{j}}{m} \right\rfloor \leq \left\lfloor \frac{s_{i}}{m} \right\rfloor \right\}\]
+
+<h2 id="multi-round-lsh-attention">Multi-round LSH attention</h2>
+
+<p>With hashing, there is always a small probability that similar items
+nevertheless fall in different buckets. This probability can be reduced
+by doing multiple rounds of hashing with $n_{\text{rounds}}$ distinct
+hash functions
+$\left( h^{\left( 1 \right)},\ h^{\left( 2 \right)},\ …\  \right)$
+such that:</p>
+
+\[\mathcal{P}_{i} = \bigcup_{r = 1}^{n_{\text{rounds}}}\mathcal{P}_{i}^{\left( r \right)}\ \ \ \ \ \ \ \ \mathcal{P}_{i}^{\left( r \right)} = \left\{ j:\ h^{\left( r \right)}\left( q_{i} \right) = h^{\left( r \right)}\left( q_{j} \right) \right\}\]
+
+<p>The multi-round case essentially involves performing LSH attention
+$n_{\text{rounds}}$ times in parallel. So, starting with the original
+formula:</p>
+
+\[o_{i} = \sum_{j \in {\widetilde{\mathcal{P}}}_{i}}^{}{\exp\left( q_{i}.k_{j} - m\left( j,\ \mathcal{P}_{i} \right) - z\left( i,\ \mathcal{P}_{i} \right) \right)v_{j}}\]
+
+<p>We can combine it with the multiple rounds hashing like so:</p>
+
+\[o_{i} = \sum_{r = 1}^{n_{\text{rounds}}}{\exp\left( z\left( i,\ \mathcal{P}_{i}^{\left( r \right)} \right) - z\left( i,\ \mathcal{P}_{i} \right) \right)}\sum_{j \in {\widetilde{\mathcal{P}}}_{i}}^{}{\frac{1}{N_{i,j}}\exp\left( q_{i}.k_{j} - m\left( j,\ \mathcal{P}_{i}^{\left( r \right)} \right) - z\left( i,\ \mathcal{P}_{i}^{\left( r \right)} \right) \right)v_{j}} = \sum_{r = 1}^{n_{\text{rounds}}}{\exp\left( z\left( i,\ \mathcal{P}_{i}^{\left( r \right)} \right) - z\left( i,\ \mathcal{P}_{i} \right) \right)}o_{i}^{\left( r \right)}\]
+
+<p>Each round of LSH attention produces a vector $o_{i}^{\left( r \right)}$
+that can be computed independently from other rounds, except for the
+inclusion of a term $N_{i,j}$ to avoid that they folded the $N_{i,j}$
+factor into the masking term . So, the becomes:</p>
+
+\[o_{i}^{\left( r \right)} = \sum_{j \in {\widetilde{\mathcal{P}}}_{i}}^{}{\exp\left( q_{i}.k_{j} - m_{i,j}^{\left( r \right)} - z\left( i,\ \mathcal{P}_{i}^{\left( r \right)} \right) \right)v_{j}}\]
+
+<p>Where;</p>
+
+\[m_{i,j}^{\left( r \right)} = \left\{ \begin{matrix}
+\ \ \ \infty\ \ \ \ \ \ \text{if}\ \ \text{j} \notin \mathcal{P}_{i} \\
+10^{5}\ \ \ \ \text{if}\ \ i = j \\
+\log N_{i,j}\ \ \ \text{otherwise} \\
+\end{matrix} \right.\]
+
+\[N_{i,j} = \left| \left\{ r':\ j \in \mathcal{P}_{i}^{\left( r' \right)} \right\} \right|\]
+
+<p>They introduced a special case for $m_{i,j}^{\left( r \right)}$ for when
+$i = j$. This case is added because causal masking in a standard
+Transformer allows position $i$ to attend to itself, which is not
+desirable in a shared-QK formulation. They set the mask to a large but
+finite value to disallow attention-in-place, except in the situation
+where a token has no other valid attention targets.</p>
+
+<h2 id="reversible-transformer">Reversible Transformer</h2>
+
+<p>TO BE CONTINUED</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Reformer';
+      this.page.identifier = '/machine-translation/Reformer';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

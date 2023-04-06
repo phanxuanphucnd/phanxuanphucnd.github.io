@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>MASS</title>
+  <meta name="title" content="MASS">
+  <meta name="description" content="MASS, stands for “Masked Sequence to Sequence”, is a
+pre-training scheme proposed by Microsoft in 2019 and published in this
+paper: “MASS: Masked Sequence to Sequence Pre-training for Language
+Generation” and the code is
+publicly available on Microsoft’s official account on
+GitHub. Inspired by BERT, MASS
+encoder takes a sentence with a masked fragment as input, and its
+decoder predicts this masked fragment.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="MASS">
+  <meta itemprop="description" content="MASS, stands for “Masked Sequence to Sequence”, is a
+pre-training scheme proposed by Microsoft in 2019 and published in this
+paper: “MASS: Masked Sequence to Sequence Pre-training for Language
+Generation” and the code is
+publicly available on Microsoft’s official account on
+GitHub. Inspired by BERT, MASS
+encoder takes a sentence with a masked fragment as input, and its
+decoder predicts this masked fragment.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/MASS/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="MASS">
+  <meta property="og:description" content="MASS, stands for “Masked Sequence to Sequence”, is a
+pre-training scheme proposed by Microsoft in 2019 and published in this
+paper: “MASS: Masked Sequence to Sequence Pre-training for Language
+Generation” and the code is
+publicly available on Microsoft’s official account on
+GitHub. Inspired by BERT, MASS
+encoder takes a sentence with a masked fragment as input, and its
+decoder predicts this masked fragment.
+
+">
+  <meta property="og:image" content="/language-modeling/media/MASS/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MASS">
+  <meta name="twitter:description" content="MASS, stands for “Masked Sequence to Sequence”, is a
+pre-training scheme proposed by Microsoft in 2019 and published in this
+paper: “MASS: Masked Sequence to Sequence Pre-training for Language
+Generation” and the code is
+publicly available on Microsoft’s official account on
+GitHub. Inspired by BERT, MASS
+encoder takes a sentence with a masked fragment as input, and its
+decoder predicts this masked fragment.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/MASS/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/MASS">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2019-05-07 00:00" class="post-meta__body date">Published on arXiv on: 7 May 2019</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft Research">Microsoft Research</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=MASS> MASS</h1>
+    <p>MASS, stands for “<strong>Ma</strong>sked <strong>S</strong>equence to <strong>S</strong>equence”, is a
+pre-training scheme proposed by Microsoft in 2019 and published in this
+paper: “<a href="https://arxiv.org/pdf/1905.02450.pdf">MASS: Masked Sequence to Sequence Pre-training for Language
+Generation</a>” and the code is
+publicly available on Microsoft’s official account on
+<a href="https://github.com/microsoft/MASS">GitHub</a>. Inspired by BERT, MASS
+encoder takes a sentence with a masked fragment as input, and its
+decoder predicts this masked fragment.</p>
+
+<div align="center">
+    <img src="media/MASS/image1.png" width="750" />
+</div>
+
+<p>Unlike BERT which pre-trains only the encoder or decoder, MASS is
+carefully designed to pre-train the encoder and decoder jointly in two
+steps:</p>
+
+<ul>
+  <li>
+    <p>By predicting the fragment of the sentence that is masked on the
+encoder side, MASS can force the encoder to understand the meaning
+of the unmasked tokens, in order to predict the masked tokens in the
+decoder side.</p>
+  </li>
+  <li>
+    <p>By masking the input tokens of the decoder that are unmasked in the
+encoder side, MASS can force the decoder rely more on the source
+representation other than the previous tokens in the target side for
+next token prediction, better facilitating the joint training
+between encoder and decoder.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+While this method works for any neural network based encoder-decoder
+frameworks, they chose Transformer considering that it achieves
+state-of-theart performances in multiple sequence to sequence learning
+tasks.</p>
+</blockquote>
+
+<h2 id="masked-sequence">Masked Sequence</h2>
+
+<p>In the paper, they introduced a novel unsupervised prediction task where
+they mask $k$ consecutive tokens in the source sentence. Given an
+unpaired source sentence $x \in \mathcal{X}$ , they denote $x^{u:v}$ as
+a modified version of $x$ where the tokens from position $u$ to $v$ are
+masked using the special symbol $\left\lbrack \mathbb{M} \right\rbrack$
+where $0 &lt; u &lt; v &lt; \text{len}\left( x \right)$. They denote the unmasked
+part of $x$ as $x^{\backslash u:v}$ In this case, the log likelihood is
+used as the objective function:</p>
+
+\[L\left( \theta;\mathcal{X} \right) = \frac{1}{\left| \mathcal{X} \right|}\sum_{x \in \mathcal{X}}^{}{\log\left( P\left( x^{u:v} \middle| x^{\backslash u:v};\theta \right) \right)}\]
+
+<p>For example in the following figure, we can see that the input sequence
+has 8 tokens with the fragment
+$x^{3:6} = \left\{ x_{3},\ x_{4},\ x_{5},\ x_{6} \right\}$ being masked.
+Note that the model only predicts the masked fragment, given only
+$\left\{ x_{3},\ x_{4},\ x_{5} \right\}$ as the decoder input for
+position $4:6$, and the decoder takes the special mask symbol
+$\left[ \mathbb{M} \right]$ as inputs for the other
+positions (e.g., position $1:3$ and $7:8$.</p>
+
+<div align="center">
+    <img src="media/MASS/image1.png" width="750" />
+</div>
+
+<p>The start position $u$ is chosen randomly. The same as BERT, the masked
+tokens in the encoder will be replaced by:</p>
+
+<ul>
+  <li>
+    <p>The $\left\lbrack \mathbb{M} \right\rbrack$ token about 80% of the
+time.</p>
+  </li>
+  <li>
+    <p>A random token 10% of the time.</p>
+  </li>
+  <li>
+    <p>Remains unchanged 10% of the time.</p>
+  </li>
+</ul>
+
+<h3 id="study-of-different-k">Study of Different k</h3>
+
+<p>The length of the masked fragment $k$ is an important hyper-parameter of
+MASS and they explored different values of $k$ from 10% to 90%
+percentage of the sentence length $m$ with a step size of 10%. They
+found out that the best value for k is around 50% of the sentence length
+$m$ in multiple pre-training and fine-tuning tasks.</p>
+
+<div align="center">
+    <img src="media/MASS/image2.png" width="750" />
+</div>
+
+<p>Actually, the masked language modeling in BERT and the standard language
+modeling in GPT can be viewed as special cases of MASS. The following
+table shows how tuning the hyper-parameter $k$ can convert MASS to
+either BERT or OpenAI GPT:</p>
+
+<div align="center">
+    <img src="media/MASS/image3.png" width="450" />
+</div>
+
+<h2 id="pre-training">Pre-training</h2>
+
+<p>We choose Transformer as the basic model structure, which consists of
+6-layer encoder and 6-layer decoder with 1024 embedding/hidden size and
+4096 feed-forward filter size. Since MASS is a pre-training method
+mainly for language generation, the pre-training method changes based on
+the fine-tuning task:</p>
+
+<ul>
+  <li>
+    <p><u><strong>For neural machine translation task:</strong></u><br />
+They pre-trained MASS on the monolingual data of the source and
+target languages. They conducted experiments on three language
+pairs: English-French, English-German, and English-Romanian. To
+distinguish between the source and target languages, they added a
+language embedding to each token of the input sentence for the
+encoder and decoder, which is also learned end-to-end. Also, they
+used a vocabulary of 60,000 sub-word units with Byte-Pair Encoding
+between source and target languages</p>
+  </li>
+  <li>
+    <p><u><strong>For text summarization &amp; conversational response generation:</strong></u><br />
+They pre-trained the model with only English monolingual data.</p>
+  </li>
+</ul>
+
+<p>All of the monolingual data used in this pre-training are from WMT News
+Crawl datasets, which covers 190M, 62M and 270M sentences from year 2007
+to 2017 for English, French, German respectively. Also, they used all of
+the available Romanian sentences from News Crawl dataset and augment it
+with WMT16 data, which results in 2.9M sentences.</p>
+
+<h2 id="fine-tuning">Fine-tuning</h2>
+
+<p>In this section, we are going to discuss the performance of MASS over
+various tasks such as:</p>
+
+<ul>
+  <li><u><strong>Unsupervised NMT:</strong></u><br />
+For unsupervised NMT, we use only monolingual data to train
+MASS with back-translation (no bilingual data). And the following
+table shows the results of MASS (fine-tuned using Adam optimizer
+with initial learning rate $10^{- 4}$ and the batch size is set as
+2000 tokens for each GPU) on newstest2014 for English-French, and
+newstest2016 for English-German and English-Romanian:</li>
+</ul>
+
+<div align="center">
+    <img src="media/MASS/image4.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Low-resource NMT:</strong></u><br />
+In the low-resource NMT setting, we respectively sample 10K,
+100K, 1M paired sentence from the bilingual training data of WMT14
+English-French, WMT16 English-German and WMT16 English-Romanian. The
+following table shows the performance of MASS (fine-tuned for 20,000
+steps with Adam optimizer and the learning rate is set as 10−4) on
+the same testsets used in the unsupervised setting; The baseline
+model here is MASS but without pre-training.</li>
+</ul>
+
+<div align="center">
+    <img src="media/MASS/image5.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Text Summarization:</strong></u><br />
+Text summarization is the task of creating a short and fluent
+summary of a long text document, which is a typical sequence
+generation task. We fine-tune the pre-trained model on text
+summarization task with different scales (10K, 100K, 1M and 3.8M) of
+training data from the Gigaword corpus, which consists of a total of
+3.8M article-title pairs in English. We take the article as the
+encoder input and title as the decoder input for fine-tuning. We
+report the F1 score of ROUGE-1, ROUGE2 and ROUGE-L on the Gigaword
+testset during evaluation. We use beam search with a beam size of 5
+for inference. The baseline here is MASS but without pre-training:</li>
+</ul>
+
+<div align="center">
+    <img src="media/MASS/image6.png" width="750" />
+</div>
+
+<ul>
+  <li><u><strong>Conversational Response Generation:</strong></u><br />
+Conversational response generation generates a flexible response for
+the conversation. We conduct experiments on the Cornell movie dialog
+corpus that contains 140K conversation pairs. We randomly sample
+10K/20K pairs as the validation/test set and the remaining data is
+used for training. We adopt the same optimization hyper-parameters
+from the pre-training stage for fine-tuning:</li>
+</ul>
+
+<div align="center">
+    <img src="media/MASS/image7.png" width="350" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/MASS';
+      this.page.identifier = '/language-modeling/MASS';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

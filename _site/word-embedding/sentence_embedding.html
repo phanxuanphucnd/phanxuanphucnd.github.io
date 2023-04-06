@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Sentence Embedding</title>
+  <meta name="title" content="Sentence Embedding">
+  <meta name="description" content="Here, we are going to talk about an important issue that tried to use
+the Word Embedding to produce a sentence embedding. By sentence
+embedding, we mean to provide a vector of $d$ length that has the
+meaning of the sentence in a numerical form; the same form as we did
+with word embedding.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Sentence Embedding">
+  <meta itemprop="description" content="Here, we are going to talk about an important issue that tried to use
+the Word Embedding to produce a sentence embedding. By sentence
+embedding, we mean to provide a vector of $d$ length that has the
+meaning of the sentence in a numerical form; the same form as we did
+with word embedding.
+
+">
+  <meta itemprop="image" content="/word-embedding/media/sentence_embedding/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Sentence Embedding">
+  <meta property="og:description" content="Here, we are going to talk about an important issue that tried to use
+the Word Embedding to produce a sentence embedding. By sentence
+embedding, we mean to provide a vector of $d$ length that has the
+meaning of the sentence in a numerical form; the same form as we did
+with word embedding.
+
+">
+  <meta property="og:image" content="/word-embedding/media/sentence_embedding/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sentence Embedding">
+  <meta name="twitter:description" content="Here, we are going to talk about an important issue that tried to use
+the Word Embedding to produce a sentence embedding. By sentence
+embedding, we mean to provide a vector of $d$ length that has the
+meaning of the sentence in a numerical form; the same form as we did
+with word embedding.
+
+">
+  
+  <meta name="twitter:image" content="/word-embedding/media/sentence_embedding/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/word-embedding/sentence_embedding">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2014-05-22 00:00" class="post-meta__body date">Published on arXiv on: 22 May 2014</time>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Sentence Embedding> Sentence Embedding</h1>
+    <p>Here, we are going to talk about an important issue that tried to use
+the Word Embedding to produce a sentence embedding. By sentence
+embedding, we mean to provide a vector of $d$ length that has the
+meaning of the sentence in a numerical form; the same form as we did
+with word embedding.</p>
+
+<div align="center">
+    <img src="media/sentence_embedding/image1.png" width="750" />
+</div>
+
+<p>Following this approach, we could be able to found similarity between
+two sentences that has similar meaning. And this could give us some
+superiority over Cosine Similarity which determines the similarity bases
+on the common words. Using two sentences like “Mexico wishes to
+guarantee citizen’s safety” and “Mexico intends to avoid more violence”
+will be not that similar using Cosine Similarity even though they are
+pretty similar in the meaning. And two sentences like “Iranians Vote in
+Presidential Election” and “Keita Wins Mali Presidential Election” will
+be very similar using cosine similarity although they are not similar in
+the meaning.</p>
+
+<p>Le and Mikolov from Google, in their paper: “<a href="https://arxiv.org/pdf/1405.4053.pdf">Distributed
+Representations of Sentences and
+Documents</a>” published in 2014,
+proposed different techniques for Sentence Embedding as we are going to
+discuss below:</p>
+
+<h2 id="bag-of-words-bow">Bag-of-Words (BoW)</h2>
+
+<p>This is the simplest method of which we can covert the word embedding
+vectors into sentence embedding vector. In this method we get the
+<strong>average</strong> of the words vectors that form the sentence. So, the
+sentence embedding vector of “Natural Language Processing” is:</p>
+
+\[v\left( \text{Natural Language Processing} \right) = \frac{v\left( \text{Natural} \right) + v\left( \text{Language} \right) + v\left( \text{Processing} \right)}{3}\]
+
+<p>But this method neglects a lot of information like the sequence of the
+words and that might give false results. So, for example the sentence
+“You are going there to teach not to play.” will have the same sentence
+embedding as “You are going there to play not to each.” even though they
+are exactly the opposite.</p>
+
+<h2 id="distributed-bag-of-words-dbow">Distributed Bag-of-Words (DBoW)</h2>
+
+<p>Le and Mikolov from Google, in their paper “<a href="https://arxiv.org/pdf/1405.4053.pdf">Distributed Representations
+of Sentences and Documents</a>”
+published in 2014, proposed an distributed bag-of-words (DBOW) which
+used only the paragraph context vector to predict the words in the
+paragraph. This simple model is analogous to the skip-gram version of
+word2vec, except the paragraph vector is used to predict all the words
+paragraph instead of using the target word to predict the context words.
+As in the skip-gram model, DBOW is very computationally and memory
+efficient. Empirical results have shown that both DM and DBOW outperform
+bag-of-words and bag-of-n-gram models for text representations.
+Furthermore, averaging the DM and DBOW vector representations often
+yields the best performance overall.</p>
+
+<div align="center">
+    <img src="media/sentence_embedding/image2.png" width="450" />
+</div>
+
+<h2 id="doc2vec">doc2vec</h2>
+
+<p>The model generates fixed-length feature representations from variable
+length pieces of text, making it useful for application to sentences,
+paragraphs, sections, or entire documents. The key to the approach is to
+associate every paragraph with a unique paragraph vector $u^{i}$, which
+is averaged with the word vectors $w_{j}^{i}$ of the $J$ words in the
+paragraph to yield a representation of the paragraph $p^{i}$:</p>
+
+\[p^{i} = u^{i} + \sum_{j = 1}^{J}w_{j}^{i}\]
+
+<p>The paragraph vector ui can be thought of acting as a memory that
+remembers word order context. During training, a sliding window of
+context words $C$ and the paragraph vector $p^{i}$ are used to predict
+the next word in the paragraph context. Both paragraph vectors and word
+vectors are trained via backpropagation. While the paragraph vector is
+unique to each paragraph and shared across all contexts generated from
+the same paragraph, the word vectors are shared across the entire
+corpus. It is notable that the</p>
+
+<div align="center">
+    <img src="media/sentence_embedding/image3.png" width="550" />
+</div>
+
+<p><u><strong>Later Check</strong></u>:</p>
+
+<p>There is a famous paper published by <strong>Sanjeev Arora</strong>, <strong>Yingyn Liang</strong>, and
+<strong>Tengyu Ma</strong>, who are a group of researchers at Princeton, 
+and they call it “<a href="https://openreview.net/pdf?id=SyK00v5xx">A simple but Tough-to-beat Baseline for Sentence
+Embedding</a>”.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/word-embedding/sentence_embedding';
+      this.page.identifier = '/word-embedding/sentence_embedding';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

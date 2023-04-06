@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Dr. NMT</title>
+  <meta name="title" content="Dr. NMT">
+  <meta name="description" content="DrNMT stands for “Discriminative Reranking for Neural
+Machine Translation” which is a re-ranking framework created by
+Facebook AI in 2021 and published in this paper: Discriminative
+Reranking for Neural Machine
+Translation. The
+official implementation for this paper can be found in this GitHub
+repository:
+DrNMT.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Dr. NMT">
+  <meta itemprop="description" content="DrNMT stands for “Discriminative Reranking for Neural
+Machine Translation” which is a re-ranking framework created by
+Facebook AI in 2021 and published in this paper: Discriminative
+Reranking for Neural Machine
+Translation. The
+official implementation for this paper can be found in this GitHub
+repository:
+DrNMT.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/DrNMT/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Dr. NMT">
+  <meta property="og:description" content="DrNMT stands for “Discriminative Reranking for Neural
+Machine Translation” which is a re-ranking framework created by
+Facebook AI in 2021 and published in this paper: Discriminative
+Reranking for Neural Machine
+Translation. The
+official implementation for this paper can be found in this GitHub
+repository:
+DrNMT.
+
+">
+  <meta property="og:image" content="/machine-translation/media/DrNMT/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dr. NMT">
+  <meta name="twitter:description" content="DrNMT stands for “Discriminative Reranking for Neural
+Machine Translation” which is a re-ranking framework created by
+Facebook AI in 2021 and published in this paper: Discriminative
+Reranking for Neural Machine
+Translation. The
+official implementation for this paper can be found in this GitHub
+repository:
+DrNMT.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/DrNMT/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/DrNMT">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          3 mins read
+        </span>
+      </p>
+      <time datetime="2021-08-01 00:00" class="post-meta__body date">Published on arXiv on: 1 Aug 2021</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Dr. NMT> Dr. NMT</h1>
+    <p>DrNMT stands for “<strong>D</strong>iscriminative <strong>R</strong>eranking for <strong>N</strong>eural
+<strong>M</strong>achine <strong>T</strong>ranslation” which is a re-ranking framework created by
+Facebook AI in 2021 and published in this paper: <a href="https://aclanthology.org/2021.acl-long.563.pdf">Discriminative
+Reranking for Neural Machine
+Translation</a>. The
+official implementation for this paper can be found in this GitHub
+repository:
+<a href="https://github.com/pytorch/fairseq/tree/master/examples/discriminative_reranking_nmt">DrNMT</a>.</p>
+
+<p>A re-ranking model is a model that is able to take a list of hypotheses
+generated by a baseline model and rank them based on a desired metric.
+In this paper, DrNMT takes as input both the source sentence as well as
+a list of hypotheses to output a ranked list of a desired metric, e.g.
+BLEU, over the n-best list.</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>DrNMT is a transformer architecture which takes as input the
+concatenation of the source sentence $x$ and one of the hypothesis
+sentences generated by a NMT model $u \in \mathcal{U}(x)$. It outputs
+higher scores for hypotheses of better quality based on a metric
+$\mu(u,r)$ such as BLEU, where quality is measured with respect to a
+reference sentence $r$.</p>
+
+<p>The architecture includes also position embeddings and language
+embeddings, to help the model represent tokens that are shared between
+the two languages. The final hidden state corresponding to the start of
+sentence token $\left\langle s \right\rangle$ is a one hidden
+feed-forward network with $d$ hidden units with
+$\text{tanh}$ activation. It serves as the joint representation for
+$(x, u)$:</p>
+
+<div align="center">
+    <img src="media/DrNMT/image1.png" width="750" />
+</div>
+
+<p>Given a source sentence $x$, $n$ of hypotheses generated from Trans, a
+reference sentence $r$, and an evaluation metric $\mu$, DrNMT parameters
+$\theta$ are learned by minimizing the KL-divergence over the training
+dataset according to the following formula:</p>
+
+\[\mathcal{L}\left( \theta \right) = - \sum_{j = 1}^{n}{p_{T}\left( u_{j} \right)\text{.log}\left( p_{M}\left( u_{j} \middle| x;\theta \right) \right)}\]
+
+\[p_{M}\left( u_{i} \middle| x;\theta \right) = \text{softmax}\left( o_{i}\left( u_{i} \middle| x;\theta \right) \right) = \frac{\exp\left( o_{i}\left( u_{i} \middle| x;\theta \right) \right)}{\sum_{j = 1}^{n}{\exp\left( o_{j}\left( u_{j} \middle| x;\theta \right) \right)}}\]
+
+\[p_{T}\left( u_{i} \right) = \text{softmax}\left( \frac{\mu\left( u_{i},\ r \right)}{T} \right) = \frac{\exp\left( \frac{\mu\left( u_{i},\ r \right)}{T} \right)}{\sum_{j = 1}^{n}{\exp\left( \frac{\mu\left( u_{j},\ r \right)}{T} \right)}}\]
+
+<p>Where $T$ is the temperature to control the smoothness of the
+distribution. In practice, we apply a min-max normalization on $\mu$
+instead of using $T$ so that the best hypothesis scores 1 and the worst
+0.</p>
+
+<h2 id="results">Results</h2>
+
+<p>In the paper, they experimented on four different language pairs:
+GermanEnglish (De-En), English-German (En-De), English-Tamil (En-Ta) and
+Russian-English (Ru-En). The following table shows the number of
+sentences in each dataset used in the experiments after pre-processing:</p>
+
+<div align="center">
+    <img src="media/DrNMT/image2.png" width="750" />
+</div>
+
+<p>They trained vanilla Transformer models using the bitext data to
+generate the n-best hypothesis list. To alleviate overfitting,
+Back-Translation data was generated from beam decoding with beam size
+equal to 5. They also used pre-trained XLM-R as the transformer-part of
+the DrNMT. Experiments on the four WMT directions show that DrNMT yields
+improvements of up to 4 BLEU over the beam search output:</p>
+
+<div align="center">
+    <img src="media/DrNMT/image3.png" width="750" />
+</div>
+
+<p>The following are the models used in the previous table:</p>
+
+<ul>
+  <li>
+    <p><strong>beam (fw):</strong> Feed-forward transformer with beam decoding.</p>
+  </li>
+  <li>
+    <p><strong>beam (fw) + MLM:</strong> This is the same as <strong>beam (fw)</strong> with
+pre-trained masked language model (MLM) added. This technique was
+proposed by this paper: <a href="https://arxiv.org/pdf/1910.14659">Masked Language Model
+Scoring</a>. This takes a pre-trained
+masked language model (MLM) on the target side, and iteratively
+masks one word of the hypothesis at the time and aggregates the
+corresponding scores to yield a score for the whole hypothesis.
+Then, this score is combined with the score of the forward model to
+rerank the n-best list.</p>
+  </li>
+  <li>
+    <p><strong>beam (fw) + MLM:</strong> This is the same as <strong>beam (fw) + MLM</strong> where
+MLM is tuned on our target side monolingual dataset.</p>
+  </li>
+  <li>
+    <p><strong>DrNMT</strong>: is the model described before.</p>
+  </li>
+  <li>
+    <p><strong>DrNMT + NCD:</strong> This is the same as DrNMT with noisy channel
+decoding (NCD), a technique proposed in this paper: <a href="https://aclanthology.org/D19-1571.pdf">Simple and
+Effective Noisy Channel Modeling for Neural Machine
+Translation</a>.</p>
+  </li>
+  <li>
+    <p><strong>Oracle:</strong> The oracle is computed by selecting the best hypotheses
+based on BLEU with respect to the human reference. Of course, the
+oracle may be not achievable because of uncertainty in the
+translation task.</p>
+  </li>
+</ul>
+
+<p>In the paper, they also examined the effect of training the reranker
+with different sizes of the n-best list. And they found out that;
+<u><strong>as the size of the n-best list during test time increases, the
+performance of all rerankers and NCD improve</strong></u>. The following
+figure shows the performance of DrNMT on De-En validation sets from
+four re-rankers trained with 5, 10, 20 and 50 hypotheses,
+respectively:</p>
+
+<div align="center">
+    <img src="media/DrNMT/image4.png" width="750" />
+</div>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/DrNMT';
+      this.page.identifier = '/machine-translation/DrNMT';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

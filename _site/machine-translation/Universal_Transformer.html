@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>UT: Universal Transformer</title>
+  <meta name="title" content="UT: Universal Transformer">
+  <meta name="description" content="In “Universal Transformers”, the researchers from Google extended the
+standard Transformer architecture to be computationally universal
+(Turing complete) using a novel, efficient flavor of parallel-in-time
+recurrence which yields stronger results across a wider range of tasks.
+This model was proposed by Google AI in 2018 and published in their
+paper: Universal Transformers.
+The official code of this paper can be found on the Tensor2Tensor
+official GitHub repository:
+tensor2tensor/universal_transformer.py.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="UT: Universal Transformer">
+  <meta itemprop="description" content="In “Universal Transformers”, the researchers from Google extended the
+standard Transformer architecture to be computationally universal
+(Turing complete) using a novel, efficient flavor of parallel-in-time
+recurrence which yields stronger results across a wider range of tasks.
+This model was proposed by Google AI in 2018 and published in their
+paper: Universal Transformers.
+The official code of this paper can be found on the Tensor2Tensor
+official GitHub repository:
+tensor2tensor/universal_transformer.py.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Universal_Transformer/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="UT: Universal Transformer">
+  <meta property="og:description" content="In “Universal Transformers”, the researchers from Google extended the
+standard Transformer architecture to be computationally universal
+(Turing complete) using a novel, efficient flavor of parallel-in-time
+recurrence which yields stronger results across a wider range of tasks.
+This model was proposed by Google AI in 2018 and published in their
+paper: Universal Transformers.
+The official code of this paper can be found on the Tensor2Tensor
+official GitHub repository:
+tensor2tensor/universal_transformer.py.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Universal_Transformer/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="UT: Universal Transformer">
+  <meta name="twitter:description" content="In “Universal Transformers”, the researchers from Google extended the
+standard Transformer architecture to be computationally universal
+(Turing complete) using a novel, efficient flavor of parallel-in-time
+recurrence which yields stronger results across a wider range of tasks.
+This model was proposed by Google AI in 2018 and published in their
+paper: Universal Transformers.
+The official code of this paper can be found on the Tensor2Tensor
+official GitHub repository:
+tensor2tensor/universal_transformer.py.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Universal_Transformer/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Universal_Transformer">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          6 mins read
+        </span>
+      </p>
+      <time datetime="2018-07-10 00:00" class="post-meta__body date">Published on arXiv on: 10 Jul 2018</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#University of Amsterdam">University of Amsterdam</a> & <a href="/labs/#DeepMind">DeepMind</a> & <a href="/labs/#Google Brain">Google Brain</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=UT: Universal Transformer> UT: Universal Transformer</h1>
+    <p>In “Universal Transformers”, the researchers from Google extended the
+standard Transformer architecture to be computationally universal
+(Turing complete) using a novel, efficient flavor of parallel-in-time
+recurrence which yields stronger results across a wider range of tasks.
+This model was proposed by Google AI in 2018 and published in their
+paper: <a href="https://arxiv.org/pdf/1807.03819.pdf">Universal Transformers</a>.
+The official code of this paper can be found on the Tensor2Tensor
+official GitHub repository:
+<a href="https://github.com/tensorflow/tensor2tensor/tree/master/tensor2tensor/models/research">tensor2tensor/universal_transformer.py</a>.</p>
+
+<p>The Universal Transformer (UT) combines the <strong>parallelizability</strong> of the
+Transformer and the <strong>recurrent inductive bias</strong> of RNNs, which seems to
+be better suited to a range of natural language understanding problems.
+As shown in the following figure, the Universal Transformer is based on
+the popular encoder-decoder architecture commonly used in most neural
+sequence-to-sequence models:</p>
+
+<div align="center">
+    <img src="media/Universal_Transformer/image1.png" width="750" />
+</div>
+
+<p>Unlike the standard transformer, Both the encoder and decoder of the
+Universal Transformer operate by applying a recurrent neural network to
+the representations of each of the positions of the input and output
+sequence, respectively. Now, let’s describe the encoder and decoder in
+more detail.</p>
+
+<h2 id="encoder">Encoder</h2>
+
+<div align="center">
+    <img src="media/Universal_Transformer/image2.png" width="450" />
+</div>
+<p>Given an input sequence of length $m$ and
+d-dimensional embeddings, we will have a matrix
+$H^{0} \in \mathbb{R}^{m \times d}$. The UT then iteratively computes
+representations $H^{t}$ at step $t$ for all $m$ positions in parallel by
+applying:</p>
+
+<ul>
+  <li>The first step in the encoder is to apply the position/time
+embedding. For the positions $1 \leq i \leq m$ and the time-step
+$1 \leq t \leq T$ separately for each vector-dimension
+$1 \leq j \leq d$, the position/time embedding
+$P^{t} \in \mathbb{R}^{m \times d}$ is applied according to the
+following formula:</li>
+</ul>
+
+\[P_{i,2j}^{t} = \sin\left( \frac{i}{10000^{\frac{2j}{d}}} \right) + \sin\left( \frac{t}{10000^{\frac{2j}{d}}} \right)\]
+
+\[P_{i,2j + 1}^{t} = \cos\left( \frac{i}{10000^{\frac{2j}{d}}} \right) + \cos\left( \frac{t}{10000^{\frac{2j}{d}}} \right)\]
+
+<ul>
+  <li>The multi-headed self-attention mechanism defined before in the
+standard Transformer paper: <a href="https://arxiv.org/pdf/1706.03762.pdf">Attention is all you
+need</a>:</li>
+</ul>
+
+\[\text{MultiHead}\left( H^{t} \right) = Concat\left( \text{head}_{1},...\text{head}_{k} \right)\ W^{O}\]
+
+\[\text{head}_{i} = \text{Attention}\left( H^{t}W_{i}^{Q},H^{t}W_{i}^{K},H^{t}W_{i}^{V} \right) = \text{softmax}\left\lbrack \frac{H^{t}W_{i}^{Q}\left( H^{t}W_{i}^{K} \right)^{T}}{\sqrt{d}} \right\rbrack H^{t}W_{i}^{V}\]
+
+<p>   They map the state $H^{t}$ to queries, keys and values with affine
+projections using learned parameter matrices
+$W_{i}^{Q},W_{i}^{K},W_{i}^{V} \in \mathbb{R}^{d \times \frac{d}{k}},W_{i}^{O} \in \mathbb{R}^{d \times d}$
+where $d$ is the embedding size and $k$ is the number of heads.</p>
+
+<ul>
+  <li>The multi-headed self-attention is followed by a dropout and a
+residual connection:</li>
+</ul>
+
+\[\text{Dropout}\left( \text{MultiHead}\left( H^{t - 1} + P^{t} \right) \right)\]
+
+<ul>
+  <li>Then, the dropped-out multi-headed self-attention block is followed
+by a layer normalization accompanied by a transition function as
+shown below:</li>
+</ul>
+
+\[H^{t} = \text{LayerNorm}\left( A^{t} + \text{Dropout}\left( \text{Transition}\left( A^{t} \right) \right) \right)\]
+
+\[A^{t} = \text{LayerNorm}\left( \left( H^{t - 1} + P^{t} \right) + \text{Dropout}\left( \text{MultiHead}\left( H^{t - 1} + P^{t} \right) \right) \right)\]
+
+<ul>
+  <li>
+    <p>In the paper, they used one of two different $Transition()$
+functions:</p>
+
+    <ul>
+      <li>
+        <p>Either a separable convolution as described in the <a href="https://arxiv.org/pdf/1610.02357.pdf">Xception
+paper</a>.</p>
+      </li>
+      <li>
+        <p>Or a fully-connected neural network that consists of a single
+ReLU activation function between two affine transformations,
+applied to each row of $A^{t}$.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>After $T$ steps (each updating all positions of the input sequence in parallel),
+the final output of the Universal Transformer encoder is a matrix
+$H^{t} \in \mathbb{R}^{m \times d}$ for the $m$ symbols of the input sequence.</p>
+
+<h2 id="decoder">Decoder</h2>
+
+<div align="center">
+    <img src="media/Universal_Transformer/image3.png" width="750" />
+</div>
+
+<p>The decoder shares the same basic structure of the encoder. However,
+after the self-attention function, the decoder additionally also attends
+to the final encoder representation $H^{t}$. The encoder-decoder
+Multi-head attention uses the same multihead self-attention function but
+with queries Q obtained from projecting the decoder representations, and
+keys and values (K and V ) obtained from projecting the encoder
+representations.</p>
+
+<p>Like the Transformer model, the UT is autoregressive; meaning it
+produces its output one symbol at a time. Which means that the decoder
+self-attention distributions are masked so that the model can only
+attend to positions to the left of any predicted symbol.</p>
+
+<p>To generate the output, the per-symbol target distributions are obtained
+by applying an affine transformation $O \in \mathbb{R}^{d \times V}$
+from the final decoder state to the output vocabulary size $V$ followed
+by a softmax which yields an ($m \times V$)-dimensional output matrix
+normalized over its rows:</p>
+
+\[p\left( y_{\text{pos}} \middle| y_{\left\lbrack 1:pos - 1 \right\rbrack},\ H^{T} \right) = \text{softmax}\left( OH^{T} \right)\]
+
+<p>Note that $H^{T}$ is the encoder’s final output, not the transpose of
+$H$.</p>
+
+<h2 id="dynamic-halting">Dynamic Halting</h2>
+
+<p>In sequence processing systems, certain symbols (e.g. some words or
+phonemes) are usually more ambiguous than others. It is therefore
+reasonable to allocate more processing resources to these more ambiguous
+symbol. <a href="https://arxiv.org/pdf/1603.08983.pdf">Adaptive Computation Time
+(ACT)</a> is mechanism implemented to
+do exactly that in standard RNNs.</p>
+
+<p>Inspired by it, the researchers of this paper added a dynamic ACT
+halting mechanism to each symbol of the encoder. Once the per-symbol
+recurrent block halts, its state is simply copied to the next step until
+all blocks halt, or we reach a maximum number of steps.</p>
+
+<p>This dynamic halting was implemented in TensorFlow as follows. In each
+step of the UT with dynamic halting, we are given the halting
+probabilities, remainders, number of updates up to that point, and the
+previous state (all initialized as zeros), as well as a scalar threshold
+between 0 and 1 (a hyper-parameter).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">should_continue</span><span class="p">(</span><span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">halting_probability</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">n_updates</span><span class="p">,</span> <span class="n">u3</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="n">reduce_any</span><span class="p">(</span>
+        <span class="n">tf</span><span class="p">.</span><span class="n">logical_and</span><span class="p">(</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">less</span><span class="p">(</span><span class="n">halting_probability</span><span class="p">,</span> <span class="n">threshold</span><span class="p">),</span>
+            <span class="n">tf</span><span class="p">.</span><span class="n">less</span><span class="p">(</span><span class="n">n_updates</span><span class="p">,</span> <span class="n">max_steps</span><span class="p">)))</span>
+
+<span class="c1"># Do while loop until above is false
+</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">remainder</span><span class="p">,</span> <span class="n">n_updates</span><span class="p">,</span> <span class="n">new_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">while_loop</span><span class="p">(</span>
+    <span class="n">should_continue</span><span class="p">,</span>
+    <span class="n">ut_with_dynamic_halting</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">halting_probability</span><span class="p">,</span> <span class="n">remainders</span><span class="p">,</span> <span class="n">n_updates</span><span class="p">,</span> <span class="n">previous_state</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Then, they compute the new state for each position and calculate the new
+per-position halting probabilities based on the state for each position.
+The UT then decides to halt for some positions that crossed the
+threshold, and updates the state of other positions until the model
+halts for all positions or reaches a predefined maximum number of steps:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ut_with_dynamic_halting</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">halting_probability</span><span class="p">,</span> <span class="n">remainders</span><span class="p">,</span> <span class="n">n_updates</span><span class="p">,</span> <span class="n">previous_state</span><span class="p">):</span>
+    <span class="c1"># calculate the probabilities based on the state
+</span>    <span class="n">p</span> <span class="o">=</span> <span class="n">common_layers</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">sigmoid</span><span class="p">,</span> <span class="n">use_bias</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="c1"># mask of inputs which have not halted at this step
+</span>    <span class="n">still_running</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">less</span><span class="p">(</span><span class="n">halting_probability</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="c1"># mask of inputs which halted at this step
+</span>    <span class="n">new_halted</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">greater</span><span class="p">(</span><span class="n">halting_probability</span> <span class="o">+</span> <span class="n">p</span> <span class="o">*</span> <span class="n">still_runing</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="n">still_running</span>
+
+    <span class="c1"># mask of inputs which have not halted and didn\'t halt at this step
+</span>    <span class="n">still_running</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">less_equal</span><span class="p">(</span><span class="n">halting_probability</span> <span class="o">+</span> <span class="n">p</span> <span class="o">*</span> <span class="n">still_runing</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span> <span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">*</span> <span class="n">still_running</span>
+
+    <span class="c1"># Add the halting probability for this step to the halting
+</span>    <span class="c1"># probabilities for those inputs which haven\'t halted yet
+</span>    <span class="n">halting_probability</span> <span class="o">+=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">still_running</span>
+
+    <span class="c1"># compute remainders for the inputs which halted at this step
+</span>    <span class="n">remainders</span> <span class="o">+=</span> <span class="n">new_halted</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">halting_probability</span><span class="p">)</span>
+
+    <span class="c1"># compute remainders for the inputs which halted at this step
+</span>    <span class="n">halting_probability</span> <span class="o">+=</span> <span class="n">new_halted</span> <span class="o">*</span> <span class="n">remainders</span>
+
+    <span class="c1"># increment n_updates for all inputs which are still running
+</span>    <span class="n">n_updates</span> <span class="o">+=</span> <span class="n">still_running</span> <span class="o">+</span> <span class="n">new_halted</span>
+
+    <span class="c1"># compute the weight to be applied to the new state and output
+</span>    <span class="c1"># 0 when the input has already halted,
+</span>    <span class="c1"># p when the input hasn\'t halted yet,
+</span>    <span class="c1"># the remainders when it halted this step.
+</span>    <span class="n">update_weights</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">still_running</span> <span class="o">+</span> <span class="n">new_halted</span> <span class="o">*</span> <span class="n">remainders</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># apply transformation to the state
+</span>    <span class="n">transformed_state</span> <span class="o">=</span> <span class="n">transition</span><span class="p">(</span><span class="n">self_attention</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+
+    <span class="c1"># Interpolate transformed and previous states for non-halted inputs
+</span>    <span class="n">new_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">transformed_state</span> <span class="o">*</span> <span class="n">updated_weights</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span> <span class="n">previous_state</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">update_weights</span><span class="p">))</span>
+
+    <span class="c1"># increment steps
+</span>    <span class="n">steps</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">transformed_state</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">halting_probability</span><span class="p">,</span> <span class="n">remainders</span><span class="p">,</span> <span class="n">n_updates</span><span class="p">,</span> <span class="n">new_state</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="machine-translation">Machine Translation</h2>
+
+<p>In the paper, they trained a Universal Transform on the WMT 2014
+English-German translation task using the same setup as in the standard
+transformer in order to evaluate its performance on a large-scale
+sequence-to-sequence task. The universal transformer improves by 0.9
+BLEU over the standard Transformer and 0.5 BLEU over a Weighted
+Transformer with approximately the same number of parameters:</p>
+
+<div align="center">
+    <img src="media/Seq2Seq/image4.png" width="750" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+The $Transition()$ function used here is a fully-connected recurrent
+transition function. Also, the dynamic ACT halting wasn’t used.</p>
+</blockquote>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Universal_Transformer';
+      this.page.identifier = '/machine-translation/Universal_Transformer';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

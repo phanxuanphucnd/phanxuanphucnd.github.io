@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Back-translation</title>
+  <meta name="title" content="Back-translation">
+  <meta name="description" content="Back-translation is a semi-supervised mechanism proposed in this paper:
+“Improving Neural Machine Translation Models with Monolingual
+Data” by the Rico Sennrich and
+the University of Edinburgh in 2015 that uses a reverse translation
+system make the best use out of target-side monolingual data.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Back-translation">
+  <meta itemprop="description" content="Back-translation is a semi-supervised mechanism proposed in this paper:
+“Improving Neural Machine Translation Models with Monolingual
+Data” by the Rico Sennrich and
+the University of Edinburgh in 2015 that uses a reverse translation
+system make the best use out of target-side monolingual data.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Back-Translation/image0.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Back-translation">
+  <meta property="og:description" content="Back-translation is a semi-supervised mechanism proposed in this paper:
+“Improving Neural Machine Translation Models with Monolingual
+Data” by the Rico Sennrich and
+the University of Edinburgh in 2015 that uses a reverse translation
+system make the best use out of target-side monolingual data.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Back-Translation/image0.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Back-translation">
+  <meta name="twitter:description" content="Back-translation is a semi-supervised mechanism proposed in this paper:
+“Improving Neural Machine Translation Models with Monolingual
+Data” by the Rico Sennrich and
+the University of Edinburgh in 2015 that uses a reverse translation
+system make the best use out of target-side monolingual data.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Back-Translation/image0.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Back-Translation">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2015-11-20 00:00" class="post-meta__body date">Published on arXiv on: 20 Nov 2015</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#University of Edinburgh">University of Edinburgh</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Back-translation> Back-translation</h1>
+    <p>Back-translation is a semi-supervised mechanism proposed in this paper:
+“<a href="https://arxiv.org/pdf/1511.06709.pdf">Improving Neural Machine Translation Models with Monolingual
+Data</a>” by the Rico Sennrich and
+the University of Edinburgh in 2015 that uses a reverse translation
+system make the best use out of target-side monolingual data.</p>
+
+<p>Back-translation operates in a semi-supervised setup where both
+bilingual and monolingual data in the target language are available.
+Using “English-French” data as a use-case where the source is
+<u><strong>English</strong></u> and the target is <u><strong>French</strong></u>,
+the back-translation process can be summarized into the following steps:</p>
+
+<ul>
+  <li>
+    <p>We have “en-fr” parallel corpus that can be used to train NMT model,
+let’s call it “Forward NMT en→fr”.</p>
+  </li>
+  <li>
+    <p>We can reverse this data to get “fr-en” parallel corpus which can be
+used to train NMT model, let’s call it “Backward NMT en→fr”.</p>
+  </li>
+  <li>
+    <p>We have a corpus of just “French” data.</p>
+  </li>
+  <li>
+    <p>We will use the “Backward NMT en→fr” to translate this French data
+to English which will get us a “<u><strong>synthetic en-fr parallel
+corpus</strong></u>”. To be able to get the best synthetic data possible,
+the paper uses beam search.</p>
+  </li>
+  <li>
+    <p>Then, we are going to mix the original “en-fr” data with the
+synthetic one to further train the “forward NMT en→fr” model.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/Back-Translation/image1.png" width="750" />
+</div>
+
+<p>You could either leave it at that (hopefully better than just the original
+model), or you can extend it to <a href="https://anwarvic.github.io/machine-translation/Dual_learning">dual learning
+</a> where you have
+to find some monolingual source language data and translate it with the forward
+model to further train the backward model (back-translation for the backward
+model). With this strengthened backwards model, you can probably generate better
+back-translations for the forward model, and train that one further and so on.</p>
+
+<blockquote>
+  <p><strong>Notes:</strong></p>
+
+  <ul>
+    <li>
+      <p>You can iteratively train both models forever, but that only makes sense if
+  you have monolingual source data as well, and it usually stops improving
+  after a two rounds or so.</p>
+    </li>
+    <li>
+      <p>In the paper, they were using the encoder-decoder architecture. However,
+  this technique can be used with any other NMT architecture.</p>
+    </li>
+    <li>
+      <p>As discussed in the paper, back-translation delays overfitting in NMT
+  models especially for small datasets.</p>
+    </li>
+    <li>
+      <p>Usually, back-translation outperforms deep fusion.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>In the paper, they tried another method to use monolingual target data hoping
+it will be better than the previous one. They treated the monolingual target
+data as parallel examples with empty source side. Which means that the decoder
+has to depend only on the previously generated word when generating the
+translation. Also, they froze the layers of the encoder.</p>
+
+<p>The following are the different results obtained by each method on
+English -&gt; German parallel corpus where:</p>
+
+<ul>
+  <li>
+    <p><u><strong>parallel</strong></u>: means using just the NMT model</p>
+  </li>
+  <li>
+    <p><u><strong>monolingual</strong></u>: means using the NMT model with
+monolingual data where the source source sentence is empty.</p>
+  </li>
+  <li>
+    <p><u><strong>synthetic</strong></u>: means using the NMT model with
+monolingual data where the source sentence is translated using a backward NMT
+model.</p>
+  </li>
+</ul>
+
+<div align="center">
+    <img src="media/Back-Translation/image2.png" width="750" />
+</div>
+
+<h2 id="noised-bt">Noised BT</h2>
+
+<p>Back-translation typically uses beam search to generate synthetic source
+sentences. However, beam search can lead to less rich translations since
+it focuses on the head of the model distribution which results in very
+regular synthetic source sentences that do not properly cover the true
+data distribution. In this paper: “<a href="https://arxiv.org/pdf/1808.09381.pdf">Understanding Back-Translation at
+Scale</a>”, published by Facebook AI
+and Google Brain in 2018, they advised that adding noise to the beam
+search actually improves the generated synthetic data which improves the
+translation model’s performance.</p>
+
+<p>In particular, we transform source sentences with three types of noise:</p>
+
+<ul>
+  <li>
+    <p>Deleting words with probability 0.1.</p>
+  </li>
+  <li>
+    <p>Replacing words by a filler token with probability 0.1.</p>
+  </li>
+  <li>
+    <p>Uniformly swapping words no further than three positions apart.</p>
+  </li>
+</ul>
+
+<p>And this simple change outperforms all other sampling techniques
+such as greedy search, beam search (beam size = 5), top-k sampling
+(k = 10), and randomly sampling. The following table contains the
+BLEU score of the same back-translation NMT model with different
+synthetic data generation methods:</p>
+
+<div align="center">
+    <img src="media/Back-Translation/image3.png" width="750" />
+</div>
+
+<p>And the following table shows the perplexity of the generated
+synthetic data. They analyzed the richness of generated
+synthetic outputs and train a language model on real human text and
+score synthetic source sentences generated by the different methods
+mentioned above:</p>
+
+<div align="center">
+    <img src="media/Back-Translation/image4.png" width="750" />
+</div>
+
+<p>The results show that beam+noise method receives the highest
+perplexity which indicates that beam search outputs are not as rich
+as sampling outputs or beam+noise. This lack of variability probably
+explains in part why back-translations from pure beam search provide
+a weaker training signal than alternatives.</p>
+
+<h2 id="low-vs-high-resource">Low vs High Resource</h2>
+
+<p>The experiments so far are based on a setup with a high-resource
+bilingual corpus. In this part, we are going to discuss the effect of
+back-translation on low-resource setup. To simulate such setups, they
+cut off the training data to either 80K sentence-pairs or 640K
+sentence-pairs and then used back-translation and compared this setup to
+the original setup.</p>
+
+<p>The following figure shows that the accuracy of the German-English
+back-translation systems steadily increases with more training data: On
+newstest2012, the BLEU score is $13.5$ for 80K bitext, $24.3$ for 640K
+and $28.3$ BLEU for 5M:</p>
+
+<div align="center">
+    <img src="media/Back-Translation/image5.png" width="450" />
+</div>
+
+<p><u><strong>The figure also shows that sampling is more effective than beam for
+larger setups (640K and 5.2M bi-texts) while the opposite is true for
+resource poor settings (80K bitext).</strong></u> This is likely because the
+back-translations in the 80K setup are of very poor quality and the
+noise of sampling and beam+noise is too much for this brittle
+low-resource setting.</p>
+
+<h2 id="real-vs-synthetic-data">Real Vs Synthetic Data</h2>
+
+<p>How does real human bitext compare to synthetic data in terms of final
+model accuracy? To answer this question, they sub-sampled 640k
+sentence-pairs of the bitext for training. And added either one of the
+following three alternatives:</p>
+
+<ul>
+  <li>
+    <p><strong>bitext:</strong> The remaining of bitext data (real human).</p>
+  </li>
+  <li>
+    <p><strong>BT-bitext:</strong> The back-translation of the remaining bitext data
+(synthetic).</p>
+  </li>
+  <li>
+    <p><strong>BT-news:</strong> The back-translation the news data (synthetic,
+different domain).</p>
+  </li>
+</ul>
+
+<p>The back-translated data is generated via sampling. This setup
+allows us to compare synthetic data to genuine data since BT-bitext
+and bitext share the same target side. It also allows us to estimate
+the value of BT data for domain adaptation since the newscrawl
+corpus (BT-news) is pure news whereas the WMT is a mixture of
+europarl and commoncrawl.</p>
+
+<p>The following figure shows the results on both validation sets. Most strikingly,
+BT-news performs almost as well as bitext on newstest2012. <u><strong>This
+shows that synthetic data can be nearly as effective as real human translated
+data when the domains match</strong></u>:</p>
+
+<div align="center">
+    <img src="media/Back-Translation/image6.png" width="450" />
+</div>
+
+<p>On the other hand, when the domain changes, the back-translation performance
+gets hurt. The following figure shows the performance of the previous three
+models on a mixture set between WMT training data &amp; news crawl. They named
+this set “valid-mixed”. The following figure shows the accuracy is not as good
+as before since the domain of the BT data and the test set do not match:</p>
+
+<div align="center">
+    <img src="media/Back-Translation/image7.png" width="450" />
+</div>
+
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Back-Translation';
+      this.page.identifier = '/machine-translation/Back-Translation';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

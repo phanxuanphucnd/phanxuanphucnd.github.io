@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>GCNN: Gated CNN</title>
+  <meta name="title" content="GCNN: Gated CNN">
+  <meta name="description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Language Modeling with Gated Convolutional
+Networks”, proposed by FAIR
+(Facebook AI Research) in 2017, the researchers developed a new
+architecture that uses gating mechanism over stacked convolution layers
+that outperforms the
+Seq2Seq model.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="GCNN: Gated CNN">
+  <meta itemprop="description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Language Modeling with Gated Convolutional
+Networks”, proposed by FAIR
+(Facebook AI Research) in 2017, the researchers developed a new
+architecture that uses gating mechanism over stacked convolution layers
+that outperforms the
+Seq2Seq model.
+
+">
+  <meta itemprop="image" content="/language-modeling/media/GCNN/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="GCNN: Gated CNN">
+  <meta property="og:description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Language Modeling with Gated Convolutional
+Networks”, proposed by FAIR
+(Facebook AI Research) in 2017, the researchers developed a new
+architecture that uses gating mechanism over stacked convolution layers
+that outperforms the
+Seq2Seq model.
+
+">
+  <meta property="og:image" content="/language-modeling/media/GCNN/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GCNN: Gated CNN">
+  <meta name="twitter:description" content="One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “Language Modeling with Gated Convolutional
+Networks”, proposed by FAIR
+(Facebook AI Research) in 2017, the researchers developed a new
+architecture that uses gating mechanism over stacked convolution layers
+that outperforms the
+Seq2Seq model.
+
+">
+  
+  <meta name="twitter:image" content="/language-modeling/media/GCNN/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/language-modeling/GCNN">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          5 mins read
+        </span>
+      </p>
+      <time datetime="2016-12-23 00:00" class="post-meta__body date">Published on arXiv on: 23 Dec 2016</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#FAIR">FAIR</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=GCNN: Gated CNN> GCNN: Gated CNN</h1>
+    <p>One of the major defects of Seq2Seq models is that it can’t process
+words in parallel. For a large corpus of text, this increases the time
+spent translating the text. CNNs can help us solve this problem. In this
+paper: “<a href="https://arxiv.org/pdf/1612.08083v3.pdf">Language Modeling with Gated Convolutional
+Networks</a>”, proposed by FAIR
+(Facebook AI Research) in 2017, the researchers developed a new
+architecture that uses gating mechanism over stacked convolution layers
+that outperforms the
+<a href="https://anwarvic.github.io/machine-translation/Seq2Seq">Seq2Seq</a> model.</p>
+
+<div align="center">
+    <img src="media/GCNN/image1.png" width="450" />
+</div>
+
+<p>Using stacked convolutions layers is more efficient since it allows
+parallelization over sequential tokens. Using a kernel size of $k$ over
+a context of size $N$, this new architecture will perform
+$O\left( \frac{N}{k} \right)$ operations unlike recurrent networks which
+will perform a linear number $O\left( N \right)$ of operations. The
+former figure illustrates the model architecture; where:</p>
+
+<ul>
+  <li>
+    <p>The input to the model is a sequence of words $w_{0},\ …w_{N}$.</p>
+  </li>
+  <li>
+    <p>Each word is represented by a vector embedding stored in a lookup
+table $D^{\left| V \right| \times e}$ where $\left| V \right|$ is
+the vocabulary and $e$ is the embedding size.</p>
+  </li>
+  <li>
+    <p>After the lookup table, the input will be represented as word
+embeddings:</p>
+  </li>
+</ul>
+
+\[E = \left\lbrack D_{w_{0}},\ ...\ D_{w_{N}} \right\rbrack\]
+
+<ul>
+  <li>The hidden layers $h_{0},\ …h_{L}$, where $L$ is the number of
+layers, are computed as:</li>
+</ul>
+
+\[h_{l}\left( X \right) = \left( X*W + b \right) \otimes \sigma\left( X*V + c \right)\]
+
+<p>Where $X \in \mathbb{R}^{N \times m}$ is the input of layer $h_{l}$
+(either word embeddings or the outputs of previous layers),
+$W \in \mathbb{R}^{k \times m \times n}$, $b \in \mathbb{R}^{n}$,
+$V \in \mathbb{R}^{k \times m \times n}$, and $c \in \mathbb{R}^{n}$ are
+learned parameters, $m$ and $n$ are respectively the number of input and
+output feature maps, $\sigma$ is the sigmoid function and $\otimes$ is
+the element-wise product between matrices.</p>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+When convolving inputs, they made sure that $h_{i}$ does not contain
+information from future words by shifting the convolutional inputs to
+prevent the kernels from seeing future context.</p>
+</blockquote>
+
+<h2 id="adaptive-softmax">Adaptive Softmax</h2>
+
+<p>The simplest choice to To obtain model’s predictions at the last layer
+is to use a softmax layer, but this choice is often computationally
+inefficient for large vocabularies. A better choice could be
+hierarchical softmax (<a href="Hierarchical probabilistic
+neural network language model">Morin &amp; Bengio, 2005</a>).</p>
+
+<p>In the paper, they chose an improvement of the latter known as adaptive
+softmax which assigns higher capacity to very frequent words and lower
+capacity to rare words. This results in lower memory requirements as
+well as faster computation at both training and test time. You can find
+an efficient implementation of Adaptive Softmax in Facebook Research’s
+official GitHub repository:
+<a href="https://github.com/facebookresearch/adaptive-softmax">facebookresearch/adaptive-softmax</a>.</p>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>All experiments in this paper were using two public large-scale language
+modeling datasets: <a href="https://code.google.com/archive/p/1-billion-word-language-modeling-benchmark/">Google’s Billion
+word</a>
+dataset (one billion token) and
+<a href="https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/">WikiText-103</a>
+dataset (100M tokens). For both datasets, $\left\langle S \right\rangle$
+and $\left\langle /S \right\rangle$ tokens were added at the start and
+end of each line respectively. In terms of optimization, they
+initialized the layers of the model with the He initialization with the
+learning rate sampled uniformly in the interval
+$\lbrack 1.,\ 2.\rbrack$, the momentum was set to $0.99$, and gradient
+clipping was set to $0.1$ to prevent gradient explosion. Also, weight
+normalization was used to make training faster as seen in the following
+figure:</p>
+
+<div align="center">
+    <img src="media/GCNN/image2.png" width="450" />
+</div>
+
+<p>For model architecture, they selected the number of residual blocks
+between $\left{ 1,\ …10 \right}$, the size of the embeddings with
+$\left{ 128,\ …256 \right}$, the number of units between
+$\left{ 128,\ …2048 \right}$, and the kernel width between
+$\left{ 3,\ …5 \right}$ as shown in the following table:</p>
+
+<div align="center">
+    <img src="media/GCNN/image3.png" width="750" />
+</div>
+
+<p>The following table shows the test perplexity over Google’s Billion word
+dataset; as we can see, GCNN outperforms all LSTMs with the same output
+approximation while only requiring a fraction of the operations:</p>
+
+<div align="center">
+    <img src="media/GCNN/image4.png" width="450" />
+</div>
+
+<p>Same thing happens with WikiText-103 dataset; GCNN outperforms LSTM
+models:</p>
+
+<div align="center">
+    <img src="media/GCNN/image5.png" width="450" />
+</div>
+
+<p>The following figure shows a comparison between GCNN and the
+<a href="https://arxiv.org/pdf/1602.02410.pdf">state-of-the-art LSTM model</a> back
+in 2016 which uses the full softmax, the adaptive softmax approximation
+greatly reduces the number of operations required to reach a given
+perplexity:</p>
+
+<div align="center">
+    <img src="media/GCNN/image6.png" width="450" />
+</div>
+
+<h2 id="gating-mechanism-glu">Gating Mechanism (GLU)</h2>
+
+<p>Gating mechanisms control the path through which information flows in
+the network. <a href="https://anwarvic.github.io/language-modeling/RNN">LSTMs</a>
+enable long-term memory via a separate cell controlled by different
+gates (forget, update, output gates). This allows information to flow
+through potentially many timesteps and without these gates, information
+could easily vanish.</p>
+
+<p>In contrast, convolutional networks do not suffer from the same kind of
+vanishing gradient and we find experimentally that they do not require
+forget gates. Therefore, they considered using only <u><strong>output
+gates</strong></u>, which allow the network to control what information
+should be propagated through the hierarchy of layers.</p>
+
+<p>In this paper, they tried four different output gating mechanisms on the
+<a href="https://www.salesforce.com/products/einstein/ai-research/the-wikitext-dependency-language-modeling-dataset/">WikiText-103
+benchmark</a>:</p>
+
+<ul>
+  <li><strong>Tanh (not gating mechanism):</strong></li>
+</ul>
+
+\[h_{l}\left( X \right) = \tanh\left( X*W + b \right)\]
+
+<ul>
+  <li><strong>ReLU (not gating mechanism):</strong></li>
+</ul>
+
+\[h_{l}\left( X \right) = \text{ReLU}\left( X*W + b \right)\]
+
+<ul>
+  <li><strong>Gated Tanh Unit (GTU):</strong></li>
+</ul>
+
+\[h_{l}\left( X \right) = \tanh\left( X*W + b \right) \otimes \sigma\left( X*V + c \right)\]
+
+<ul>
+  <li><strong>Gated Linear Unit (GLU):</strong></li>
+</ul>
+
+\[h_{l}\left( X \right) = \left( X*W + b \right) \otimes \sigma\left( X*V + c \right)\]
+
+<p>And the results show that GLU achieves the best perplexity over the data
+as seen in the following figure. There is a gap of about 5 perplexity
+points between the GLU and ReLU which is similar to the difference
+between the LSTM and RNN models on the same dataset.</p>
+
+<div align="center">
+    <img src="media/GCNN/image7.png" width="450" />
+</div>
+
+<p><strong>Note:</strong><br />
+The difference between GTU and $\text{Tanh}$ models shows us the effect
+of gating mechanism since the $\text{Tanh}$ model can be thought of as a
+GTU network with the sigmoid gating units removed:</p>
+
+<p>The experiments so far have shown that the GLU benefits from the linear
+path the unit provides compared to other non-linearities such as GTU.
+That’s why they decided to compare GLU to purely linear networks in
+order to measure the impact of the nonlinear path provided by the gates
+of the GLU. In the paper, they compared GLU to:</p>
+
+<ul>
+  <li><strong>Linear (not gating mechanism):</strong></li>
+</ul>
+
+\[h_{l}\left( X \right) = \left( X*W + b \right)\]
+
+<ul>
+  <li><strong>Bi-linear:</strong></li>
+</ul>
+
+\[h_{l}\left( X \right) = \left( X*W + b \right) \otimes \left( X*V + c \right)\]
+
+<p>The following figure shows the performance of the three mechanisms on
+Google’s <a href="https://code.google.com/archive/p/1-billion-word-language-modeling-benchmark/">Billion word
+benchmark</a>.
+As we can see, GLU still outperforms other methods</p>
+
+<div align="center">
+    <img src="media/GCNN/image8.png" width="450" />
+</div>
+
+<h2 id="context-size-k">Context Size $k$</h2>
+
+<p>The following figure shows the impact of context size for GCNN on
+Google’s Billion word dataset (left graph) and WikiText-103 dataset
+(right graph). Generally, larger contexts improve accuracy but returns
+drastically diminish with windows larger than 40 words:</p>
+
+<div align="center">
+    <img src="media/GCNN/image9.png" width="750" />
+</div>
+
+<p>The previous figure Figure 4 also shows that WikiText-103 benefits much
+more from larger context size than Google Billion Word as the
+performance degrades more sharply with smaller contexts.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/language-modeling/GCNN';
+      this.page.identifier = '/language-modeling/GCNN';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>

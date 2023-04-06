@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  <title>Very Deep Transformer</title>
+  <meta name="title" content="Very Deep Transformer">
+  <meta name="description" content="Using a simple yet effective initialization technique that stabilizes
+training, researchers at Microsoft Research were able to build very deep
+Transformer
+models with up to 60 encoder layers. These models were explored in this
+paper published in 2020: Very Deep Transformers for Neural Machine
+Translation. The official code
+for this paper can be found in the following GitHub repository:
+exdeep-nmt.
+
+">
+  <meta name="author" content="Phanxuan Phuc">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="Very Deep Transformer">
+  <meta itemprop="description" content="Using a simple yet effective initialization technique that stabilizes
+training, researchers at Microsoft Research were able to build very deep
+Transformer
+models with up to 60 encoder layers. These models were explored in this
+paper published in 2020: Very Deep Transformers for Neural Machine
+Translation. The official code
+for this paper can be found in the following GitHub repository:
+exdeep-nmt.
+
+">
+  <meta itemprop="image" content="/machine-translation/media/Very_Deep_Transformer/image1.png">
+
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:url" content="http://localhost:4000">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Anwarvic's Blog"/>
+  <meta property="og:title" content="Very Deep Transformer">
+  <meta property="og:description" content="Using a simple yet effective initialization technique that stabilizes
+training, researchers at Microsoft Research were able to build very deep
+Transformer
+models with up to 60 encoder layers. These models were explored in this
+paper published in 2020: Very Deep Transformers for Neural Machine
+Translation. The official code
+for this paper can be found in the following GitHub repository:
+exdeep-nmt.
+
+">
+  <meta property="og:image" content="/machine-translation/media/Very_Deep_Transformer/image1.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Very Deep Transformer">
+  <meta name="twitter:description" content="Using a simple yet effective initialization technique that stabilizes
+training, researchers at Microsoft Research were able to build very deep
+Transformer
+models with up to 60 encoder layers. These models were explored in this
+paper published in 2020: Very Deep Transformers for Neural Machine
+Translation. The official code
+for this paper can be found in the following GitHub repository:
+exdeep-nmt.
+
+">
+  
+  <meta name="twitter:image" content="/machine-translation/media/Very_Deep_Transformer/image1.png">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/images/favicons/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-194x194.png" sizes="194x194">
+  <link rel="icon" type="image/png" href="/images/favicons/android-chrome-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/images/favicons/manifest.json">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+  <meta name="msapplication-square70x70logo" content="/images/favicons/mstile-70x70.png" />
+  <meta name="msapplication-square150x150logo" content="/images/favicons/mstile-150x150.png" />
+  <meta name="msapplication-wide310x150logo" content="/images/favicons/mstile-310x150.png" />
+  <meta name="msapplication-square310x310logo" content="/images/favicons/mstile-310x310.png" />
+  <meta name="theme-color" content="#ffffff">
+  
+  <link rel="stylesheet" href="/css/main.css?1680758196150470619">
+  <link rel="canonical" href="http://localhost:4000/machine-translation/Very_Deep_Transformer">
+  <link rel="alternate" type="application/rss+xml" title="Phuc Phan's Blog" href="/feed.xml">
+  <script type="text/javascript" src="/js/jquery.v3.3.1.min.js"></script>
+  <!-- <script type="text/javascript" src="/js/simple-jekyll-search.min.js"></script> -->
+  <script type="text/javascript" src="/js/simple-blog-search.min.js"></script>
+</head>
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="extra-big-icon iconify-inline icon-list btn-mobile-menu__icon" data-icon="gg:menu-round"></i>
+  <i class="extra-big-icon iconify-inline icon-x-circle btn-mobile-close__icon hidden" data-icon="ion:close-circle-outline"></i>
+</span>
+
+<header class="panel-cover "
+  style="background-image: url(/images/forest.jpg)">
+  <div class="panel-main panel-cover--overlay">
+
+    <div class="panel-main__inner panel-inverted">
+      <div class="panel-main__content">
+        <img src="/images/avatar.jpg" class="user-image"
+        onmouseover="this.src='/images/avatar-light.jpg';"
+        onmouseout="this.src='/images/avatar.jpg';">
+        <h1 class="panel-cover__title panel-title">
+          <a href="/">Phanxuan Phuc</a>
+        </h1>
+        </a>
+        <h6 class="panel-cover__title panel-subtitle">fakerphan
+          <i class="medium-icon iconify-inline" data-icon="foundation:male-symbol"></i>
+        </h6>
+        <nav class="cover-navigation navigation--social">
+    <ul class="navigation">
+
+      
+      <!-- Email -->
+      <li class="navigation__item">
+        <a href="mailto:phanxuanphucnd@gmail.com" target="_blank" title="Email">
+          <i class="big-icon iconify-inline" data-icon="fluent:mail-copy-24-filled"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- LinkedIn -->
+      <li class="navigation__item">
+        <a href="https://www.linkedin.com/in/phanxuanphucnd" target="_blank" title="LinkedIn">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:linkedin-fill"></i>
+        </a>
+      </li>
+      
+
+      
+      <!-- GitHub -->
+      <li class="navigation__item">
+        <a href="https://www.github.com/phanxuanphucnd" target="_blank" title="GitHub">
+          <i class="big-icon iconify-inline" data-icon="akar-icons:github-fill"></i>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      <!-- RSS -->
+      <li class="navigation__item">
+        <a href="/feed.xml" title="Subscribe (RSS)" target="_blank">
+          <i class="big-icon iconify-inline" data-icon="ph:rss-bold"></i>
+          <!-- <span class="label">RSS</span> -->
+        </a>
+      </li>
+    </ul>
+  </nav>
+        
+        <form class="search-container" onsubmit="return searchTheArchives()" >
+          <input type="search" id="search-input" placeholder="Search.." autocomplete="off" style="padding-right: 40px;">
+        </form>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+        <div class="navigation-wrapper">
+          <p class="panel-cover__description">I’m a AI Engineer in Vin Bigdata. And I summarize research papers in these topics:</p>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              
+              
+              <li class="navigation__item">
+                <a href="/cross-lingual-lm" class="blog-button" id="cross-lingual-lm"
+                onclick="activateButton(this.id)">Cross-lingual Langluage Model</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/language-modeling" class="blog-button" id="language-modeling"
+                onclick="activateButton(this.id)">Language Modeling</a>
+              </li>
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/machine-translation" class="blog-button" id="machine-translation"
+                onclick="activateButton(this.id)">Machine Translation</a>
+              </li>
+              
+              
+              
+              
+              
+              <li class="navigation__item">
+                <a href="/multilingual-nmt" class="blog-button" id="multilingual-nmt"
+                onclick="activateButton(this.id)">Multilingual NMT</a>
+              </li>
+              
+              
+              
+              
+              
+              
+            </ul>
+          </nav>
+        </div>
+        
+        <hr class="panel-cover__divider">
+      </div>
+
+    </div>
+
+    <!-- <div class="panel-cover--overlay"></div> -->
+  </div>
+</header>
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <p class="post-meta__body">
+        <i class="medium-icon iconify-inline" data-icon="bi:clock-history"></i>
+        <span id="reading-time">
+          
+          4 mins read
+        </span>
+      </p>
+      <time datetime="2020-08-18 00:00" class="post-meta__body date">Published on arXiv on: 18 Aug 2020</time>
+      
+      <p class="post-meta__tags">Published by: <a href="/labs/#Microsoft Research">Microsoft Research</a> & <a href="/labs/#Johns Hopkins University">Johns Hopkins University</a> & <a href="/labs/#University of Illinois">University of Illinois</a></p>
+      
+    </div>
+  </header>
+
+  <section class="post">
+    <h1 id=Very Deep Transformer> Very Deep Transformer</h1>
+    <p>Using a simple yet effective initialization technique that stabilizes
+training, researchers at Microsoft Research were able to build very deep
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+models with up to 60 encoder layers. These models were explored in this
+paper published in 2020: <a href="https://arxiv.org/pdf/2008.07772.pdf">Very Deep Transformers for Neural Machine
+Translation</a>. The official code
+for this paper can be found in the following GitHub repository:
+<a href="https://github.com/namisan/exdeep-nmt">exdeep-nmt</a>.</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image1.png" width="450" />
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong><br />
+I suggest reading the
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+post first before going on especially the part about “Layer
+Normalization”.</p>
+</blockquote>
+
+<p>The capacity of a neural network influences its ability to model complex
+functions. Very deep neural network models have proved successful in
+computer vision such as ResNet-101 and Inception networks. In NMT,
+researchers from Google have shown in this paper: <a href="https://arxiv.org/pdf/1808.07561.pdf">Training Deeper
+Neural Machine Translation Models with Transparent
+Attention</a> (published in 2018)
+that it is difficult to train deep Transformers whose encoder depth is
+increased beyond 12 layers as shown in the following table:</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image2.png" width="750" />
+</div>
+
+<p>In the previous table, * indicates that a model failed to train. As we
+can see, Transformers beyond 12 layers all failed to train. And that’s
+due to gradient vanishing; since the error signal needs to traverse
+along the depth of the encoder.</p>
+
+<p>That’s why models with “Transparent” attention were able to train.
+“Transparent Attention” behaves akin to creating trainable weighted
+residual connections along the encoder depth, allowing the dispersal of
+error signal simultaneously over encoder depth and time.</p>
+
+<p>In this paper, they are re-investigating the deeper Transformer models
+but with a new initialization technique called ADMIN which remedies the
+problem. This enables training Transformers that are significantly deep.</p>
+
+<h2 id="admin-initialization">ADMIN Initialization</h2>
+
+<p>The ADMIN initialization technique was proposed in 2020 by researchers
+from Microsoft and published in this paper: <a href="https://arxiv.org/pdf/:2004.08249.pdf">Understanding the
+difficulty of training
+transformers</a>. This technique
+reformulates the layer-normalization equation. First, let’s recap the
+layer normalization formula used in the
+<a href="https://anwarvic.github.io/machine-translation/Transformer">Transformer</a>
+model:</p>
+
+\[x_{i} = \text{LayerNom}\left( x_{i - 1} + f\left( x_{i - 1} \right) \right)\]
+
+<p>Where $f$ represents either the attention function or the feed-forward
+sub-layer. This process repeats $2 \times N$ times for a $N$-layer
+encoder and $3 \times M$ times for a $M$-layer decoder. ADMIN
+reformulates this equation by using a constant vector $\omega_{i}$ that
+is element-wise multiplied to $x_{i - 1}$ in order to balance the
+contribution against $f\left( x_{i - 1} \right)$:</p>
+
+\[x_{i} = \text{LayerNom}\left( x_{i - 1}.\omega_{i} + f\left( x_{i - 1} \right) \right)\]
+
+<p>ADMIN initialization method is effective in ensuring that training does
+not diverge, even in deep networks. It involves two phases:</p>
+
+<ul>
+  <li>
+    <p><strong>Profiling Phase:</strong> At the profiling phase, we follow these steps:</p>
+
+    <ul>
+      <li>
+        <p>We randomly initialize the model parameters and we set $\omega_{i} = 1$.</p>
+      </li>
+      <li>
+        <p>Then, we and perform one step forward pass.</p>
+      </li>
+      <li>
+        <p>Then, compute the variance of the residual output at each layer:</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+\[V\text{ar}\left\lbrack f\left( x_{i - 1} \right) \right\rbrack\]
+
+<ul>
+  <li>
+    <p><strong>Training Phase:</strong> At the training phase, we follow these steps:</p>
+
+    <ul>
+      <li>We fix $\omega_{i}$ to be:</li>
+    </ul>
+  </li>
+</ul>
+
+\[\omega_{i} = \sqrt{\sum_{j &lt; i}^{}{V\text{ar}\left\lbrack f\left( x_{i - 1} \right) \right\rbrack}}\]
+
+<ul>
+  <li>
+    <p>Then, train the model like normal.</p>
+  </li>
+  <li>
+    <p>After training is finished, $\omega_{i}$ can be removed to recover the
+standard Transformer architecture.</p>
+  </li>
+</ul>
+
+<p>The following figure shows the learning curve of 60L-12L Transformer
+when initialized with the default initialization once and with ADMIN
+once. As we can see, the default initialization has difficulty
+decreasing the training perplexity; its gradients hit NaN, and the
+resulting model is not better than a random model.</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image3.png" width="450" />
+</div>
+
+<h2 id="experiments">Experiments</h2>
+
+<p>Experiments were conducted using Transformers with 512-dim word
+embedding, 2048 feed-forward model size, and 8 heads on standard WMT’14
+English-French (36 Million) dataset using 40k subword vocabulary, and
+English-German (4.5 Million) dataset using 32k subword vocabulary. They
+used max tokens of 3584 in each batch. They used RAdam optimizer with
+two configurations:</p>
+
+<ul>
+  <li>
+    <p><strong>French-English:</strong> 8000 warm-up steps, 50 max epochs, and 0.0007 as
+learning rate.</p>
+  </li>
+  <li>
+    <p><strong>German-English:</strong> 4000 warm-up steps, 50 max epochs, and 0.001 as
+learning rate.</p>
+  </li>
+</ul>
+
+<p>The following table shows the test results on WMT’14 benchmarks, in
+terms of TER (T↓), METEOR (M↑), and BLEU. ∆ shows difference in BLEU
+score against baseline 6L-6L. As we can see, 60L-12L ADMIN outperforms
+all other models and achieves new state-of-the-art benchmark results on
+WMT14 English-French (43.8 BLEU and 46.4 BLEU with back-translation) and
+WMT14 English-German (30.1 BLEU):</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image4.png" width="750" />
+</div>
+
+<p>The following figure shows the BLEU score over multiple sentence length
+ranges of 6L-6L default Transformer versus 60L-12L ADMIN transformer
+which indicates that Very Deep Transformer shows progress over all
+sentence lengths.</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image5.png" width="750" />
+</div>
+
+<p>Same results can be seen in the following figure when considering the
+word frequency. As we can see, Very Deep Transformers improve
+translation of low frequency and high frequency words as well:</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image6.png" width="750" />
+</div>
+
+<p>Also, they experimented with different number of encoder and decoder
+layers and results are shown in the following table where (+) means the
+row outperforms the column, (-) means under-performs, and (=) means no
+statistically significant difference.</p>
+
+<div align="center">
+    <img src="media/Very_Deep_Transformer/image7.png" width="450" />
+</div>
+
+<p>The pairwise comparison of models shown that <u><strong>deeper encoders are more
+worthwhile than deeper decoders</strong></u>.</p>
+
+  </section>
+</article>
+
+  
+  <br><br><br><br>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = 'http://localhost:4000/machine-translation/Very_Deep_Transformer';
+      this.page.identifier = '/machine-translation/Very_Deep_Transformer';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://Phuc Phan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  <!-- <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a> -->
+
+
+
+
+      </div>
+      
+<footer class="footer">
+  <!-- <span class="footer__copyright">&copy; 2023 Phanxuan Phuc. All rights reserved.</span> -->
+  
+  <!-- Adding Iconify -->
+  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+  
+  <!-- Adding MathJax -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "tex2jax": {
+        inlineMath: [['$','$']],
+        processEscapes: true
+      },
+      "HTML-CSS": { linebreaks: { automatic: true } },
+      "SVG": { linebreaks: { automatic: true } },
+    });
+  </script>
+  
+  <script type="text/javascript" async
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  
+  <!-- Adding main.js -->
+  <script type="text/javascript" src="/js/main.js?1680758196150470619"></script>
+  
+  <!-- Adding Google Analytics -->
+  
+</footer>
+    </div>
+  </body>
+</html>
