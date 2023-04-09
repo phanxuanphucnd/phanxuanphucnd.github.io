@@ -38,6 +38,11 @@ collections:
     permalink: /:collection/:path
     title: "Cross-lingual Langluage Model"
     show: true
+  chatgpt:
+    output: true
+    permalink: /:collection/:path
+    title: "ChatGPT"
+    show: true
   word-embedding:
     output: true
     permalink: /:collection/:path
