@@ -1,5 +1,5 @@
 ---
-title: "How ChatGPT actually works"
+title: "ChatGPT: How ChatGPT actually works"
 date: 2022-12-23
 cover: /chatgpt.jpg
 labs: ["AssemblyAI", "San Francisco, California"]
