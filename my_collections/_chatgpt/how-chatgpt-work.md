@@ -13,7 +13,7 @@ ChatGPT đang là xu hướng, nó như đại diện cho thế hệ tiếp theo
 OpenAI họ đã sử dụng kết hợp cả Supervised Learning (học giám sát) và Reinforment Learning (học tăng cường) để tinh 
 chỉnh (fine-tune) ChatGPT, **nhưng Reinforment Learning mới là thành phần làm cho ChatGPT trở nên độc đáo hơn tất cả**. 
 Kỹ thuật cụ thể được gọi là **Reinforment Learning from Human Feedback (RLHF)**, tức là học tăng cường từ những dữ liệu 
-feedback của conm người, sử dụng vòng lặp feedback của con người trong quá trình huấn luyện để giảm thiểu kết quả có hại, 
+feedback của con người, sử dụng vòng lặp feedback của con người trong quá trình huấn luyện để giảm thiểu kết quả có hại, 
 không trung thực hay là sai lệch tri thức.
 
 Chúng ta sẽ xem xét các giới hạn của GPT-3 và cách họ xuất phát cho quá trình đào tạo, trước khi tìm hiểu cách thức 
