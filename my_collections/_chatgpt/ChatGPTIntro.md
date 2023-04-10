@@ -17,9 +17,6 @@ Kỹ thuật cụ thể được gọi là **Reinforment Learning from Human Fee
 feedback của con người, sử dụng vòng lặp feedback của con người trong quá trình huấn luyện để giảm thiểu việc đưa ra các phản hồi 
 có hại, không trung thực hay là sai lệch tri thức.
 
-Chúng ta sẽ xem xét các giới hạn của GPT-3 và cách họ xuất phát cho quá trình đào tạo, trước khi tìm hiểu cách thức 
-hoạt động của RLHF và hiểu cách ChatGPT sử dụng RLHF để khắc phục những vấn đề này. Tôi sẽ kết luận bằng cách xem xét 
-một số hạn chế của các diễn giải ChatGPT này.
 
 ### Capability vs Alignment trong LLMs
 
