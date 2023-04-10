@@ -22,7 +22,7 @@ hoạt động của RLHF và hiểu cách ChatGPT sử dụng RLHF để khắc
 một số hạn chế của các diễn giải ChatGPT này.
 
 <div align="center">
-    <img src="media/ChatGPT/image0.png" width=500>
+    <img src="media/ChatGPTIntro/image0.png" width=500>
 </div>
 
 ### Capability vs Alignment trong LLMs
