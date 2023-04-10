@@ -1,6 +1,7 @@
 ---
 title: "InfoXLM"
 date: 2020-07-15
+cover: /image0.png
 labs: ["Beijing Institute of Technology", "Microsoft"]
 ---
 
