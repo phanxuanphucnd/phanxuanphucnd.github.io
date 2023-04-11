@@ -45,6 +45,7 @@ thực tế, log loss không hoàn toàn tương quan tới độ accuracy trong
     <b><i>LLMs như GPT-3 là dạng misaligned</i></b>
 </div>
 
+
 Các LLMs chẳng hạn như GPT3, LLaMA, BLOOM, PaLM, ... được huấn luyện trên một lượng rất lớn dữ liệu text từ internet và 
 có khả năng sinh văn bản giống như con người, nhưng không phải lúc nào LLMs cũng sinh ra được đầu ra như kỳ vọng của con 
 người hoặc có tính chính xác. Trong thực tế, hàm mục tiêu của chúng là phân phối xác suất trên các chuỗi từ (word sequences)
@@ -72,6 +73,20 @@ Nhưng vấn đề *alignment* này bắt nguồn từ đâu? Có phải ngay t�
 
 ### Tại sao các chiến lược huấn luyện language model có thể tạo ra vấn đề *misalignment*
 
-`Next-token-prediction` và `masked-language-modeling` là một trong số các kỹ thuật cốt lõi được sử dụng để huấn luyện 
-language models, chẳng hạn như `transformers`. Trong cách tiếp cận đầu tiê
+`Next token prediction` và `masked language modeling` là một trong số các kỹ thuật cốt lõi được sử dụng để huấn luyện 
+language models, chẳng hạn như `transformers`. 
+
+Trong cách tiếp cận đầu tiên, model có đầu vào là chuỗi các từ (hoặc 
+token) và dự đoán từ tiếp theo trong chuỗi. Ví dụ, chuỗi đầu vào của model là: "Con mèo đang nằm trên ". Model phải dự 
+đoán từ tiếp theo là "giường", "ghế", "bàn", "sân" chẳng hạn. Bởi vì xác suất xuất hiện từ tiếp theo của các từ đó trong ngữ 
+cảnh phía trước cao. Trên thực tế, language model có thể ước tính khả năng xuất hiện của mỗi từ (trong vốn từ vựng của 
+nó) có thể xuất hiện tiếp theo dựa trên chuỗi từ trước đó. 
+
+Cách tiếp cận theo `masked language modeling` là một biến thể của `next token prediction`, trong đó một số từ trong 
+chuỗi đầu vào được thay thế bởi một token đặc biệt, ví dụ như [MASK]. Model có nhiệm vụ dự đoán chính xác từ sẽ được 
+thêm vào vị trí được mask. Ví dụ, chuỗi đầu vào của model là: "Con [MASK] đang nằm trên ghế ." thì model phải dự đoán 
+được từ được mask là "mèo", "chó", hoặc "thỏ" chẳng hạn.
+
+
+
 
