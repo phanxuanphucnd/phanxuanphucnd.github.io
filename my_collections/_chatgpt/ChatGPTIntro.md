@@ -38,11 +38,40 @@ thế nào? Một ví dụ cụ thể đơn giản là chúng ta ây dựng mộ
 chim sẻ hay chim họa mi. Thông thường, chúng ta sử dụng log loss là hàm mục tiêu (để đo được sự phân biệt giữa phân bố xác 
 suất dự đoán của mô hình và phân bố của nhãn thực) mặc dù mục tiêu cuối cùng là độ chính xác phân loại cao (accuracy). 
 Vì thế, model sẽ có xu hướng low log loss, tức là *capability* của model là cao, nhưng accuracy kém trên tập test. Trong 
-thực tế, log loss không hoàn toàn tương quan tới độ accuracy trong các task phân loại. Đây là một ví dụ sai lệch (misalignment) 
-giữa hàm mục tiêu được tối ưu trong quá trình huấn luyện nhưng lại căn chỉnh kém mục tiêu cuối cùng.
+thực tế, log loss không hoàn toàn tương quan tới độ accuracy trong các task phân loại. Đây là một ví dụ sai lệch 
+(misalignment) giữa hàm mục tiêu được tối ưu trong quá trình huấn luyện nhưng lại căn chỉnh kém mục tiêu cuối cùng.
 
 <div align="center">
-<b><i>LLMs như GPT-3 là dạng misaligned</i></b>
+    <b><i>LLMs như GPT-3 là dạng misaligned</i></b>
 </div>
 
+Các LLMs chẳng hạn như GPT3, LLaMA, BLOOM, PaLM, ... được huấn luyện trên một lượng rất lớn dữ liệu text từ internet và 
+có khả năng sinh văn bản giống như con người, nhưng không phải lúc nào LLMs cũng sinh ra được đầu ra như kỳ vọng của con 
+người hoặc có tính chính xác. Trong thực tế, hàm mục tiêu của chúng là phân phối xác suất trên các chuỗi từ (word sequences)
+hoặc trên chuỗi token (token sequences) mà cho phép dự đoán chính xác từ tiếp theo trong chuỗi.
+
+Tuy nhiên, trong các ứng dụng thực tế, các model này nhằm để thực hiện một số dạng kiểu nhận dạng có giá trị, và có sự 
+khác biệt rõ ràng giữa cách huấn luyện với cách mà chúng ta muốn sử dụng model. Mặc dù về mặt toán học, việc sử dụng 
+phân bố thống kê chuỗi các từ có thể là một lựa chọn rất hiệu quả cho language model, nhưng con người chúng ta tạo ra 
+ngôn ngữ bằng cách lựa chọn chuỗi text phù hợp nhất với tình huống nhất định bằng cách sử dụng nền tảng tri thức và 
+quy tắc hay phép tắc thông thường để hướng dẫn quá trình này. Đây có thể là vấn đề khi language models được sử dụng 
+trong các ứng dụng mà đòi hỏi mức độ tin cậy và độ tin tưởng cao chẳng hạn như hệ thống hội thoại (dialog systems) hoặc 
+trợ lý ảo cá nhân thông minh (intelligent personal assistants).
+
+Mặc dù những model phức tạp này được huấn luyện trên lượng dữ liệu khổng lồ đã trở nên cực kỳ hiệu quả trong vài năm 
+gần đây, nhưng khi được sử dụng trong các hệ thống sản phẩm thực tế mà giúp cuộc sống con người trở nên dễ dàng hơn thì 
+chúng thường không đạt được khả năng này. Một số vấn đề *alignment* trong LLMs thường thấy rõ ở dạng:
+
+- Thiếu hữu ích: tức là mô hình không tuân theo hướng dẫn cụ thể của người dùng.
+- Phi thực tế: model tạo ra những sự thật không tồn tại hoặc sai sự thật.
+- Thiếu khả năng diễn giải: con người khó hiểu cách mà model đưa ra một quyết định hoặc dự đoán cụ thể.
+- Bias hoặc toxic trong output: một model dược huấn luyện với dữ liệu bị bias/ toxic có thể tái tạo điều đó trong đầu ra.
+
+Nhưng vấn đề *alignment* này bắt nguồn từ đâu? Có phải ngay từ cách mà language models được huấn luyện vốn dễ bị 
+*misalignment*?
+
+### Tại sao các chiến lược huấn luyện language model có thể tạo ra vấn đề *misalignment*
+
+`Next-token-prediction` và `masked-language-modeling` là một trong số các kỹ thuật cốt lõi được sử dụng để huấn luyện 
+language models, chẳng hạn như `transformers`. Trong cách tiếp cận đầu tiê
 
