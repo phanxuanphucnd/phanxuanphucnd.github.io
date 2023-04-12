@@ -12,8 +12,8 @@ ChatGPT đang là xu hướng, nó như đại diện cho thế hệ tiếp theo
 (interative conversations).
 
 OpenAI họ đã sử dụng kết hợp cả Supervised Learning (học giám sát) và Reinforment Learning (học tăng cường) để tinh 
-chỉnh (fine-tune) ChatGPT, **nhưng Reinforment Learning mới là thành phần làm cho ChatGPT trở nên độc đáo hơn tất cả**. 
-Kỹ thuật cụ thể được gọi là **Reinforment Learning from Human Feedback (RLHF)**, tức là học tăng cường từ những dữ liệu 
+chỉnh (fine-tune) ChatGPT, **nhưng Reinforcement Learning mới là thành phần làm cho ChatGPT trở nên độc đáo hơn tất cả**. 
+Kỹ thuật cụ thể được gọi là **Reinforcement Learning from Human Feedback (RLHF)**, tức là học tăng cường từ những dữ liệu 
 feedback của con người, sử dụng vòng lặp feedback của con người trong quá trình huấn luyện để giảm thiểu việc đưa ra các phản hồi 
 có hại, không trung thực hay là sai lệch tri thức.
 
@@ -71,22 +71,53 @@ chúng thường không đạt được khả năng này. Một số vấn đề
 Nhưng vấn đề *alignment* này bắt nguồn từ đâu? Có phải ngay từ cách mà language models được huấn luyện vốn dễ bị 
 *misalignment*?
 
-### Tại sao các chiến lược huấn luyện language model có thể tạo ra vấn đề *misalignment*
+### Tại sao các phương pháp huấn luyện language model bắt gặp vấn đề *misalignment*
 
 `Next token prediction` và `masked language modeling` là một trong số các kỹ thuật cốt lõi được sử dụng để huấn luyện 
 language models, chẳng hạn như `transformers`. 
 
-Trong cách tiếp cận đầu tiên, model có đầu vào là chuỗi các từ (hoặc 
-token) và dự đoán từ tiếp theo trong chuỗi. Ví dụ, chuỗi đầu vào của model là: "Con mèo đang nằm trên ". Model phải dự 
-đoán từ tiếp theo là "giường", "ghế", "bàn", "sân" chẳng hạn. Bởi vì xác suất xuất hiện từ tiếp theo của các từ đó trong ngữ 
-cảnh phía trước cao. Trên thực tế, language model có thể ước tính khả năng xuất hiện của mỗi từ (trong vốn từ vựng của 
-nó) có thể xuất hiện tiếp theo dựa trên chuỗi từ trước đó. 
+Trong cách tiếp cận đầu tiên, model có đầu vào là chuỗi các từ (hoặc  token) và dự đoán từ tiếp theo trong chuỗi. Ví dụ, 
+chuỗi đầu vào của model là: `Con mèo đang nằm trên _`. Model phải dự đoán từ tiếp theo là "giường", "ghế", "bàn", "sân" 
+chẳng hạn. Bởi vì xác suất xuất hiện từ tiếp theo của các từ đó trong ngữ cảnh phía trước cao. Trên thực tế, language 
+model có thể ước tính khả năng xuất hiện của mỗi từ (trong vốn từ vựng của nó) có thể xuất hiện tiếp theo dựa trên chuỗi 
+từ trước đó. 
 
 Cách tiếp cận theo `masked language modeling` là một biến thể của `next token prediction`, trong đó một số từ trong 
 chuỗi đầu vào được thay thế bởi một token đặc biệt, ví dụ như [MASK]. Model có nhiệm vụ dự đoán chính xác từ sẽ được 
-thêm vào vị trí được mask. Ví dụ, chuỗi đầu vào của model là: "Con [MASK] đang nằm trên ghế ." thì model phải dự đoán 
+thêm vào vị trí được mask. Ví dụ, chuỗi đầu vào của model là: `Con [MASK] đang nằm trên ghế .` thì model phải dự đoán 
 được từ được mask là "mèo", "chó", hoặc "thỏ" chẳng hạn.
 
+Một trong những ưu điểm của các hàm mục tiêu này là cho phép model học cấu trúc dựa theo thống kê của ngôn ngữ, chẳng 
+hạn như chuỗi các từ phổ biến hay là các mẫu (patterns) sử dụng từ nào đó. Điều này thường giúp cho model sinh ra văn 
+bản trôi chảy và tự nhiên hơn, đồng thời đó cũng là một bước pre-training của mọi language model.
 
+Tuy nhiên, các hàm mục tiêu này cũng có thể dẫn tới các vấn đề, về cơ bản là do model không có khả năng phân biệt giữa 
+những lỗi quan trọng và không quan trọng. Một ví dụ đơn giản, giả sử model được cho trước một câu (sentence) sau: 
+`Đề chế La Mã [MASK] với triều đại Augustus.`. Model có thể dự đoán là "bắt_đầu" hoặc "kết_thúc" vì cả hai đều có khả 
+năng xảy ra rất cao (thực sự thì cả 2 câu đều đúng về mặt lịch sử), mặc dù lựa chọn thứ 2 mang 1 ý nghĩa rất khác.
 
+Tổng quát hơn, các chiến lược huấn luyện này có thể dẫn tới vấn đề *misalignment* trong language model đối với nhiều 
+task phức tạp, bởi vì một model chỉ được huấn luyện với việc dự đoán từ tiếp theo (hoặc mask token) trong chuỗi text, 
+có thể nó không cần học được các biểu diễn high-level hơn về ý nghĩa của nó cũng đã đáp ứng đủ tốt với hàm mục tiêu đó. 
+Kết qủa là model gặp khó khắn lớn trong việc khái quát hóa được các task hoặc context mà yêu cầu hiểu sâu hơn về ngôn 
+ngữ.
 
+Các nhà nghiên cứu hay các nhà phát triển họ đang nghiên cứu các hướng khác nhau để giải quyết vấn đề *alignment* trong 
+LLMs. ChatGPT dựa trên GPT-3 là 1 LLMs nhưng đã được huấn luyện thêm bằng cách sử dụng feedbach của con người để làm cho 
+quá trình learning của model với mục địch cụ thể là giảm thiểu được các vấn đề về *misalignment*. Cụ thuật cụ thể đó 
+được gọi là **Reinforcement learning from Human Feedback**. ChatGPT là trường hợp đầu tiên sử dụng kỹ thuật này cho model 
+được đưa vào sản phẩm. 
+
+Nhưng cách mà những người đã tạo ra ChatGPT họ đã sử dụng feecback của con người để giải quyết vấn đề *alignment* như 
+thế nào cũng là một câu hỏi rất cần được giải đáp.
+
+### Reinforcement Learning from Human Feedback
+
+Phương pháp này gồm 3 bước riêng biệt:
+
+1. Supervised fine-tuning: Một pre-trained LLMs được fine-tune trên một lượng nhỏ dữ liệu được gọi là SFT dataset để 
+learn được supervised policy (SFT model) và sinh output từ các prompt đã được chuẩn bị. -> Quá trình này tạo ra dược 1
+model baseline.
+
+2. Mimic human preference: 
+3. Proximal Policy Optimization (PPO):
