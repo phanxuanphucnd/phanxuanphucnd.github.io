@@ -113,11 +113,20 @@ thế nào cũng là một câu hỏi rất cần được giải đáp.
 
 ### Reinforcement Learning from Human Feedback
 
-Phương pháp này gồm 3 bước riêng biệt:
+Phương pháp này gồm 3 bước như sau:
 
-1. Supervised fine-tuning: Một pre-trained LLMs được fine-tune trên một lượng nhỏ dữ liệu được gọi là SFT dataset để 
-learn được supervised policy (SFT model) và sinh output từ các prompt đã được chuẩn bị. -> Quá trình này tạo ra dược 1
-model baseline.
+1. **Supervised fine-tuning:** Pre-trained LLMs được fine-tune trên một lượng nhỏ dữ liệu prompting được gọi là prompting 
+dataset được tạo ra bởi những người gán nhãn (labelers) để learn được supervised policy (**SFT model**) và sinh output từ các 
+prompt đã được chuẩn bị. -> Quá trình này tạo ra dược 1 model baseline.
 
-2. Mimic human preference: 
-3. Proximal Policy Optimization (PPO):
+2. **Mimic human preference:**  Bước này sẽ có một bộ dữ liệu mới được tạo ra bởi những người gán nhãn bằng cách họ sẽ 
+voting các text được sinh bởi SFT model, bộ dữ liệu này được gọi là *comparision data*. **Reward model (RM)** sẽ được huấn 
+luyện trên chính bộ dữ liệu này.
+
+3. **Proximal Policy Optimization (PPO):** Reward model được sử dụng để fine-tune và cải thiện SFT model. Output của bước 
+này hay được gọi là **Policy model**, về cơ bản nó cũng chính là SFT model sau khi được fine-tuned.
+
+Ở bước 1 chỉ thực hiện một lần duy nhất, còn bước 2 và 3 có thể được lặp đi lặp lại liên tục bởi vì khi càng nhiều 
+comparision data thu được dựa trên best policy cho tới thời điểm đó sẽ được huấn luyện để tạo ra một reward model và 
+policy model mới tốt hơn.
+
