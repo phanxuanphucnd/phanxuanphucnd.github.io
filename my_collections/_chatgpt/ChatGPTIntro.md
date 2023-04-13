@@ -133,3 +133,22 @@ policy model mới tốt hơn.
 
 #### Bước 1: Supervised Fine-Tuning (SFT) model
 
+Bước đầu tiên bao gồm việc thu thập/ xây dựng bộ dữ liệu được gọi là *demonstration data* để huấn luyện supervised policy 
+model. *Demonstration data* tức là bộ dữ liệu mà được sử dụng để minh hoạ hoặc giới thiệu cách mà model hoạt đông, giúp 
+model học được các mẫu và cấu trúc ngôn ngữ, hiểu ngôn ngữ một cách chính xác hơn, học được các dạng task mà model sẽ 
+dần hình thành trong bước này. Ví dụ như nó giúp model nhận dạng được cách xử lý với task phân loại, trích xuất, QnA, 
+generation, ... chảng hạn. Trong quá trình này người ta sẽ chuẩn bị bộ dữ liệu này đa dạng task nhất có thể. Tất nhiên, 
+việc đa dạng, xây dựng bộ dữ liệu này tốt cũng sẽ giúp model learn tốt hơn, hiểu và đưa ra phản hồi chính xác hơn.
+
+- Thu thập dữ liệu: Một list các prompt được thu thập, lựa chọn và một nhóm người gán nhãn họ sẽ được yêu cầu để viết ra 
+phản hồi đầu ra kỳ vọng cho prompt đó. Đối với chatGPT, 2 nguồn prompt khác nhau được sử dụng là: một số được chuẩn bị 
+trực tiếp bởi những người gán nhãn của họ và các developers, một số được lấy từ requests của OpenAI public ra cộng đồng 
+và thu được từ người dùng. Vì quá trình này chậm và đắt đỏ, chính vì thế kết quả họ chỉ thu được một lượng dữ liệu tương 
+đối nhỏ, chất lượng tốt (~ 12-15k data points) được sử dụng để fine-tune LLM. 
+
+- Lựa chọn model: Nhà phát triển chatGPT sử dụng pre-trained LLM để fine-tune là `GPT-3` hoặc các biến thể của nó như là 
+`GPT-3.5`, `text-davinci-003`.
+
+
+
+
