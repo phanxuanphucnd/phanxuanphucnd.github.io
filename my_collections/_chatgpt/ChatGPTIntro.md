@@ -1,7 +1,7 @@
 ---
 title: "ChatGPT: bản chất ChatGPT hoạt động như thế nào?"
 date: 2022-12-23
-cover: /chatgpt.jpg
+cover: /chatgpt.png
 labs: ["AssemblyAI", "San Francisco, California"]
 ---
 
@@ -150,5 +150,6 @@ và thu được từ người dùng. Vì quá trình này chậm và đắt đ�
 `GPT-3.5`, `text-davinci-003`.
 
 
-
-
+<div align="center">
+    <img src="media/ChatGPTIntro/ChatGPT-1.jpg" width=400>
+</div>
