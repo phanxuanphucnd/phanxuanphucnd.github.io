@@ -111,7 +111,7 @@ quá trình learning của model với mục địch cụ thể là giảm thi�
 Nhưng cách mà những người đã tạo ra ChatGPT họ đã sử dụng feecback của con người để giải quyết vấn đề *alignment* như 
 thế nào cũng là một câu hỏi rất cần được giải đáp.
 
-### Reinforcement Learning from Human Feedback
+### Reinforcement Learning from Human Feedback (RLHF)
 
 Phương pháp này gồm 3 bước như sau:
 
@@ -158,4 +158,30 @@ zđề *misalignment*. Vấn đề ở bước supervised learning là yêu cầ
 này, thay vì yêu cầu những người gán nhãn họ phải tạo ra bộ dữ liệu supervised lớn, tốn nhiều thời gian và chi phí, thì 
 chiến lược bây giờ là để những người gán nhãn họ ranking các output khác nhau (candidates) của SFT model để tạo ra một 
 Reward model.
+
+#### Bước 2: Reward Model (RM)
+
+Mục tiêu là để learn được hàm mục tiêu (reward model) trực tiếp từ dữ liệu. Mục đích của hàm này là đưa ra 1 score thể 
+hiện mức độ đánh những outputs của SFT model so với mong muốn của con người. Thực tế điều này sẽ phản ảnh được sở thích 
+cụ thể của một nhóm người gán nhãn dữ liệu và hướng dẫn/ quy tắc ranking chung mà hỗ đã cùng follow. Cuối cùng, quá trình 
+này sẽ trích xuất từ dữ liệu một hệ thống tự động bắt bước hành vi giống như con người. 
+
+Cách nó hoạt động như sau:
+
+- Một list các prompts được lựa chọn và SFT model sinh ra nhiều outputs (candidates), thường là từ 4 -> 9 cho mỗi prompt.
+- Những người gán nhãn họ sẽ ranking các outputs từ score cao tới thấp. Score càng cao thì sẽ càng giống với kỳ vọng của 
+con người. Kết quả sẽ thu được một bộ dữ liệu mới, trong đó thứ tự ranking là nhãn. Kích thước của bộ dữ liệu này có thể 
+gấp khoảng 10 lần so với dữ liệu ở bước 1 được huấn luyện cho SFT model.
+- Bộ dữ liệu mới này được sử dụng để huấn luyện reward model (RM). Model này lấy đầu vào là các outputs của SFT model và 
+ranks chúng theo thứ tự kỳ vọng của con người.
+
+<div align="center">
+    <img src="media/ChatGPTIntro/ChatGPT-2.jpeg" width=400>
+</div>
+
+Đối với những người gán nhãn, việc rank các outputs này dễ dàng hơn nhiều so với việc tạo dữ liệu supervised từ đầu như 
+ở bước 1. Quá trình này scale-up dễ dàng và hiệu quả hơn. Thực tế, bộ dữ liệu này được tạo từ việc lựa chọn khoảng 30-40k 
+prompts, và số lượng khác nhau của outputs SFT model giữa các prompt.
+
+#### Bước 3: Fine-tuning SFT model thông qua Proximal Policy Optimization (PPO)
 
