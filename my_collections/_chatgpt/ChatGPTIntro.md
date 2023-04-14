@@ -149,7 +149,13 @@ và thu được từ người dùng. Vì quá trình này chậm và đắt đ�
 - Lựa chọn model: Nhà phát triển chatGPT sử dụng pre-trained LLM để fine-tune là `GPT-3` hoặc các biến thể của nó như là 
 `GPT-3.5`, `text-davinci-003`.
 
-
 <div align="center">
     <img src="media/ChatGPTIntro/ChatGPT-1.jpg" width=400>
 </div>
+
+Bởi vì giới hạn số lượng dữ liệu cho bước này, SFT model sau quá trình này có khả năng sinh ra text nhưng vẫn gặp vấn 
+đề *misalignment*. Vấn đề ở bước supervised learning là yêu cầu chi phí để mở rộng bộ dữ liệu cao. Để giải quyết vấn đề 
+này, thay vì yêu cầu những người gán nhãn họ phải tạo ra bộ dữ liệu supervised lớn, tốn nhiều thời gian và chi phí, thì 
+chiến lược bây giờ là để những người gán nhãn họ ranking các output khác nhau (candidates) của SFT model để tạo ra một 
+Reward model.
+
