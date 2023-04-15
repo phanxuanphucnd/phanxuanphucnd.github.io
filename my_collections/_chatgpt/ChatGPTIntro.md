@@ -185,3 +185,16 @@ prompts, và số lượng khác nhau của outputs SFT model giữa các prompt
 
 #### Bước 3: Fine-tuning SFT model thông qua Proximal Policy Optimization (PPO)
 
+Reinforcement Learning ở bước này được sử dụng để fine-tune SFT policy bằng việc tối ưu nó bởi reward model. Thuật toán 
+được sử dụng cho quá trình này là Proximal Policy Optimization (PPO) và model sau khi được fine-tuned được gọi là PPO 
+model.
+
+Một câu hỏi đặt ra PPO là gì?
+
+Mình sẽ note những điểm chính của phương pháp này.
+
+- PPO là một thuật toán 
+
+<div align="center">
+    <img src="media/ChatGPTIntro/ChatGPT-3.jpeg" width=400>
+</div>
