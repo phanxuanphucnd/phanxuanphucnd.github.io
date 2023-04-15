@@ -193,8 +193,52 @@ Một câu hỏi đặt ra PPO là gì?
 
 Mình sẽ note những điểm chính của phương pháp này.
 
-- PPO là một thuật toán 
+- PPO là một thuật toán được sử dụng để huấn luyện các agents trong reinforcement learning. Nó được gọi là thuật toán 
+"on-policy" bởi vì học và cập nhật một cách trực tiếp policy hiện tại, thay vì học từ các kinh nghiệm trong quá khứ như 
+trong các thuật toán "off-policy" chẳng hạn như DQN (Deep Q-Network). Điều đó có nghĩa là PPO luôn liên tục điều chỉnh 
+policy hiện tại dựa trên các action mà agent đang thực thi và reward mà nó nhận được. 
+- PPO sử dụng phương pháp [trust region optimization](https://en.wikipedia.org/wiki/Trust_region?ref=assemblyai.com) để 
+huấn luyện policy, có nghĩa là nó hạn chế thay đổi trong policy mới trong một khoảng nhất định so với policy trước đó 
+nhằm mục đích để đảm bảo tính ổn định (stability). Điều này trái ngược với các phương pháp policy gradient khác có thể 
+cập nhật thay đổi lớn cho policy có thể gây ra vấn đề không stable trong quá trình learning.
+- PPO sử dụng một hàm giá trị (value function) để ước tính giá trị trả về (value return) của một state hoặc action 
+nhất định. Value function được sử dụng để tính toán advantage function biểu diễn sự khác nhau giữa expected return và 
+current return. Sau đó advantage function được sử dụng để cập nhật policy bằng cách so sánh action thực hiện bởi policy 
+hiện tại và action sẽ được thực hiện bởi policy trước đó. Điều này cho phép PPO thực hiện các cập nhật sáng suốt hơn cho 
+policy dựa trên giá trị được ước tính của các action được thực hiện.
+
+```angular2html
+Phương pháp trust region optimization -phương pháp tối ưu hóa khu vực tin cậy là một phương pháp tối ưu hóa trong đó 
+ta giải quyết vấn đề tối ưu hóa bằng cách tìm kiếm một điểm tối ưu trong một vùng "trust region - vùng tin cậy" của 
+không gian tìm kiếm. Điều này được thực hiện bằng cách giới hạn các bước cập nhật giá trị biến của bài toán tối ưu 
+trong một vùng khu vực nhỏ xung quanh điểm hiện tại, gọi là "trust region". Vùng tin cậy này được xác định bằng cách 
+sử dụng một hàm mô hình bậc hai (quadratic model) để dự đoán sự thay đổi của hàm mục tiêu trong vùng đó.
+```
+
+Trong bước này, PPO model được khởi tạo từ chính SFT model, tức nó ban đầu chính là SFT model. Value function được khởi 
+tạo từ reward model. Môi trường là bandit enviroment biểu diễn một prompt ngẫu nhiên và response tương ứng cho prompt đó. 
+Từ prompt và response có thể đưa một reward (được xác định bởi reward model) và 
 
 <div align="center">
     <img src="media/ChatGPTIntro/ChatGPT-3.jpeg" width=400>
 </div>
+
+
+### Performance Evaluation 
+
+
+
+
+### References
+
+[1] Training language models to follow instructions with human feedback, https://arxiv.org/pdf/2203.02155.pdf.
+
+[2] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback, https://arxiv.org/pdf/2204.05862.pdf.
+
+[3] Learning to summarize from human feedback, https://arxiv.org/pdf/2009.01325.pdf.
+
+[4] Proximal Policy Optimization Algorithms, https://arxiv.org/pdf/1707.06347.pdf.
+
+[5] Deep reinforcement learning from human preferences, https://arxiv.org/pdf/1706.03741.pdf.
+
+[6] A General Language Assistant as a Laboratory for Alignment, https://arxiv.org/pdf/2112.00861.pdf.
