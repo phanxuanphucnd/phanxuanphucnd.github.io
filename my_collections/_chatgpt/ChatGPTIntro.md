@@ -231,14 +231,14 @@ Từ prompt và response có thể đưa một reward (được xác định b�
 
 ### References
 
-[1] Training language models to follow instructions with human feedback, https://arxiv.org/pdf/2203.02155.pdf.
+[1] Training language models to follow instructions with human feedback, [https://arxiv.org/pdf/1706.03741.pdf](https://arxiv.org/pdf/1706.03741.pdf.
 
-[2] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback, https://arxiv.org/pdf/2204.05862.pdf.
+[2] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback, [https://arxiv.org/pdf/2204.05862.pdf](https://arxiv.org/pdf/2204.05862.pdf).
 
-[3] Learning to summarize from human feedback, https://arxiv.org/pdf/2009.01325.pdf.
+[3] Learning to summarize from human feedback, [https://arxiv.org/pdf/2009.01325.pdf](https://arxiv.org/pdf/2009.01325.pdf).
 
-[4] Proximal Policy Optimization Algorithms, https://arxiv.org/pdf/1707.06347.pdf.
+[4] Proximal Policy Optimization Algorithms, [https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf).
 
-[5] Deep reinforcement learning from human preferences, https://arxiv.org/pdf/1706.03741.pdf.
+[5] Deep reinforcement learning from human preferences, [https://arxiv.org/pdf/1706.03741.pdf](https://arxiv.org/pdf/1706.03741.pdf).
 
-[6] A General Language Assistant as a Laboratory for Alignment, https://arxiv.org/pdf/2112.00861.pdf.
+[6] A General Language Assistant as a Laboratory for Alignment, [https://arxiv.org/pdf/2112.00861.pdf](https://arxiv.org/pdf/2112.00861.pdf).
