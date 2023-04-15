@@ -226,7 +226,21 @@ Từ prompt và response có thể đưa một reward (được xác định b�
 
 ### Performance Evaluation 
 
+Bởi vì model được huấn luyện trên dữ liệu đầu vào của những người gán nhãn, chính vì thành phần cốt lõi của việc đánh 
+giá cũng dựa trên đầu vào của con người, tức là để con người đánh giá chất lượng outputs của model. Để tránh việc 
+overfiting với mindset của những người đã gán nhãn trong quá trình huấn luyện, quá trình test sử dụng prompts từ 
+cộng đồng của OpenAI mà không được dùng trong quá trình huấn luyện. 
 
+Model được đánh giá dựa trên 3 tiêu chí high-level:
+
+- Tính hữu ích: đánh giá khả năng của model follow theo hướng dẫn (instruction) của con người, cũng như suy luận.
+- Tính đúng đắn, chân thực: đánh giá mức độ ảo của model, tức là tạo ra lời bịa đặt trên closed-domain tasks. Model có 
+thể được đánh giá trên bộ dữ liệu TruthfulQA.
+- Tính vô hại: đánh giá liệu output của model liệu có phù hợp hay không, sinh ra output làm tổn hại các lớp đối tượng 
+được bảo vệ hay là chứa các nội dung xúc phạm hay không. Model có thể được benchmark trên bộ dữ liệu như RealToxicityPrompts, 
+CrowS-Pairs.
+
+Model cũng được đánh giá khả năng zero-shot trên các task NLP truyền thống như QA, MRC, Summarization. 
 
 
 ### References
