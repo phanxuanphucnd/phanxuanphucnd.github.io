@@ -245,7 +245,7 @@ Model cũng được đánh giá khả năng zero-shot trên các task NLP truy�
 
 ### References
 
-[1] Training language models to follow instructions with human feedback, [https://arxiv.org/pdf/1706.03741.pdf](https://arxiv.org/pdf/1706.03741.pdf.
+[1] Training language models to follow instructions with human feedback, [https://arxiv.org/pdf/1706.03741.pdf](https://arxiv.org/pdf/1706.03741.pdf).
 
 [2] Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback, [https://arxiv.org/pdf/2204.05862.pdf](https://arxiv.org/pdf/2204.05862.pdf).
 
