@@ -217,7 +217,7 @@ sử dụng một hàm mô hình bậc hai (quadratic model) để dự đoán s
 
 Trong bước này, PPO model được khởi tạo từ chính SFT model, tức nó ban đầu chính là SFT model. Value function được khởi 
 tạo từ reward model. Môi trường là bandit enviroment biểu diễn một prompt ngẫu nhiên và response tương ứng cho prompt đó. 
-Từ prompt và response có thể đưa một reward (được xác định bởi reward model) và 
+Từ prompt và response có thể đưa một reward (được xác định bởi reward model).
 
 <div align="center">
     <img src="media/ChatGPTIntro/ChatGPT-3.jpeg" width=400>
