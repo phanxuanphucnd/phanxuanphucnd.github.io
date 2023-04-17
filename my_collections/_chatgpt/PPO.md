@@ -19,7 +19,8 @@ chính của các phương pháp **Policy Gradient**, **Natural Policy Gradient*
 
 ### Vanilla Policy Gradient
 
-
+Để hiểu rõ về PPO chúng ta cần phải hiểu thật rõ về phương pháp Policy Gradients. Nếu bạn còn chưa có kiến thức về phần 
+này bạn có thể đọc tham khảo bài viết này: 
 
 
 ### Natural Policy Gradient
