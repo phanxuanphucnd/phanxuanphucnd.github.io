@@ -40,3 +40,14 @@ bước đệm cho việc hiểu rõ hơn về PPO.
 ### Kết luận
 
 
+### References 
+
+[1] Natural Gradient Works Efficiently in Learning, 1998, [https://ieeexplore.ieee.org/abstract/document/6790500](https://ieeexplore.ieee.org/abstract/document/6790500).
+
+[2] Towards Delivering a Coherent Self-Contained Explanation of Proximal Policy Optimization, 2021, [https://fse.studenttheses.ub.rug.nl/25709/1/mAI_2021_BickD.pdf](https://fse.studenttheses.ub.rug.nl/25709/1/mAI_2021_BickD.pdf).
+
+[3] A Natural Policy Gradient, 2001, [https://proceedings.neurips.cc/paper/2001/file/4b86abe48d358ecf194c56c69108433e-Paper.pdf](https://proceedings.neurips.cc/paper/2001/file/4b86abe48d358ecf194c56c69108433e-Paper.pdf).
+
+[4] Trust Region Policy Optimization, 2015, [https://proceedings.mlr.press/v37/schulman15.pdf](https://proceedings.mlr.press/v37/schulman15.pdf).
+
+[5] Proximal policy optimization algorithms, 2017, [https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf).
