@@ -1,8 +1,8 @@
 ---
 title: "ChatGPT: bản chất ChatGPT hoạt động như thế nào?"
-date: 2022-12-23
+date: 2023-04-10
 cover: /chatgpt.png
-labs: ["AssemblyAI", "San Francisco, California"]
+labs: ["VinBigdata", "Hanoi, Vietnam"]
 ---
 
 ChatGPT là một Large Language Model (LLM) mới nhất của OpenAI và cho thấy được sự cải thiện đáng kể với mô hình tiền 
