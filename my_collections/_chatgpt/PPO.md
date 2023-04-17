@@ -1,6 +1,6 @@
 ---
 title: "PPO: Giải thích thuật toán Proximal Policy Opitmization (PPO)"
-date: 2023-04-10
+date: 2023-04-21
 cover: /ppo0.jpg
 labs: ["VinBigdata", "Hanoi, Vietnam"]
 ---
@@ -20,7 +20,10 @@ chính của các phương pháp **Policy Gradient**, **Natural Policy Gradient*
 ### Vanilla Policy Gradient
 
 Để hiểu rõ về PPO chúng ta cần phải hiểu thật rõ về phương pháp Policy Gradients. Nếu bạn còn chưa có kiến thức về phần 
-này bạn có thể đọc tham khảo bài viết này: 
+này bạn có thể đọc tham khảo bài viết này: [https://phanxuanphucnd.github.io/chatgpt/PolicyGradients](https://phanxuanphucnd.github.io/chatgpt/PolicyGradients). 
+
+Trong RL, một policy `π` hiểu đơn giản là một hàm mà trả về một hành động (action) khả thi cho trước 1 trạng thái (state) `s`.
+
 
 
 ### Natural Policy Gradient
