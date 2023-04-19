@@ -1,6 +1,6 @@
 ---
 title: "PPO: Giải thích thuật toán Proximal Policy Opitmization (PPO)"
-date: 2023-04-21
+date: 2023-04-26
 cover: /ppo0.jpg
 labs: ["VinBigdata", "Hanoi, Vietnam"]
 ---
