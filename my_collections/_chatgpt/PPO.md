@@ -55,3 +55,4 @@ Trong RL, một policy `π` hiểu đơn giản là một hàm mà trả về m�
 [4] Trust Region Policy Optimization, 2015, [https://proceedings.mlr.press/v37/schulman15.pdf](https://proceedings.mlr.press/v37/schulman15.pdf).
 
 [5] Proximal policy optimization algorithms, 2017, [https://arxiv.org/pdf/1707.06347.pdf](https://arxiv.org/pdf/1707.06347.pdf).
+
