@@ -1,21 +1,21 @@
 ---
-title: "Tại sao các bản sao của GPT-3 đều fail? Chúng ta nên sử dụng GPT-3.5/ chatGPT trong những bài toán nào?"
+title: "Tại sao các bản sao của GPT-3 fail? Chúng ta nên sử dụng GPT-3.5/ chatGPT trong những bài toán nào?"
 date: 2023-05-02
 cover: /chatgpt.png
 labs: ["Hanoi, Vietnam"]
 ---
 
 
-Tại sao các bản sao được public trên công đồng của GPT-3 đều fail? Thật sự thì những nhiệm vụ nào thì nên sử dụng GPT-3.5/ chatGPT?
+Tại sao các bản sao được public trên công đồng của GPT-3 fail? Thật sự thì những nhiệm vụ nào thì nên sử dụng GPT-3.5/ chatGPT?
 
 Source: https://phanxuanphucnd.github.io/
 
 Trong bài viết này, tôi chia sẻ dựa trên quan điểm của riêng cá nhân tôi. Tôi sẽ viết một số tóm tắt và suy nghĩ của mình về hai câu hỏi trên, sau khi tôi đã nghiên cứu chi tiết trong một loạt các bài báo về GPT-3, PaLM, BLOOM, OPT, FLAN-T5/PaLM, HELM và nhiều hơn nữa. 
 
-Câu hỏi đầu tiên: "tại sao các bản sao được cộng đồng reproduce lại GPT-3 đều fail?" là một câu hỏi quan trọng, đặc biệt đối với những người muốn "sao chép" lại GPT-3/ chatGPT của riêng họ. Câu hỏi thứ hai quan trọng đối với những người muốn sử dụng GPT-3.5/ InstrucT GPT/ chatGPT.
+Câu hỏi đầu tiên: "tại sao các bản sao được cộng đồng reproduce lại GPT-3 fail?" là một câu hỏi quan trọng, đặc biệt đối với những người muốn "sao chép" lại GPT-3/ chatGPT của riêng họ. Câu hỏi thứ hai quan trọng đối với những người muốn sử dụng GPT-3.5/ InstrucT GPT/ chatGPT.
 
 
-## Tại sao các bản "sao chép" của GPT-3/ GPT-3.5/ Instruct GPT/ chatGPT (gọi ngắn gọn là GPT-3) đều fail?
+## Tại sao các bản "sao chép" của GPT-3/ GPT-3.5/ Instruct GPT/ chatGPT (gọi ngắn gọn là GPT-3) fail?
 
 Ở đây, tôi xác định "fail" là không đạt được hiệu suất được báo cáo trong bài báo gốc về GPT-3, với kích thước mô hình tương tự hoặc thậm chí lớn hơn. Theo tiêu chí này, GPT-3 và PaLM (540B) là thành công, nhưng cả hai mô hình này đều không được công khai, trong khi tất cả các mô hình công khai khác (ví dụ như OPT-175B và BLOOM-176B) đều "thất bại" đến một mức độ nào đó. Nhưng vẫn có thể học được nhiều bài học từ những "thất bại" này. Lưu ý rằng nếu chúng ta đã thử nhiều cài đặt khác nhau nhiều lần, cộng đồng công khai có thể cuối cùng sẽ sao chép lại được GPT-3. Nhưng cho đến bây giờ, chi phí vẫn quá cao để huấn luyện thậm chí một phiên bản khác của OPT-175B. Bởi vì huấn luyện một lượt của một mô hình lớn như vậy yêu cầu phải chạy ít nhất trong 2 tháng trên ~1000 GPU A100 80G.
 
