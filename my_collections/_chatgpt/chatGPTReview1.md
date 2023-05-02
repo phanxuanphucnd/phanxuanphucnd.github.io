@@ -1,5 +1,5 @@
 ---
-title: "Tại sao các bản "sao chép" của GPT-3/ GPT-3.5/ Instruct GPT/ chatGPT fail? Chúng ta nên sử dụng GPT-3.5/ chatGPT trong những bài toán nào?"
+title: "Tại sao các bản "sao chép" của GPT-3 fail? Chúng ta nên sử dụng GPT-3.5/ chatGPT trong những bài toán nào?"
 date: 2023-05-02
 cover: /chatgpt.png
 labs: ["Hanoi, Vietnam"]
