@@ -51,7 +51,7 @@ Trước khi bắt đầu, chúng ta cần phải set-up:
 - Một số documents được upload lên Google Docs. `LLamaIndex` hỗ trợ nhiều kiểu data source khác nhau. Trong ví dụ minh họa này, mình sẽ thử với Google Docs.
 
 <div align="center">
-    <img src="media/Guideline/image1.png" width=600>
+    <img src="media/Guideline/image00.png" width=600>
 </div>
 
 
